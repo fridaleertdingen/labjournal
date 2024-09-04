@@ -1,6 +1,6 @@
 ---
-title: "Lab journal"
-author: "by: Your Name"
+title: "Lab journal :)"
+author: "by: Frida van Teijlingen"
 bibliography: references.bib
 
  
@@ -10,8 +10,11 @@ bibliography: references.bib
 
 
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
-# install.packages("remotes")
+#install.packages("remotes")
 #remotes::install_github("rlesur/klippy")
+
+#install.packages("remotes")
+#contrib.url(repos, "source")
 ``` 
 
 ```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
@@ -100,6 +103,6 @@ Use the top menu to navigate through the journal.
 
 # References
 
-
+:)
 
 
