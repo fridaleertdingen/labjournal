@@ -1,5 +1,5 @@
 ---
-title: "Lab journal :)"
+title: "Lab journal"
 author: "by: Frida van Teijlingen"
 bibliography: references.bib
 
