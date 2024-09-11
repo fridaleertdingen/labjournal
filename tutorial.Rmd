@@ -1,0 +1,588 @@
+---
+title: "Lab journal"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+
+ 
+---
+
+## *To do and reminders*
+
+
+**Homework**: 
+
+- ~~Appendix A~~  
+- ~~Appendix B~~  
+- ~~Research questions~~  
+- ~~include all in journal~~  
+- Tidy up
+
+
+## Preparation
+```{r}
+rm(list = ls())  #clean up your environment
+
+package.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+packages = c("tidyverse", "haven", "dplyr", "knitr", "klippy", "labelled")
+package.check(packages)
+
+
+```
+
+
+```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+#install.packages("remotes")
+#remotes::install_github("rlesur/klippy")
+
+#install.packages("remotes")
+# contrib.url(repos, "source")
+``` 
+
+```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+
+
+
+colorize <- function(x, color) {sprintf("<span style='color: %s;'>%s</span>", color, x) }
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+#klippy::klippy(color = 'darkred')
+#klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
+```
+
+
+
+
+----
+
+<!--- This is the best way to write a comment. 
+It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp ---> 
+
+
+<!--- to use a multi column page we use Pandoc's fenced Div. 
+see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html 
+But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running ---> 
+
+:::: {.columns}
+::: {.column width="50%"}
+
+# My Lab Journal
+
+
+## Appendix A - Introduction to R for SNA
+
+```{r}
+#loading in the data
+cv08 <- foreign::read.spss("tutorial_data\\Cultural_Changes_2008.sav", use.value.labels = T, to.data.frame = T)
+cv10 <- foreign::read.spss("tutorial_data\\Cultural_Changes_2010.sav", use.value.labels = T, to.data.frame = T)
+
+# normally I think setting use.value.labels=F is more convenient. Thus lets load the data again but
+# now without labels
+cv08_nolab <- foreign::read.spss("tutorial_data\\Cultural_Changes_2008.sav", use.value.labels = F, to.data.frame = T)
+cv10_nolab <- foreign::read.spss("tutorial_data\\Cultural_Changes_2010.sav", use.value.labels = F, to.data.frame = T)
+
+# finally, import the data using haven
+cv08_haven <- haven::read_spss("tutorial_data\\Cultural_Changes_2008.sav")
+cv10_haven <- haven::read_spss("tutorial_data\\Cultural_Changes_2010.sav")
+
+```
+
+### Missing values 1
+```{r}
+#Missing values
+
+cv08$lftop_new <- cv08$lftop #newvar and linked to dataset
+
+cv08$lftop_new[cv08$lftop_new == "Onbekend"] <- NA #recoding
+
+table(cv08$lftop_new, useNA = "always") #checking
+
+
+#age numeric instead of categorical
+
+levels(cv08$lftop_new) 
+
+cv08$agen <- as.numeric(as.character(cv08$lftop_new))  # how clumsy. we first convert the factor to a string and then to a numeric variable.
+table(cv08$agen, useNA = "always")
+
+str(cv08$agen)
+
+
+```
+### Tidy 7.2
+```{r}
+#adding a variable via mutate
+
+library(dplyr)
+
+cv08_haven <- mutate(cv08_haven, lftop_new = lftop)
+```
+### Tidy 8.2
+```{r}
+require(labelled)
+str(cv08_haven$var006n)
+attr(cv08_haven$var006n, "labels")
+
+#using piping operators %>%, below are three mutate commands in one line
+cv08_haven <- cv08_haven %>%
+    mutate(educ3 = recode(var006n, `-3` = -9, `-1` = 1, `1` = 1, `2` = 2, `3` = 2, `4` = 2, `5` = 2,
+        `6` = 3, `7` = 3, `8` = 3, `10` = -9, .keep_value_labels = FALSE), educ3 = na_if(educ3, -9),
+        educ3 = factor(educ3, levels = c(1, 2, 3), labels = c("primary", "secondary", "tertiary")))
+```
+
+
+### Means
+```{r}
+#make numeric
+cv08$int055n <- as.numeric(cv08$int055)
+table(cv08$int055n, useNA = "always")
+cv08$int056n <- as.numeric(cv08$int056)
+table(cv08$int056n, useNA = "always")
+cv08$int057n <- as.numeric(cv08$int057)
+table(cv08$int057n, useNA = "always")
+
+#define missings and recode
+cv08$int055n[cv08$int055n < 5] <- NA
+cv08$int055n <- cv08$int055n - 4
+cv08$int056n[cv08$int056n < 5] <- NA
+cv08$int056n <- cv08$int056n - 4
+cv08$int057n[cv08$int057n < 5] <- NA
+cv08$int057n <- cv08$int057n - 4
+
+#want to calculate the mean for each row/respondent, the spss means function doesn't work the same
+testmeans <- rowMeans(cbind(cv08$int055n, cv08$int056n, cv08$int057n), na.rm = T)
+head(testmeans)
+
+#only include cases with a max of 1 missing and add to dataset, use the following steps
+nmis <- rowSums(is.na(cbind(cv08$int055n, cv08$int056n, cv08$int057n))) #count number of missings
+
+testmeans <- ifelse(nmis < 2, testmeans, NA) #select those with max of 1
+
+cv08$int_mean <- testmeans #add to working dataset
+```
+
+###Merging datafiles
+```{r}
+#Panel (long or wide?) or stacked cross-sections?
+#Step1: select variables you want to keep
+cv08_sel <- cv08[, c("we_id", "lftop", "geslacht", "var006n", "v401", "landd")]
+cv10_sel <- cv10[, c("Sleutel", "var002", "var001", "Vltoplop", "V401", "Landd")]
+
+#Step2: make consistent
+names(cv08_sel) <- names(cv10_sel) <- c("id", "age", "sex", "educ", "health", "region") #making names the same
+
+#making levels and labels consistent
+summary(cv08_sel)
+summary(cv10_sel)
+#they look very consistent already. but check carefully.
+
+#we don't want id to be a factor but numeric. Note that we don't want the factor level values as
+#numbers but the actual labels as numbers.
+
+#id
+cv08_sel$id <- as.numeric(as.character(cv08_sel$id))
+cv10_sel$id <- as.numeric(as.character(cv10_sel$id))
+
+#age
+cv08_sel$age <- as.numeric(as.character(cv08_sel$age))
+cv10_sel$age <- as.numeric(as.character(cv10_sel$age))
+
+#sex men
+levels(cv08_sel$sex)
+levels(cv10_sel$sex)
+table(cv08_sel$sex, useNA = "always")
+table(cv10_sel$sex, useNA = "always")
+#lets make it a numeric var first
+cv08_sel$sexn <- as.numeric(cv08_sel$sex)
+table(cv08_sel$sexn)
+#recode into dummy
+cv08_sel$men <- ifelse(cv08_sel$sexn == 2, 1, 0)
+cv08_sel$men <- ifelse(cv08_sel$sexn == 1, NA, cv08_sel$men)
+table(cv08_sel$men, useNA = "always") #check
+
+#lets make it a numeric var first
+cv10_sel$sexn <- as.numeric(cv10_sel$sex)
+table(cv10_sel$sexn)
+# recode into dummy
+cv10_sel$men <- ifelse(cv10_sel$sexn == 2, 1, 0)
+table(cv10_sel$men, useNA = "always") #check
+
+# educ educ3
+levels(cv08_sel$educ)
+levels(cv10_sel$educ)
+table(cv08_sel$educ, useNA = "always")
+table(cv10_sel$educ, useNA = "always")
+# lets make it a numeric var first
+cv08_sel$educn <- as.numeric(cv08_sel$educ)
+table(cv08_sel$educn)
+# recode into 3cats: 1 primair, 2 secundair, 3 is tertiair
+cv08_sel$educ3 <- NA
+cv08_sel$educ3[cv08_sel$educn == 2 | cv08_sel$educn == 3] <- 1
+cv08_sel$educ3[cv08_sel$educn > 3 & cv08_sel$educn < 8] <- 2
+cv08_sel$educ3[cv08_sel$educn > 7 & cv08_sel$educn < 11] <- 3
+
+table(cv08_sel$educ3, useNA = "always") #check
+prop.table(table(cv08_sel$educ3, useNA = "always"))
+
+# lets make it a numeric var first
+cv10_sel$educn <- as.numeric(cv10_sel$educ)
+table(cv10_sel$educn)
+# recode into 3cats: 1 primair, 2 secundari, 3 is tertiair
+cv10_sel$educ3 <- NA
+cv10_sel$educ3[cv10_sel$educn < 3] <- 1  # correct?
+cv10_sel$educ3[cv10_sel$educn > 2 & cv10_sel$educn < 6] <- 2
+cv10_sel$educ3[cv10_sel$educn == 6] <- 3
+
+table(cv10_sel$educ3, useNA = "always") #check
+prop.table(table(cv10_sel$educ3, useNA = "always"))
+
+
+#Step3: perform the actual merging. Make sure to include necessary identifier variables.
+#add a wave variable
+cv08_sel$wave <- 2008
+cv10_sel$wave <- 2010
+
+#make a fake ID, we will use this later when we pretend CV is panel data.
+cv08_sel$id2 <- rank(cv08_sel$id)
+cv10_sel$id2 <- rank(cv10_sel$id)
+
+#check first if same vars in both datasets
+
+cv08_sel <- cv08_sel[, c("id", "id2", "age", "men", "educ3", "health", "region", "wave")]
+cv10_sel <- cv10_sel[, c("id", "id2", "age", "men", "educ3", "health", "region", "wave")]
+
+summary(cv08_sel)
+summary(cv10_sel)
+
+#simply place one dataset under the other thus row bind (rbind)
+cv_tot <- rbind(cv08_sel, cv10_sel)
+
+#Step4: check results!
+summary(cv_tot)
+head(cv_tot)
+
+
+
+#alternative: panel dataset in wide format
+cv_tot_panel <- merge(cv08_sel, cv10_sel, all = TRUE, by = "id2")
+head(cv_tot_panel)
+
+#can also use the reshape function
+#cv_tot_panel <- reshape(cv_tot, timevar = "wave", idvar = "id2", direction = "wide")
+#head(cv_tot_panel)
+
+
+```
+### Aggregating data
+```{r}
+# step 1. construct dataset with aggregate info
+age_region <- aggregate(cv_tot$age, by = list(cv_tot$region), FUN = mean, na.rm = TRUE)
+head(age_region)
+
+# lets correct variable names
+names(age_region) <- c("region", "age_region")
+age_region
+
+# step 2. match to dataset
+cv_total <- merge(cv_tot, age_region, by = "region", all.x = TRUE)
+head(cv_total)
+tail(cv_total)
+```
+### Missing values 2
+```{r}
+#example model
+model1 <- lm(as.numeric(health) ~ men + age + as.factor(educ3) + as.factor(region), data = cv_total)
+summary(model1)
+
+
+cv_total$health[cv_total$health == "Weigert"] <- NA
+cv_total$healthn <- as.numeric(cv_total$health) - 4
+table(cv_total$health, useNA = "always")
+table(cv_total$healthn, useNA = "always")
+
+#Options:
+#listwise deletion. Only use when very few missings
+#replace missing values with intuitive values or add missing as a separate category.
+#impute missing values. A bit complicated but the best option.
+
+#1 Listwise deletion
+# step 1. define all missings
+summary(cv_total)
+model2 <- lm(as.numeric(healthn) ~ men + age + as.factor(educ3) + as.factor(region), data = cv_total)
+summary(model2) #23 missings deleted
+
+
+#2 Replace
+cv_total$men2 <- ifelse(is.na(cv_total$men), 2, cv_total$men)
+summary(cv_total$men2)
+
+cv_total$educ3b <- ifelse(is.na(cv_total$educ3), 4, cv_total$educ3)
+summary(cv_total$educ3b)
+
+cv_total$age2 <- ifelse(is.na(cv_total$age), mean(cv_total$age, na.rm = TRUE), cv_total$age)
+# And lets make a dummy that indicates for whom we replaced missing values.
+cv_total$age_mis <- ifelse(is.na(cv_total$age), 1, 0)
+summary(cv_total$age2)
+table(cv_total$age_mis)
+
+# pay attention, now use categorical variable men2
+model3 <- lm(healthn ~ as.factor(men2) + age2 + age_mis + as.factor(educ3b) + as.factor(region), data = cv_total)
+summary(model3)
+
+
+#3 Impute
+#did not follow, look at this part another day
+
+```
+----
+## Appendix B - Interdependencies
+
+### Variance and covariance
+[clear explanation video](https://www.youtube.com/watch?v=TokBo_2yhN8&list=PLX2gX-ftPVXWHdoWSeshfEbRarb_LiX-e&index=1)
+![video screenshot]("C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social networks/Appendix A and B/variance and covariance screenshot.jpg")
+```{r}
+#the larger the variance, the more spread the data
+
+```
+
+### Intraclass correlation
+```{r}
+#Dyadic data
+require(MASS)
+set.seed(9864)  # We set a seed. In this we the random numbers we will generate be the same and we thus end up with the same dataset. Please not that to be absolutely sure to get the same dataset, we need to run the same R version (and packages).
+
+# let us start with simulating the opinion of both partners.
+Sigma <- matrix(c(10, 4, 4, 5), 2, 2)
+opinions <- mvrnorm(n = 1000, mu = c(4, 5), Sigma)
+opinion_W <- opinions[, 1]
+opinion_M <- opinions[, 2]
+dyad_id <- 1:1000
+
+# and let's put everything together
+data <- data.frame(dyad_id, opinion_W, opinion_M)
+# add some description to the data
+attr(data, "description") <- "This is a simulated dataset to illustrate interdependencies of observations within dyads (i.e. heterosexual couples). The dataset is in wide-format: one row refers to one couple. Variables with \"_W\" refer to women,\"_M\" refer to men."
+
+#install.packages("psych")
+#library(psych)
+
+require(psych)
+head(data)
+str(data)
+summary(data)
+attr(data, "description")
+describe(data)
+
+
+#interdependencies
+#double entry method can be useful: check via multiple ways for interdependencies, eg via correlations and ICC
+  #correlation in wide format
+cov(data$opinion_M, data$opinion_W)  # the covariance between the two variables. Have a look at the simulation. This is indeed what we have put into the data.
+
+cov(scale(data$opinion_M), scale(data$opinion_W))  # the covariance between the two standardized variables. That is the correlation.
+
+cor.test(data$opinion_M, data$opinion_W)  # See, same value. Now also with significance.
+
+  #correlation in long format, better because: It takes into account that the variance and mean of the opinions of men and women may be different. The endresult will more closely resemble the ICC we will encounter later.
+var1 <- c(data$opinion_M, data$opinion_W)
+var2 <- c(data$opinion_W, data$opinion_M)
+cor.test(var1, var2)
+
+
+  #ICC - various definition, first ANOVA
+MSB <- var((data$opinion_M + data$opinion_W)/2) * 2
+MSW <- (sum((data$opinion_M - data$opinion_W)^2))/(2 * length(data$opinion_W))
+ICC_anova <- (MSB - MSW)/(MSB + MSW)
+ICC_anova
+
+  #now with a long dataset to observe variances present in 'real population'
+    # first make a dataset in longformat.
+dyadmean <- (data$opinion_M + data$opinion_W)/2
+data_long <- rbind(data, data)
+data_long$partner_id <- rep(1:2, each = 1000)
+data_long$dyad_id <- rep(1:1000, times = 2)
+data_long$dyadmean <- c(dyadmean, dyadmean)
+
+    # lets the first dyad entry refer to the women and the second to the men
+data_long$opinion <- ifelse(data_long$partner_id == 1, data_long$opinion_W, data_long$opinion_M)
+
+    # also define the opinion of the partner
+data_long$opinion_P <- ifelse(data_long$partner_id == 2, data_long$opinion_W, data_long$opinion_M)
+
+head(data_long)
+
+    # first calculate the between variance of our sample. Note that this we only need observations of
+    # the dyads once (thus N_dyads=1000)
+S_B <- var(data_long$dyadmean[1:1000])
+    # within variance
+SW <- sum((data_long$opinion - data_long$dyadmean)^2)/1000  # we divide by the number of dyads
+    # We now need to correct the observed between variance to reflect the population between variance.
+S_B_E <- S_B - SW/2
+ICC_ML <- S_B_E/(S_B_E + SW)
+ICC_ML
+
+
+  #ICC via Lavaan
+#install.packages("lavaan")
+#library(lavaan)
+require("lavaan")
+model <- "
+    level: 1
+        opinion ~ 1 #regression model
+        opinion ~~ opinion #variance
+    level: 2
+        opinion ~ 1
+        opinion ~~ opinion
+"
+fit <- lavaan(model = model, data = data_long, cluster = "dyad_id")
+summary(fit)
+
+lavInspect(fit, "icc")
+
+```
+
+###Egonet / Socionet data
+```{r}
+#simulating some egonet data
+require(MASS)
+set.seed(9864)  # We set a seed. In this we the random numbers we will generate be the same and we thus end up with the same dataset. Please not that to be absolutely sure to get the same dataset, we need to run the same R version (and packages).
+
+# let us start with simulating the opinion of ego and its alters.
+Sigma <- matrix(sample(c(1, 2, 3), 36, replace = T), 6, 6)
+Sigma[lower.tri(Sigma)] <- t(Sigma)[lower.tri(Sigma)]
+diag(Sigma) <- c(5, 4, 6, 3, 7, 6)
+# Sigma
+
+opinions <- mvrnorm(n = 1000, mu = c(4, 4, 4, 4, 4, 4), Sigma)
+opinion_ego <- opinions[, 1]
+opinion_alter1 <- opinions[, 2]
+opinion_alter2 <- opinions[, 3]
+opinion_alter3 <- opinions[, 4]
+opinion_alter4 <- opinions[, 5]
+opinion_alter5 <- opinions[, 6]
+
+egonet_id <- 1:1000
+
+# and let's put everything together
+data <- data.frame(egonet_id, opinion_alter1, opinion_alter2, opinion_alter3, opinion_alter4, opinion_alter5)
+
+
+require(psych)
+head(data)
+str(data)
+summary(data)
+attr(data, "description")
+describe(data)
+
+#reshape into long format
+require("tidyverse")
+
+data_long <- tidyr::pivot_longer(data = data, cols = everything()[-1], names_to = "alter", values_to = "opinion")
+
+head(data_long)
+
+  #ICC via ML
+require(nlme)
+# estimate empty model with ML
+mlme <- lme(opinion ~ 1, data = data_long, random = list(~1 | egonet_id), )
+summary(mlme)
+# Standard deviations are reported instead of variances.  extract the variances.
+VarCorr(mlme)
+# the intercept variance is at the between-level.  the residual variances are at the observation /
+# within-level.  thus based on these numbers we may calculate the ICC ourselves.
+varests <- as.numeric(VarCorr(mlme)[1:2])
+varests
+ICC_MLb <- varests[1]/sum(varests)
+ICC_MLb
+
+
+  #ICC via SEM
+require("lavaan")
+model <- "
+    level: 1
+        opinion ~ 1 #regression model
+        opinion ~~ opinion #variance
+    level: 2
+        opinion ~ 1
+        opinion ~~ opinion
+"
+fit <- lavaan(model = model, data = data_long, cluster = "egonet_id")
+summary(fit)
+
+lavInspect(fit, "icc")
+
+```
+
+
+----
+
+
+Last compiled on `r format(Sys.time(), '%B, %Y')`  
+
+*Describe lab journal here.*
+
+<br>
+
+----
+
+## Open Science  
+
+Everyone can fork this repository. Use this example to journal your lab work and assignments. 
+
+We, Jochem Tolsma and Bas Hofstra, use this repository for our Social Network Analysis For Social Scientists course [@SNASS]. <!--- this is a reference, stored in references.bib. It will be automatically added at the bottom of the page --->
+
+
+:::
+
+::: {.column width="50%"}
+
+
+
+
+![](images/cover.jpg)
+
+
+:::
+::::
+
+
+## How to use
+
+1. Fork the repository for this website and follow instructions on `README` to get started [here](https://github.com/JochemTolsma/labjournal).  
+
+2. Journal your work, by editing the .Rmd-files
+
+3. ...
+
+4. Change everything to make it your own!
+
+
+<br>
+
+Use the top menu to navigate through the journal.
+
+
+----
+
+# References
+
+:)
+
+
+
+

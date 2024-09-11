@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Frida van Teijlingen" />
+
+
+<title>Lab journal</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tutorial.html">Page 1 - Week 1</a>
+    </li>
+    <li>
+      <a href="lab1.html">Page 2 - Week 2</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="fridaleertdingen.github.io/labjournal/">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Lab journal</h1>
+<h4 class="author">by: Frida van Teijlingen</h4>
+
+</div>
+
+
+<div id="to-do-and-reminders" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> <em>To do and
+reminders</em></h2>
+<p><strong>Homework</strong>:</p>
+<ul>
+<li><del>Appendix A</del><br />
+</li>
+<li><del>Appendix B</del><br />
+</li>
+<li><del>Research questions</del><br />
+</li>
+<li><del>include all in journal</del><br />
+</li>
+<li>Tidy up</li>
+</ul>
+</div>
+<div id="preparation" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Preparation</h2>
+<pre class="r"><code>rm(list = ls())  #clean up your environment
+
+package.check &lt;- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+packages = c(&quot;tidyverse&quot;, &quot;haven&quot;, &quot;dplyr&quot;, &quot;knitr&quot;, &quot;klippy&quot;, &quot;labelled&quot;)
+package.check(packages)</code></pre>
+<pre><code>## Loading required package: tidyverse</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+## Loading required package: haven
+## 
+## Loading required package: klippy
+## 
+## Loading required package: labelled</code></pre>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL</code></pre>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<hr />
+<!--- This is the best way to write a comment. 
+It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp --->
+<!--- to use a multi column page we use Pandoc's fenced Div. 
+see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html 
+But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running --->
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="my-lab-journal" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> My Lab Journal</h1>
+<div id="appendix-a---introduction-to-r-for-sna" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> Appendix A -
+Introduction to R for SNA</h2>
+<pre class="r test"><code># loading in the data
+cv08 &lt;- foreign::read.spss(&quot;tutorial_data\\Cultural_Changes_2008.sav&quot;, use.value.labels = T, to.data.frame = T)
+cv10 &lt;- foreign::read.spss(&quot;tutorial_data\\Cultural_Changes_2010.sav&quot;, use.value.labels = T, to.data.frame = T)
+
+# normally I think setting use.value.labels=F is more convenient. Thus lets load the data again but
+# now without labels
+cv08_nolab &lt;- foreign::read.spss(&quot;tutorial_data\\Cultural_Changes_2008.sav&quot;, use.value.labels = F, to.data.frame = T)
+cv10_nolab &lt;- foreign::read.spss(&quot;tutorial_data\\Cultural_Changes_2010.sav&quot;, use.value.labels = F, to.data.frame = T)
+
+# finally, import the data using haven
+cv08_haven &lt;- haven::read_spss(&quot;tutorial_data\\Cultural_Changes_2008.sav&quot;)
+cv10_haven &lt;- haven::read_spss(&quot;tutorial_data\\Cultural_Changes_2010.sav&quot;)</code></pre>
+<div id="missing-values-1" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Missing values
+1</h3>
+<pre class="r test"><code># Missing values
+
+cv08$lftop_new &lt;- cv08$lftop  #newvar and linked to dataset
+
+cv08$lftop_new[cv08$lftop_new == &quot;Onbekend&quot;] &lt;- NA  #recoding
+
+table(cv08$lftop_new, useNA = &quot;always&quot;)  #checking</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; &lt; één jaar   één jaar   125 jaar         16         17         18         19  twee jaar         20 
+#&gt;          0          0          0         40         37         39         30          0         30 
+#&gt;         21         22         23         24         25         26         27         28         29 
+#&gt;         25         25         38         26         22         18         23         29         30 
+#&gt;         30         31         32         33         34         35         36         37         38 
+#&gt;         22         28         23         23         24         38         35         37         34 
+#&gt;         39         40         41         42         43         44         45         46         47 
+#&gt;         48         45         34         36         39         43         38         41         32 
+#&gt;         48         49         50         51         52         53         54         55         56 
+#&gt;         41         45         29         29         43         32         25         27         27 
+#&gt;         57         58         59         60         61         62         63         64         65 
+#&gt;         30         44         34         33         36         40         29         27         30 
+#&gt;         66         67         68         69         70         71         72         73         74 
+#&gt;         19         24         24         24         23         21         13         15         26 
+#&gt;         75         76         77         78         79         80         81         82         83 
+#&gt;         10         14         17         13         13         10          7         10         10 
+#&gt;         84         85         86         87         88         89         90         91   Onbekend 
+#&gt;          7          6          3          8          2          3          1          3          0 
+#&gt;       &lt;NA&gt; 
+#&gt;          4</code></pre>
+<pre class="r test"><code># age numeric instead of categorical
+
+levels(cv08$lftop_new)</code></pre>
+<pre class="test2"><code>#&gt;  [1] &quot;&lt; één jaar&quot; &quot;één jaar&quot;   &quot;125 jaar&quot;   &quot;16&quot;         &quot;17&quot;         &quot;18&quot;         &quot;19&quot;        
+#&gt;  [8] &quot;twee jaar&quot;  &quot;20&quot;         &quot;21&quot;         &quot;22&quot;         &quot;23&quot;         &quot;24&quot;         &quot;25&quot;        
+#&gt; [15] &quot;26&quot;         &quot;27&quot;         &quot;28&quot;         &quot;29&quot;         &quot;30&quot;         &quot;31&quot;         &quot;32&quot;        
+#&gt; [22] &quot;33&quot;         &quot;34&quot;         &quot;35&quot;         &quot;36&quot;         &quot;37&quot;         &quot;38&quot;         &quot;39&quot;        
+#&gt; [29] &quot;40&quot;         &quot;41&quot;         &quot;42&quot;         &quot;43&quot;         &quot;44&quot;         &quot;45&quot;         &quot;46&quot;        
+#&gt; [36] &quot;47&quot;         &quot;48&quot;         &quot;49&quot;         &quot;50&quot;         &quot;51&quot;         &quot;52&quot;         &quot;53&quot;        
+#&gt; [43] &quot;54&quot;         &quot;55&quot;         &quot;56&quot;         &quot;57&quot;         &quot;58&quot;         &quot;59&quot;         &quot;60&quot;        
+#&gt; [50] &quot;61&quot;         &quot;62&quot;         &quot;63&quot;         &quot;64&quot;         &quot;65&quot;         &quot;66&quot;         &quot;67&quot;        
+#&gt; [57] &quot;68&quot;         &quot;69&quot;         &quot;70&quot;         &quot;71&quot;         &quot;72&quot;         &quot;73&quot;         &quot;74&quot;        
+#&gt; [64] &quot;75&quot;         &quot;76&quot;         &quot;77&quot;         &quot;78&quot;         &quot;79&quot;         &quot;80&quot;         &quot;81&quot;        
+#&gt; [71] &quot;82&quot;         &quot;83&quot;         &quot;84&quot;         &quot;85&quot;         &quot;86&quot;         &quot;87&quot;         &quot;88&quot;        
+#&gt; [78] &quot;89&quot;         &quot;90&quot;         &quot;91&quot;         &quot;Onbekend&quot;</code></pre>
+<pre class="r test"><code>cv08$agen &lt;- as.numeric(as.character(cv08$lftop_new))  # how clumsy. we first convert the factor to a string and then to a numeric variable.
+table(cv08$agen, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35 
+#&gt;   40   37   39   30   30   25   25   38   26   22   18   23   29   30   22   28   23   23   24   38 
+#&gt;   36   37   38   39   40   41   42   43   44   45   46   47   48   49   50   51   52   53   54   55 
+#&gt;   35   37   34   48   45   34   36   39   43   38   41   32   41   45   29   29   43   32   25   27 
+#&gt;   56   57   58   59   60   61   62   63   64   65   66   67   68   69   70   71   72   73   74   75 
+#&gt;   27   30   44   34   33   36   40   29   27   30   19   24   24   24   23   21   13   15   26   10 
+#&gt;   76   77   78   79   80   81   82   83   84   85   86   87   88   89   90   91 &lt;NA&gt; 
+#&gt;   14   17   13   13   10    7   10   10    7    6    3    8    2    3    1    3    4</code></pre>
+<pre class="r test"><code>str(cv08$agen)</code></pre>
+<pre class="test2"><code>#&gt;  num [1:1963] 51 39 16 29 57 49 62 34 59 41 ...</code></pre>
+</div>
+<div id="tidy-7.2" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Tidy 7.2</h3>
+<pre class="r test"><code># adding a variable via mutate
+
+library(dplyr)
+
+cv08_haven &lt;- mutate(cv08_haven, lftop_new = lftop)</code></pre>
+</div>
+<div id="tidy-8.2" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Tidy 8.2</h3>
+<pre class="r test"><code>require(labelled)
+str(cv08_haven$var006n)</code></pre>
+<pre class="test2"><code>#&gt;  dbl+lbl [1:1963] 6, 8, 3, 8, 6, 2, 2, 5, 5, 1, 1, 3, 2, 1, 1, 5, 6, 3, 1, 5, 6, 2, 5, 6, 1, 3,...
+#&gt;  @ label        : chr &quot;Voltooid opleidingsniveau (uitgebreid) OP, 12-14 jarigen niet standaard op bas.ondw.&quot;
+#&gt;  @ format.spss  : chr &quot;F10.0&quot;
+#&gt;  @ display_width: int 12
+#&gt;  @ labels       : Named num [1:11] -3 -1 1 2 3 4 5 6 7 8 ...
+#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:11] &quot;onbekend&quot; &quot;OP &lt; 12 jr  of volgt actueel bas.ondw.&quot; &quot;basisonderwijs&quot; &quot;vmbo&quot; ...</code></pre>
+<pre class="r test"><code>attr(cv08_haven$var006n, &quot;labels&quot;)</code></pre>
+<pre class="test2"><code>#&gt;                               onbekend OP &lt; 12 jr  of volgt actueel bas.ondw. 
+#&gt;                                 -3e+00                                 -1e+00 
+#&gt;                         basisonderwijs                                   vmbo 
+#&gt;                                  1e+00                                  2e+00 
+#&gt;                                   mavo                               havo/vwo 
+#&gt;                                  3e+00                                  4e+00 
+#&gt;                                    mbo                                    hbo 
+#&gt;                                  5e+00                                  6e+00 
+#&gt;                                     wo                                     wo 
+#&gt;                                  7e+00                                  8e+00 
+#&gt;                               Onbekend 
+#&gt;                                  1e+10</code></pre>
+<pre class="r test"><code># using piping operators %&gt;%, below are three mutate commands in one line
+cv08_haven &lt;- cv08_haven %&gt;%
+    mutate(educ3 = recode(var006n, `-3` = -9, `-1` = 1, `1` = 1, `2` = 2, `3` = 2, `4` = 2, `5` = 2,
+        `6` = 3, `7` = 3, `8` = 3, `10` = -9, .keep_value_labels = FALSE), educ3 = na_if(educ3, -9),
+        educ3 = factor(educ3, levels = c(1, 2, 3), labels = c(&quot;primary&quot;, &quot;secondary&quot;, &quot;tertiary&quot;)))</code></pre>
+</div>
+<div id="means" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Means</h3>
+<pre class="r test"><code># make numeric
+cv08$int055n &lt;- as.numeric(cv08$int055)
+table(cv08$int055n, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    3    5    6    7    8 &lt;NA&gt; 
+#&gt;   85   57  551 1213   57    0</code></pre>
+<pre class="r test"><code>cv08$int056n &lt;- as.numeric(cv08$int056)
+table(cv08$int056n, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    3    5    6    7    8 &lt;NA&gt; 
+#&gt;  118  258  987  571   29    0</code></pre>
+<pre class="r test"><code>cv08$int057n &lt;- as.numeric(cv08$int057)
+table(cv08$int057n, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    3    5    6    7    8 &lt;NA&gt; 
+#&gt;  145  213  803  756   46    0</code></pre>
+<pre class="r test"><code># define missings and recode
+cv08$int055n[cv08$int055n &lt; 5] &lt;- NA
+cv08$int055n &lt;- cv08$int055n - 4
+cv08$int056n[cv08$int056n &lt; 5] &lt;- NA
+cv08$int056n &lt;- cv08$int056n - 4
+cv08$int057n[cv08$int057n &lt; 5] &lt;- NA
+cv08$int057n &lt;- cv08$int057n - 4
+
+# want to calculate the mean for each row/respondent, the spss means function doesn&#39;t work the same
+testmeans &lt;- rowMeans(cbind(cv08$int055n, cv08$int056n, cv08$int057n), na.rm = T)
+head(testmeans)</code></pre>
+<pre class="test2"><code>#&gt; [1] 2.333333 2.666667 2.666667 2.333333 1.500000 1.333333</code></pre>
+<pre class="r test"><code># only include cases with a max of 1 missing and add to dataset, use the following steps
+nmis &lt;- rowSums(is.na(cbind(cv08$int055n, cv08$int056n, cv08$int057n)))  #count number of missings
+
+testmeans &lt;- ifelse(nmis &lt; 2, testmeans, NA)  #select those with max of 1
+
+cv08$int_mean &lt;- testmeans  #add to working dataset</code></pre>
+<p>###Merging datafiles</p>
+<pre class="r test"><code># Panel (long or wide?) or stacked cross-sections? Step1: select variables you want to keep
+cv08_sel &lt;- cv08[, c(&quot;we_id&quot;, &quot;lftop&quot;, &quot;geslacht&quot;, &quot;var006n&quot;, &quot;v401&quot;, &quot;landd&quot;)]
+cv10_sel &lt;- cv10[, c(&quot;Sleutel&quot;, &quot;var002&quot;, &quot;var001&quot;, &quot;Vltoplop&quot;, &quot;V401&quot;, &quot;Landd&quot;)]
+
+# Step2: make consistent
+names(cv08_sel) &lt;- names(cv10_sel) &lt;- c(&quot;id&quot;, &quot;age&quot;, &quot;sex&quot;, &quot;educ&quot;, &quot;health&quot;, &quot;region&quot;)  #making names the same
+
+# making levels and labels consistent
+summary(cv08_sel)</code></pre>
+<pre class="test2"><code>#&gt;         id            age             sex                   educ                 health    
+#&gt;  36775330:   1   39     :  48   Onbekend: 10   mbo            :543   goed,          :1060  
+#&gt;  36775340:   1   40     :  45   Man     :996   basisonderwijs :380   zeer goed,     : 504  
+#&gt;  36775420:   1   49     :  45   Vrouw   :957   hbo            :339   gaat wel,      : 320  
+#&gt;  36775440:   1   58     :  44                  vmbo           :287   slecht,        :  67  
+#&gt;  36775450:   1   44     :  43                  wo_duplicated_8:166   of zeer slecht?:  12  
+#&gt;  36775460:   1   52     :  43                  mavo           :137   Geen opgave    :   0  
+#&gt;  (Other) :1957   (Other):1695                  (Other)        :111   (Other)        :   0  
+#&gt;                      region   
+#&gt;  Postcode (nog) onbekend:  0  
+#&gt;  Noord-Nederland        :220  
+#&gt;  Oost-Nederland         :416  
+#&gt;  West-Nederland         :853  
+#&gt;  Zuid-Nederland         :474  
+#&gt;                               
+#&gt; </code></pre>
+<pre class="r test"><code>summary(cv10_sel)</code></pre>
+<pre class="test2"><code>#&gt;        id                age           sex                                    educ     
+#&gt;  Min.   :20131231   Min.   :16.00   Man  :1512   OP volgt actueel basisonderwijs:   0  
+#&gt;  1st Qu.:20131965   1st Qu.:34.00   Vrouw:1424   Lager onderwijs                : 459  
+#&gt;  Median :20132698   Median :48.00                Lbo                            : 430  
+#&gt;  Mean   :20132698   Mean   :48.27                Mavo, vwo-3                    : 234  
+#&gt;  3rd Qu.:20133432   3rd Qu.:63.00                Havo, vwo, mbo                 :1040  
+#&gt;  Max.   :20134166   Max.   :96.00                HBO,universiteit               : 770  
+#&gt;                                                  Onbekend                       :   3  
+#&gt;              health                 region    
+#&gt;  goed,          :1592   Noord-Nederland: 306  
+#&gt;  zeer goed,     : 776   Oost-Nederland : 678  
+#&gt;  gaat wel,      : 466   West-Nederland :1263  
+#&gt;  slecht,        :  79   Zuid-Nederland : 689  
+#&gt;  of zeer slecht?:  22                         
+#&gt;  Weigert        :   1                         
+#&gt;  (Other)        :   0</code></pre>
+<pre class="r test"><code># they look very consistent already. but check carefully.
+
+# we don&#39;t want id to be a factor but numeric. Note that we don&#39;t want the factor level values as
+# numbers but the actual labels as numbers.
+
+# id
+cv08_sel$id &lt;- as.numeric(as.character(cv08_sel$id))
+cv10_sel$id &lt;- as.numeric(as.character(cv10_sel$id))
+
+# age
+cv08_sel$age &lt;- as.numeric(as.character(cv08_sel$age))
+cv10_sel$age &lt;- as.numeric(as.character(cv10_sel$age))
+
+# sex men
+levels(cv08_sel$sex)</code></pre>
+<pre class="test2"><code>#&gt; [1] &quot;Onbekend&quot; &quot;Man&quot;      &quot;Vrouw&quot;</code></pre>
+<pre class="r test"><code>levels(cv10_sel$sex)</code></pre>
+<pre class="test2"><code>#&gt; [1] &quot;Man&quot;   &quot;Vrouw&quot;</code></pre>
+<pre class="r test"><code>table(cv08_sel$sex, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; Onbekend      Man    Vrouw     &lt;NA&gt; 
+#&gt;       10      996      957        0</code></pre>
+<pre class="r test"><code>table(cv10_sel$sex, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;   Man Vrouw  &lt;NA&gt; 
+#&gt;  1512  1424     0</code></pre>
+<pre class="r test"><code># lets make it a numeric var first
+cv08_sel$sexn &lt;- as.numeric(cv08_sel$sex)
+table(cv08_sel$sexn)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;   1   2   3 
+#&gt;  10 996 957</code></pre>
+<pre class="r test"><code># recode into dummy
+cv08_sel$men &lt;- ifelse(cv08_sel$sexn == 2, 1, 0)
+cv08_sel$men &lt;- ifelse(cv08_sel$sexn == 1, NA, cv08_sel$men)
+table(cv08_sel$men, useNA = &quot;always&quot;)  #check</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    0    1 &lt;NA&gt; 
+#&gt;  957  996   10</code></pre>
+<pre class="r test"><code># lets make it a numeric var first
+cv10_sel$sexn &lt;- as.numeric(cv10_sel$sex)
+table(cv10_sel$sexn)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    1    2 
+#&gt; 1512 1424</code></pre>
+<pre class="r test"><code># recode into dummy
+cv10_sel$men &lt;- ifelse(cv10_sel$sexn == 2, 1, 0)
+table(cv10_sel$men, useNA = &quot;always&quot;)  #check</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    0    1 &lt;NA&gt; 
+#&gt; 1512 1424    0</code></pre>
+<pre class="r test"><code># educ educ3
+levels(cv08_sel$educ)</code></pre>
+<pre class="test2"><code>#&gt;  [1] &quot;onbekend&quot;                               &quot;OP &lt; 12 jr  of volgt actueel bas.ondw.&quot;
+#&gt;  [3] &quot;basisonderwijs&quot;                         &quot;vmbo&quot;                                  
+#&gt;  [5] &quot;mavo&quot;                                   &quot;havo/vwo&quot;                              
+#&gt;  [7] &quot;mbo&quot;                                    &quot;hbo&quot;                                   
+#&gt;  [9] &quot;wo&quot;                                     &quot;wo_duplicated_8&quot;                       
+#&gt; [11] &quot;Onbekend&quot;</code></pre>
+<pre class="r test"><code>levels(cv10_sel$educ)</code></pre>
+<pre class="test2"><code>#&gt; [1] &quot;OP volgt actueel basisonderwijs&quot; &quot;Lager onderwijs&quot;                
+#&gt; [3] &quot;Lbo&quot;                             &quot;Mavo, vwo-3&quot;                    
+#&gt; [5] &quot;Havo, vwo, mbo&quot;                  &quot;HBO,universiteit&quot;               
+#&gt; [7] &quot;Onbekend&quot;</code></pre>
+<pre class="r test"><code>table(cv08_sel$educ, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;                               onbekend OP &lt; 12 jr  of volgt actueel bas.ondw. 
+#&gt;                                      5                                      0 
+#&gt;                         basisonderwijs                                   vmbo 
+#&gt;                                    380                                    287 
+#&gt;                                   mavo                               havo/vwo 
+#&gt;                                    137                                    106 
+#&gt;                                    mbo                                    hbo 
+#&gt;                                    543                                    339 
+#&gt;                                     wo                        wo_duplicated_8 
+#&gt;                                      0                                    166 
+#&gt;                               Onbekend                                   &lt;NA&gt; 
+#&gt;                                      0                                      0</code></pre>
+<pre class="r test"><code>table(cv10_sel$educ, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; OP volgt actueel basisonderwijs                 Lager onderwijs                             Lbo 
+#&gt;                               0                             459                             430 
+#&gt;                     Mavo, vwo-3                  Havo, vwo, mbo                HBO,universiteit 
+#&gt;                             234                            1040                             770 
+#&gt;                        Onbekend                            &lt;NA&gt; 
+#&gt;                               3                               0</code></pre>
+<pre class="r test"><code># lets make it a numeric var first
+cv08_sel$educn &lt;- as.numeric(cv08_sel$educ)
+table(cv08_sel$educn)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;   1   3   4   5   6   7   8  10 
+#&gt;   5 380 287 137 106 543 339 166</code></pre>
+<pre class="r test"><code># recode into 3cats: 1 primair, 2 secundair, 3 is tertiair
+cv08_sel$educ3 &lt;- NA
+cv08_sel$educ3[cv08_sel$educn == 2 | cv08_sel$educn == 3] &lt;- 1
+cv08_sel$educ3[cv08_sel$educn &gt; 3 &amp; cv08_sel$educn &lt; 8] &lt;- 2
+cv08_sel$educ3[cv08_sel$educn &gt; 7 &amp; cv08_sel$educn &lt; 11] &lt;- 3
+
+table(cv08_sel$educ3, useNA = &quot;always&quot;)  #check</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    1    2    3 &lt;NA&gt; 
+#&gt;  380 1073  505    5</code></pre>
+<pre class="r test"><code>prop.table(table(cv08_sel$educ3, useNA = &quot;always&quot;))</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;           1           2           3        &lt;NA&gt; 
+#&gt; 0.193581253 0.546612328 0.257259297 0.002547122</code></pre>
+<pre class="r test"><code># lets make it a numeric var first
+cv10_sel$educn &lt;- as.numeric(cv10_sel$educ)
+table(cv10_sel$educn)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    2    3    4    5    6    7 
+#&gt;  459  430  234 1040  770    3</code></pre>
+<pre class="r test"><code># recode into 3cats: 1 primair, 2 secundari, 3 is tertiair
+cv10_sel$educ3 &lt;- NA
+cv10_sel$educ3[cv10_sel$educn &lt; 3] &lt;- 1  # correct?
+cv10_sel$educ3[cv10_sel$educn &gt; 2 &amp; cv10_sel$educn &lt; 6] &lt;- 2
+cv10_sel$educ3[cv10_sel$educn == 6] &lt;- 3
+
+table(cv10_sel$educ3, useNA = &quot;always&quot;)  #check</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    1    2    3 &lt;NA&gt; 
+#&gt;  459 1704  770    3</code></pre>
+<pre class="r test"><code>prop.table(table(cv10_sel$educ3, useNA = &quot;always&quot;))</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;           1           2           3        &lt;NA&gt; 
+#&gt; 0.156335150 0.580381471 0.262261580 0.001021798</code></pre>
+<pre class="r test"><code># Step3: perform the actual merging. Make sure to include necessary identifier variables. add a
+# wave variable
+cv08_sel$wave &lt;- 2008
+cv10_sel$wave &lt;- 2010
+
+# make a fake ID, we will use this later when we pretend CV is panel data.
+cv08_sel$id2 &lt;- rank(cv08_sel$id)
+cv10_sel$id2 &lt;- rank(cv10_sel$id)
+
+# check first if same vars in both datasets
+
+cv08_sel &lt;- cv08_sel[, c(&quot;id&quot;, &quot;id2&quot;, &quot;age&quot;, &quot;men&quot;, &quot;educ3&quot;, &quot;health&quot;, &quot;region&quot;, &quot;wave&quot;)]
+cv10_sel &lt;- cv10_sel[, c(&quot;id&quot;, &quot;id2&quot;, &quot;age&quot;, &quot;men&quot;, &quot;educ3&quot;, &quot;health&quot;, &quot;region&quot;, &quot;wave&quot;)]
+
+summary(cv08_sel)</code></pre>
+<pre class="test2"><code>#&gt;        id                id2              age             men           educ3      
+#&gt;  Min.   :36775330   Min.   :   1.0   Min.   :16.00   Min.   :0.00   Min.   :1.000  
+#&gt;  1st Qu.:37604540   1st Qu.: 491.5   1st Qu.:33.00   1st Qu.:0.00   1st Qu.:2.000  
+#&gt;  Median :38724230   Median : 982.0   Median :46.00   Median :1.00   Median :2.000  
+#&gt;  Mean   :38830177   Mean   : 982.0   Mean   :46.67   Mean   :0.51   Mean   :2.064  
+#&gt;  3rd Qu.:40598965   3rd Qu.:1472.5   3rd Qu.:60.00   3rd Qu.:1.00   3rd Qu.:3.000  
+#&gt;  Max.   :41199300   Max.   :1963.0   Max.   :91.00   Max.   :1.00   Max.   :3.000  
+#&gt;                                      NA&#39;s   :4       NA&#39;s   :10     NA&#39;s   :5      
+#&gt;              health                         region         wave     
+#&gt;  goed,          :1060   Postcode (nog) onbekend:  0   Min.   :2008  
+#&gt;  zeer goed,     : 504   Noord-Nederland        :220   1st Qu.:2008  
+#&gt;  gaat wel,      : 320   Oost-Nederland         :416   Median :2008  
+#&gt;  slecht,        :  67   West-Nederland         :853   Mean   :2008  
+#&gt;  of zeer slecht?:  12   Zuid-Nederland         :474   3rd Qu.:2008  
+#&gt;  Geen opgave    :   0                                 Max.   :2008  
+#&gt;  (Other)        :   0</code></pre>
+<pre class="r test"><code>summary(cv10_sel)</code></pre>
+<pre class="test2"><code>#&gt;        id                id2              age             men            educ3      
+#&gt;  Min.   :20131231   Min.   :   1.0   Min.   :16.00   Min.   :0.000   Min.   :1.000  
+#&gt;  1st Qu.:20131965   1st Qu.: 734.8   1st Qu.:34.00   1st Qu.:0.000   1st Qu.:2.000  
+#&gt;  Median :20132698   Median :1468.5   Median :48.00   Median :0.000   Median :2.000  
+#&gt;  Mean   :20132698   Mean   :1468.5   Mean   :48.27   Mean   :0.485   Mean   :2.106  
+#&gt;  3rd Qu.:20133432   3rd Qu.:2202.2   3rd Qu.:63.00   3rd Qu.:1.000   3rd Qu.:3.000  
+#&gt;  Max.   :20134166   Max.   :2936.0   Max.   :96.00   Max.   :1.000   Max.   :3.000  
+#&gt;                                                                      NA&#39;s   :3      
+#&gt;              health                 region          wave     
+#&gt;  goed,          :1592   Noord-Nederland: 306   Min.   :2010  
+#&gt;  zeer goed,     : 776   Oost-Nederland : 678   1st Qu.:2010  
+#&gt;  gaat wel,      : 466   West-Nederland :1263   Median :2010  
+#&gt;  slecht,        :  79   Zuid-Nederland : 689   Mean   :2010  
+#&gt;  of zeer slecht?:  22                          3rd Qu.:2010  
+#&gt;  Weigert        :   1                          Max.   :2010  
+#&gt;  (Other)        :   0</code></pre>
+<pre class="r test"><code># simply place one dataset under the other thus row bind (rbind)
+cv_tot &lt;- rbind(cv08_sel, cv10_sel)
+
+# Step4: check results!
+summary(cv_tot)</code></pre>
+<pre class="test2"><code>#&gt;        id                id2            age             men            educ3      
+#&gt;  Min.   :20131231   Min.   :   1   Min.   :16.00   Min.   :0.000   Min.   :1.000  
+#&gt;  1st Qu.:20132456   1st Qu.: 613   1st Qu.:33.00   1st Qu.:0.000   1st Qu.:2.000  
+#&gt;  Median :20133680   Median :1225   Median :47.00   Median :0.000   Median :2.000  
+#&gt;  Mean   :27624666   Mean   :1274   Mean   :47.63   Mean   :0.495   Mean   :2.089  
+#&gt;  3rd Qu.:37978375   3rd Qu.:1838   3rd Qu.:62.00   3rd Qu.:1.000   3rd Qu.:3.000  
+#&gt;  Max.   :41199300   Max.   :2936   Max.   :96.00   Max.   :1.000   Max.   :3.000  
+#&gt;                                    NA&#39;s   :4       NA&#39;s   :10      NA&#39;s   :8      
+#&gt;              health                         region          wave     
+#&gt;  goed,          :2652   Postcode (nog) onbekend:   0   Min.   :2008  
+#&gt;  zeer goed,     :1280   Noord-Nederland        : 526   1st Qu.:2008  
+#&gt;  gaat wel,      : 786   Oost-Nederland         :1094   Median :2010  
+#&gt;  slecht,        : 146   West-Nederland         :2116   Mean   :2009  
+#&gt;  of zeer slecht?:  34   Zuid-Nederland         :1163   3rd Qu.:2010  
+#&gt;  Weigert        :   1                                  Max.   :2010  
+#&gt;  (Other)        :   0</code></pre>
+<pre class="r test"><code>head(cv_tot)</code></pre>
+<pre class="test2"><code>#&gt;         id id2 age men educ3    health         region wave
+#&gt; 1 36775330   1  51   1     3     goed, West-Nederland 2008
+#&gt; 2 36775340   2  39   0     3     goed, West-Nederland 2008
+#&gt; 3 36775420   3  16   0     2     goed, West-Nederland 2008
+#&gt; 4 36775440   4  29   1     3     goed, West-Nederland 2008
+#&gt; 5 36775450   5  57   1     3 gaat wel, West-Nederland 2008
+#&gt; 6 36775460   6  49   0     2     goed, West-Nederland 2008</code></pre>
+<pre class="r test"><code># alternative: panel dataset in wide format
+cv_tot_panel &lt;- merge(cv08_sel, cv10_sel, all = TRUE, by = &quot;id2&quot;)
+head(cv_tot_panel)</code></pre>
+<pre class="test2"><code>#&gt;   id2     id.x age.x men.x educ3.x  health.x       region.x wave.x     id.y age.y men.y educ3.y
+#&gt; 1   1 36775330    51     1       3     goed, West-Nederland   2008 20131231    20     0       2
+#&gt; 2   2 36775340    39     0       3     goed, West-Nederland   2008 20131232    29     0       3
+#&gt; 3   3 36775420    16     0       2     goed, West-Nederland   2008 20131233    30     1       2
+#&gt; 4   4 36775440    29     1       3     goed, West-Nederland   2008 20131234    64     1       2
+#&gt; 5   5 36775450    57     1       3 gaat wel, West-Nederland   2008 20131235    45     1       1
+#&gt; 6   6 36775460    49     0       2     goed, West-Nederland   2008 20131236    80     0       2
+#&gt;     health.y       region.y wave.y
+#&gt; 1      goed, West-Nederland   2010
+#&gt; 2 zeer goed, West-Nederland   2010
+#&gt; 3      goed, West-Nederland   2010
+#&gt; 4      goed, West-Nederland   2010
+#&gt; 5      goed, West-Nederland   2010
+#&gt; 6      goed, West-Nederland   2010</code></pre>
+<pre class="r test"><code># can also use the reshape function cv_tot_panel &lt;- reshape(cv_tot, timevar = &#39;wave&#39;, idvar =
+# &#39;id2&#39;, direction = &#39;wide&#39;) head(cv_tot_panel)</code></pre>
+</div>
+<div id="aggregating-data" class="section level3" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> Aggregating
+data</h3>
+<pre class="r test"><code># step 1. construct dataset with aggregate info
+age_region &lt;- aggregate(cv_tot$age, by = list(cv_tot$region), FUN = mean, na.rm = TRUE)
+head(age_region)</code></pre>
+<pre class="test2"><code>#&gt;           Group.1        x
+#&gt; 1 Noord-Nederland 47.77567
+#&gt; 2  Oost-Nederland 48.04113
+#&gt; 3  West-Nederland 46.88416
+#&gt; 4  Zuid-Nederland 48.52500</code></pre>
+<pre class="r test"><code># lets correct variable names
+names(age_region) &lt;- c(&quot;region&quot;, &quot;age_region&quot;)
+age_region</code></pre>
+<pre class="test2"><code>#&gt;            region age_region
+#&gt; 1 Noord-Nederland   47.77567
+#&gt; 2  Oost-Nederland   48.04113
+#&gt; 3  West-Nederland   46.88416
+#&gt; 4  Zuid-Nederland   48.52500</code></pre>
+<pre class="r test"><code># step 2. match to dataset
+cv_total &lt;- merge(cv_tot, age_region, by = &quot;region&quot;, all.x = TRUE)
+head(cv_total)</code></pre>
+<pre class="test2"><code>#&gt;            region       id  id2 age men educ3     health wave age_region
+#&gt; 1 Noord-Nederland 40604110 1728  30   0     3 zeer goed, 2008   47.77567
+#&gt; 2 Noord-Nederland 37975380  610  41   0     2      goed, 2008   47.77567
+#&gt; 3 Noord-Nederland 40604300 1741  23   0     2      goed, 2008   47.77567
+#&gt; 4 Noord-Nederland 38722490  890  49   1     2  gaat wel, 2008   47.77567
+#&gt; 5 Noord-Nederland 20131654  424  60   0     1      goed, 2010   47.77567
+#&gt; 6 Noord-Nederland 40604100 1727  18   1     2      goed, 2008   47.77567</code></pre>
+<pre class="r test"><code>tail(cv_total)</code></pre>
+<pre class="test2"><code>#&gt;              region       id  id2 age men educ3     health wave age_region
+#&gt; 4894 Zuid-Nederland 39568320 1429  78   1     2      goed, 2008     48.525
+#&gt; 4895 Zuid-Nederland 20133708 2478  62   0     2      goed, 2010     48.525
+#&gt; 4896 Zuid-Nederland 20134032 2802  49   1     2 zeer goed, 2010     48.525
+#&gt; 4897 Zuid-Nederland 20132436 1206  52   1     1    slecht, 2010     48.525
+#&gt; 4898 Zuid-Nederland 20131923  693  46   1     2      goed, 2010     48.525
+#&gt; 4899 Zuid-Nederland 20134031 2801  50   1     2    slecht, 2010     48.525</code></pre>
+</div>
+<div id="missing-values-2" class="section level3" number="1.1.6">
+<h3><span class="header-section-number">1.1.6</span> Missing values
+2</h3>
+<pre class="r test"><code># example model
+model1 &lt;- lm(as.numeric(health) ~ men + age + as.factor(educ3) + as.factor(region), data = cv_total)
+summary(model1)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = as.numeric(health) ~ men + age + as.factor(educ3) + 
+#&gt;     as.factor(region), data = cv_total)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -1.8504 -0.5991  0.0100  0.3289  3.2407 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                                   Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)                      5.6427632  0.0515902 109.377  &lt; 2e-16 ***
+#&gt; men                             -0.0155079  0.0211182  -0.734    0.463    
+#&gt; age                              0.0115217  0.0005858  19.667  &lt; 2e-16 ***
+#&gt; as.factor(educ3)2               -0.1831809  0.0293149  -6.249 4.49e-10 ***
+#&gt; as.factor(educ3)3               -0.3248725  0.0330650  -9.825  &lt; 2e-16 ***
+#&gt; as.factor(region)Oost-Nederland -0.0535139  0.0391705  -1.366    0.172    
+#&gt; as.factor(region)West-Nederland -0.0152383  0.0360003  -0.423    0.672    
+#&gt; as.factor(region)Zuid-Nederland  0.0140803  0.0388009   0.363    0.717    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.7371 on 4869 degrees of freedom
+#&gt;   (22 observations deleted due to missingness)
+#&gt; Multiple R-squared:  0.09928,    Adjusted R-squared:  0.09799 
+#&gt; F-statistic: 76.67 on 7 and 4869 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r test"><code>cv_total$health[cv_total$health == &quot;Weigert&quot;] &lt;- NA
+cv_total$healthn &lt;- as.numeric(cv_total$health) - 4
+table(cv_total$health, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;     Geen opgave          N.v.t.       Weet niet         Weigert      zeer goed,           goed, 
+#&gt;               0               0               0               0            1280            2652 
+#&gt;       gaat wel,         slecht, of zeer slecht?            &lt;NA&gt; 
+#&gt;             786             146              34               1</code></pre>
+<pre class="r test"><code>table(cv_total$healthn, useNA = &quot;always&quot;)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    1    2    3    4    5 &lt;NA&gt; 
+#&gt; 1280 2652  786  146   34    1</code></pre>
+<pre class="r test"><code># Options: listwise deletion. Only use when very few missings replace missing values with intuitive
+# values or add missing as a separate category. impute missing values. A bit complicated but the
+# best option.
+
+# 1 Listwise deletion step 1. define all missings
+summary(cv_total)</code></pre>
+<pre class="test2"><code>#&gt;                      region           id                id2            age             men       
+#&gt;  Postcode (nog) onbekend:   0   Min.   :20131231   Min.   :   1   Min.   :16.00   Min.   :0.000  
+#&gt;  Noord-Nederland        : 526   1st Qu.:20132456   1st Qu.: 613   1st Qu.:33.00   1st Qu.:0.000  
+#&gt;  Oost-Nederland         :1094   Median :20133680   Median :1225   Median :47.00   Median :0.000  
+#&gt;  West-Nederland         :2116   Mean   :27624666   Mean   :1274   Mean   :47.63   Mean   :0.495  
+#&gt;  Zuid-Nederland         :1163   3rd Qu.:37978375   3rd Qu.:1838   3rd Qu.:62.00   3rd Qu.:1.000  
+#&gt;                                 Max.   :41199300   Max.   :2936   Max.   :96.00   Max.   :1.000  
+#&gt;                                                                   NA&#39;s   :4       NA&#39;s   :10     
+#&gt;      educ3                   health          wave        age_region       healthn    
+#&gt;  Min.   :1.000   goed,          :2652   Min.   :2008   Min.   :46.88   Min.   :1.00  
+#&gt;  1st Qu.:2.000   zeer goed,     :1280   1st Qu.:2008   1st Qu.:46.88   1st Qu.:1.00  
+#&gt;  Median :2.000   gaat wel,      : 786   Median :2010   Median :47.78   Median :2.00  
+#&gt;  Mean   :2.089   slecht,        : 146   Mean   :2009   Mean   :47.63   Mean   :1.98  
+#&gt;  3rd Qu.:3.000   of zeer slecht?:  34   3rd Qu.:2010   3rd Qu.:48.04   3rd Qu.:2.00  
+#&gt;  Max.   :3.000   (Other)        :   0   Max.   :2010   Max.   :48.52   Max.   :5.00  
+#&gt;  NA&#39;s   :8       NA&#39;s           :   1                                  NA&#39;s   :1</code></pre>
+<pre class="r test"><code>model2 &lt;- lm(as.numeric(healthn) ~ men + age + as.factor(educ3) + as.factor(region), data = cv_total)
+summary(model2)  #23 missings deleted</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = as.numeric(healthn) ~ men + age + as.factor(educ3) + 
+#&gt;     as.factor(region), data = cv_total)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -1.6261 -0.6001  0.0094  0.3288  3.2415 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                                   Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)                      1.6429046  0.0515620  31.863  &lt; 2e-16 ***
+#&gt; men                             -0.0162517  0.0211087  -0.770    0.441    
+#&gt; age                              0.0115192  0.0005855  19.673  &lt; 2e-16 ***
+#&gt; as.factor(educ3)2               -0.1831872  0.0292989  -6.252 4.39e-10 ***
+#&gt; as.factor(educ3)3               -0.3233545  0.0330525  -9.783  &lt; 2e-16 ***
+#&gt; as.factor(region)Oost-Nederland -0.0535499  0.0391492  -1.368    0.171    
+#&gt; as.factor(region)West-Nederland -0.0153441  0.0359807  -0.426    0.670    
+#&gt; as.factor(region)Zuid-Nederland  0.0157006  0.0387850   0.405    0.686    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.7367 on 4868 degrees of freedom
+#&gt;   (23 observations deleted due to missingness)
+#&gt; Multiple R-squared:  0.09925,    Adjusted R-squared:  0.09795 
+#&gt; F-statistic: 76.63 on 7 and 4868 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r test"><code># 2 Replace
+cv_total$men2 &lt;- ifelse(is.na(cv_total$men), 2, cv_total$men)
+summary(cv_total$men2)</code></pre>
+<pre class="test2"><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;  0.0000  0.0000  0.0000  0.4981  1.0000  2.0000</code></pre>
+<pre class="r test"><code>cv_total$educ3b &lt;- ifelse(is.na(cv_total$educ3), 4, cv_total$educ3)
+summary(cv_total$educ3b)</code></pre>
+<pre class="test2"><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;   1.000   2.000   2.000   2.092   3.000   4.000</code></pre>
+<pre class="r test"><code>cv_total$age2 &lt;- ifelse(is.na(cv_total$age), mean(cv_total$age, na.rm = TRUE), cv_total$age)
+# And lets make a dummy that indicates for whom we replaced missing values.
+cv_total$age_mis &lt;- ifelse(is.na(cv_total$age), 1, 0)
+summary(cv_total$age2)</code></pre>
+<pre class="test2"><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;   16.00   33.50   47.00   47.63   62.00   96.00</code></pre>
+<pre class="r test"><code>table(cv_total$age_mis)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt;    0    1 
+#&gt; 4895    4</code></pre>
+<pre class="r test"><code># pay attention, now use categorical variable men2
+model3 &lt;- lm(healthn ~ as.factor(men2) + age2 + age_mis + as.factor(educ3b) + as.factor(region), data = cv_total)
+summary(model3)</code></pre>
+<pre class="test2"><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = healthn ~ as.factor(men2) + age2 + age_mis + as.factor(educ3b) + 
+#&gt;     as.factor(region), data = cv_total)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -1.6200 -0.6013  0.0103  0.3268  3.2422 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                                   Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)                      1.6430251  0.0516038  31.839  &lt; 2e-16 ***
+#&gt; as.factor(men2)1                -0.0186500  0.0211416  -0.882    0.378    
+#&gt; as.factor(men2)2                -0.2534807  0.2341966  -1.082    0.279    
+#&gt; age2                             0.0114647  0.0005852  19.592  &lt; 2e-16 ***
+#&gt; age_mis                          0.1067769  0.3699339   0.289    0.773    
+#&gt; as.factor(educ3b)2              -0.1786212  0.0293068  -6.095 1.18e-09 ***
+#&gt; as.factor(educ3b)3              -0.3193546  0.0330785  -9.654  &lt; 2e-16 ***
+#&gt; as.factor(educ3b)4              -0.4032117  0.2624656  -1.536    0.125    
+#&gt; as.factor(region)Oost-Nederland -0.0548586  0.0391963  -1.400    0.162    
+#&gt; as.factor(region)West-Nederland -0.0146274  0.0360252  -0.406    0.685    
+#&gt; as.factor(region)Zuid-Nederland  0.0157363  0.0388302   0.405    0.685    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.7384 on 4887 degrees of freedom
+#&gt;   (1 observation deleted due to missingness)
+#&gt; Multiple R-squared:  0.09797,    Adjusted R-squared:  0.09612 
+#&gt; F-statistic: 53.08 on 10 and 4887 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r test"><code># 3 Impute did not follow, look at this part another day</code></pre>
+<table style="width:7%;">
+<colgroup>
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>## Appendix B - Interdependencies</td>
+</tr>
+<tr class="even">
+<td>### Variance and covariance <a
+href="https://www.youtube.com/watch?v=TokBo_2yhN8&amp;list=PLX2gX-ftPVXWHdoWSeshfEbRarb_LiX-e&amp;index=1">clear
+explanation video</a> <img
+src="%22C:/Users/frida/OneDrive/Documenten/RADBOUD%20researchmaster/P1%20Social%20networks/Appendix%20A%20and%20B/variance%20and%20covariance%20screenshot.jpg%22"
+alt="video screenshot" /></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} # the larger the variance, the more spread the data</code></td>
+</tr>
+<tr class="even">
+<td>### Intraclass correlation</td>
+</tr>
+<tr class="odd">
+<td>```{.r .test} # Dyadic data require(MASS) set.seed(9864) # We set a
+seed. In this we the random numbers we will generate be the same and we
+thus end up with the same dataset. Please not that to be absolutely sure
+to get the same dataset, we need to run the same R version (and
+packages).</td>
+</tr>
+<tr class="even">
+<td># let us start with simulating the opinion of both partners. Sigma
+&lt;- matrix(c(10, 4, 4, 5), 2, 2) opinions &lt;- mvrnorm(n = 1000, mu =
+c(4, 5), Sigma) opinion_W &lt;- opinions[, 1] opinion_M &lt;- opinions[,
+2] dyad_id &lt;- 1:1000</td>
+</tr>
+<tr class="odd">
+<td># and let’s put everything together data &lt;- data.frame(dyad_id,
+opinion_W, opinion_M) # add some description to the data attr(data,
+“description”) &lt;- “This is a simulated dataset to illustrate
+interdependencies of observations within dyads (i.e. heterosexual
+couples). The dataset is in wide-format: one row refers to one couple.
+Variables with "_W" refer to women,"_M" refer to men.”</td>
+</tr>
+<tr class="even">
+<td># install.packages(‘psych’) library(psych)</td>
+</tr>
+<tr class="odd">
+<td>require(psych) head(data) ```</td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt;   dyad_id opinion_W opinion_M #&gt; 1       1  1.180285  3.651525 #&gt; 2       2  9.930618  7.117465 #&gt; 3       3  4.022491  2.205877 #&gt; 4       4  2.990720  7.485650 #&gt; 5       5  3.024059  8.292194 #&gt; 6       6  8.408048  4.720610</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} str(data)</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; 'data.frame':    1000 obs. of  3 variables: #&gt;  $ dyad_id  : int  1 2 3 4 5 6 7 8 9 10 ... #&gt;  $ opinion_W: num  1.18 9.93 4.02 2.99 3.02 ... #&gt;  $ opinion_M: num  3.65 7.12 2.21 7.49 8.29 ... #&gt;  - attr(*, "description")= chr "This is a simulated dataset to illustrate interdependencies of observations within dyads (i.e. heterosexual cou"| __truncated__</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} summary(data)</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt;     dyad_id         opinion_W        opinion_M #&gt;  Min.   :   1.0   Min.   :-5.337   Min.   :-2.992 #&gt;  1st Qu.: 250.8   1st Qu.: 2.141   1st Qu.: 3.517 #&gt;  Median : 500.5   Median : 4.222   Median : 5.013 #&gt;  Mean   : 500.5   Mean   : 4.201   Mean   : 5.006 #&gt;  3rd Qu.: 750.2   3rd Qu.: 6.170   3rd Qu.: 6.545 #&gt;  Max.   :1000.0   Max.   :14.476   Max.   :11.670</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} attr(data, "description")</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; [1] "This is a simulated dataset to illustrate interdependencies of observations within dyads (i.e. heterosexual couples). The dataset is in wide-format: one row refers to one couple. Variables with \"_W\" refer to women,\"_M\" refer to men."</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} describe(data)</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt;           vars    n   mean     sd median trimmed    mad   min     max  range  skew kurtosis   se #&gt; dyad_id      1 1000 500.50 288.82 500.50  500.50 370.65  1.00 1000.00 999.00  0.00    -1.20 9.13 #&gt; opinion_W    2 1000   4.20   3.18   4.22    4.19   3.01 -5.34   14.48  19.81  0.05     0.01 0.10 #&gt; opinion_M    3 1000   5.01   2.27   5.01    5.02   2.25 -2.99   11.67  14.66 -0.06    -0.03 0.07</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} # interdependencies double entry method can be useful: check via multiple ways for # interdependencies, eg via correlations and ICC correlation in wide format cov(data$opinion_M, data$opinion_W)  # the covariance between the two variables. Have a look at the simulation. This is indeed what we have put into the data.</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; [1] 4.154203</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} cov(scale(data$opinion_M), scale(data$opinion_W))  # the covariance between the two standardized variables. That is the correlation.</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt;           [,1] #&gt; [1,] 0.5741921</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} cor.test(data$opinion_M, data$opinion_W)  # See, same value. Now also with significance.</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; #&gt;  Pearson's product-moment correlation #&gt; #&gt; data:  data$opinion_M and data$opinion_W #&gt; t = 22.156, df = 998, p-value &lt; 2.2e-16 #&gt; alternative hypothesis: true correlation is not equal to 0 #&gt; 95 percent confidence interval: #&gt;  0.5311041 0.6143179 #&gt; sample estimates: #&gt;       cor #&gt; 0.5741921</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} # correlation in long format, better because: It takes into account that the variance and mean of # the opinions of men and women may be different. The endresult will more closely resemble the ICC # we will encounter later. var1 &lt;- c(data$opinion_M, data$opinion_W) var2 &lt;- c(data$opinion_W, data$opinion_M) cor.test(var1, var2)</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; #&gt;  Pearson's product-moment correlation #&gt; #&gt; data:  var1 and var2 #&gt; t = 26.576, df = 1998, p-value &lt; 2.2e-16 #&gt; alternative hypothesis: true correlation is not equal to 0 #&gt; 95 percent confidence interval: #&gt;  0.4779248 0.5427243 #&gt; sample estimates: #&gt;       cor #&gt; 0.5110503</code></td>
+</tr>
+<tr class="odd">
+<td><code>{.r .test} # ICC - various definition, first ANOVA MSB &lt;- var((data$opinion_M + data$opinion_W)/2) * 2 MSW &lt;- (sum((data$opinion_M - data$opinion_W)^2))/(2 * length(data$opinion_W)) ICC_anova &lt;- (MSB - MSW)/(MSB + MSW) ICC_anova</code></td>
+</tr>
+<tr class="even">
+<td><code>test2 #&gt; [1] 0.5114198</code></td>
+</tr>
+<tr class="odd">
+<td>```{.r .test} # now with a long dataset to observe variances present
+in ‘real population’ first make a dataset in # longformat. dyadmean
+&lt;- (data<span class="math inline">\(opinion_M +
+data\)</span>opinion_W)/2 data_long &lt;- rbind(data, data)
+data_long<span class="math inline">\(partner_id &lt;- rep(1:2, each =
+1000)
+data_long\)</span>dyad_id &lt;- rep(1:1000, times = 2)
+data_long$dyadmean &lt;- c(dyadmean, dyadmean)</td>
+</tr>
+<tr class="even">
+<td># lets the first dyad entry refer to the women and the second to the
+men data_long<span class="math inline">\(opinion &lt;-
+ifelse(data_long\)</span>partner_id == 1, data_long<span
+class="math inline">\(opinion_W, data_long\)</span>opinion_M)</td>
+</tr>
+<tr class="odd">
+<td># also define the opinion of the partner data_long<span
+class="math inline">\(opinion_P &lt;-
+ifelse(data_long\)</span>partner_id == 2, data_long<span
+class="math inline">\(opinion_W, data_long\)</span>opinion_M)</td>
+</tr>
+<tr class="even">
+<td>head(data_long) ```</td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt;   dyad_id opinion_W opinion_M partner_id dyadmean  opinion opinion_P #&gt; 1       1  1.180285  3.651525          1 2.415905 1.180285  3.651525 #&gt; 2       2  9.930618  7.117465          1 8.524041 9.930618  7.117465 #&gt; 3       3  4.022491  2.205877          1 3.114184 4.022491  2.205877 #&gt; 4       4  2.990720  7.485650          1 5.238185 2.990720  7.485650 #&gt; 5       5  3.024059  8.292194          1 5.658127 3.024059  8.292194 #&gt; 6       6  8.408048  4.720610          1 6.564329 8.408048  4.720610</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # first calculate the between variance of our sample. Note that this we only need observations of # the dyads once (thus N_dyads=1000) S_B &lt;- var(data_long$dyadmean[1:1000]) # within variance SW &lt;- sum((data_long$opinion - data_long$dyadmean)^2)/1000  # we divide by the number of dyads # We now need to correct the observed between variance to reflect the population between variance. S_B_E &lt;- S_B - SW/2 ICC_ML &lt;- S_B_E/(S_B_E + SW) ICC_ML</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; [1] 0.5114198</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # ICC via Lavaan install.packages('lavaan') library(lavaan) require("lavaan") model &lt;- " level: 1 opinion ~ 1 #regression model opinion ~~ opinion #variance level: 2 opinion ~ 1 opinion ~~ opinion " fit &lt;- lavaan(model = model, data = data_long, cluster = "dyad_id") summary(fit)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; lavaan 0.6-18 ended normally after 7 iterations #&gt; #&gt;   Estimator                                         ML #&gt;   Optimization method                           NLMINB #&gt;   Number of model parameters                         3 #&gt; #&gt;   Number of observations                          2000 #&gt;   Number of clusters [dyad_id]                    1000 #&gt; #&gt; Model Test User Model: #&gt; #&gt;   Test statistic                                 0.000 #&gt;   Degrees of freedom                                 0 #&gt; #&gt; Parameter Estimates: #&gt; #&gt;   Standard errors                             Standard #&gt;   Information                                 Observed #&gt;   Observed information based on                Hessian #&gt; #&gt; #&gt; Level 1 [within]: #&gt; #&gt; Intercepts: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           0.000 #&gt; #&gt; Variances: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           3.816    0.171   22.361    0.000 #&gt; #&gt; #&gt; Level 2 [dyad_id]: #&gt; #&gt; Intercepts: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           4.603    0.077   59.950    0.000 #&gt; #&gt; Variances: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           3.988    0.277   14.391    0.000</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} lavInspect(fit, "icc")</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; opinion #&gt;   0.511</code></td>
+</tr>
+<tr class="even">
+<td>###Egonet / Socionet data</td>
+</tr>
+<tr class="odd">
+<td>```{.r .test} # simulating some egonet data require(MASS)
+set.seed(9864) # We set a seed. In this we the random numbers we will
+generate be the same and we thus end up with the same dataset. Please
+not that to be absolutely sure to get the same dataset, we need to run
+the same R version (and packages).</td>
+</tr>
+<tr class="even">
+<td># let us start with simulating the opinion of ego and its alters.
+Sigma &lt;- matrix(sample(c(1, 2, 3), 36, replace = T), 6, 6)
+Sigma[lower.tri(Sigma)] &lt;- t(Sigma)[lower.tri(Sigma)] diag(Sigma)
+&lt;- c(5, 4, 6, 3, 7, 6) # Sigma</td>
+</tr>
+<tr class="odd">
+<td>opinions &lt;- mvrnorm(n = 1000, mu = c(4, 4, 4, 4, 4, 4), Sigma)
+opinion_ego &lt;- opinions[, 1] opinion_alter1 &lt;- opinions[, 2]
+opinion_alter2 &lt;- opinions[, 3] opinion_alter3 &lt;- opinions[, 4]
+opinion_alter4 &lt;- opinions[, 5] opinion_alter5 &lt;- opinions[,
+6]</td>
+</tr>
+<tr class="even">
+<td>egonet_id &lt;- 1:1000</td>
+</tr>
+<tr class="odd">
+<td># and let’s put everything together data &lt;- data.frame(egonet_id,
+opinion_alter1, opinion_alter2, opinion_alter3, opinion_alter4,
+opinion_alter5)</td>
+</tr>
+<tr class="even">
+<td>require(psych) head(data) ```</td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt;   egonet_id opinion_alter1 opinion_alter2 opinion_alter3 opinion_alter4 opinion_alter5 #&gt; 1         1   -0.002812297       2.341753       3.184144     0.06355581      0.7949200 #&gt; 2         2    6.420180903       2.757233       5.955405     5.78889612      7.6351737 #&gt; 3         3    4.035976025       1.730848       2.447139     2.77713143      0.9910096 #&gt; 4         4    1.572971112       4.217697       4.451395     0.28006793      3.0813234 #&gt; 5         5    1.847221600       3.205552       4.836978     0.37768238      4.1432356 #&gt; 6         6    5.896886119       5.500884       4.302935     3.28402390     -2.2955251</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} str(data)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; 'data.frame':    1000 obs. of  6 variables: #&gt;  $ egonet_id     : int  1 2 3 4 5 6 7 8 9 10 ... #&gt;  $ opinion_alter1: num  -0.00281 6.42018 4.03598 1.57297 1.84722 ... #&gt;  $ opinion_alter2: num  2.34 2.76 1.73 4.22 3.21 ... #&gt;  $ opinion_alter3: num  3.18 5.96 2.45 4.45 4.84 ... #&gt;  $ opinion_alter4: num  0.0636 5.7889 2.7771 0.2801 0.3777 ... #&gt;  $ opinion_alter5: num  0.795 7.635 0.991 3.081 4.143 ...</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} summary(data)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt;    egonet_id      opinion_alter1   opinion_alter2   opinion_alter3   opinion_alter4 #&gt;  Min.   :   1.0   Min.   :-1.903   Min.   :-6.030   Min.   :-1.951   Min.   :-4.307 #&gt;  1st Qu.: 250.8   1st Qu.: 2.744   1st Qu.: 2.508   1st Qu.: 2.958   1st Qu.: 2.205 #&gt;  Median : 500.5   Median : 4.035   Median : 4.169   Median : 4.118   Median : 4.038 #&gt;  Mean   : 500.5   Mean   : 4.052   Mean   : 4.125   Mean   : 4.121   Mean   : 3.948 #&gt;  3rd Qu.: 750.2   3rd Qu.: 5.435   3rd Qu.: 5.825   3rd Qu.: 5.286   3rd Qu.: 5.753 #&gt;  Max.   :1000.0   Max.   :10.038   Max.   :12.676   Max.   :11.346   Max.   :11.918 #&gt;  opinion_alter5 #&gt;  Min.   :-3.012 #&gt;  1st Qu.: 2.540 #&gt;  Median : 4.128 #&gt;  Mean   : 4.153 #&gt;  3rd Qu.: 5.762 #&gt;  Max.   :12.227</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} attr(data, "description")</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; NULL</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} describe(data)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt;                vars    n   mean     sd median trimmed    mad   min     max  range  skew kurtosis #&gt; egonet_id         1 1000 500.50 288.82 500.50  500.50 370.65  1.00 1000.00 999.00  0.00    -1.20 #&gt; opinion_alter1    2 1000   4.05   1.99   4.04    4.06   1.99 -1.90   10.04  11.94  0.01    -0.21 #&gt; opinion_alter2    3 1000   4.12   2.45   4.17    4.12   2.46 -6.03   12.68  18.71 -0.04     0.28 #&gt; opinion_alter3    4 1000   4.12   1.74   4.12    4.13   1.73 -1.95   11.35  13.30 -0.03     0.35 #&gt; opinion_alter4    5 1000   3.95   2.63   4.04    3.97   2.63 -4.31   11.92  16.22 -0.09    -0.11 #&gt; opinion_alter5    6 1000   4.15   2.49   4.13    4.14   2.38 -3.01   12.23  15.24  0.04    -0.11 #&gt;                  se #&gt; egonet_id      9.13 #&gt; opinion_alter1 0.06 #&gt; opinion_alter2 0.08 #&gt; opinion_alter3 0.06 #&gt; opinion_alter4 0.08 #&gt; opinion_alter5 0.08</code></td>
+</tr>
+<tr class="even">
+<td>```{.r .test} # reshape into long format require(“tidyverse”)</td>
+</tr>
+<tr class="odd">
+<td>data_long &lt;- tidyr::pivot_longer(data = data, cols =
+everything()[-1], names_to = “alter”, values_to = “opinion”)</td>
+</tr>
+<tr class="even">
+<td>head(data_long) ```</td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; # A tibble: 6 × 3 #&gt;   egonet_id alter           opinion #&gt;       &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt; #&gt; 1         1 opinion_alter1 -0.00281 #&gt; 2         1 opinion_alter2  2.34 #&gt; 3         1 opinion_alter3  3.18 #&gt; 4         1 opinion_alter4  0.0636 #&gt; 5         1 opinion_alter5  0.795 #&gt; 6         2 opinion_alter1  6.42</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # ICC via ML require(nlme) # estimate empty model with ML mlme &lt;- lme(opinion ~ 1, data = data_long, random = list(~1 | egonet_id), ) summary(mlme)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; Linear mixed-effects model fit by REML #&gt;   Data: data_long #&gt;        AIC      BIC    logLik #&gt;   21909.51 21929.06 -10951.75 #&gt; #&gt; Random effects: #&gt;  Formula: ~1 | egonet_id #&gt;         (Intercept) Residual #&gt; StdDev:    1.206648 1.941675 #&gt; #&gt; Fixed effects:  opinion ~ 1 #&gt;                Value  Std.Error   DF  t-value p-value #&gt; (Intercept) 4.079877 0.04701084 4000 86.78588       0 #&gt; #&gt; Standardized Within-Group Residuals: #&gt;         Min          Q1         Med          Q3         Max #&gt; -3.76909452 -0.60344130  0.01233244  0.59998904  4.12122284 #&gt; #&gt; Number of Observations: 5000 #&gt; Number of Groups: 1000</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # Standard deviations are reported instead of variances.  extract the variances. VarCorr(mlme)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; egonet_id = pdLogChol(1) #&gt;             Variance StdDev #&gt; (Intercept) 1.455998 1.206648 #&gt; Residual    3.770102 1.941675</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # the intercept variance is at the between-level.  the residual variances are at the observation / # within-level.  thus based on these numbers we may calculate the ICC ourselves. varests &lt;- as.numeric(VarCorr(mlme)[1:2]) varests</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; [1] 1.455998 3.770102</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} ICC_MLb &lt;- varests[1]/sum(varests) ICC_MLb</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; [1] 0.2786013</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} # ICC via SEM require("lavaan") model &lt;- " level: 1 opinion ~ 1 #regression model opinion ~~ opinion #variance level: 2 opinion ~ 1 opinion ~~ opinion " fit &lt;- lavaan(model = model, data = data_long, cluster = "egonet_id") summary(fit)</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; lavaan 0.6-18 ended normally after 11 iterations #&gt; #&gt;   Estimator                                         ML #&gt;   Optimization method                           NLMINB #&gt;   Number of model parameters                         3 #&gt; #&gt;   Number of observations                          5000 #&gt;   Number of clusters [egonet_id]                  1000 #&gt; #&gt; Model Test User Model: #&gt; #&gt;   Test statistic                                 0.000 #&gt;   Degrees of freedom                                 0 #&gt; #&gt; Parameter Estimates: #&gt; #&gt;   Standard errors                             Standard #&gt;   Information                                 Observed #&gt;   Observed information based on                Hessian #&gt; #&gt; #&gt; Level 1 [within]: #&gt; #&gt; Intercepts: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           0.000 #&gt; #&gt; Variances: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           3.770    0.084   44.721    0.000 #&gt; #&gt; #&gt; Level 2 [egonet_id]: #&gt; #&gt; Intercepts: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           4.080    0.047   86.829    0.000 #&gt; #&gt; Variances: #&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|) #&gt;     opinion           1.454    0.100   14.514    0.000</code></td>
+</tr>
+<tr class="even">
+<td><code>{.r .test} lavInspect(fit, "icc")</code></td>
+</tr>
+<tr class="odd">
+<td><code>test2 #&gt; opinion #&gt;   0.278</code></td>
+</tr>
+</tbody>
+</table>
+<p>Last compiled on september, 2024</p>
+<p><em>Describe lab journal here.</em></p>
+<p><br></p>
+<hr />
+</div>
+</div>
+<div id="open-science" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Open Science</h2>
+<p>Everyone can fork this repository. Use this example to journal your
+lab work and assignments.</p>
+<p>We, Jochem Tolsma and Bas Hofstra, use this repository for our Social
+Network Analysis For Social Scientists course <span
+class="citation">(Tolsma and Hofstra 2022)</span>.
+<!--- this is a reference, stored in references.bib. It will be automatically added at the bottom of the page ---></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img src="images/cover.jpg" /></p>
+</div>
+</div>
+<div id="how-to-use" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> How to use</h2>
+<ol style="list-style-type: decimal">
+<li><p>Fork the repository for this website and follow instructions on
+<code>README</code> to get started <a
+href="https://github.com/JochemTolsma/labjournal">here</a>.</p></li>
+<li><p>Journal your work, by editing the .Rmd-files</p></li>
+<li><p>…</p></li>
+<li><p>Change everything to make it your own!</p></li>
+</ol>
+<p><br></p>
+<p>Use the top menu to navigate through the journal.</p>
+<hr />
+</div>
+<div id="references" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> References</h1>
+<p>:)</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+<div id="ref-SNASS" class="csl-entry">
+Tolsma, Jochem, and Bas Hofstra. 2022. <em>Social Network Analysis for
+Social Scientists</em>. <a
+href="https://jtolsma.nl/SNASS/">https://jtolsma.nl/SNASS/</a>.
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiBqb3VybmFsIg0KYXV0aG9yOiAiYnk6IEZyaWRhIHZhbiBUZWlqbGluZ2VuIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KDQogDQotLS0NCg0KIyMgKlRvIGRvIGFuZCByZW1pbmRlcnMqDQoNCg0KKipIb21ld29yayoqOiANCg0KLSB+fkFwcGVuZGl4IEF+fiAgDQotIH5+QXBwZW5kaXggQn5+ICANCi0gfn5SZXNlYXJjaCBxdWVzdGlvbnN+fiAgDQotIH5+aW5jbHVkZSBhbGwgaW4gam91cm5hbH5+ICANCi0gVGlkeSB1cA0KDQoNCiMjIFByZXBhcmF0aW9uDQpgYGB7cn0NCnJtKGxpc3QgPSBscygpKSAgI2NsZWFuIHVwIHlvdXIgZW52aXJvbm1lbnQNCg0KcGFja2FnZS5jaGVjayA8LSBmdW5jdGlvbihwYWNrYWdlcykgew0KICAgIGxhcHBseShwYWNrYWdlcywgRlVOID0gZnVuY3Rpb24oeCkgew0KICAgICAgICBpZiAoIXJlcXVpcmUoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKSkgew0KICAgICAgICAgICAgaW5zdGFsbC5wYWNrYWdlcyh4LCBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICAgICAgICAgICAgbGlicmFyeSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQogICAgICAgIH0NCiAgICB9KQ0KfQ0KDQpwYWNrYWdlcyA9IGMoInRpZHl2ZXJzZSIsICJoYXZlbiIsICJkcGx5ciIsICJrbml0ciIsICJrbGlwcHkiLCAibGFiZWxsZWQiKQ0KcGFja2FnZS5jaGVjayhwYWNrYWdlcykNCg0KDQpgYGANCg0KDQpgYGB7ciwgaW5zdGFsbCByZW1vdGVseSwgZ2xvYmFsc2V0dGluZ3MsIGVjaG89RkFMU0UsIHdhcm5pbmc9RkFMU0UsIHJlc3VsdHM9J2hpZGUnfQ0KI2luc3RhbGwucGFja2FnZXMoInJlbW90ZXMiKQ0KI3JlbW90ZXM6Omluc3RhbGxfZ2l0aHViKCJybGVzdXIva2xpcHB5IikNCg0KI2luc3RhbGwucGFja2FnZXMoInJlbW90ZXMiKQ0KIyBjb250cmliLnVybChyZXBvcywgInNvdXJjZSIpDQpgYGAgDQoNCmBgYHtyLCBnbG9iYWxzZXR0aW5ncywgZWNobz1GQUxTRSwgd2FybmluZz1GQUxTRSwgcmVzdWx0cz0naGlkZSd9DQoNCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCm9wdHNfY2h1bmskc2V0KHRpZHkub3B0cz1saXN0KHdpZHRoLmN1dG9mZj0xMDApLHRpZHk9VFJVRSwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsY29tbWVudCA9ICIjPiIsIGNhY2hlPVRSVUUsIGNsYXNzLnNvdXJjZT1jKCJ0ZXN0IiksIGNsYXNzLm91dHB1dD1jKCJ0ZXN0MiIpKQ0Kb3B0aW9ucyh3aWR0aCA9IDEwMCkNCnJnbDo6c2V0dXBLbml0cigpDQoNCg0KDQpjb2xvcml6ZSA8LSBmdW5jdGlvbih4LCBjb2xvcikge3NwcmludGYoIjxzcGFuIHN0eWxlPSdjb2xvcjogJXM7Jz4lczwvc3Bhbj4iLCBjb2xvciwgeCkgfQ0KDQpgYGANCg0KYGBge3Iga2xpcHB5LCBlY2hvPUZBTFNFLCBpbmNsdWRlPVRSVUV9DQprbGlwcHk6OmtsaXBweShwb3NpdGlvbiA9IGMoJ3RvcCcsICdyaWdodCcpKQ0KI2tsaXBweTo6a2xpcHB5KGNvbG9yID0gJ2RhcmtyZWQnKQ0KI2tsaXBweTo6a2xpcHB5KHRvb2x0aXBfbWVzc2FnZSA9ICdDbGljayB0byBjb3B5JywgdG9vbHRpcF9zdWNjZXNzID0gJ0RvbmUnKQ0KYGBgDQoNCg0KDQoNCi0tLS0NCg0KPCEtLS0gVGhpcyBpcyB0aGUgYmVzdCB3YXkgdG8gd3JpdGUgYSBjb21tZW50LiANCkl0IGFsc28gZGVtb25zdHJhdGUsIHlvdSBjYW4gYWRkIGh0bWwgZGlyZWN0bHkgaW4geW91ciBybWFya2Rvd24gZmlsZS4gU2VlOiBodHRwczovL3d3dy53M3NjaG9vbHMuY29tL2h0bWwvaHRtbF9jb21tZW50cy5hc3AgLS0tPiANCg0KDQo8IS0tLSB0byB1c2UgYSBtdWx0aSBjb2x1bW4gcGFnZSB3ZSB1c2UgUGFuZG9jJ3MgZmVuY2VkIERpdi4gDQpzZWUgaGVyZTogaHR0cHM6Ly9ib29rZG93bi5vcmcveWlodWkvcm1hcmtkb3duLWNvb2tib29rL211bHRpLWNvbHVtbi5odG1sIA0KQnV0IHBsZWFzZSBub3RlLCB3ZSBhcmUgbm90IGhlcmUgdG8gbWFrZSBhIGJlYXV0aWZ1bCB3ZWJzaXRlLCBvdXIgaW50ZW50aW9uIGlzIGp1c3QgdG8gaGF2ZSBhIHF1aWNrIGxhYiBqb3VybmFsIHVwIGFuZCBydW5uaW5nIC0tLT4gDQoNCjo6Ojogey5jb2x1bW5zfQ0KOjo6IHsuY29sdW1uIHdpZHRoPSI1MCUifQ0KDQojIE15IExhYiBKb3VybmFsDQoNCg0KIyMgQXBwZW5kaXggQSAtIEludHJvZHVjdGlvbiB0byBSIGZvciBTTkENCg0KYGBge3J9DQojbG9hZGluZyBpbiB0aGUgZGF0YQ0KY3YwOCA8LSBmb3JlaWduOjpyZWFkLnNwc3MoInR1dG9yaWFsX2RhdGFcXEN1bHR1cmFsX0NoYW5nZXNfMjAwOC5zYXYiLCB1c2UudmFsdWUubGFiZWxzID0gVCwgdG8uZGF0YS5mcmFtZSA9IFQpDQpjdjEwIDwtIGZvcmVpZ246OnJlYWQuc3BzcygidHV0b3JpYWxfZGF0YVxcQ3VsdHVyYWxfQ2hhbmdlc18yMDEwLnNhdiIsIHVzZS52YWx1ZS5sYWJlbHMgPSBULCB0by5kYXRhLmZyYW1lID0gVCkNCg0KIyBub3JtYWxseSBJIHRoaW5rIHNldHRpbmcgdXNlLnZhbHVlLmxhYmVscz1GIGlzIG1vcmUgY29udmVuaWVudC4gVGh1cyBsZXRzIGxvYWQgdGhlIGRhdGEgYWdhaW4gYnV0DQojIG5vdyB3aXRob3V0IGxhYmVscw0KY3YwOF9ub2xhYiA8LSBmb3JlaWduOjpyZWFkLnNwc3MoInR1dG9yaWFsX2RhdGFcXEN1bHR1cmFsX0NoYW5nZXNfMjAwOC5zYXYiLCB1c2UudmFsdWUubGFiZWxzID0gRiwgdG8uZGF0YS5mcmFtZSA9IFQpDQpjdjEwX25vbGFiIDwtIGZvcmVpZ246OnJlYWQuc3BzcygidHV0b3JpYWxfZGF0YVxcQ3VsdHVyYWxfQ2hhbmdlc18yMDEwLnNhdiIsIHVzZS52YWx1ZS5sYWJlbHMgPSBGLCB0by5kYXRhLmZyYW1lID0gVCkNCg0KIyBmaW5hbGx5LCBpbXBvcnQgdGhlIGRhdGEgdXNpbmcgaGF2ZW4NCmN2MDhfaGF2ZW4gPC0gaGF2ZW46OnJlYWRfc3BzcygidHV0b3JpYWxfZGF0YVxcQ3VsdHVyYWxfQ2hhbmdlc18yMDA4LnNhdiIpDQpjdjEwX2hhdmVuIDwtIGhhdmVuOjpyZWFkX3Nwc3MoInR1dG9yaWFsX2RhdGFcXEN1bHR1cmFsX0NoYW5nZXNfMjAxMC5zYXYiKQ0KDQpgYGANCg0KIyMjIE1pc3NpbmcgdmFsdWVzIDENCmBgYHtyfQ0KI01pc3NpbmcgdmFsdWVzDQoNCmN2MDgkbGZ0b3BfbmV3IDwtIGN2MDgkbGZ0b3AgI25ld3ZhciBhbmQgbGlua2VkIHRvIGRhdGFzZXQNCg0KY3YwOCRsZnRvcF9uZXdbY3YwOCRsZnRvcF9uZXcgPT0gIk9uYmVrZW5kIl0gPC0gTkEgI3JlY29kaW5nDQoNCnRhYmxlKGN2MDgkbGZ0b3BfbmV3LCB1c2VOQSA9ICJhbHdheXMiKSAjY2hlY2tpbmcNCg0KDQojYWdlIG51bWVyaWMgaW5zdGVhZCBvZiBjYXRlZ29yaWNhbA0KDQpsZXZlbHMoY3YwOCRsZnRvcF9uZXcpIA0KDQpjdjA4JGFnZW4gPC0gYXMubnVtZXJpYyhhcy5jaGFyYWN0ZXIoY3YwOCRsZnRvcF9uZXcpKSAgIyBob3cgY2x1bXN5LiB3ZSBmaXJzdCBjb252ZXJ0IHRoZSBmYWN0b3IgdG8gYSBzdHJpbmcgYW5kIHRoZW4gdG8gYSBudW1lcmljIHZhcmlhYmxlLg0KdGFibGUoY3YwOCRhZ2VuLCB1c2VOQSA9ICJhbHdheXMiKQ0KDQpzdHIoY3YwOCRhZ2VuKQ0KDQoNCmBgYA0KIyMjIFRpZHkgNy4yDQpgYGB7cn0NCiNhZGRpbmcgYSB2YXJpYWJsZSB2aWEgbXV0YXRlDQoNCmxpYnJhcnkoZHBseXIpDQoNCmN2MDhfaGF2ZW4gPC0gbXV0YXRlKGN2MDhfaGF2ZW4sIGxmdG9wX25ldyA9IGxmdG9wKQ0KYGBgDQojIyMgVGlkeSA4LjINCmBgYHtyfQ0KcmVxdWlyZShsYWJlbGxlZCkNCnN0cihjdjA4X2hhdmVuJHZhcjAwNm4pDQphdHRyKGN2MDhfaGF2ZW4kdmFyMDA2biwgImxhYmVscyIpDQoNCiN1c2luZyBwaXBpbmcgb3BlcmF0b3JzICU+JSwgYmVsb3cgYXJlIHRocmVlIG11dGF0ZSBjb21tYW5kcyBpbiBvbmUgbGluZQ0KY3YwOF9oYXZlbiA8LSBjdjA4X2hhdmVuICU+JQ0KICAgIG11dGF0ZShlZHVjMyA9IHJlY29kZSh2YXIwMDZuLCBgLTNgID0gLTksIGAtMWAgPSAxLCBgMWAgPSAxLCBgMmAgPSAyLCBgM2AgPSAyLCBgNGAgPSAyLCBgNWAgPSAyLA0KICAgICAgICBgNmAgPSAzLCBgN2AgPSAzLCBgOGAgPSAzLCBgMTBgID0gLTksIC5rZWVwX3ZhbHVlX2xhYmVscyA9IEZBTFNFKSwgZWR1YzMgPSBuYV9pZihlZHVjMywgLTkpLA0KICAgICAgICBlZHVjMyA9IGZhY3RvcihlZHVjMywgbGV2ZWxzID0gYygxLCAyLCAzKSwgbGFiZWxzID0gYygicHJpbWFyeSIsICJzZWNvbmRhcnkiLCAidGVydGlhcnkiKSkpDQpgYGANCg0KDQojIyMgTWVhbnMNCmBgYHtyfQ0KI21ha2UgbnVtZXJpYw0KY3YwOCRpbnQwNTVuIDwtIGFzLm51bWVyaWMoY3YwOCRpbnQwNTUpDQp0YWJsZShjdjA4JGludDA1NW4sIHVzZU5BID0gImFsd2F5cyIpDQpjdjA4JGludDA1Nm4gPC0gYXMubnVtZXJpYyhjdjA4JGludDA1NikNCnRhYmxlKGN2MDgkaW50MDU2biwgdXNlTkEgPSAiYWx3YXlzIikNCmN2MDgkaW50MDU3biA8LSBhcy5udW1lcmljKGN2MDgkaW50MDU3KQ0KdGFibGUoY3YwOCRpbnQwNTduLCB1c2VOQSA9ICJhbHdheXMiKQ0KDQojZGVmaW5lIG1pc3NpbmdzIGFuZCByZWNvZGUNCmN2MDgkaW50MDU1bltjdjA4JGludDA1NW4gPCA1XSA8LSBOQQ0KY3YwOCRpbnQwNTVuIDwtIGN2MDgkaW50MDU1biAtIDQNCmN2MDgkaW50MDU2bltjdjA4JGludDA1Nm4gPCA1XSA8LSBOQQ0KY3YwOCRpbnQwNTZuIDwtIGN2MDgkaW50MDU2biAtIDQNCmN2MDgkaW50MDU3bltjdjA4JGludDA1N24gPCA1XSA8LSBOQQ0KY3YwOCRpbnQwNTduIDwtIGN2MDgkaW50MDU3biAtIDQNCg0KI3dhbnQgdG8gY2FsY3VsYXRlIHRoZSBtZWFuIGZvciBlYWNoIHJvdy9yZXNwb25kZW50LCB0aGUgc3BzcyBtZWFucyBmdW5jdGlvbiBkb2Vzbid0IHdvcmsgdGhlIHNhbWUNCnRlc3RtZWFucyA8LSByb3dNZWFucyhjYmluZChjdjA4JGludDA1NW4sIGN2MDgkaW50MDU2biwgY3YwOCRpbnQwNTduKSwgbmEucm0gPSBUKQ0KaGVhZCh0ZXN0bWVhbnMpDQoNCiNvbmx5IGluY2x1ZGUgY2FzZXMgd2l0aCBhIG1heCBvZiAxIG1pc3NpbmcgYW5kIGFkZCB0byBkYXRhc2V0LCB1c2UgdGhlIGZvbGxvd2luZyBzdGVwcw0Kbm1pcyA8LSByb3dTdW1zKGlzLm5hKGNiaW5kKGN2MDgkaW50MDU1biwgY3YwOCRpbnQwNTZuLCBjdjA4JGludDA1N24pKSkgI2NvdW50IG51bWJlciBvZiBtaXNzaW5ncw0KDQp0ZXN0bWVhbnMgPC0gaWZlbHNlKG5taXMgPCAyLCB0ZXN0bWVhbnMsIE5BKSAjc2VsZWN0IHRob3NlIHdpdGggbWF4IG9mIDENCg0KY3YwOCRpbnRfbWVhbiA8LSB0ZXN0bWVhbnMgI2FkZCB0byB3b3JraW5nIGRhdGFzZXQNCmBgYA0KDQojIyNNZXJnaW5nIGRhdGFmaWxlcw0KYGBge3J9DQojUGFuZWwgKGxvbmcgb3Igd2lkZT8pIG9yIHN0YWNrZWQgY3Jvc3Mtc2VjdGlvbnM/DQojU3RlcDE6IHNlbGVjdCB2YXJpYWJsZXMgeW91IHdhbnQgdG8ga2VlcA0KY3YwOF9zZWwgPC0gY3YwOFssIGMoIndlX2lkIiwgImxmdG9wIiwgImdlc2xhY2h0IiwgInZhcjAwNm4iLCAidjQwMSIsICJsYW5kZCIpXQ0KY3YxMF9zZWwgPC0gY3YxMFssIGMoIlNsZXV0ZWwiLCAidmFyMDAyIiwgInZhcjAwMSIsICJWbHRvcGxvcCIsICJWNDAxIiwgIkxhbmRkIildDQoNCiNTdGVwMjogbWFrZSBjb25zaXN0ZW50DQpuYW1lcyhjdjA4X3NlbCkgPC0gbmFtZXMoY3YxMF9zZWwpIDwtIGMoImlkIiwgImFnZSIsICJzZXgiLCAiZWR1YyIsICJoZWFsdGgiLCAicmVnaW9uIikgI21ha2luZyBuYW1lcyB0aGUgc2FtZQ0KDQojbWFraW5nIGxldmVscyBhbmQgbGFiZWxzIGNvbnNpc3RlbnQNCnN1bW1hcnkoY3YwOF9zZWwpDQpzdW1tYXJ5KGN2MTBfc2VsKQ0KI3RoZXkgbG9vayB2ZXJ5IGNvbnNpc3RlbnQgYWxyZWFkeS4gYnV0IGNoZWNrIGNhcmVmdWxseS4NCg0KI3dlIGRvbid0IHdhbnQgaWQgdG8gYmUgYSBmYWN0b3IgYnV0IG51bWVyaWMuIE5vdGUgdGhhdCB3ZSBkb24ndCB3YW50IHRoZSBmYWN0b3IgbGV2ZWwgdmFsdWVzIGFzDQojbnVtYmVycyBidXQgdGhlIGFjdHVhbCBsYWJlbHMgYXMgbnVtYmVycy4NCg0KI2lkDQpjdjA4X3NlbCRpZCA8LSBhcy5udW1lcmljKGFzLmNoYXJhY3RlcihjdjA4X3NlbCRpZCkpDQpjdjEwX3NlbCRpZCA8LSBhcy5udW1lcmljKGFzLmNoYXJhY3RlcihjdjEwX3NlbCRpZCkpDQoNCiNhZ2UNCmN2MDhfc2VsJGFnZSA8LSBhcy5udW1lcmljKGFzLmNoYXJhY3RlcihjdjA4X3NlbCRhZ2UpKQ0KY3YxMF9zZWwkYWdlIDwtIGFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKGN2MTBfc2VsJGFnZSkpDQoNCiNzZXggbWVuDQpsZXZlbHMoY3YwOF9zZWwkc2V4KQ0KbGV2ZWxzKGN2MTBfc2VsJHNleCkNCnRhYmxlKGN2MDhfc2VsJHNleCwgdXNlTkEgPSAiYWx3YXlzIikNCnRhYmxlKGN2MTBfc2VsJHNleCwgdXNlTkEgPSAiYWx3YXlzIikNCiNsZXRzIG1ha2UgaXQgYSBudW1lcmljIHZhciBmaXJzdA0KY3YwOF9zZWwkc2V4biA8LSBhcy5udW1lcmljKGN2MDhfc2VsJHNleCkNCnRhYmxlKGN2MDhfc2VsJHNleG4pDQojcmVjb2RlIGludG8gZHVtbXkNCmN2MDhfc2VsJG1lbiA8LSBpZmVsc2UoY3YwOF9zZWwkc2V4biA9PSAyLCAxLCAwKQ0KY3YwOF9zZWwkbWVuIDwtIGlmZWxzZShjdjA4X3NlbCRzZXhuID09IDEsIE5BLCBjdjA4X3NlbCRtZW4pDQp0YWJsZShjdjA4X3NlbCRtZW4sIHVzZU5BID0gImFsd2F5cyIpICNjaGVjaw0KDQojbGV0cyBtYWtlIGl0IGEgbnVtZXJpYyB2YXIgZmlyc3QNCmN2MTBfc2VsJHNleG4gPC0gYXMubnVtZXJpYyhjdjEwX3NlbCRzZXgpDQp0YWJsZShjdjEwX3NlbCRzZXhuKQ0KIyByZWNvZGUgaW50byBkdW1teQ0KY3YxMF9zZWwkbWVuIDwtIGlmZWxzZShjdjEwX3NlbCRzZXhuID09IDIsIDEsIDApDQp0YWJsZShjdjEwX3NlbCRtZW4sIHVzZU5BID0gImFsd2F5cyIpICNjaGVjaw0KDQojIGVkdWMgZWR1YzMNCmxldmVscyhjdjA4X3NlbCRlZHVjKQ0KbGV2ZWxzKGN2MTBfc2VsJGVkdWMpDQp0YWJsZShjdjA4X3NlbCRlZHVjLCB1c2VOQSA9ICJhbHdheXMiKQ0KdGFibGUoY3YxMF9zZWwkZWR1YywgdXNlTkEgPSAiYWx3YXlzIikNCiMgbGV0cyBtYWtlIGl0IGEgbnVtZXJpYyB2YXIgZmlyc3QNCmN2MDhfc2VsJGVkdWNuIDwtIGFzLm51bWVyaWMoY3YwOF9zZWwkZWR1YykNCnRhYmxlKGN2MDhfc2VsJGVkdWNuKQ0KIyByZWNvZGUgaW50byAzY2F0czogMSBwcmltYWlyLCAyIHNlY3VuZGFpciwgMyBpcyB0ZXJ0aWFpcg0KY3YwOF9zZWwkZWR1YzMgPC0gTkENCmN2MDhfc2VsJGVkdWMzW2N2MDhfc2VsJGVkdWNuID09IDIgfCBjdjA4X3NlbCRlZHVjbiA9PSAzXSA8LSAxDQpjdjA4X3NlbCRlZHVjM1tjdjA4X3NlbCRlZHVjbiA+IDMgJiBjdjA4X3NlbCRlZHVjbiA8IDhdIDwtIDINCmN2MDhfc2VsJGVkdWMzW2N2MDhfc2VsJGVkdWNuID4gNyAmIGN2MDhfc2VsJGVkdWNuIDwgMTFdIDwtIDMNCg0KdGFibGUoY3YwOF9zZWwkZWR1YzMsIHVzZU5BID0gImFsd2F5cyIpICNjaGVjaw0KcHJvcC50YWJsZSh0YWJsZShjdjA4X3NlbCRlZHVjMywgdXNlTkEgPSAiYWx3YXlzIikpDQoNCiMgbGV0cyBtYWtlIGl0IGEgbnVtZXJpYyB2YXIgZmlyc3QNCmN2MTBfc2VsJGVkdWNuIDwtIGFzLm51bWVyaWMoY3YxMF9zZWwkZWR1YykNCnRhYmxlKGN2MTBfc2VsJGVkdWNuKQ0KIyByZWNvZGUgaW50byAzY2F0czogMSBwcmltYWlyLCAyIHNlY3VuZGFyaSwgMyBpcyB0ZXJ0aWFpcg0KY3YxMF9zZWwkZWR1YzMgPC0gTkENCmN2MTBfc2VsJGVkdWMzW2N2MTBfc2VsJGVkdWNuIDwgM10gPC0gMSAgIyBjb3JyZWN0Pw0KY3YxMF9zZWwkZWR1YzNbY3YxMF9zZWwkZWR1Y24gPiAyICYgY3YxMF9zZWwkZWR1Y24gPCA2XSA8LSAyDQpjdjEwX3NlbCRlZHVjM1tjdjEwX3NlbCRlZHVjbiA9PSA2XSA8LSAzDQoNCnRhYmxlKGN2MTBfc2VsJGVkdWMzLCB1c2VOQSA9ICJhbHdheXMiKSAjY2hlY2sNCnByb3AudGFibGUodGFibGUoY3YxMF9zZWwkZWR1YzMsIHVzZU5BID0gImFsd2F5cyIpKQ0KDQoNCiNTdGVwMzogcGVyZm9ybSB0aGUgYWN0dWFsIG1lcmdpbmcuIE1ha2Ugc3VyZSB0byBpbmNsdWRlIG5lY2Vzc2FyeSBpZGVudGlmaWVyIHZhcmlhYmxlcy4NCiNhZGQgYSB3YXZlIHZhcmlhYmxlDQpjdjA4X3NlbCR3YXZlIDwtIDIwMDgNCmN2MTBfc2VsJHdhdmUgPC0gMjAxMA0KDQojbWFrZSBhIGZha2UgSUQsIHdlIHdpbGwgdXNlIHRoaXMgbGF0ZXIgd2hlbiB3ZSBwcmV0ZW5kIENWIGlzIHBhbmVsIGRhdGEuDQpjdjA4X3NlbCRpZDIgPC0gcmFuayhjdjA4X3NlbCRpZCkNCmN2MTBfc2VsJGlkMiA8LSByYW5rKGN2MTBfc2VsJGlkKQ0KDQojY2hlY2sgZmlyc3QgaWYgc2FtZSB2YXJzIGluIGJvdGggZGF0YXNldHMNCg0KY3YwOF9zZWwgPC0gY3YwOF9zZWxbLCBjKCJpZCIsICJpZDIiLCAiYWdlIiwgIm1lbiIsICJlZHVjMyIsICJoZWFsdGgiLCAicmVnaW9uIiwgIndhdmUiKV0NCmN2MTBfc2VsIDwtIGN2MTBfc2VsWywgYygiaWQiLCAiaWQyIiwgImFnZSIsICJtZW4iLCAiZWR1YzMiLCAiaGVhbHRoIiwgInJlZ2lvbiIsICJ3YXZlIildDQoNCnN1bW1hcnkoY3YwOF9zZWwpDQpzdW1tYXJ5KGN2MTBfc2VsKQ0KDQojc2ltcGx5IHBsYWNlIG9uZSBkYXRhc2V0IHVuZGVyIHRoZSBvdGhlciB0aHVzIHJvdyBiaW5kIChyYmluZCkNCmN2X3RvdCA8LSByYmluZChjdjA4X3NlbCwgY3YxMF9zZWwpDQoNCiNTdGVwNDogY2hlY2sgcmVzdWx0cyENCnN1bW1hcnkoY3ZfdG90KQ0KaGVhZChjdl90b3QpDQoNCg0KDQojYWx0ZXJuYXRpdmU6IHBhbmVsIGRhdGFzZXQgaW4gd2lkZSBmb3JtYXQNCmN2X3RvdF9wYW5lbCA8LSBtZXJnZShjdjA4X3NlbCwgY3YxMF9zZWwsIGFsbCA9IFRSVUUsIGJ5ID0gImlkMiIpDQpoZWFkKGN2X3RvdF9wYW5lbCkNCg0KI2NhbiBhbHNvIHVzZSB0aGUgcmVzaGFwZSBmdW5jdGlvbg0KI2N2X3RvdF9wYW5lbCA8LSByZXNoYXBlKGN2X3RvdCwgdGltZXZhciA9ICJ3YXZlIiwgaWR2YXIgPSAiaWQyIiwgZGlyZWN0aW9uID0gIndpZGUiKQ0KI2hlYWQoY3ZfdG90X3BhbmVsKQ0KDQoNCmBgYA0KIyMjIEFnZ3JlZ2F0aW5nIGRhdGENCmBgYHtyfQ0KIyBzdGVwIDEuIGNvbnN0cnVjdCBkYXRhc2V0IHdpdGggYWdncmVnYXRlIGluZm8NCmFnZV9yZWdpb24gPC0gYWdncmVnYXRlKGN2X3RvdCRhZ2UsIGJ5ID0gbGlzdChjdl90b3QkcmVnaW9uKSwgRlVOID0gbWVhbiwgbmEucm0gPSBUUlVFKQ0KaGVhZChhZ2VfcmVnaW9uKQ0KDQojIGxldHMgY29ycmVjdCB2YXJpYWJsZSBuYW1lcw0KbmFtZXMoYWdlX3JlZ2lvbikgPC0gYygicmVnaW9uIiwgImFnZV9yZWdpb24iKQ0KYWdlX3JlZ2lvbg0KDQojIHN0ZXAgMi4gbWF0Y2ggdG8gZGF0YXNldA0KY3ZfdG90YWwgPC0gbWVyZ2UoY3ZfdG90LCBhZ2VfcmVnaW9uLCBieSA9ICJyZWdpb24iLCBhbGwueCA9IFRSVUUpDQpoZWFkKGN2X3RvdGFsKQ0KdGFpbChjdl90b3RhbCkNCmBgYA0KIyMjIE1pc3NpbmcgdmFsdWVzIDINCmBgYHtyfQ0KI2V4YW1wbGUgbW9kZWwNCm1vZGVsMSA8LSBsbShhcy5udW1lcmljKGhlYWx0aCkgfiBtZW4gKyBhZ2UgKyBhcy5mYWN0b3IoZWR1YzMpICsgYXMuZmFjdG9yKHJlZ2lvbiksIGRhdGEgPSBjdl90b3RhbCkNCnN1bW1hcnkobW9kZWwxKQ0KDQoNCmN2X3RvdGFsJGhlYWx0aFtjdl90b3RhbCRoZWFsdGggPT0gIldlaWdlcnQiXSA8LSBOQQ0KY3ZfdG90YWwkaGVhbHRobiA8LSBhcy5udW1lcmljKGN2X3RvdGFsJGhlYWx0aCkgLSA0DQp0YWJsZShjdl90b3RhbCRoZWFsdGgsIHVzZU5BID0gImFsd2F5cyIpDQp0YWJsZShjdl90b3RhbCRoZWFsdGhuLCB1c2VOQSA9ICJhbHdheXMiKQ0KDQojT3B0aW9uczoNCiNsaXN0d2lzZSBkZWxldGlvbi4gT25seSB1c2Ugd2hlbiB2ZXJ5IGZldyBtaXNzaW5ncw0KI3JlcGxhY2UgbWlzc2luZyB2YWx1ZXMgd2l0aCBpbnR1aXRpdmUgdmFsdWVzIG9yIGFkZCBtaXNzaW5nIGFzIGEgc2VwYXJhdGUgY2F0ZWdvcnkuDQojaW1wdXRlIG1pc3NpbmcgdmFsdWVzLiBBIGJpdCBjb21wbGljYXRlZCBidXQgdGhlIGJlc3Qgb3B0aW9uLg0KDQojMSBMaXN0d2lzZSBkZWxldGlvbg0KIyBzdGVwIDEuIGRlZmluZSBhbGwgbWlzc2luZ3MNCnN1bW1hcnkoY3ZfdG90YWwpDQptb2RlbDIgPC0gbG0oYXMubnVtZXJpYyhoZWFsdGhuKSB+IG1lbiArIGFnZSArIGFzLmZhY3RvcihlZHVjMykgKyBhcy5mYWN0b3IocmVnaW9uKSwgZGF0YSA9IGN2X3RvdGFsKQ0Kc3VtbWFyeShtb2RlbDIpICMyMyBtaXNzaW5ncyBkZWxldGVkDQoNCg0KIzIgUmVwbGFjZQ0KY3ZfdG90YWwkbWVuMiA8LSBpZmVsc2UoaXMubmEoY3ZfdG90YWwkbWVuKSwgMiwgY3ZfdG90YWwkbWVuKQ0Kc3VtbWFyeShjdl90b3RhbCRtZW4yKQ0KDQpjdl90b3RhbCRlZHVjM2IgPC0gaWZlbHNlKGlzLm5hKGN2X3RvdGFsJGVkdWMzKSwgNCwgY3ZfdG90YWwkZWR1YzMpDQpzdW1tYXJ5KGN2X3RvdGFsJGVkdWMzYikNCg0KY3ZfdG90YWwkYWdlMiA8LSBpZmVsc2UoaXMubmEoY3ZfdG90YWwkYWdlKSwgbWVhbihjdl90b3RhbCRhZ2UsIG5hLnJtID0gVFJVRSksIGN2X3RvdGFsJGFnZSkNCiMgQW5kIGxldHMgbWFrZSBhIGR1bW15IHRoYXQgaW5kaWNhdGVzIGZvciB3aG9tIHdlIHJlcGxhY2VkIG1pc3NpbmcgdmFsdWVzLg0KY3ZfdG90YWwkYWdlX21pcyA8LSBpZmVsc2UoaXMubmEoY3ZfdG90YWwkYWdlKSwgMSwgMCkNCnN1bW1hcnkoY3ZfdG90YWwkYWdlMikNCnRhYmxlKGN2X3RvdGFsJGFnZV9taXMpDQoNCiMgcGF5IGF0dGVudGlvbiwgbm93IHVzZSBjYXRlZ29yaWNhbCB2YXJpYWJsZSBtZW4yDQptb2RlbDMgPC0gbG0oaGVhbHRobiB+IGFzLmZhY3RvcihtZW4yKSArIGFnZTIgKyBhZ2VfbWlzICsgYXMuZmFjdG9yKGVkdWMzYikgKyBhcy5mYWN0b3IocmVnaW9uKSwgZGF0YSA9IGN2X3RvdGFsKQ0Kc3VtbWFyeShtb2RlbDMpDQoNCg0KIzMgSW1wdXRlDQojZGlkIG5vdCBmb2xsb3csIGxvb2sgYXQgdGhpcyBwYXJ0IGFub3RoZXIgZGF5DQoNCmBgYA0KLS0tLQ0KIyMgQXBwZW5kaXggQiAtIEludGVyZGVwZW5kZW5jaWVzDQoNCiMjIyBWYXJpYW5jZSBhbmQgY292YXJpYW5jZQ0KW2NsZWFyIGV4cGxhbmF0aW9uIHZpZGVvXShodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PVRva0JvXzJ5aE44Jmxpc3Q9UExYMmdYLWZ0UFZYV0hkb1dTZXNoZkViUmFyYl9MaVgtZSZpbmRleD0xKQ0KIVt2aWRlbyBzY3JlZW5zaG90XSgiQzovVXNlcnMvZnJpZGEvT25lRHJpdmUvRG9jdW1lbnRlbi9SQURCT1VEIHJlc2VhcmNobWFzdGVyL1AxIFNvY2lhbCBuZXR3b3Jrcy9BcHBlbmRpeCBBIGFuZCBCL3ZhcmlhbmNlIGFuZCBjb3ZhcmlhbmNlIHNjcmVlbnNob3QuanBnIikNCmBgYHtyfQ0KI3RoZSBsYXJnZXIgdGhlIHZhcmlhbmNlLCB0aGUgbW9yZSBzcHJlYWQgdGhlIGRhdGENCg0KYGBgDQoNCiMjIyBJbnRyYWNsYXNzIGNvcnJlbGF0aW9uDQpgYGB7cn0NCiNEeWFkaWMgZGF0YQ0KcmVxdWlyZShNQVNTKQ0Kc2V0LnNlZWQoOTg2NCkgICMgV2Ugc2V0IGEgc2VlZC4gSW4gdGhpcyB3ZSB0aGUgcmFuZG9tIG51bWJlcnMgd2Ugd2lsbCBnZW5lcmF0ZSBiZSB0aGUgc2FtZSBhbmQgd2UgdGh1cyBlbmQgdXAgd2l0aCB0aGUgc2FtZSBkYXRhc2V0LiBQbGVhc2Ugbm90IHRoYXQgdG8gYmUgYWJzb2x1dGVseSBzdXJlIHRvIGdldCB0aGUgc2FtZSBkYXRhc2V0LCB3ZSBuZWVkIHRvIHJ1biB0aGUgc2FtZSBSIHZlcnNpb24gKGFuZCBwYWNrYWdlcykuDQoNCiMgbGV0IHVzIHN0YXJ0IHdpdGggc2ltdWxhdGluZyB0aGUgb3BpbmlvbiBvZiBib3RoIHBhcnRuZXJzLg0KU2lnbWEgPC0gbWF0cml4KGMoMTAsIDQsIDQsIDUpLCAyLCAyKQ0Kb3BpbmlvbnMgPC0gbXZybm9ybShuID0gMTAwMCwgbXUgPSBjKDQsIDUpLCBTaWdtYSkNCm9waW5pb25fVyA8LSBvcGluaW9uc1ssIDFdDQpvcGluaW9uX00gPC0gb3BpbmlvbnNbLCAyXQ0KZHlhZF9pZCA8LSAxOjEwMDANCg0KIyBhbmQgbGV0J3MgcHV0IGV2ZXJ5dGhpbmcgdG9nZXRoZXINCmRhdGEgPC0gZGF0YS5mcmFtZShkeWFkX2lkLCBvcGluaW9uX1csIG9waW5pb25fTSkNCiMgYWRkIHNvbWUgZGVzY3JpcHRpb24gdG8gdGhlIGRhdGENCmF0dHIoZGF0YSwgImRlc2NyaXB0aW9uIikgPC0gIlRoaXMgaXMgYSBzaW11bGF0ZWQgZGF0YXNldCB0byBpbGx1c3RyYXRlIGludGVyZGVwZW5kZW5jaWVzIG9mIG9ic2VydmF0aW9ucyB3aXRoaW4gZHlhZHMgKGkuZS4gaGV0ZXJvc2V4dWFsIGNvdXBsZXMpLiBUaGUgZGF0YXNldCBpcyBpbiB3aWRlLWZvcm1hdDogb25lIHJvdyByZWZlcnMgdG8gb25lIGNvdXBsZS4gVmFyaWFibGVzIHdpdGggXCJfV1wiIHJlZmVyIHRvIHdvbWVuLFwiX01cIiByZWZlciB0byBtZW4uIg0KDQojaW5zdGFsbC5wYWNrYWdlcygicHN5Y2giKQ0KI2xpYnJhcnkocHN5Y2gpDQoNCnJlcXVpcmUocHN5Y2gpDQpoZWFkKGRhdGEpDQpzdHIoZGF0YSkNCnN1bW1hcnkoZGF0YSkNCmF0dHIoZGF0YSwgImRlc2NyaXB0aW9uIikNCmRlc2NyaWJlKGRhdGEpDQoNCg0KI2ludGVyZGVwZW5kZW5jaWVzDQojZG91YmxlIGVudHJ5IG1ldGhvZCBjYW4gYmUgdXNlZnVsOiBjaGVjayB2aWEgbXVsdGlwbGUgd2F5cyBmb3IgaW50ZXJkZXBlbmRlbmNpZXMsIGVnIHZpYSBjb3JyZWxhdGlvbnMgYW5kIElDQw0KICAjY29ycmVsYXRpb24gaW4gd2lkZSBmb3JtYXQNCmNvdihkYXRhJG9waW5pb25fTSwgZGF0YSRvcGluaW9uX1cpICAjIHRoZSBjb3ZhcmlhbmNlIGJldHdlZW4gdGhlIHR3byB2YXJpYWJsZXMuIEhhdmUgYSBsb29rIGF0IHRoZSBzaW11bGF0aW9uLiBUaGlzIGlzIGluZGVlZCB3aGF0IHdlIGhhdmUgcHV0IGludG8gdGhlIGRhdGEuDQoNCmNvdihzY2FsZShkYXRhJG9waW5pb25fTSksIHNjYWxlKGRhdGEkb3Bpbmlvbl9XKSkgICMgdGhlIGNvdmFyaWFuY2UgYmV0d2VlbiB0aGUgdHdvIHN0YW5kYXJkaXplZCB2YXJpYWJsZXMuIFRoYXQgaXMgdGhlIGNvcnJlbGF0aW9uLg0KDQpjb3IudGVzdChkYXRhJG9waW5pb25fTSwgZGF0YSRvcGluaW9uX1cpICAjIFNlZSwgc2FtZSB2YWx1ZS4gTm93IGFsc28gd2l0aCBzaWduaWZpY2FuY2UuDQoNCiAgI2NvcnJlbGF0aW9uIGluIGxvbmcgZm9ybWF0LCBiZXR0ZXIgYmVjYXVzZTogSXQgdGFrZXMgaW50byBhY2NvdW50IHRoYXQgdGhlIHZhcmlhbmNlIGFuZCBtZWFuIG9mIHRoZSBvcGluaW9ucyBvZiBtZW4gYW5kIHdvbWVuIG1heSBiZSBkaWZmZXJlbnQuIFRoZSBlbmRyZXN1bHQgd2lsbCBtb3JlIGNsb3NlbHkgcmVzZW1ibGUgdGhlIElDQyB3ZSB3aWxsIGVuY291bnRlciBsYXRlci4NCnZhcjEgPC0gYyhkYXRhJG9waW5pb25fTSwgZGF0YSRvcGluaW9uX1cpDQp2YXIyIDwtIGMoZGF0YSRvcGluaW9uX1csIGRhdGEkb3Bpbmlvbl9NKQ0KY29yLnRlc3QodmFyMSwgdmFyMikNCg0KDQogICNJQ0MgLSB2YXJpb3VzIGRlZmluaXRpb24sIGZpcnN0IEFOT1ZBDQpNU0IgPC0gdmFyKChkYXRhJG9waW5pb25fTSArIGRhdGEkb3Bpbmlvbl9XKS8yKSAqIDINCk1TVyA8LSAoc3VtKChkYXRhJG9waW5pb25fTSAtIGRhdGEkb3Bpbmlvbl9XKV4yKSkvKDIgKiBsZW5ndGgoZGF0YSRvcGluaW9uX1cpKQ0KSUNDX2Fub3ZhIDwtIChNU0IgLSBNU1cpLyhNU0IgKyBNU1cpDQpJQ0NfYW5vdmENCg0KICAjbm93IHdpdGggYSBsb25nIGRhdGFzZXQgdG8gb2JzZXJ2ZSB2YXJpYW5jZXMgcHJlc2VudCBpbiAncmVhbCBwb3B1bGF0aW9uJw0KICAgICMgZmlyc3QgbWFrZSBhIGRhdGFzZXQgaW4gbG9uZ2Zvcm1hdC4NCmR5YWRtZWFuIDwtIChkYXRhJG9waW5pb25fTSArIGRhdGEkb3Bpbmlvbl9XKS8yDQpkYXRhX2xvbmcgPC0gcmJpbmQoZGF0YSwgZGF0YSkNCmRhdGFfbG9uZyRwYXJ0bmVyX2lkIDwtIHJlcCgxOjIsIGVhY2ggPSAxMDAwKQ0KZGF0YV9sb25nJGR5YWRfaWQgPC0gcmVwKDE6MTAwMCwgdGltZXMgPSAyKQ0KZGF0YV9sb25nJGR5YWRtZWFuIDwtIGMoZHlhZG1lYW4sIGR5YWRtZWFuKQ0KDQogICAgIyBsZXRzIHRoZSBmaXJzdCBkeWFkIGVudHJ5IHJlZmVyIHRvIHRoZSB3b21lbiBhbmQgdGhlIHNlY29uZCB0byB0aGUgbWVuDQpkYXRhX2xvbmckb3BpbmlvbiA8LSBpZmVsc2UoZGF0YV9sb25nJHBhcnRuZXJfaWQgPT0gMSwgZGF0YV9sb25nJG9waW5pb25fVywgZGF0YV9sb25nJG9waW5pb25fTSkNCg0KICAgICMgYWxzbyBkZWZpbmUgdGhlIG9waW5pb24gb2YgdGhlIHBhcnRuZXINCmRhdGFfbG9uZyRvcGluaW9uX1AgPC0gaWZlbHNlKGRhdGFfbG9uZyRwYXJ0bmVyX2lkID09IDIsIGRhdGFfbG9uZyRvcGluaW9uX1csIGRhdGFfbG9uZyRvcGluaW9uX00pDQoNCmhlYWQoZGF0YV9sb25nKQ0KDQogICAgIyBmaXJzdCBjYWxjdWxhdGUgdGhlIGJldHdlZW4gdmFyaWFuY2Ugb2Ygb3VyIHNhbXBsZS4gTm90ZSB0aGF0IHRoaXMgd2Ugb25seSBuZWVkIG9ic2VydmF0aW9ucyBvZg0KICAgICMgdGhlIGR5YWRzIG9uY2UgKHRodXMgTl9keWFkcz0xMDAwKQ0KU19CIDwtIHZhcihkYXRhX2xvbmckZHlhZG1lYW5bMToxMDAwXSkNCiAgICAjIHdpdGhpbiB2YXJpYW5jZQ0KU1cgPC0gc3VtKChkYXRhX2xvbmckb3BpbmlvbiAtIGRhdGFfbG9uZyRkeWFkbWVhbileMikvMTAwMCAgIyB3ZSBkaXZpZGUgYnkgdGhlIG51bWJlciBvZiBkeWFkcw0KICAgICMgV2Ugbm93IG5lZWQgdG8gY29ycmVjdCB0aGUgb2JzZXJ2ZWQgYmV0d2VlbiB2YXJpYW5jZSB0byByZWZsZWN0IHRoZSBwb3B1bGF0aW9uIGJldHdlZW4gdmFyaWFuY2UuDQpTX0JfRSA8LSBTX0IgLSBTVy8yDQpJQ0NfTUwgPC0gU19CX0UvKFNfQl9FICsgU1cpDQpJQ0NfTUwNCg0KDQogICNJQ0MgdmlhIExhdmFhbg0KI2luc3RhbGwucGFja2FnZXMoImxhdmFhbiIpDQojbGlicmFyeShsYXZhYW4pDQpyZXF1aXJlKCJsYXZhYW4iKQ0KbW9kZWwgPC0gIg0KICAgIGxldmVsOiAxDQogICAgICAgIG9waW5pb24gfiAxICNyZWdyZXNzaW9uIG1vZGVsDQogICAgICAgIG9waW5pb24gfn4gb3BpbmlvbiAjdmFyaWFuY2UNCiAgICBsZXZlbDogMg0KICAgICAgICBvcGluaW9uIH4gMQ0KICAgICAgICBvcGluaW9uIH5+IG9waW5pb24NCiINCmZpdCA8LSBsYXZhYW4obW9kZWwgPSBtb2RlbCwgZGF0YSA9IGRhdGFfbG9uZywgY2x1c3RlciA9ICJkeWFkX2lkIikNCnN1bW1hcnkoZml0KQ0KDQpsYXZJbnNwZWN0KGZpdCwgImljYyIpDQoNCmBgYA0KDQojIyNFZ29uZXQgLyBTb2Npb25ldCBkYXRhDQpgYGB7cn0NCiNzaW11bGF0aW5nIHNvbWUgZWdvbmV0IGRhdGENCnJlcXVpcmUoTUFTUykNCnNldC5zZWVkKDk4NjQpICAjIFdlIHNldCBhIHNlZWQuIEluIHRoaXMgd2UgdGhlIHJhbmRvbSBudW1iZXJzIHdlIHdpbGwgZ2VuZXJhdGUgYmUgdGhlIHNhbWUgYW5kIHdlIHRodXMgZW5kIHVwIHdpdGggdGhlIHNhbWUgZGF0YXNldC4gUGxlYXNlIG5vdCB0aGF0IHRvIGJlIGFic29sdXRlbHkgc3VyZSB0byBnZXQgdGhlIHNhbWUgZGF0YXNldCwgd2UgbmVlZCB0byBydW4gdGhlIHNhbWUgUiB2ZXJzaW9uIChhbmQgcGFja2FnZXMpLg0KDQojIGxldCB1cyBzdGFydCB3aXRoIHNpbXVsYXRpbmcgdGhlIG9waW5pb24gb2YgZWdvIGFuZCBpdHMgYWx0ZXJzLg0KU2lnbWEgPC0gbWF0cml4KHNhbXBsZShjKDEsIDIsIDMpLCAzNiwgcmVwbGFjZSA9IFQpLCA2LCA2KQ0KU2lnbWFbbG93ZXIudHJpKFNpZ21hKV0gPC0gdChTaWdtYSlbbG93ZXIudHJpKFNpZ21hKV0NCmRpYWcoU2lnbWEpIDwtIGMoNSwgNCwgNiwgMywgNywgNikNCiMgU2lnbWENCg0Kb3BpbmlvbnMgPC0gbXZybm9ybShuID0gMTAwMCwgbXUgPSBjKDQsIDQsIDQsIDQsIDQsIDQpLCBTaWdtYSkNCm9waW5pb25fZWdvIDwtIG9waW5pb25zWywgMV0NCm9waW5pb25fYWx0ZXIxIDwtIG9waW5pb25zWywgMl0NCm9waW5pb25fYWx0ZXIyIDwtIG9waW5pb25zWywgM10NCm9waW5pb25fYWx0ZXIzIDwtIG9waW5pb25zWywgNF0NCm9waW5pb25fYWx0ZXI0IDwtIG9waW5pb25zWywgNV0NCm9waW5pb25fYWx0ZXI1IDwtIG9waW5pb25zWywgNl0NCg0KZWdvbmV0X2lkIDwtIDE6MTAwMA0KDQojIGFuZCBsZXQncyBwdXQgZXZlcnl0aGluZyB0b2dldGhlcg0KZGF0YSA8LSBkYXRhLmZyYW1lKGVnb25ldF9pZCwgb3Bpbmlvbl9hbHRlcjEsIG9waW5pb25fYWx0ZXIyLCBvcGluaW9uX2FsdGVyMywgb3Bpbmlvbl9hbHRlcjQsIG9waW5pb25fYWx0ZXI1KQ0KDQoNCnJlcXVpcmUocHN5Y2gpDQpoZWFkKGRhdGEpDQpzdHIoZGF0YSkNCnN1bW1hcnkoZGF0YSkNCmF0dHIoZGF0YSwgImRlc2NyaXB0aW9uIikNCmRlc2NyaWJlKGRhdGEpDQoNCiNyZXNoYXBlIGludG8gbG9uZyBmb3JtYXQNCnJlcXVpcmUoInRpZHl2ZXJzZSIpDQoNCmRhdGFfbG9uZyA8LSB0aWR5cjo6cGl2b3RfbG9uZ2VyKGRhdGEgPSBkYXRhLCBjb2xzID0gZXZlcnl0aGluZygpWy0xXSwgbmFtZXNfdG8gPSAiYWx0ZXIiLCB2YWx1ZXNfdG8gPSAib3BpbmlvbiIpDQoNCmhlYWQoZGF0YV9sb25nKQ0KDQogICNJQ0MgdmlhIE1MDQpyZXF1aXJlKG5sbWUpDQojIGVzdGltYXRlIGVtcHR5IG1vZGVsIHdpdGggTUwNCm1sbWUgPC0gbG1lKG9waW5pb24gfiAxLCBkYXRhID0gZGF0YV9sb25nLCByYW5kb20gPSBsaXN0KH4xIHwgZWdvbmV0X2lkKSwgKQ0Kc3VtbWFyeShtbG1lKQ0KIyBTdGFuZGFyZCBkZXZpYXRpb25zIGFyZSByZXBvcnRlZCBpbnN0ZWFkIG9mIHZhcmlhbmNlcy4gIGV4dHJhY3QgdGhlIHZhcmlhbmNlcy4NClZhckNvcnIobWxtZSkNCiMgdGhlIGludGVyY2VwdCB2YXJpYW5jZSBpcyBhdCB0aGUgYmV0d2Vlbi1sZXZlbC4gIHRoZSByZXNpZHVhbCB2YXJpYW5jZXMgYXJlIGF0IHRoZSBvYnNlcnZhdGlvbiAvDQojIHdpdGhpbi1sZXZlbC4gIHRodXMgYmFzZWQgb24gdGhlc2UgbnVtYmVycyB3ZSBtYXkgY2FsY3VsYXRlIHRoZSBJQ0Mgb3Vyc2VsdmVzLg0KdmFyZXN0cyA8LSBhcy5udW1lcmljKFZhckNvcnIobWxtZSlbMToyXSkNCnZhcmVzdHMNCklDQ19NTGIgPC0gdmFyZXN0c1sxXS9zdW0odmFyZXN0cykNCklDQ19NTGINCg0KDQogICNJQ0MgdmlhIFNFTQ0KcmVxdWlyZSgibGF2YWFuIikNCm1vZGVsIDwtICINCiAgICBsZXZlbDogMQ0KICAgICAgICBvcGluaW9uIH4gMSAjcmVncmVzc2lvbiBtb2RlbA0KICAgICAgICBvcGluaW9uIH5+IG9waW5pb24gI3ZhcmlhbmNlDQogICAgbGV2ZWw6IDINCiAgICAgICAgb3BpbmlvbiB+IDENCiAgICAgICAgb3BpbmlvbiB+fiBvcGluaW9uDQoiDQpmaXQgPC0gbGF2YWFuKG1vZGVsID0gbW9kZWwsIGRhdGEgPSBkYXRhX2xvbmcsIGNsdXN0ZXIgPSAiZWdvbmV0X2lkIikNCnN1bW1hcnkoZml0KQ0KDQpsYXZJbnNwZWN0KGZpdCwgImljYyIpDQoNCmBgYA0KDQoNCi0tLS0NCg0KDQpMYXN0IGNvbXBpbGVkIG9uIGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIsICVZJylgICANCg0KKkRlc2NyaWJlIGxhYiBqb3VybmFsIGhlcmUuKg0KDQo8YnI+DQoNCi0tLS0NCg0KIyMgT3BlbiBTY2llbmNlICANCg0KRXZlcnlvbmUgY2FuIGZvcmsgdGhpcyByZXBvc2l0b3J5LiBVc2UgdGhpcyBleGFtcGxlIHRvIGpvdXJuYWwgeW91ciBsYWIgd29yayBhbmQgYXNzaWdubWVudHMuIA0KDQpXZSwgSm9jaGVtIFRvbHNtYSBhbmQgQmFzIEhvZnN0cmEsIHVzZSB0aGlzIHJlcG9zaXRvcnkgZm9yIG91ciBTb2NpYWwgTmV0d29yayBBbmFseXNpcyBGb3IgU29jaWFsIFNjaWVudGlzdHMgY291cnNlIFtAU05BU1NdLiA8IS0tLSB0aGlzIGlzIGEgcmVmZXJlbmNlLCBzdG9yZWQgaW4gcmVmZXJlbmNlcy5iaWIuIEl0IHdpbGwgYmUgYXV0b21hdGljYWxseSBhZGRlZCBhdCB0aGUgYm90dG9tIG9mIHRoZSBwYWdlIC0tLT4NCg0KDQo6OjoNCg0KOjo6IHsuY29sdW1uIHdpZHRoPSI1MCUifQ0KDQoNCg0KDQohW10oaW1hZ2VzL2NvdmVyLmpwZykNCg0KDQo6OjoNCjo6OjoNCg0KDQojIyBIb3cgdG8gdXNlDQoNCjEuIEZvcmsgdGhlIHJlcG9zaXRvcnkgZm9yIHRoaXMgd2Vic2l0ZSBhbmQgZm9sbG93IGluc3RydWN0aW9ucyBvbiBgUkVBRE1FYCB0byBnZXQgc3RhcnRlZCBbaGVyZV0oaHR0cHM6Ly9naXRodWIuY29tL0pvY2hlbVRvbHNtYS9sYWJqb3VybmFsKS4gIA0KDQoyLiBKb3VybmFsIHlvdXIgd29yaywgYnkgZWRpdGluZyB0aGUgLlJtZC1maWxlcw0KDQozLiAuLi4NCg0KNC4gQ2hhbmdlIGV2ZXJ5dGhpbmcgdG8gbWFrZSBpdCB5b3VyIG93biENCg0KDQo8YnI+DQoNClVzZSB0aGUgdG9wIG1lbnUgdG8gbmF2aWdhdGUgdGhyb3VnaCB0aGUgam91cm5hbC4NCg0KDQotLS0tDQoNCiMgUmVmZXJlbmNlcw0KDQo6KQ0KDQoNCg0KDQo=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("tutorial.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

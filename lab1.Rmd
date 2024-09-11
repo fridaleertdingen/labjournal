@@ -1,5 +1,5 @@
 ---
-title: "Journal 1"
+title: "Week 2"
 #bibliography: references.bib
 author: "Your Name"
 ---
@@ -25,6 +25,39 @@ klippy::klippy(position = c('top', 'right'))
 #klippy::klippy(color = 'darkred')
 #klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
 ```
+
+## Research Questions
+**Geographical distance and co-authorship collaboration network analysis**
+
+Fitzgerald, J., Ojanperä, S., & O’Clery, N. (2021). Is academia becoming more localised? The growth of regional knowledge networks within international research collaboration. Applied Network Science, 6(1), 1-27. 
+[Link to article Fitzgerald et al., 2021](https://www.springernature.com/gp/open-research/about/the-fundamentals-of-open-access-and-open-research)
+
+--> "while communities present in the global collaboration network before 2000 were often based on historical geopolitical or colonial lines, in more recent years they increasingly align with a simple partition of countries by regions. These findings are unexpected in light of a presumed continual increase in globalisation, and have significant implications for the design of programmes aimed at promoting international research collaboration and knowledge diffusion."
+
+Ponds, R., Van Oort, F., & Frenken, K. (2007). The geographical and institutional proximity of research collaboration. Papers in regional science, 86(3), 423-444.
+[Link to article Ponds et al., 2007](https://www.sciencedirect.com/science/article/pii/S1056819023023989)
+
+--> Dutch study. Studied research collaboration between universities, but also between universities and organizations. 
+Geographical proximity important factor in research collaboration due to: trust, transfering tacit knowledge, deeper understanding, etc.
+
+
+**RQ1: To what extent does the geographical distance between Dutch universities influence the between-university collaboration network of scientists in Sociology and Data Science departments within these universities?**:  
+
+- Has this changed over time?  
+- Does the influence of geographical distance differ between the two departments?  
+- Does the influence of geographical distance affect scientists from various cohorts differently? But, age effect  
+- Can a pattern be observed? Possibly affected by university rankings? Increase during/after the pandemic? Regional specialisation in related scientific subfields?    
+
+
+**RQ2: To what extent does the influence of geographical distance differ between scientists who worked at more than one university compared to those who have worked at one?**:  
+
+- Hmm  
+- But, age effect  
+- Are there even scientists who have only worked at one (except those just starting out) --> maybe study difference between >1 department vs just 1 department?  
+
+
+
+
 
 Last compiled on `r format(Sys.time(), '%B, %Y')`
 
