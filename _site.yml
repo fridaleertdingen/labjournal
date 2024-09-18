@@ -16,7 +16,8 @@ navbar:
         href: tutorial.html
       - text: "Page 2 - Week 2"
         href: lab1.html
-#    - text: "Menu2"
+      - text: "Page 3 - Week 3"
+        href: 
 #      menu:
  #     - text: "mogelijk meer info"
  #       href: tutorial.html

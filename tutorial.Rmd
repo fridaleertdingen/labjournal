@@ -2,23 +2,28 @@
 title: "Lab journal"
 author: "by: Frida van Teijlingen"
 bibliography: references.bib
-
- 
 ---
+# Hi!
+Welcome to my lab journal (๑ˇεˇ๑) 
 
 ## *To do and reminders*
 
+**Homework**:
 
-**Homework**: 
+-   ~~Appendix A~~\
 
-- ~~Appendix A~~  
-- ~~Appendix B~~  
-- ~~Research questions~~  
-- ~~include all in journal~~  
-- Tidy up
+-   ~~Appendix B~~\
 
+-   ~~Research questions~~\
+
+-   ~~include all in journal~~
+
+-   Tidy up\
+
+-   [ ] test
 
 ## Preparation
+
 ```{r}
 rm(list = ls())  #clean up your environment
 
@@ -37,14 +42,13 @@ package.check(packages)
 
 ```
 
-
 ```{r, install remotely, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 #install.packages("remotes")
 #remotes::install_github("rlesur/klippy")
 
 #install.packages("remotes")
 # contrib.url(repos, "source")
-``` 
+```
 
 ```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 
@@ -65,24 +69,20 @@ klippy::klippy(position = c('top', 'right'))
 #klippy::klippy(tooltip_message = 'Click to copy', tooltip_success = 'Done')
 ```
 
+------------------------------------------------------------------------
 
-
-
-----
-
+```{=html}
 <!--- This is the best way to write a comment. 
-It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp ---> 
-
-
+It also demonstrate, you can add html directly in your rmarkdown file. See: https://www.w3schools.com/html/html_comments.asp --->
+```
+```{=html}
 <!--- to use a multi column page we use Pandoc's fenced Div. 
 see here: https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html 
-But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running ---> 
-
-:::: {.columns}
+But please note, we are not here to make a beautiful website, our intention is just to have a quick lab journal up and running --->
+```
+::: columns
 ::: {.column width="50%"}
-
 # My Lab Journal
-
 
 ## Appendix A - Introduction to R for SNA
 
@@ -103,6 +103,7 @@ cv10_haven <- haven::read_spss("tutorial_data\\Cultural_Changes_2010.sav")
 ```
 
 ### Missing values 1
+
 ```{r}
 #Missing values
 
@@ -124,7 +125,9 @@ str(cv08$agen)
 
 
 ```
+
 ### Tidy 7.2
+
 ```{r}
 #adding a variable via mutate
 
@@ -132,7 +135,9 @@ library(dplyr)
 
 cv08_haven <- mutate(cv08_haven, lftop_new = lftop)
 ```
+
 ### Tidy 8.2
+
 ```{r}
 require(labelled)
 str(cv08_haven$var006n)
@@ -145,8 +150,8 @@ cv08_haven <- cv08_haven %>%
         educ3 = factor(educ3, levels = c(1, 2, 3), labels = c("primary", "secondary", "tertiary")))
 ```
 
-
 ### Means
+
 ```{r}
 #make numeric
 cv08$int055n <- as.numeric(cv08$int055)
@@ -177,6 +182,7 @@ cv08$int_mean <- testmeans #add to working dataset
 ```
 
 ###Merging datafiles
+
 ```{r}
 #Panel (long or wide?) or stacked cross-sections?
 #Step1: select variables you want to keep
@@ -288,7 +294,9 @@ head(cv_tot_panel)
 
 
 ```
+
 ### Aggregating data
+
 ```{r}
 # step 1. construct dataset with aggregate info
 age_region <- aggregate(cv_tot$age, by = list(cv_tot$region), FUN = mean, na.rm = TRUE)
@@ -303,7 +311,9 @@ cv_total <- merge(cv_tot, age_region, by = "region", all.x = TRUE)
 head(cv_total)
 tail(cv_total)
 ```
+
 ### Missing values 2
+
 ```{r}
 #example model
 model1 <- lm(as.numeric(health) ~ men + age + as.factor(educ3) + as.factor(region), data = cv_total)
@@ -349,240 +359,36 @@ summary(model3)
 #did not follow, look at this part another day
 
 ```
-----
-## Appendix B - Interdependencies
 
-### Variance and covariance
-[clear explanation video](https://www.youtube.com/watch?v=TokBo_2yhN8&list=PLX2gX-ftPVXWHdoWSeshfEbRarb_LiX-e&index=1)
-![video screenshot]("C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social networks/Appendix A and B/variance and covariance screenshot.jpg")
-```{r}
-#the larger the variance, the more spread the data
+|                                                                                                                                                                                                                                                                                                                                       |
+|------------------------------------------------------------------------|
+| \## Appendix B - Interdependencies                                                                                                                                                                                                                                                                                                    |
+| \### Variance and covariance [clear explanation video](https://www.youtube.com/watch?v=TokBo_2yhN8&list=PLX2gX-ftPVXWHdoWSeshfEbRarb_LiX-e&index=1) ![video screenshot](%22C:/Users/frida/OneDrive/Documenten/RADBOUD%20researchmaster/P1%20Social%20networks/Appendix%20A%20and%20B/variance%20and%20covariance%20screenshot.jpg%22) |
+| \### Intraclass correlation                                                                                                                                                                                                                                                                                                           |
+| ###Egonet / Socionet data                                                                                                                                                                                                                                                                                                             |
 
-```
-
-### Intraclass correlation
-```{r}
-#Dyadic data
-require(MASS)
-set.seed(9864)  # We set a seed. In this we the random numbers we will generate be the same and we thus end up with the same dataset. Please not that to be absolutely sure to get the same dataset, we need to run the same R version (and packages).
-
-# let us start with simulating the opinion of both partners.
-Sigma <- matrix(c(10, 4, 4, 5), 2, 2)
-opinions <- mvrnorm(n = 1000, mu = c(4, 5), Sigma)
-opinion_W <- opinions[, 1]
-opinion_M <- opinions[, 2]
-dyad_id <- 1:1000
-
-# and let's put everything together
-data <- data.frame(dyad_id, opinion_W, opinion_M)
-# add some description to the data
-attr(data, "description") <- "This is a simulated dataset to illustrate interdependencies of observations within dyads (i.e. heterosexual couples). The dataset is in wide-format: one row refers to one couple. Variables with \"_W\" refer to women,\"_M\" refer to men."
-
-#install.packages("psych")
-#library(psych)
-
-require(psych)
-head(data)
-str(data)
-summary(data)
-attr(data, "description")
-describe(data)
+Last compiled on `r format(Sys.time(), '%B, %Y')`
 
 
-#interdependencies
-#double entry method can be useful: check via multiple ways for interdependencies, eg via correlations and ICC
-  #correlation in wide format
-cov(data$opinion_M, data$opinion_W)  # the covariance between the two variables. Have a look at the simulation. This is indeed what we have put into the data.
-
-cov(scale(data$opinion_M), scale(data$opinion_W))  # the covariance between the two standardized variables. That is the correlation.
-
-cor.test(data$opinion_M, data$opinion_W)  # See, same value. Now also with significance.
-
-  #correlation in long format, better because: It takes into account that the variance and mean of the opinions of men and women may be different. The endresult will more closely resemble the ICC we will encounter later.
-var1 <- c(data$opinion_M, data$opinion_W)
-var2 <- c(data$opinion_W, data$opinion_M)
-cor.test(var1, var2)
-
-
-  #ICC - various definition, first ANOVA
-MSB <- var((data$opinion_M + data$opinion_W)/2) * 2
-MSW <- (sum((data$opinion_M - data$opinion_W)^2))/(2 * length(data$opinion_W))
-ICC_anova <- (MSB - MSW)/(MSB + MSW)
-ICC_anova
-
-  #now with a long dataset to observe variances present in 'real population'
-    # first make a dataset in longformat.
-dyadmean <- (data$opinion_M + data$opinion_W)/2
-data_long <- rbind(data, data)
-data_long$partner_id <- rep(1:2, each = 1000)
-data_long$dyad_id <- rep(1:1000, times = 2)
-data_long$dyadmean <- c(dyadmean, dyadmean)
-
-    # lets the first dyad entry refer to the women and the second to the men
-data_long$opinion <- ifelse(data_long$partner_id == 1, data_long$opinion_W, data_long$opinion_M)
-
-    # also define the opinion of the partner
-data_long$opinion_P <- ifelse(data_long$partner_id == 2, data_long$opinion_W, data_long$opinion_M)
-
-head(data_long)
-
-    # first calculate the between variance of our sample. Note that this we only need observations of
-    # the dyads once (thus N_dyads=1000)
-S_B <- var(data_long$dyadmean[1:1000])
-    # within variance
-SW <- sum((data_long$opinion - data_long$dyadmean)^2)/1000  # we divide by the number of dyads
-    # We now need to correct the observed between variance to reflect the population between variance.
-S_B_E <- S_B - SW/2
-ICC_ML <- S_B_E/(S_B_E + SW)
-ICC_ML
-
-
-  #ICC via Lavaan
-#install.packages("lavaan")
-#library(lavaan)
-require("lavaan")
-model <- "
-    level: 1
-        opinion ~ 1 #regression model
-        opinion ~~ opinion #variance
-    level: 2
-        opinion ~ 1
-        opinion ~~ opinion
-"
-fit <- lavaan(model = model, data = data_long, cluster = "dyad_id")
-summary(fit)
-
-lavInspect(fit, "icc")
-
-```
-
-###Egonet / Socionet data
-```{r}
-#simulating some egonet data
-require(MASS)
-set.seed(9864)  # We set a seed. In this we the random numbers we will generate be the same and we thus end up with the same dataset. Please not that to be absolutely sure to get the same dataset, we need to run the same R version (and packages).
-
-# let us start with simulating the opinion of ego and its alters.
-Sigma <- matrix(sample(c(1, 2, 3), 36, replace = T), 6, 6)
-Sigma[lower.tri(Sigma)] <- t(Sigma)[lower.tri(Sigma)]
-diag(Sigma) <- c(5, 4, 6, 3, 7, 6)
-# Sigma
-
-opinions <- mvrnorm(n = 1000, mu = c(4, 4, 4, 4, 4, 4), Sigma)
-opinion_ego <- opinions[, 1]
-opinion_alter1 <- opinions[, 2]
-opinion_alter2 <- opinions[, 3]
-opinion_alter3 <- opinions[, 4]
-opinion_alter4 <- opinions[, 5]
-opinion_alter5 <- opinions[, 6]
-
-egonet_id <- 1:1000
-
-# and let's put everything together
-data <- data.frame(egonet_id, opinion_alter1, opinion_alter2, opinion_alter3, opinion_alter4, opinion_alter5)
-
-
-require(psych)
-head(data)
-str(data)
-summary(data)
-attr(data, "description")
-describe(data)
-
-#reshape into long format
-require("tidyverse")
-
-data_long <- tidyr::pivot_longer(data = data, cols = everything()[-1], names_to = "alter", values_to = "opinion")
-
-head(data_long)
-
-  #ICC via ML
-require(nlme)
-# estimate empty model with ML
-mlme <- lme(opinion ~ 1, data = data_long, random = list(~1 | egonet_id), )
-summary(mlme)
-# Standard deviations are reported instead of variances.  extract the variances.
-VarCorr(mlme)
-# the intercept variance is at the between-level.  the residual variances are at the observation /
-# within-level.  thus based on these numbers we may calculate the ICC ourselves.
-varests <- as.numeric(VarCorr(mlme)[1:2])
-varests
-ICC_MLb <- varests[1]/sum(varests)
-ICC_MLb
-
-
-  #ICC via SEM
-require("lavaan")
-model <- "
-    level: 1
-        opinion ~ 1 #regression model
-        opinion ~~ opinion #variance
-    level: 2
-        opinion ~ 1
-        opinion ~~ opinion
-"
-fit <- lavaan(model = model, data = data_long, cluster = "egonet_id")
-summary(fit)
-
-lavInspect(fit, "icc")
-
-```
-
-
-----
-
-
-Last compiled on `r format(Sys.time(), '%B, %Y')`  
-
-*Describe lab journal here.*
 
 <br>
 
-----
+------------------------------------------------------------------------
 
-## Open Science  
+## Open Science
 
-Everyone can fork this repository. Use this example to journal your lab work and assignments. 
+Everyone can fork this repository. Use this example to journal your lab work and assignments.
 
 We, Jochem Tolsma and Bas Hofstra, use this repository for our Social Network Analysis For Social Scientists course [@SNASS]. <!--- this is a reference, stored in references.bib. It will be automatically added at the bottom of the page --->
-
-
 :::
 
 ::: {.column width="50%"}
-
-
-
-
 ![](images/cover.jpg)
-
-
 :::
-::::
+:::
 
 
-## How to use
-
-1. Fork the repository for this website and follow instructions on `README` to get started [here](https://github.com/JochemTolsma/labjournal).  
-
-2. Journal your work, by editing the .Rmd-files
-
-3. ...
-
-4. Change everything to make it your own!
-
-
-<br>
-
-Use the top menu to navigate through the journal.
-
-
-----
 
 # References
 
 :)
-
-
-
-
