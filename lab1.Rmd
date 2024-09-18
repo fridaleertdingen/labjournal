@@ -60,7 +60,7 @@ Geographical proximity important factor in research collaboration due to: trust,
 
 ----
   
-Introduction – Geographical distance and co-authorship collaboration network analysis
+**Introduction – Geographical distance and co-authorship collaboration network analysis**  
 Over the last few centuries globalization processes have resulted in economic, political and cultural interdependence, supported by an immense worldwide network of international connections and collaboration (SOURCE). 
 According to some, the globalization of science is the most important aspect of modern globalization (Freeman, 2010). The subsequent knowledge flows are beneficial for economic development and specialization, networking, and the competitiveness in the scientific field (Gui et al., 2019). Additionally, globalization has created a large international collaboration network that benefits both students and teachers when seeking specific knowledge and specializations (Fitzgerald et al., 2021)
 
@@ -70,30 +70,58 @@ Communication methods, such as phones, e-mail, and other communication methods h
 --smaller: also within country!!
 Combining the aspects of the globalization of science and a decrease of the relative distance between ourselves and others results in the main focus of this study, namely the extent to which  
 
-
-RQ1: descriptive
-To what extent does the geographical distance between Sociology departments at Dutch universities influence the between-university collaboration network of scientists within these universities?
-
-RQ2: micro, CASE STUDY: 
-To what extent does the geographical distance within the Sociology department at Radboud University (or Groningen University) influence the within-department collaboration network of scientists within this department?
-
-
 Relevance of Social Networks perspective:
 -	Use SNA to display the structure of the network
+
+
+
 
 Fitzgerald, J., Ojanperä, S., & O’Clery, N. (2021). Is academia becoming more localised? The growth of regional knowledge networks within international research collaboration. Applied Network Science, 6(1), 1-27. https://doi.org/10.1007/s41109-021-00371-w 
 Freeman, R. B. (2010). Globalization of scientific and engineering talent: international mobility of students, workers, and ideas and the world economy. Economics of Innovation and New Technology, 19(5), 393-406. https://doi.org/10.1080/10438590903432871 
 Gui, Q., Liu, C., & Du, D. (2019). Globalization of science and international scientific collaboration: A network perspective. Geoforum, 105, 1-12. https://doi.org/10.1016/j.geoforum.2019.06.017 
 
 
-RQ1 Needs:
--	Who published with who? # of publications for a weighted tie
--	Basic descriptives for possible control variables (age, sex, job title?)
--	Distances in KM from one university to the other, via public roads
-If possible:
--	Work or study at other universities
-RQ2 Needs:
--	Distances in KM from building to building
+
+
+Descriptive Q: What does the collaboration network of scientists of Sociology departments at Dutch universities look like?
+
+
+**RQ1:**  
+To what extent does the geographical distance between Sociology departments of Dutch universities influence the between-university collaboration network of scientists within these universities?
+
+**RQ2: Case study type question**  
+To what extent does the geographical distance within the Sociology department at * University influence the within-department collaboration network of scientists within this department?
+*check for a university that is geographically spread
+
+or: To what extent does the geographical distance between the Sociology department and Political science department at * University influence the between-department collaboration network of scientists within this department?
+
+
+
+
+
+
+Sample: staff of sociology departments at Dutch universities
+
+RQ1 Needs:  
+
+-	Who published with who? # of publications for a weighted tie  
+-	Where did they publish; e.g. prestige of the journals for additional RQ’s maybe  
+-	Basic descriptives for possible control variables (age, sex, job title? Would be interesting)  
+-	Distances in KM from one university to the other, via public roads vs hemelsbreed, why  
+- ranking 'strength' of the collaboration: e.g. 1st/last vs else author position?  
+
+
+
+If possible:  
+-	Work or study at other universities  
+
+
+
+RQ2 Needs:  
+
+- Distances in KM from building to building  
+
+
 
 
 

@@ -1,0 +1,111 @@
+---
+title: "Week 3"
+output: html_document
+author: "Frida van Teijlingen"
+---
+
+```{r}
+# start with clean workspace
+rm(list = ls())
+
+#install.packages('data.table')
+library(data.table)  # mainly for faster data handling
+library(tidyverse)  # I assume you already installed this one!
+#install.packages('httr') # we don't need this for now require(httr)
+#install.packages("xml2")
+require(xml2)
+#install.packages("rvest")
+require(rvest)
+#install.packages("devtools")
+require(devtools)
+# Note we're doing something different here. We're installing a *latest* version directly from
+# GitHub This is because the released version of this packages contains some errors!
+devtools::install_github("jkeirstead/scholar")
+
+require(scholar)
+
+# define workdirectory, note the double *backslashes* if you're on windows setwd('/yourpathhere)'
+setwd('C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social networks')
+
+```
+
+
+
+```{r}
+# Let's first get the staff page read_html is a function that simply extracts html webpages and
+# puts them in xml format
+#soc_staff <- read_html("https://www.ru.nl/sociology/research/staff/")
+
+#error! because old website --> use the wayback machine to retrieve the old website
+
+soc_staff <- read_html("https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/")
+head(soc_staff)
+#What type of object did we store it by putting the html into soc_staff?
+
+class(soc_staff)
+```
+```{r}
+# so we need to find WHERE the table is located in the html 'inspect element' in mozilla firefox or
+# 'view page source' and you see that everything AFTER /td in the 'body' of the page seems to be
+# the table we do need
+
+
+
+
+#install.packages('selectr')
+library(selectr)
+
+
+# wihtout xml2 things but using html_elements because that is in the same package, sloppy programming to mix different programming languages 
+soc_staff <- soc_staff %>%
+    rvest::html_elements("body") %>%
+    rvest::html_elements("td") %>%
+    rvest::html_text()
+soc_staff
+
+soc_staff <- read_html("https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/")
+head(soc_staff)
+
+#trying to get a table from the website
+soc_staff <- soc_staff %>%
+    rvest::html_elements("body") %>%
+    rvest::html_table()  
+soc_staff
+
+
+
+```
+
+```{r}
+fodd <- function(x) x%%2 != 0
+feven <- function(x) x%%2 == 0
+
+nstaf <- length(soc_staff)
+nstaf
+
+ # Do you understand why we need the nstaf? What it does?
+soc_names <- soc_staff[fodd(1:nstaf)]  # in the 1 until 94st number, get the odd elements
+head(soc_names)
+```
+#Looking for all names of Leiden Political science
+```{r}
+leidse_staff <- read_html("https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1")
+head(leidse_staff)
+#What type of object did we store it by putting the html into soc_staff?
+
+class(leidse_staff)
+
+
+#
+leidse_staff <- leidse_staff %>%
+    rvest::html_elements("body") %>%
+    rvest::html_elements("a") %>%
+    rvest::html_text()
+leidse_staff
+
+
+#when including the things below you select to little info, can do this separately, and combine the names (strong) and function (span)
+#    rvest::html_elements("strong") %>%
+#    rvest::html_elements("span") %>%
+```
+

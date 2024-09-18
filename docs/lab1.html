@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Your Name" />
+<meta name="author" content="Frida van Teijlingen" />
 
 
 <title>Week 2</title>
@@ -355,6 +355,7 @@ div.tocify {
     <li>
       <a href="lab1.html">Page 2 - Week 2</a>
     </li>
+    <li class="dropdown-header">Page 3 - Week 3</li>
   </ul>
 </li>
       </ul>
@@ -385,7 +386,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Week 2</h1>
-<h4 class="author">Your Name</h4>
+<h4 class="author">Frida van Teijlingen</h4>
 
 </div>
 
@@ -394,11 +395,10 @@ div.tocify {
   addClassKlippyTo("pre.r, pre.markdown");
   addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
-<div id="research-questions" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Research
-Questions</h2>
-<p><strong>Geographical distance and co-authorship collaboration network
-analysis</strong></p>
+<div id="research-questions" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Research Questions</h1>
+<p><strong>Topic: Geographical distance and co-authorship collaboration
+network analysis</strong></p>
 <p>Fitzgerald, J., Ojanperä, S., &amp; O’Clery, N. (2021). Is academia
 becoming more localised? The growth of regional knowledge networks
 within international research collaboration. Applied Network Science,
@@ -450,18 +450,291 @@ university compared to those who have worked at one?</strong>:</p>
 just starting out) –&gt; maybe study difference between &gt;1 department
 vs just 1 department?</li>
 </ul>
+<hr />
+<p><strong>Introduction – Geographical distance and co-authorship
+collaboration network analysis</strong><br />
+Over the last few centuries globalization processes have resulted in
+economic, political and cultural interdependence, supported by an
+immense worldwide network of international connections and collaboration
+(SOURCE). According to some, the globalization of science is the most
+important aspect of modern globalization (Freeman, 2010). The subsequent
+knowledge flows are beneficial for economic development and
+specialization, networking, and the competitiveness in the scientific
+field (Gui et al., 2019). Additionally, globalization has created a
+large international collaboration network that benefits both students
+and teachers when seeking specific knowledge and specializations
+(Fitzgerald et al., 2021)</p>
+<p>While globalization might not have shrunk geographical distances in a
+literal sense, relative distance might actually have (SOURCE?).
+Intuitively, the relative distance to other individuals or organizations
+located in a different region, country, or even continent has become the
+shortest it has ever been. Communication methods, such as phones,
+e-mail, and other communication methods have made it much easier to
+reach out to others who are not directly in our immediate environment.
+–smaller: also within country!! Combining the aspects of the
+globalization of science and a decrease of the relative distance between
+ourselves and others results in the main focus of this study, namely the
+extent to which</p>
+<p>Relevance of Social Networks perspective: - Use SNA to display the
+structure of the network</p>
+<p>Fitzgerald, J., Ojanperä, S., &amp; O’Clery, N. (2021). Is academia
+becoming more localised? The growth of regional knowledge networks
+within international research collaboration. Applied Network Science,
+6(1), 1-27. <a href="https://doi.org/10.1007/s41109-021-00371-w"
+class="uri">https://doi.org/10.1007/s41109-021-00371-w</a> Freeman, R.
+B. (2010). Globalization of scientific and engineering talent:
+international mobility of students, workers, and ideas and the world
+economy. Economics of Innovation and New Technology, 19(5), 393-406. <a
+href="https://doi.org/10.1080/10438590903432871"
+class="uri">https://doi.org/10.1080/10438590903432871</a> Gui, Q., Liu,
+C., &amp; Du, D. (2019). Globalization of science and international
+scientific collaboration: A network perspective. Geoforum, 105, 1-12. <a
+href="https://doi.org/10.1016/j.geoforum.2019.06.017"
+class="uri">https://doi.org/10.1016/j.geoforum.2019.06.017</a></p>
+<p>Descriptive Q: What does the collaboration network of scientists of
+Sociology departments at Dutch universities look like?</p>
+<p><strong>RQ1:</strong><br />
+To what extent does the geographical distance between Sociology
+departments of Dutch universities influence the between-university
+collaboration network of scientists within these universities?</p>
+<p><strong>RQ2: Case study type question</strong><br />
+To what extent does the geographical distance within the Sociology
+department at * University influence the within-department collaboration
+network of scientists within this department? *check for a university
+that is geographically spread</p>
+<p>or: To what extent does the geographical distance between the
+Sociology department and Political science department at * University
+influence the between-department collaboration network of scientists
+within this department?</p>
+<p>Sample: staff of sociology departments at Dutch universities</p>
+<p>RQ1 Needs:</p>
+<ul>
+<li>Who published with who? # of publications for a weighted tie<br />
+</li>
+<li>Where did they publish; e.g. prestige of the journals for additional
+RQ’s maybe<br />
+</li>
+<li>Basic descriptives for possible control variables (age, sex, job
+title? Would be interesting)<br />
+</li>
+<li>Distances in KM from one university to the other, via public roads
+vs hemelsbreed, why<br />
+</li>
+<li>ranking ‘strength’ of the collaboration: e.g. 1st/last vs else
+author position?</li>
+</ul>
+<p>If possible:<br />
+- Work or study at other universities</p>
+<p>RQ2 Needs:</p>
+<ul>
+<li>Distances in KM from building to building</li>
+</ul>
+<hr />
+</div>
+<div id="assignments-during-class" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Assignments during
+class</h1>
+<div id="making-a-matrix-and-adding-ties-manually"
+class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> making a matrix and
+adding ties manually</h2>
+<pre class="r test"><code>allzeromatrix &lt;- matrix(0, nrow = 4, ncol = 4)
+
+allzeromatrix</code></pre>
+<pre class="test2"><code>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    0    0    0    0
+#&gt; [2,]    0    0    0    0
+#&gt; [3,]    0    0    0    0
+#&gt; [4,]    0    0    0    0</code></pre>
+<pre class="r test"><code># anderemanier &lt;- c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) anderemaniermatrix &lt;-
+# matrix(anderemanier, nrow=4, ncol=4)
+
+
+# placing a 1 instead of 1 of the zeros
+onetiematrix &lt;- matrix(0, nrow = 4, ncol = 4)
+onetiematrix[1, 3] &lt;- 1  #from node 1 to 3
+onetiematrix</code></pre>
+<pre class="test2"><code>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    0    0    1    0
+#&gt; [2,]    0    0    0    0
+#&gt; [3,]    0    0    0    0
+#&gt; [4,]    0    0    0    0</code></pre>
+</div>
+<div id="triad-census-definingcoding-the-types-of-ties"
+class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> triad census,
+defining/coding the types of ties</h2>
+<pre class="r test"><code># install.packages(&#39;igraph&#39;)
+library(igraph)
+
+# triad_census(graph) #doesnt work yet, need to provide graph object
+testgraph0 &lt;- graph_from_adjacency_matrix(adjmatrix = allzeromatrix)
+triad_census(testgraph0)  # gives 16 numbers, relate to 16 possible triads, e.g. 400000000000 means there are 4 003 triads aka no ties</code></pre>
+<pre class="test2"><code>#&gt;  [1] 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
+<pre class="r test"><code>testgraph1 &lt;- graph_from_adjacency_matrix(adjmatrix = onetiematrix)
+triad_census(testgraph1)</code></pre>
+<pre class="test2"><code>#&gt;  [1] 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>
+</div>
+<div id="trying-out-descriptive-statistics" class="section level2"
+number="2.3">
+<h2><span class="header-section-number">2.3</span> trying out
+descriptive statistics</h2>
+<pre class="r test"><code># install.packages(&#39;RSiena&#39;)
+library(RSiena)
+s501</code></pre>
+<pre class="test2"><code>#&gt;    V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26
+#&gt; 1   0  0  0  0  0  0  0  0  0   0   1   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 2   0  0  0  0  0  0  1  0  0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 3   0  0  0  1  0  0  0  0  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 4   0  0  1  0  0  0  0  0  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 5   0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 6   0  0  0  0  0  0  0  1  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 7   0  1  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 8   0  0  0  0  0  1  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 9   0  0  1  1  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 10  0  0  0  0  0  0  0  0  0   0   1   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 11  0  1  0  0  0  0  0  0  0   0   0   0   0   0   1   1   0   0   0   0   0   0   0   0   0   0
+#&gt; 12  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 13  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 14  1  0  0  0  0  0  0  0  0   1   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 15  0  0  0  0  0  0  0  0  0   1   1   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0
+#&gt; 16  0  0  0  0  0  0  0  0  0   0   1   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 17  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   1   1   0   1   1   0   1   0   0
+#&gt; 18  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0
+#&gt; 19  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   1   0   1
+#&gt; 20  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 21  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0
+#&gt; 22  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   1   0   0   0   1   0   0   0   0   0
+#&gt; 23  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0
+#&gt; 24  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   1   0   1   0   1   1   1   0   0   0
+#&gt; 25  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0
+#&gt; 26  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 27  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 28  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 29  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+#&gt; 30  0  0  0  0  0  0  0  0  0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+#&gt; 31  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   1   0
+#&gt; 32  0  0  0  0  1  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0
+#&gt; 33  0  0  0  0  0  0  0  0  0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 34  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 35  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+#&gt; 36  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 37  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 38  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 39  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 40  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 41  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 42  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 43  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0
+#&gt; 44  0  0  0  0  0  0  1  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 45  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 46  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 47  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 48  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 49  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 50  0  0  0  0  0  0  0  0  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt;    V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38 V39 V40 V41 V42 V43 V44 V45 V46 V47 V48 V49 V50
+#&gt; 1    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 2    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 3    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 4    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 5    0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 6    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 7    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   1   0   0   0   0   0   0
+#&gt; 8    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 9    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 10   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 11   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 12   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   1   0   0   0   0   0   0
+#&gt; 13   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 14   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 15   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 16   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 17   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 18   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 19   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 20   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 21   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 22   0   0   0   0   1   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 23   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 24   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 25   0   0   0   0   1   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 26   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0
+#&gt; 27   0   1   1   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 28   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 29   0   0   0   1   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 30   0   0   1   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 31   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 32   0   0   0   0   1   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 33   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 34   0   0   0   0   1   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 35   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 36   0   0   0   0   0   0   0   0   0   0   0   1   0   0   1   0   0   0   0   0   0   0   0   0
+#&gt; 37   0   0   0   0   1   1   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 38   0   0   0   0   0   0   0   0   0   1   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+#&gt; 39   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0
+#&gt; 40   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   1   1   0   0   0
+#&gt; 41   0   0   0   0   0   0   0   0   0   1   0   1   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 42   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0
+#&gt; 43   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 44   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0
+#&gt; 45   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   1   1   0   0   0
+#&gt; 46   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   1   0   0   0   1   0
+#&gt; 47   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+#&gt; 48   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   1   0
+#&gt; 49   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   1   0   0
+#&gt; 50   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r test"><code>dim(s501)</code></pre>
+<pre class="test2"><code>#&gt; [1] 50 50</code></pre>
+<pre class="r test"><code># selecting the first 10 by 10
+trying1 &lt;- s501[1:10, 1:10]
+
+dim(trying1)</code></pre>
+<pre class="test2"><code>#&gt; [1] 10 10</code></pre>
+<pre class="r test"><code>tryinggraph1 &lt;- graph_from_adjacency_matrix(adjmatrix = trying1)
+triad_census(tryinggraph1)</code></pre>
+<pre class="test2"><code>#&gt;  [1] 82  0 37  0  0  0  0  0  0  0  0  0  0  0  0  1</code></pre>
+<pre class="r test"><code>plot(tryinggraph1)</code></pre>
+<p><img src="lab1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r test"><code># 82 0 37 0 0 0 0 0 0 0 0 0 0 0 0 1 so, 82 non-ties, 37 reciprocated ties (of tryads! so dyad+one
+# nonconnected counts), 1 complete circular tie total 120: (10*9*8)/2</code></pre>
+<pre class="r test"><code># centrality measures: degree, betweenness, closeness
+
+# DEGREE table with degrees distribution
+degree(tryinggraph1)</code></pre>
+<pre class="test2"><code>#&gt;  V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 
+#&gt;   0   2   4   4   0   2   2   2   4   0</code></pre>
+<pre class="r test"><code>degree_distribution(tryinggraph1)</code></pre>
+<pre class="test2"><code>#&gt; [1] 0.3 0.0 0.4 0.0 0.3</code></pre>
+<pre class="r test"><code># normalized degree centrality: ?hmmm...
+
+# BETWEENNESS
+betweenness(tryinggraph1)</code></pre>
+<pre class="test2"><code>#&gt;  V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 
+#&gt;   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r test"><code>betweenness.estimate(tryinggraph1, directed = TRUE, cutoff = 10)</code></pre>
+<pre class="test2"><code>#&gt;  V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 
+#&gt;   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r test"><code>estimate_betweenness(tryinggraph1, directed = TRUE, cutoff = 10)</code></pre>
+<pre class="test2"><code>#&gt;  V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 
+#&gt;   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r test"><code># CLOSENESS
+closeness(tryinggraph1, mode = &quot;out&quot;)</code></pre>
+<pre class="test2"><code>#&gt;  V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 
+#&gt; NaN 1.0 0.5 0.5 NaN 1.0 1.0 1.0 0.5 NaN</code></pre>
+<pre class="r test"><code># mode: can switch between &#39;out&#39;degree, &#39;in&#39; degree, or &#39;total&#39;/&#39;all&#39;
+
+# transitivity
+transitivity(tryinggraph1)</code></pre>
+<pre class="test2"><code>#&gt; [1] 1</code></pre>
+<p>```</p>
+<hr />
 <p>Last compiled on september, 2024</p>
 <p><br></p>
-<hr />
-<p>This is just an example page of your <span style="color: red;">lab
-journal</span>. You can journal the assignments of the first day
-here.</p>
-<hr />
-<pre class="r test"><code>print(&quot;Hello Lab Journal&quot;)</code></pre>
-<pre class="test2"><code>#&gt; [1] &quot;Hello Lab Journal&quot;</code></pre>
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgMiINCiNiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQphdXRob3I6ICJZb3VyIE5hbWUiDQotLS0NCg0KDQoNCmBgYHtyLCBnbG9iYWxzZXR0aW5ncywgZWNobz1GQUxTRSwgd2FybmluZz1GQUxTRSwgcmVzdWx0cz0naGlkZSd9DQpsaWJyYXJ5KGtuaXRyKQ0KDQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpvcHRzX2NodW5rJHNldCh0aWR5Lm9wdHM9bGlzdCh3aWR0aC5jdXRvZmY9MTAwKSx0aWR5PVRSVUUsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLGNvbW1lbnQgPSAiIz4iLCBjYWNoZT1UUlVFLCBjbGFzcy5zb3VyY2U9YygidGVzdCIpLCBjbGFzcy5vdXRwdXQ9YygidGVzdDIiKSkNCm9wdGlvbnMod2lkdGggPSAxMDApDQpyZ2w6OnNldHVwS25pdHIoKQ0KDQoNCg0KY29sb3JpemUgPC0gZnVuY3Rpb24oeCwgY29sb3IpIHtzcHJpbnRmKCI8c3BhbiBzdHlsZT0nY29sb3I6ICVzOyc+JXM8L3NwYW4+IiwgY29sb3IsIHgpIH0NCg0KYGBgDQoNCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0Ka2xpcHB5OjprbGlwcHkocG9zaXRpb24gPSBjKCd0b3AnLCAncmlnaHQnKSkNCiNrbGlwcHk6OmtsaXBweShjb2xvciA9ICdkYXJrcmVkJykNCiNrbGlwcHk6OmtsaXBweSh0b29sdGlwX21lc3NhZ2UgPSAnQ2xpY2sgdG8gY29weScsIHRvb2x0aXBfc3VjY2VzcyA9ICdEb25lJykNCmBgYA0KDQojIyBSZXNlYXJjaCBRdWVzdGlvbnMNCioqR2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBjby1hdXRob3JzaGlwIGNvbGxhYm9yYXRpb24gbmV0d29yayBhbmFseXNpcyoqDQoNCkZpdHpnZXJhbGQsIEouLCBPamFucGVyw6QsIFMuLCAmIE/igJlDbGVyeSwgTi4gKDIwMjEpLiBJcyBhY2FkZW1pYSBiZWNvbWluZyBtb3JlIGxvY2FsaXNlZD8gVGhlIGdyb3d0aCBvZiByZWdpb25hbCBrbm93bGVkZ2UgbmV0d29ya3Mgd2l0aGluIGludGVybmF0aW9uYWwgcmVzZWFyY2ggY29sbGFib3JhdGlvbi4gQXBwbGllZCBOZXR3b3JrIFNjaWVuY2UsIDYoMSksIDEtMjcuIA0KW0xpbmsgdG8gYXJ0aWNsZSBGaXR6Z2VyYWxkIGV0IGFsLiwgMjAyMV0oaHR0cHM6Ly93d3cuc3ByaW5nZXJuYXR1cmUuY29tL2dwL29wZW4tcmVzZWFyY2gvYWJvdXQvdGhlLWZ1bmRhbWVudGFscy1vZi1vcGVuLWFjY2Vzcy1hbmQtb3Blbi1yZXNlYXJjaCkNCg0KLS0+ICJ3aGlsZSBjb21tdW5pdGllcyBwcmVzZW50IGluIHRoZSBnbG9iYWwgY29sbGFib3JhdGlvbiBuZXR3b3JrIGJlZm9yZSAyMDAwIHdlcmUgb2Z0ZW4gYmFzZWQgb24gaGlzdG9yaWNhbCBnZW9wb2xpdGljYWwgb3IgY29sb25pYWwgbGluZXMsIGluIG1vcmUgcmVjZW50IHllYXJzIHRoZXkgaW5jcmVhc2luZ2x5IGFsaWduIHdpdGggYSBzaW1wbGUgcGFydGl0aW9uIG9mIGNvdW50cmllcyBieSByZWdpb25zLiBUaGVzZSBmaW5kaW5ncyBhcmUgdW5leHBlY3RlZCBpbiBsaWdodCBvZiBhIHByZXN1bWVkIGNvbnRpbnVhbCBpbmNyZWFzZSBpbiBnbG9iYWxpc2F0aW9uLCBhbmQgaGF2ZSBzaWduaWZpY2FudCBpbXBsaWNhdGlvbnMgZm9yIHRoZSBkZXNpZ24gb2YgcHJvZ3JhbW1lcyBhaW1lZCBhdCBwcm9tb3RpbmcgaW50ZXJuYXRpb25hbCByZXNlYXJjaCBjb2xsYWJvcmF0aW9uIGFuZCBrbm93bGVkZ2UgZGlmZnVzaW9uLiINCg0KUG9uZHMsIFIuLCBWYW4gT29ydCwgRi4sICYgRnJlbmtlbiwgSy4gKDIwMDcpLiBUaGUgZ2VvZ3JhcGhpY2FsIGFuZCBpbnN0aXR1dGlvbmFsIHByb3hpbWl0eSBvZiByZXNlYXJjaCBjb2xsYWJvcmF0aW9uLiBQYXBlcnMgaW4gcmVnaW9uYWwgc2NpZW5jZSwgODYoMyksIDQyMy00NDQuDQpbTGluayB0byBhcnRpY2xlIFBvbmRzIGV0IGFsLiwgMjAwN10oaHR0cHM6Ly93d3cuc2NpZW5jZWRpcmVjdC5jb20vc2NpZW5jZS9hcnRpY2xlL3BpaS9TMTA1NjgxOTAyMzAyMzk4OSkNCg0KLS0+IER1dGNoIHN0dWR5LiBTdHVkaWVkIHJlc2VhcmNoIGNvbGxhYm9yYXRpb24gYmV0d2VlbiB1bml2ZXJzaXRpZXMsIGJ1dCBhbHNvIGJldHdlZW4gdW5pdmVyc2l0aWVzIGFuZCBvcmdhbml6YXRpb25zLiANCkdlb2dyYXBoaWNhbCBwcm94aW1pdHkgaW1wb3J0YW50IGZhY3RvciBpbiByZXNlYXJjaCBjb2xsYWJvcmF0aW9uIGR1ZSB0bzogdHJ1c3QsIHRyYW5zZmVyaW5nIHRhY2l0IGtub3dsZWRnZSwgZGVlcGVyIHVuZGVyc3RhbmRpbmcsIGV0Yy4NCg0KDQoqKlJRMTogVG8gd2hhdCBleHRlbnQgZG9lcyB0aGUgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGJldHdlZW4gRHV0Y2ggdW5pdmVyc2l0aWVzIGluZmx1ZW5jZSB0aGUgYmV0d2Vlbi11bml2ZXJzaXR5IGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2llbnRpc3RzIGluIFNvY2lvbG9neSBhbmQgRGF0YSBTY2llbmNlIGRlcGFydG1lbnRzIHdpdGhpbiB0aGVzZSB1bml2ZXJzaXRpZXM/Kio6ICANCg0KLSBIYXMgdGhpcyBjaGFuZ2VkIG92ZXIgdGltZT8gIA0KLSBEb2VzIHRoZSBpbmZsdWVuY2Ugb2YgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGRpZmZlciBiZXR3ZWVuIHRoZSB0d28gZGVwYXJ0bWVudHM/ICANCi0gRG9lcyB0aGUgaW5mbHVlbmNlIG9mIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhZmZlY3Qgc2NpZW50aXN0cyBmcm9tIHZhcmlvdXMgY29ob3J0cyBkaWZmZXJlbnRseT8gQnV0LCBhZ2UgZWZmZWN0ICANCi0gQ2FuIGEgcGF0dGVybiBiZSBvYnNlcnZlZD8gUG9zc2libHkgYWZmZWN0ZWQgYnkgdW5pdmVyc2l0eSByYW5raW5ncz8gSW5jcmVhc2UgZHVyaW5nL2FmdGVyIHRoZSBwYW5kZW1pYz8gUmVnaW9uYWwgc3BlY2lhbGlzYXRpb24gaW4gcmVsYXRlZCBzY2llbnRpZmljIHN1YmZpZWxkcz8gICAgDQoNCg0KKipSUTI6IFRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGluZmx1ZW5jZSBvZiBnZW9ncmFwaGljYWwgZGlzdGFuY2UgZGlmZmVyIGJldHdlZW4gc2NpZW50aXN0cyB3aG8gd29ya2VkIGF0IG1vcmUgdGhhbiBvbmUgdW5pdmVyc2l0eSBjb21wYXJlZCB0byB0aG9zZSB3aG8gaGF2ZSB3b3JrZWQgYXQgb25lPyoqOiAgDQoNCi0gSG1tICANCi0gQnV0LCBhZ2UgZWZmZWN0ICANCi0gQXJlIHRoZXJlIGV2ZW4gc2NpZW50aXN0cyB3aG8gaGF2ZSBvbmx5IHdvcmtlZCBhdCBvbmUgKGV4Y2VwdCB0aG9zZSBqdXN0IHN0YXJ0aW5nIG91dCkgLS0+IG1heWJlIHN0dWR5IGRpZmZlcmVuY2UgYmV0d2VlbiA+MSBkZXBhcnRtZW50IHZzIGp1c3QgMSBkZXBhcnRtZW50PyAgDQoNCg0KDQoNCg0KTGFzdCBjb21waWxlZCBvbiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCLCAlWScpYA0KDQo8YnI+DQoNCi0tLS0NCiAgDQpUaGlzIGlzIGp1c3QgYW4gZXhhbXBsZSBwYWdlIG9mIHlvdXIgYHIgY29sb3JpemUoImxhYiBqb3VybmFsIiwgInJlZCIpYC4NCllvdSBjYW4gam91cm5hbCB0aGUgYXNzaWdubWVudHMgb2YgdGhlIGZpcnN0IGRheSBoZXJlLg0KICANCg0KLS0tLQ0KDQoNCmBgYHtyfQ0KcHJpbnQoIkhlbGxvIExhYiBKb3VybmFsIikNCmBgYA0KDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgMiINCiNiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQphdXRob3I6ICJGcmlkYSB2YW4gVGVpamxpbmdlbiINCi0tLQ0KDQoNCg0KYGBge3IsIGdsb2JhbHNldHRpbmdzLCBlY2hvPUZBTFNFLCB3YXJuaW5nPUZBTFNFLCByZXN1bHRzPSdoaWRlJ30NCmxpYnJhcnkoa25pdHIpDQoNCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCm9wdHNfY2h1bmskc2V0KHRpZHkub3B0cz1saXN0KHdpZHRoLmN1dG9mZj0xMDApLHRpZHk9VFJVRSwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsY29tbWVudCA9ICIjPiIsIGNhY2hlPVRSVUUsIGNsYXNzLnNvdXJjZT1jKCJ0ZXN0IiksIGNsYXNzLm91dHB1dD1jKCJ0ZXN0MiIpKQ0Kb3B0aW9ucyh3aWR0aCA9IDEwMCkNCnJnbDo6c2V0dXBLbml0cigpDQoNCg0KDQpjb2xvcml6ZSA8LSBmdW5jdGlvbih4LCBjb2xvcikge3NwcmludGYoIjxzcGFuIHN0eWxlPSdjb2xvcjogJXM7Jz4lczwvc3Bhbj4iLCBjb2xvciwgeCkgfQ0KDQpgYGANCg0KYGBge3Iga2xpcHB5LCBlY2hvPUZBTFNFLCBpbmNsdWRlPVRSVUV9DQprbGlwcHk6OmtsaXBweShwb3NpdGlvbiA9IGMoJ3RvcCcsICdyaWdodCcpKQ0KI2tsaXBweTo6a2xpcHB5KGNvbG9yID0gJ2RhcmtyZWQnKQ0KI2tsaXBweTo6a2xpcHB5KHRvb2x0aXBfbWVzc2FnZSA9ICdDbGljayB0byBjb3B5JywgdG9vbHRpcF9zdWNjZXNzID0gJ0RvbmUnKQ0KYGBgDQoNCiMgUmVzZWFyY2ggUXVlc3Rpb25zDQoNCioqVG9waWM6IEdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgY28tYXV0aG9yc2hpcCBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgYW5hbHlzaXMqKg0KDQpGaXR6Z2VyYWxkLCBKLiwgT2phbnBlcsOkLCBTLiwgJiBP4oCZQ2xlcnksIE4uICgyMDIxKS4gSXMgYWNhZGVtaWEgYmVjb21pbmcgbW9yZSBsb2NhbGlzZWQ/IFRoZSBncm93dGggb2YgcmVnaW9uYWwga25vd2xlZGdlIG5ldHdvcmtzIHdpdGhpbiBpbnRlcm5hdGlvbmFsIHJlc2VhcmNoIGNvbGxhYm9yYXRpb24uIEFwcGxpZWQgTmV0d29yayBTY2llbmNlLCA2KDEpLCAxLTI3LiANCltMaW5rIHRvIGFydGljbGUgRml0emdlcmFsZCBldCBhbC4sIDIwMjFdKGh0dHBzOi8vd3d3LnNwcmluZ2VybmF0dXJlLmNvbS9ncC9vcGVuLXJlc2VhcmNoL2Fib3V0L3RoZS1mdW5kYW1lbnRhbHMtb2Ytb3Blbi1hY2Nlc3MtYW5kLW9wZW4tcmVzZWFyY2gpDQoNCi0tPiAid2hpbGUgY29tbXVuaXRpZXMgcHJlc2VudCBpbiB0aGUgZ2xvYmFsIGNvbGxhYm9yYXRpb24gbmV0d29yayBiZWZvcmUgMjAwMCB3ZXJlIG9mdGVuIGJhc2VkIG9uIGhpc3RvcmljYWwgZ2VvcG9saXRpY2FsIG9yIGNvbG9uaWFsIGxpbmVzLCBpbiBtb3JlIHJlY2VudCB5ZWFycyB0aGV5IGluY3JlYXNpbmdseSBhbGlnbiB3aXRoIGEgc2ltcGxlIHBhcnRpdGlvbiBvZiBjb3VudHJpZXMgYnkgcmVnaW9ucy4gVGhlc2UgZmluZGluZ3MgYXJlIHVuZXhwZWN0ZWQgaW4gbGlnaHQgb2YgYSBwcmVzdW1lZCBjb250aW51YWwgaW5jcmVhc2UgaW4gZ2xvYmFsaXNhdGlvbiwgYW5kIGhhdmUgc2lnbmlmaWNhbnQgaW1wbGljYXRpb25zIGZvciB0aGUgZGVzaWduIG9mIHByb2dyYW1tZXMgYWltZWQgYXQgcHJvbW90aW5nIGludGVybmF0aW9uYWwgcmVzZWFyY2ggY29sbGFib3JhdGlvbiBhbmQga25vd2xlZGdlIGRpZmZ1c2lvbi4iDQoNClBvbmRzLCBSLiwgVmFuIE9vcnQsIEYuLCAmIEZyZW5rZW4sIEsuICgyMDA3KS4gVGhlIGdlb2dyYXBoaWNhbCBhbmQgaW5zdGl0dXRpb25hbCBwcm94aW1pdHkgb2YgcmVzZWFyY2ggY29sbGFib3JhdGlvbi4gUGFwZXJzIGluIHJlZ2lvbmFsIHNjaWVuY2UsIDg2KDMpLCA0MjMtNDQ0Lg0KW0xpbmsgdG8gYXJ0aWNsZSBQb25kcyBldCBhbC4sIDIwMDddKGh0dHBzOi8vd3d3LnNjaWVuY2VkaXJlY3QuY29tL3NjaWVuY2UvYXJ0aWNsZS9waWkvUzEwNTY4MTkwMjMwMjM5ODkpDQoNCi0tPiBEdXRjaCBzdHVkeS4gU3R1ZGllZCByZXNlYXJjaCBjb2xsYWJvcmF0aW9uIGJldHdlZW4gdW5pdmVyc2l0aWVzLCBidXQgYWxzbyBiZXR3ZWVuIHVuaXZlcnNpdGllcyBhbmQgb3JnYW5pemF0aW9ucy4gDQpHZW9ncmFwaGljYWwgcHJveGltaXR5IGltcG9ydGFudCBmYWN0b3IgaW4gcmVzZWFyY2ggY29sbGFib3JhdGlvbiBkdWUgdG86IHRydXN0LCB0cmFuc2ZlcmluZyB0YWNpdCBrbm93bGVkZ2UsIGRlZXBlciB1bmRlcnN0YW5kaW5nLCBldGMuDQoNCg0KKipSUTE6IFRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuIER1dGNoIHVuaXZlcnNpdGllcyBpbmZsdWVuY2UgdGhlIGJldHdlZW4tdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyBpbiBTb2Npb2xvZ3kgYW5kIERhdGEgU2NpZW5jZSBkZXBhcnRtZW50cyB3aXRoaW4gdGhlc2UgdW5pdmVyc2l0aWVzPyoqOiAgDQoNCi0gSGFzIHRoaXMgY2hhbmdlZCBvdmVyIHRpbWU/ICANCi0gRG9lcyB0aGUgaW5mbHVlbmNlIG9mIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBkaWZmZXIgYmV0d2VlbiB0aGUgdHdvIGRlcGFydG1lbnRzPyAgDQotIERvZXMgdGhlIGluZmx1ZW5jZSBvZiBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYWZmZWN0IHNjaWVudGlzdHMgZnJvbSB2YXJpb3VzIGNvaG9ydHMgZGlmZmVyZW50bHk/IEJ1dCwgYWdlIGVmZmVjdCAgDQotIENhbiBhIHBhdHRlcm4gYmUgb2JzZXJ2ZWQ/IFBvc3NpYmx5IGFmZmVjdGVkIGJ5IHVuaXZlcnNpdHkgcmFua2luZ3M/IEluY3JlYXNlIGR1cmluZy9hZnRlciB0aGUgcGFuZGVtaWM/IFJlZ2lvbmFsIHNwZWNpYWxpc2F0aW9uIGluIHJlbGF0ZWQgc2NpZW50aWZpYyBzdWJmaWVsZHM/ICAgIA0KDQoNCioqUlEyOiBUbyB3aGF0IGV4dGVudCBkb2VzIHRoZSBpbmZsdWVuY2Ugb2YgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGRpZmZlciBiZXR3ZWVuIHNjaWVudGlzdHMgd2hvIHdvcmtlZCBhdCBtb3JlIHRoYW4gb25lIHVuaXZlcnNpdHkgY29tcGFyZWQgdG8gdGhvc2Ugd2hvIGhhdmUgd29ya2VkIGF0IG9uZT8qKjogIA0KDQotIEhtbSAgDQotIEJ1dCwgYWdlIGVmZmVjdCAgDQotIEFyZSB0aGVyZSBldmVuIHNjaWVudGlzdHMgd2hvIGhhdmUgb25seSB3b3JrZWQgYXQgb25lIChleGNlcHQgdGhvc2UganVzdCBzdGFydGluZyBvdXQpIC0tPiBtYXliZSBzdHVkeSBkaWZmZXJlbmNlIGJldHdlZW4gPjEgZGVwYXJ0bWVudCB2cyBqdXN0IDEgZGVwYXJ0bWVudD8gIA0KDQoNCg0KLS0tLQ0KICANCioqSW50cm9kdWN0aW9uIOKAkyBHZW9ncmFwaGljYWwgZGlzdGFuY2UgYW5kIGNvLWF1dGhvcnNoaXAgY29sbGFib3JhdGlvbiBuZXR3b3JrIGFuYWx5c2lzKiogIA0KT3ZlciB0aGUgbGFzdCBmZXcgY2VudHVyaWVzIGdsb2JhbGl6YXRpb24gcHJvY2Vzc2VzIGhhdmUgcmVzdWx0ZWQgaW4gZWNvbm9taWMsIHBvbGl0aWNhbCBhbmQgY3VsdHVyYWwgaW50ZXJkZXBlbmRlbmNlLCBzdXBwb3J0ZWQgYnkgYW4gaW1tZW5zZSB3b3JsZHdpZGUgbmV0d29yayBvZiBpbnRlcm5hdGlvbmFsIGNvbm5lY3Rpb25zIGFuZCBjb2xsYWJvcmF0aW9uIChTT1VSQ0UpLiANCkFjY29yZGluZyB0byBzb21lLCB0aGUgZ2xvYmFsaXphdGlvbiBvZiBzY2llbmNlIGlzIHRoZSBtb3N0IGltcG9ydGFudCBhc3BlY3Qgb2YgbW9kZXJuIGdsb2JhbGl6YXRpb24gKEZyZWVtYW4sIDIwMTApLiBUaGUgc3Vic2VxdWVudCBrbm93bGVkZ2UgZmxvd3MgYXJlIGJlbmVmaWNpYWwgZm9yIGVjb25vbWljIGRldmVsb3BtZW50IGFuZCBzcGVjaWFsaXphdGlvbiwgbmV0d29ya2luZywgYW5kIHRoZSBjb21wZXRpdGl2ZW5lc3MgaW4gdGhlIHNjaWVudGlmaWMgZmllbGQgKEd1aSBldCBhbC4sIDIwMTkpLiBBZGRpdGlvbmFsbHksIGdsb2JhbGl6YXRpb24gaGFzIGNyZWF0ZWQgYSBsYXJnZSBpbnRlcm5hdGlvbmFsIGNvbGxhYm9yYXRpb24gbmV0d29yayB0aGF0IGJlbmVmaXRzIGJvdGggc3R1ZGVudHMgYW5kIHRlYWNoZXJzIHdoZW4gc2Vla2luZyBzcGVjaWZpYyBrbm93bGVkZ2UgYW5kIHNwZWNpYWxpemF0aW9ucyAoRml0emdlcmFsZCBldCBhbC4sIDIwMjEpDQoNCg0KV2hpbGUgZ2xvYmFsaXphdGlvbiBtaWdodCBub3QgaGF2ZSBzaHJ1bmsgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlcyBpbiBhIGxpdGVyYWwgc2Vuc2UsIHJlbGF0aXZlIGRpc3RhbmNlIG1pZ2h0IGFjdHVhbGx5IGhhdmUgKFNPVVJDRT8pLiBJbnR1aXRpdmVseSwgdGhlIHJlbGF0aXZlIGRpc3RhbmNlIHRvIG90aGVyIGluZGl2aWR1YWxzIG9yIG9yZ2FuaXphdGlvbnMgbG9jYXRlZCBpbiBhIGRpZmZlcmVudCByZWdpb24sIGNvdW50cnksIG9yIGV2ZW4gY29udGluZW50IGhhcyBiZWNvbWUgdGhlIHNob3J0ZXN0IGl0IGhhcyBldmVyIGJlZW4uIA0KQ29tbXVuaWNhdGlvbiBtZXRob2RzLCBzdWNoIGFzIHBob25lcywgZS1tYWlsLCBhbmQgb3RoZXIgY29tbXVuaWNhdGlvbiBtZXRob2RzIGhhdmUgbWFkZSBpdCBtdWNoIGVhc2llciB0byByZWFjaCBvdXQgdG8gb3RoZXJzIHdobyBhcmUgbm90IGRpcmVjdGx5IGluIG91ciBpbW1lZGlhdGUgZW52aXJvbm1lbnQuIA0KLS1zbWFsbGVyOiBhbHNvIHdpdGhpbiBjb3VudHJ5ISENCkNvbWJpbmluZyB0aGUgYXNwZWN0cyBvZiB0aGUgZ2xvYmFsaXphdGlvbiBvZiBzY2llbmNlIGFuZCBhIGRlY3JlYXNlIG9mIHRoZSByZWxhdGl2ZSBkaXN0YW5jZSBiZXR3ZWVuIG91cnNlbHZlcyBhbmQgb3RoZXJzIHJlc3VsdHMgaW4gdGhlIG1haW4gZm9jdXMgb2YgdGhpcyBzdHVkeSwgbmFtZWx5IHRoZSBleHRlbnQgdG8gd2hpY2ggIA0KDQpSZWxldmFuY2Ugb2YgU29jaWFsIE5ldHdvcmtzIHBlcnNwZWN0aXZlOg0KLQlVc2UgU05BIHRvIGRpc3BsYXkgdGhlIHN0cnVjdHVyZSBvZiB0aGUgbmV0d29yaw0KDQoNCg0KDQpGaXR6Z2VyYWxkLCBKLiwgT2phbnBlcsOkLCBTLiwgJiBP4oCZQ2xlcnksIE4uICgyMDIxKS4gSXMgYWNhZGVtaWEgYmVjb21pbmcgbW9yZSBsb2NhbGlzZWQ/IFRoZSBncm93dGggb2YgcmVnaW9uYWwga25vd2xlZGdlIG5ldHdvcmtzIHdpdGhpbiBpbnRlcm5hdGlvbmFsIHJlc2VhcmNoIGNvbGxhYm9yYXRpb24uIEFwcGxpZWQgTmV0d29yayBTY2llbmNlLCA2KDEpLCAxLTI3LiBodHRwczovL2RvaS5vcmcvMTAuMTAwNy9zNDExMDktMDIxLTAwMzcxLXcgDQpGcmVlbWFuLCBSLiBCLiAoMjAxMCkuIEdsb2JhbGl6YXRpb24gb2Ygc2NpZW50aWZpYyBhbmQgZW5naW5lZXJpbmcgdGFsZW50OiBpbnRlcm5hdGlvbmFsIG1vYmlsaXR5IG9mIHN0dWRlbnRzLCB3b3JrZXJzLCBhbmQgaWRlYXMgYW5kIHRoZSB3b3JsZCBlY29ub215LiBFY29ub21pY3Mgb2YgSW5ub3ZhdGlvbiBhbmQgTmV3IFRlY2hub2xvZ3ksIDE5KDUpLCAzOTMtNDA2LiBodHRwczovL2RvaS5vcmcvMTAuMTA4MC8xMDQzODU5MDkwMzQzMjg3MSANCkd1aSwgUS4sIExpdSwgQy4sICYgRHUsIEQuICgyMDE5KS4gR2xvYmFsaXphdGlvbiBvZiBzY2llbmNlIGFuZCBpbnRlcm5hdGlvbmFsIHNjaWVudGlmaWMgY29sbGFib3JhdGlvbjogQSBuZXR3b3JrIHBlcnNwZWN0aXZlLiBHZW9mb3J1bSwgMTA1LCAxLTEyLiBodHRwczovL2RvaS5vcmcvMTAuMTAxNi9qLmdlb2ZvcnVtLjIwMTkuMDYuMDE3IA0KDQoNCg0KDQpEZXNjcmlwdGl2ZSBROiBXaGF0IGRvZXMgdGhlIGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2llbnRpc3RzIG9mIFNvY2lvbG9neSBkZXBhcnRtZW50cyBhdCBEdXRjaCB1bml2ZXJzaXRpZXMgbG9vayBsaWtlPw0KDQoNCioqUlExOioqICANClRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuIFNvY2lvbG9neSBkZXBhcnRtZW50cyBvZiBEdXRjaCB1bml2ZXJzaXRpZXMgaW5mbHVlbmNlIHRoZSBiZXR3ZWVuLXVuaXZlcnNpdHkgY29sbGFib3JhdGlvbiBuZXR3b3JrIG9mIHNjaWVudGlzdHMgd2l0aGluIHRoZXNlIHVuaXZlcnNpdGllcz8NCg0KKipSUTI6IENhc2Ugc3R1ZHkgdHlwZSBxdWVzdGlvbioqICANClRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSB3aXRoaW4gdGhlIFNvY2lvbG9neSBkZXBhcnRtZW50IGF0ICogVW5pdmVyc2l0eSBpbmZsdWVuY2UgdGhlIHdpdGhpbi1kZXBhcnRtZW50IGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2llbnRpc3RzIHdpdGhpbiB0aGlzIGRlcGFydG1lbnQ/DQoqY2hlY2sgZm9yIGEgdW5pdmVyc2l0eSB0aGF0IGlzIGdlb2dyYXBoaWNhbGx5IHNwcmVhZA0KDQpvcjogVG8gd2hhdCBleHRlbnQgZG9lcyB0aGUgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGJldHdlZW4gdGhlIFNvY2lvbG9neSBkZXBhcnRtZW50IGFuZCBQb2xpdGljYWwgc2NpZW5jZSBkZXBhcnRtZW50IGF0ICogVW5pdmVyc2l0eSBpbmZsdWVuY2UgdGhlIGJldHdlZW4tZGVwYXJ0bWVudCBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyB3aXRoaW4gdGhpcyBkZXBhcnRtZW50Pw0KDQoNCg0KDQoNCg0KU2FtcGxlOiBzdGFmZiBvZiBzb2Npb2xvZ3kgZGVwYXJ0bWVudHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzDQoNClJRMSBOZWVkczogIA0KDQotCVdobyBwdWJsaXNoZWQgd2l0aCB3aG8/ICMgb2YgcHVibGljYXRpb25zIGZvciBhIHdlaWdodGVkIHRpZSAgDQotCVdoZXJlIGRpZCB0aGV5IHB1Ymxpc2g7IGUuZy4gcHJlc3RpZ2Ugb2YgdGhlIGpvdXJuYWxzIGZvciBhZGRpdGlvbmFsIFJR4oCZcyBtYXliZSAgDQotCUJhc2ljIGRlc2NyaXB0aXZlcyBmb3IgcG9zc2libGUgY29udHJvbCB2YXJpYWJsZXMgKGFnZSwgc2V4LCBqb2IgdGl0bGU/IFdvdWxkIGJlIGludGVyZXN0aW5nKSAgDQotCURpc3RhbmNlcyBpbiBLTSBmcm9tIG9uZSB1bml2ZXJzaXR5IHRvIHRoZSBvdGhlciwgdmlhIHB1YmxpYyByb2FkcyB2cyBoZW1lbHNicmVlZCwgd2h5ICANCi0gcmFua2luZyAnc3RyZW5ndGgnIG9mIHRoZSBjb2xsYWJvcmF0aW9uOiBlLmcuIDFzdC9sYXN0IHZzIGVsc2UgYXV0aG9yIHBvc2l0aW9uPyAgDQoNCg0KDQpJZiBwb3NzaWJsZTogIA0KLQlXb3JrIG9yIHN0dWR5IGF0IG90aGVyIHVuaXZlcnNpdGllcyAgDQoNCg0KDQpSUTIgTmVlZHM6ICANCg0KLSBEaXN0YW5jZXMgaW4gS00gZnJvbSBidWlsZGluZyB0byBidWlsZGluZyAgDQoNCg0KDQoNCg0KDQoNCg0KLS0tLQ0KDQoNCiMgQXNzaWdubWVudHMgZHVyaW5nIGNsYXNzDQoNCiMjIG1ha2luZyBhIG1hdHJpeCBhbmQgYWRkaW5nIHRpZXMgbWFudWFsbHkNCmBgYHtyfQ0KYWxsemVyb21hdHJpeCA8LSBtYXRyaXgoMCwgbnJvdz00LCBuY29sPTQpDQoNCmFsbHplcm9tYXRyaXgNCg0KI2FuZGVyZW1hbmllciA8LSBjKDAsIDAsIDEsIDAsIA0KICAgICAgICAgICAgICAgICAgIzAsIDAsIDAsIDAsDQogICAgICAgICAgICAgICAgICAjMCwgMCwgMCwgMCwNCiAgICAgICAgICAgICAgICAgICMwLCAwLCAwLCAwKQ0KI2FuZGVyZW1hbmllcm1hdHJpeCA8LSBtYXRyaXgoYW5kZXJlbWFuaWVyLCBucm93PTQsIG5jb2w9NCkNCg0KDQojcGxhY2luZyBhIDEgaW5zdGVhZCBvZiAxIG9mIHRoZSB6ZXJvcw0Kb25ldGllbWF0cml4IDwtIG1hdHJpeCgwLCBucm93PTQsIG5jb2w9NCkNCm9uZXRpZW1hdHJpeFsxLCAzXSA8LSAxICNmcm9tIG5vZGUgMSB0byAzDQpvbmV0aWVtYXRyaXgNCmBgYA0KDQojIyB0cmlhZCBjZW5zdXMsIGRlZmluaW5nL2NvZGluZyB0aGUgdHlwZXMgb2YgdGllcw0KYGBge3J9DQojaW5zdGFsbC5wYWNrYWdlcygiaWdyYXBoIikNCmxpYnJhcnkoaWdyYXBoKQ0KDQojdHJpYWRfY2Vuc3VzKGdyYXBoKSAjZG9lc250IHdvcmsgeWV0LCBuZWVkIHRvIHByb3ZpZGUgZ3JhcGggb2JqZWN0DQp0ZXN0Z3JhcGgwPC0gZ3JhcGhfZnJvbV9hZGphY2VuY3lfbWF0cml4KGFkam1hdHJpeCA9IGFsbHplcm9tYXRyaXgpDQp0cmlhZF9jZW5zdXModGVzdGdyYXBoMCkgIyBnaXZlcyAxNiBudW1iZXJzLCByZWxhdGUgdG8gMTYgcG9zc2libGUgdHJpYWRzLCBlLmcuIDQwMDAwMDAwMDAwMCBtZWFucyB0aGVyZSBhcmUgNCAwMDMgdHJpYWRzIGFrYSBubyB0aWVzDQoNCg0KdGVzdGdyYXBoMTwtIGdyYXBoX2Zyb21fYWRqYWNlbmN5X21hdHJpeChhZGptYXRyaXggPSBvbmV0aWVtYXRyaXgpDQp0cmlhZF9jZW5zdXModGVzdGdyYXBoMSkNCmBgYA0KDQojIyB0cnlpbmcgb3V0IGRlc2NyaXB0aXZlIHN0YXRpc3RpY3MNCmBgYHtyfQ0KI2luc3RhbGwucGFja2FnZXMoIlJTaWVuYSIpDQpsaWJyYXJ5KFJTaWVuYSkNCnM1MDENCg0KZGltKHM1MDEpDQoNCiNzZWxlY3RpbmcgdGhlIGZpcnN0IDEwIGJ5IDEwDQp0cnlpbmcxIDwtIHM1MDFbMToxMCwgMToxMF0NCg0KZGltKHRyeWluZzEpDQoNCnRyeWluZ2dyYXBoMTwtIGdyYXBoX2Zyb21fYWRqYWNlbmN5X21hdHJpeChhZGptYXRyaXggPSB0cnlpbmcxKQ0KdHJpYWRfY2Vuc3VzKHRyeWluZ2dyYXBoMSkNCnBsb3QodHJ5aW5nZ3JhcGgxKQ0KDQoNCiMgODIgIDAgMzcgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDAgIDENCiNzbywgODIgbm9uLXRpZXMsIDM3IHJlY2lwcm9jYXRlZCB0aWVzIChvZiB0cnlhZHMhIHNvIGR5YWQrb25lIG5vbmNvbm5lY3RlZCBjb3VudHMpLCAxIGNvbXBsZXRlIGNpcmN1bGFyIHRpZQ0KI3RvdGFsIDEyMDogKDEwKjkqOCkvMg0KYGBgDQoNCmBgYHtyfQ0KI2NlbnRyYWxpdHkgbWVhc3VyZXM6IGRlZ3JlZSwgYmV0d2Vlbm5lc3MsIGNsb3NlbmVzcw0KDQojREVHUkVFDQojdGFibGUgd2l0aCBkZWdyZWVzIGRpc3RyaWJ1dGlvbg0KZGVncmVlKHRyeWluZ2dyYXBoMSkNCmRlZ3JlZV9kaXN0cmlidXRpb24odHJ5aW5nZ3JhcGgxKQ0KDQojbm9ybWFsaXplZCBkZWdyZWUgY2VudHJhbGl0eToNCiM/aG1tbS4uLg0KDQojQkVUV0VFTk5FU1MNCmJldHdlZW5uZXNzKHRyeWluZ2dyYXBoMSkNCmJldHdlZW5uZXNzLmVzdGltYXRlKHRyeWluZ2dyYXBoMSwgZGlyZWN0ZWQgPSBUUlVFLCBjdXRvZmY9MTApDQplc3RpbWF0ZV9iZXR3ZWVubmVzcyh0cnlpbmdncmFwaDEsICBkaXJlY3RlZCA9IFRSVUUsIGN1dG9mZj0xMCkNCg0KDQojQ0xPU0VORVNTDQpjbG9zZW5lc3ModHJ5aW5nZ3JhcGgxLCBtb2RlID0gIm91dCIpDQoNCiNtb2RlOiBjYW4gc3dpdGNoIGJldHdlZW4gIm91dCJkZWdyZWUsICJpbiIgZGVncmVlLCBvciAidG90YWwiLyJhbGwiDQoNCiN0cmFuc2l0aXZpdHkNCnRyYW5zaXRpdml0eSh0cnlpbmdncmFwaDEpDQoNCg0KDQpgYGANCg0KYGBgDQoNCg0KLS0tLQ0KDQoNCkxhc3QgY29tcGlsZWQgb24gYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiwgJVknKWANCg0KPGJyPg0KDQoNCg0KDQoNCg0K</div>
 
 
 </div>
