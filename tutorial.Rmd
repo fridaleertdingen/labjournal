@@ -8,19 +8,23 @@ Welcome to my lab journal (๑ˇεˇ๑)
 
 ## *To do and reminders*
 
+**Uploading webjournal**
+-  Save files  
+-  Check status
+-  Commit  
+-  Push  
+-  Wait a while
+
+
 **Homework**:
 
--   ~~Appendix A~~\
+-   Work on labjournal
 
--   ~~Appendix B~~\
+-   Tidy up labjournal
 
--   ~~Research questions~~\
+[ ] test
+[X] test
 
--   ~~include all in journal~~
-
--   Tidy up\
-
--   [ ] test
 
 ## Preparation
 

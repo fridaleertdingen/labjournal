@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Frida van Teijlingen" />
+
+
+<title>Week 4</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tutorial.html">Page 1 - Week 1</a>
+    </li>
+    <li>
+      <a href="w2.html">Page 2 - Week 2</a>
+    </li>
+    <li>
+      <a href="w3webscraping.html">Page 3 - Week 3</a>
+    </li>
+    <li>
+      <a href="w4.html">Page 4 - Week 4</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="fridaleertdingen.github.io/labjournal/">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week 4</h1>
+<h4 class="author">Frida van Teijlingen</h4>
+
+</div>
+
+
+<div id="revised-introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Revised
+introduction</h1>
+<div id="few-sentences-for-summary" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <strong>few sentences
+for summary</strong></h2>
+<p>This study considers the continuing globalization with its subsequent
+growing interconnectedness between scientists at different universities
+and the reducing psychic distance to seek further understanding of the
+relationship between geographical distance and the collaboration
+networks of social scientists at Dutch universities. The study is
+carried out in two-fold: firstly, the collaboration network between
+Sociology departments at Dutch universities will be studied, secondly,
+the within-department collaboration network of scientists within the
+Sociology department at Radboud University will analysed. To do this, a
+social network perspective will be applied to uncover the structure of
+the collaboration networks.</p>
+</div>
+<div
+id="introduction-geographical-distance-and-co-authorship-collaboration-network-analysis"
+class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <strong>Introduction
+– Geographical distance and co-authorship collaboration network
+analysis</strong></h2>
+<p>Over the last few centuries, globalization processes have resulted in
+economic, political and cultural interdependence, supported by an
+immense worldwide network of international connections and collaboration
+(Gui et al., 2019). According to some, the globalization of science is
+the most important aspect of modern globalization (Freeman, 2010). The
+subsequent knowledge flows are beneficial for economic development and
+specialization, networking, and the competitiveness in the scientific
+field (Gui et al., 2019). Additionally, globalization has created a
+large international collaboration network that benefits both students
+and teachers when seeking specific knowledge and specializations
+(Fitzgerald et al., 2021). While globalization is not able to shrink
+geographical distances in a literal sense, our individual perception and
+awareness of the distance between us and a secondary location, also
+referred to as ‘psychic distance’, has decreased as a result of
+globalization (Ojala, 2009). That is, communication methods, such as
+phones, e-mail, and other telecommunication technologies have made it
+much easier to reach out to others who are not directly in our immediate
+vicinity (Hoekman et al., 2010). While this relation has been proven for
+long-distance, international scientific collaboration (e.g. Hoekman et
+al., 2010), little research has been done on the relationship between
+geographical distance and scientific collaboration networks on a
+singular country and organizational level. While it can be expected to
+be less evident, geographical distance can still be expected to be a
+relevant factor in scientific collaboration networks between actors
+within a country. -elaborate on WHY- This study aims to do so by
+studying geographical distance and co-authorship collaboration networks
+in the Netherlands, resulting in the following research question: [RQ1a]
+To what extent does the geographical distance between Sociology
+departments at Dutch universities influence the between-university
+collaboration network of scientists located at these universities? Broad
+societal changes, such as the COVID-19 pandemic between 2020 and 2022
+had possibly lasting consequences for scientific collaboration networks.
+That is, government mandated measures such as working from home, limited
+travelling and avoiding close contact to others, might have changed the
+way these networks were constructed. This study will look at changing
+spatial patterns of research collaboration by studying co-authorship
+over time, resulting in the following questions: [RQ1b] To what extent
+has the relation between geographical distance and between-university
+collaboration networks of Dutch Sociology departments changed over time?
+And: [RQ1c] What patterns can be discovered within the collaboration
+network?</p>
+<p>Moreover, this study will attempt to deepen our understanding of
+these effects by looking at the relation between physical distance and
+collaboration networks on an even smaller scale. At the organizational
+level, a relation between psychic distance between two scientists and
+collaboration activities might exist as well. Scientists who work within
+close proximity might run into each other more often than those who work
+at opposite ends of a building. Regular interaction on the work floor
+can spark ideas and interest in collaboration (SOURCE). RQ2a: To what
+extent does the geographical distance within the Sociology department at
+Radboud University influence the within-department collaboration network
+of scientists within this department? Similar to the previous set of
+research questions, this study will also look into changes in
+collaboration activities over time within a university department.
+Studying these changes can provide insight into the extent to which
+broader societal changes (e.g. a global pandemic) and
+organizational-level developments (e.g. department relocation) influence
+collaboration networks on a small spatial scale. For example, the
+outbreak of the COVID-19 pandemic between 2020 and 2022 might have
+resulted different collaboration activities within the department as
+employees were forced to work from home, thereby possibly experiencing
+greater psychic distance and missing out on the daily meeting
+opportunities that can spark collaboration interests. At an
+organizational level, the relocation of Radboud’s whole social science
+department to a new building in 2021 might have resulted in a shift
+within the previous collaboration structure. This results in the
+following questions: [RQ2b] To what extent has the relation between
+geographical distance and within-department collaboration network
+changed over time? And [RQ2c] What patterns can be discovered within the
+collaboration network?</p>
+</div>
+<div id="rqs-op-een-rijtje" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> RQ’s op een
+rijtje:</h2>
+<p>RQ1: descriptive To what extent does the geographical distance
+between Sociology departments at Dutch universities influence the
+between-university collaboration network of scientists located at these
+universities?</p>
+<ul>
+<li><p>To what extent has this changed over time?</p></li>
+<li><p>What patterns can be discovered within the collaboration
+network?</p></li>
+</ul>
+<p>RQ2: CASE STUDY: To what extent does the geographical distance within
+the Sociology department at Radboud University (or Groningen University)
+influence the within-department collaboration network of scientists
+within this department?</p>
+<ul>
+<li><p>To what extent has this changed over time?</p></li>
+<li><p>What patterns can be discovered within the collaboration
+network?</p></li>
+</ul>
+</div>
+<div id="which-variables-to-webscrape" class="section level2"
+number="1.4">
+<h2><span class="header-section-number">1.4</span> Which variables to
+webscrape:</h2>
+<ul>
+<li><p>all employees of Sociology departments in at Dutch Universities
+(+career age, title, number of publications, number of citations, gender
+via first name)</p></li>
+<li><p>Coordinates/geo locations of Sociology departments –&gt; can you
+create a geographical map in R? <a
+href="https://richardlent.github.io/rnotebooks/maps.nb.html">map</a></p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>RU</li>
+<li>RUG</li>
+<li>Erasmus</li>
+<li>UU</li>
+<li>UVA</li>
+<li>VU</li>
+<li>Tilburg Universiteit</li>
+<li>Leiden/Den Haag</li>
+</ol>
+<ul>
+<li><p>and/or time distance between each of the departments</p>
+<p><a href="https://serpapi.com/google-maps-api">Google maps
+API</a><br />
+<a href="https://serpapi.com/google-maps-directions-api">Google maps API
+directions</a><br />
+<a
+href="https://serpapi.com/playground?engine=google_maps_directions&amp;start_addr=Thomas+Van+Aquinostraat+4+Nijmegen&amp;end_addr=Wassenaarseweg+52+Leiden&amp;gl=nl&amp;hl=en&amp;travel_mode=0&amp;distance_unit=0">very
+cool</a></p></li>
+</ul>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgNCINCm91dHB1dDogaHRtbF9kb2N1bWVudA0KYXV0aG9yOiAiRnJpZGEgdmFuIFRlaWpsaW5nZW4iDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCiMgUmV2aXNlZCBpbnRyb2R1Y3Rpb24NCg0KIyMgKipmZXcgc2VudGVuY2VzIGZvciBzdW1tYXJ5KioNCg0KVGhpcyBzdHVkeSBjb25zaWRlcnMgdGhlIGNvbnRpbnVpbmcgZ2xvYmFsaXphdGlvbiB3aXRoIGl0cyBzdWJzZXF1ZW50DQpncm93aW5nIGludGVyY29ubmVjdGVkbmVzcyBiZXR3ZWVuIHNjaWVudGlzdHMgYXQgZGlmZmVyZW50IHVuaXZlcnNpdGllcw0KYW5kIHRoZSByZWR1Y2luZyBwc3ljaGljIGRpc3RhbmNlIHRvIHNlZWsgZnVydGhlciB1bmRlcnN0YW5kaW5nIG9mIHRoZQ0KcmVsYXRpb25zaGlwIGJldHdlZW4gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCB0aGUgY29sbGFib3JhdGlvbg0KbmV0d29ya3Mgb2Ygc29jaWFsIHNjaWVudGlzdHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzLiBUaGUgc3R1ZHkgaXMNCmNhcnJpZWQgb3V0IGluIHR3by1mb2xkOiBmaXJzdGx5LCB0aGUgY29sbGFib3JhdGlvbiBuZXR3b3JrIGJldHdlZW4NClNvY2lvbG9neSBkZXBhcnRtZW50cyBhdCBEdXRjaCB1bml2ZXJzaXRpZXMgd2lsbCBiZSBzdHVkaWVkLCBzZWNvbmRseSwNCnRoZSB3aXRoaW4tZGVwYXJ0bWVudCBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyB3aXRoaW4gdGhlDQpTb2Npb2xvZ3kgZGVwYXJ0bWVudCBhdCBSYWRib3VkIFVuaXZlcnNpdHkgd2lsbCBhbmFseXNlZC4gVG8gZG8gdGhpcywgYQ0Kc29jaWFsIG5ldHdvcmsgcGVyc3BlY3RpdmUgd2lsbCBiZSBhcHBsaWVkIHRvIHVuY292ZXIgdGhlIHN0cnVjdHVyZSBvZg0KdGhlIGNvbGxhYm9yYXRpb24gbmV0d29ya3MuDQoNCiMjICoqSW50cm9kdWN0aW9uIOKAkyBHZW9ncmFwaGljYWwgZGlzdGFuY2UgYW5kIGNvLWF1dGhvcnNoaXAgY29sbGFib3JhdGlvbiBuZXR3b3JrIGFuYWx5c2lzKioNCg0KT3ZlciB0aGUgbGFzdCBmZXcgY2VudHVyaWVzLCBnbG9iYWxpemF0aW9uIHByb2Nlc3NlcyBoYXZlIHJlc3VsdGVkIGluDQplY29ub21pYywgcG9saXRpY2FsIGFuZCBjdWx0dXJhbCBpbnRlcmRlcGVuZGVuY2UsIHN1cHBvcnRlZCBieSBhbg0KaW1tZW5zZSB3b3JsZHdpZGUgbmV0d29yayBvZiBpbnRlcm5hdGlvbmFsIGNvbm5lY3Rpb25zIGFuZCBjb2xsYWJvcmF0aW9uDQooR3VpIGV0IGFsLiwgMjAxOSkuIEFjY29yZGluZyB0byBzb21lLCB0aGUgZ2xvYmFsaXphdGlvbiBvZiBzY2llbmNlIGlzDQp0aGUgbW9zdCBpbXBvcnRhbnQgYXNwZWN0IG9mIG1vZGVybiBnbG9iYWxpemF0aW9uIChGcmVlbWFuLCAyMDEwKS4gVGhlDQpzdWJzZXF1ZW50IGtub3dsZWRnZSBmbG93cyBhcmUgYmVuZWZpY2lhbCBmb3IgZWNvbm9taWMgZGV2ZWxvcG1lbnQgYW5kDQpzcGVjaWFsaXphdGlvbiwgbmV0d29ya2luZywgYW5kIHRoZSBjb21wZXRpdGl2ZW5lc3MgaW4gdGhlIHNjaWVudGlmaWMNCmZpZWxkIChHdWkgZXQgYWwuLCAyMDE5KS4gQWRkaXRpb25hbGx5LCBnbG9iYWxpemF0aW9uIGhhcyBjcmVhdGVkIGENCmxhcmdlIGludGVybmF0aW9uYWwgY29sbGFib3JhdGlvbiBuZXR3b3JrIHRoYXQgYmVuZWZpdHMgYm90aCBzdHVkZW50cw0KYW5kIHRlYWNoZXJzIHdoZW4gc2Vla2luZyBzcGVjaWZpYyBrbm93bGVkZ2UgYW5kIHNwZWNpYWxpemF0aW9ucw0KKEZpdHpnZXJhbGQgZXQgYWwuLCAyMDIxKS4gV2hpbGUgZ2xvYmFsaXphdGlvbiBpcyBub3QgYWJsZSB0byBzaHJpbmsNCmdlb2dyYXBoaWNhbCBkaXN0YW5jZXMgaW4gYSBsaXRlcmFsIHNlbnNlLCBvdXIgaW5kaXZpZHVhbCBwZXJjZXB0aW9uIGFuZA0KYXdhcmVuZXNzIG9mIHRoZSBkaXN0YW5jZSBiZXR3ZWVuIHVzIGFuZCBhIHNlY29uZGFyeSBsb2NhdGlvbiwgYWxzbw0KcmVmZXJyZWQgdG8gYXMg4oCYcHN5Y2hpYyBkaXN0YW5jZeKAmSwgaGFzIGRlY3JlYXNlZCBhcyBhIHJlc3VsdCBvZg0KZ2xvYmFsaXphdGlvbiAoT2phbGEsIDIwMDkpLiBUaGF0IGlzLCBjb21tdW5pY2F0aW9uIG1ldGhvZHMsIHN1Y2ggYXMNCnBob25lcywgZS1tYWlsLCBhbmQgb3RoZXIgdGVsZWNvbW11bmljYXRpb24gdGVjaG5vbG9naWVzIGhhdmUgbWFkZSBpdA0KbXVjaCBlYXNpZXIgdG8gcmVhY2ggb3V0IHRvIG90aGVycyB3aG8gYXJlIG5vdCBkaXJlY3RseSBpbiBvdXIgaW1tZWRpYXRlDQp2aWNpbml0eSAoSG9la21hbiBldCBhbC4sIDIwMTApLiBXaGlsZSB0aGlzIHJlbGF0aW9uIGhhcyBiZWVuIHByb3ZlbiBmb3INCmxvbmctZGlzdGFuY2UsIGludGVybmF0aW9uYWwgc2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uIChlLmcuIEhvZWttYW4gZXQNCmFsLiwgMjAxMCksIGxpdHRsZSByZXNlYXJjaCBoYXMgYmVlbiBkb25lIG9uIHRoZSByZWxhdGlvbnNoaXAgYmV0d2Vlbg0KZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3Mgb24gYQ0Kc2luZ3VsYXIgY291bnRyeSBhbmQgb3JnYW5pemF0aW9uYWwgbGV2ZWwuIFdoaWxlIGl0IGNhbiBiZSBleHBlY3RlZCB0bw0KYmUgbGVzcyBldmlkZW50LCBnZW9ncmFwaGljYWwgZGlzdGFuY2UgY2FuIHN0aWxsIGJlIGV4cGVjdGVkIHRvIGJlIGENCnJlbGV2YW50IGZhY3RvciBpbiBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MgYmV0d2VlbiBhY3RvcnMNCndpdGhpbiBhIGNvdW50cnkuIC1lbGFib3JhdGUgb24gV0hZLSBUaGlzIHN0dWR5IGFpbXMgdG8gZG8gc28gYnkNCnN0dWR5aW5nIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgY28tYXV0aG9yc2hpcCBjb2xsYWJvcmF0aW9uIG5ldHdvcmtzDQppbiB0aGUgTmV0aGVybGFuZHMsIHJlc3VsdGluZyBpbiB0aGUgZm9sbG93aW5nIHJlc2VhcmNoIHF1ZXN0aW9uOiBbUlExYV0NClRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuIFNvY2lvbG9neQ0KZGVwYXJ0bWVudHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzIGluZmx1ZW5jZSB0aGUgYmV0d2Vlbi11bml2ZXJzaXR5DQpjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyBsb2NhdGVkIGF0IHRoZXNlIHVuaXZlcnNpdGllcz8gQnJvYWQNCnNvY2lldGFsIGNoYW5nZXMsIHN1Y2ggYXMgdGhlIENPVklELTE5IHBhbmRlbWljIGJldHdlZW4gMjAyMCBhbmQgMjAyMg0KaGFkIHBvc3NpYmx5IGxhc3RpbmcgY29uc2VxdWVuY2VzIGZvciBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MuDQpUaGF0IGlzLCBnb3Zlcm5tZW50IG1hbmRhdGVkIG1lYXN1cmVzIHN1Y2ggYXMgd29ya2luZyBmcm9tIGhvbWUsIGxpbWl0ZWQNCnRyYXZlbGxpbmcgYW5kIGF2b2lkaW5nIGNsb3NlIGNvbnRhY3QgdG8gb3RoZXJzLCBtaWdodCBoYXZlIGNoYW5nZWQgdGhlDQp3YXkgdGhlc2UgbmV0d29ya3Mgd2VyZSBjb25zdHJ1Y3RlZC4gVGhpcyBzdHVkeSB3aWxsIGxvb2sgYXQgY2hhbmdpbmcNCnNwYXRpYWwgcGF0dGVybnMgb2YgcmVzZWFyY2ggY29sbGFib3JhdGlvbiBieSBzdHVkeWluZyBjby1hdXRob3JzaGlwDQpvdmVyIHRpbWUsIHJlc3VsdGluZyBpbiB0aGUgZm9sbG93aW5nIHF1ZXN0aW9uczogW1JRMWJdIFRvIHdoYXQgZXh0ZW50DQpoYXMgdGhlIHJlbGF0aW9uIGJldHdlZW4gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBiZXR3ZWVuLXVuaXZlcnNpdHkNCmNvbGxhYm9yYXRpb24gbmV0d29ya3Mgb2YgRHV0Y2ggU29jaW9sb2d5IGRlcGFydG1lbnRzIGNoYW5nZWQgb3ZlciB0aW1lPw0KQW5kOiBbUlExY10gV2hhdCBwYXR0ZXJucyBjYW4gYmUgZGlzY292ZXJlZCB3aXRoaW4gdGhlIGNvbGxhYm9yYXRpb24NCm5ldHdvcms/DQoNCk1vcmVvdmVyLCB0aGlzIHN0dWR5IHdpbGwgYXR0ZW1wdCB0byBkZWVwZW4gb3VyIHVuZGVyc3RhbmRpbmcgb2YgdGhlc2UNCmVmZmVjdHMgYnkgbG9va2luZyBhdCB0aGUgcmVsYXRpb24gYmV0d2VlbiBwaHlzaWNhbCBkaXN0YW5jZSBhbmQNCmNvbGxhYm9yYXRpb24gbmV0d29ya3Mgb24gYW4gZXZlbiBzbWFsbGVyIHNjYWxlLiBBdCB0aGUgb3JnYW5pemF0aW9uYWwNCmxldmVsLCBhIHJlbGF0aW9uIGJldHdlZW4gcHN5Y2hpYyBkaXN0YW5jZSBiZXR3ZWVuIHR3byBzY2llbnRpc3RzIGFuZA0KY29sbGFib3JhdGlvbiBhY3Rpdml0aWVzIG1pZ2h0IGV4aXN0IGFzIHdlbGwuIFNjaWVudGlzdHMgd2hvIHdvcmsgd2l0aGluDQpjbG9zZSBwcm94aW1pdHkgbWlnaHQgcnVuIGludG8gZWFjaCBvdGhlciBtb3JlIG9mdGVuIHRoYW4gdGhvc2Ugd2hvIHdvcmsNCmF0IG9wcG9zaXRlIGVuZHMgb2YgYSBidWlsZGluZy4gUmVndWxhciBpbnRlcmFjdGlvbiBvbiB0aGUgd29yayBmbG9vcg0KY2FuIHNwYXJrIGlkZWFzIGFuZCBpbnRlcmVzdCBpbiBjb2xsYWJvcmF0aW9uIChTT1VSQ0UpLiBSUTJhOiBUbyB3aGF0DQpleHRlbnQgZG9lcyB0aGUgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIHdpdGhpbiB0aGUgU29jaW9sb2d5IGRlcGFydG1lbnQgYXQNClJhZGJvdWQgVW5pdmVyc2l0eSBpbmZsdWVuY2UgdGhlIHdpdGhpbi1kZXBhcnRtZW50IGNvbGxhYm9yYXRpb24gbmV0d29yaw0Kb2Ygc2NpZW50aXN0cyB3aXRoaW4gdGhpcyBkZXBhcnRtZW50PyBTaW1pbGFyIHRvIHRoZSBwcmV2aW91cyBzZXQgb2YNCnJlc2VhcmNoIHF1ZXN0aW9ucywgdGhpcyBzdHVkeSB3aWxsIGFsc28gbG9vayBpbnRvIGNoYW5nZXMgaW4NCmNvbGxhYm9yYXRpb24gYWN0aXZpdGllcyBvdmVyIHRpbWUgd2l0aGluIGEgdW5pdmVyc2l0eSBkZXBhcnRtZW50Lg0KU3R1ZHlpbmcgdGhlc2UgY2hhbmdlcyBjYW4gcHJvdmlkZSBpbnNpZ2h0IGludG8gdGhlIGV4dGVudCB0byB3aGljaA0KYnJvYWRlciBzb2NpZXRhbCBjaGFuZ2VzIChlLmcuIGEgZ2xvYmFsIHBhbmRlbWljKSBhbmQNCm9yZ2FuaXphdGlvbmFsLWxldmVsIGRldmVsb3BtZW50cyAoZS5nLiBkZXBhcnRtZW50IHJlbG9jYXRpb24pIGluZmx1ZW5jZQ0KY29sbGFib3JhdGlvbiBuZXR3b3JrcyBvbiBhIHNtYWxsIHNwYXRpYWwgc2NhbGUuIEZvciBleGFtcGxlLCB0aGUNCm91dGJyZWFrIG9mIHRoZSBDT1ZJRC0xOSBwYW5kZW1pYyBiZXR3ZWVuIDIwMjAgYW5kIDIwMjIgbWlnaHQgaGF2ZQ0KcmVzdWx0ZWQgZGlmZmVyZW50IGNvbGxhYm9yYXRpb24gYWN0aXZpdGllcyB3aXRoaW4gdGhlIGRlcGFydG1lbnQgYXMNCmVtcGxveWVlcyB3ZXJlIGZvcmNlZCB0byB3b3JrIGZyb20gaG9tZSwgdGhlcmVieSBwb3NzaWJseSBleHBlcmllbmNpbmcNCmdyZWF0ZXIgcHN5Y2hpYyBkaXN0YW5jZSBhbmQgbWlzc2luZyBvdXQgb24gdGhlIGRhaWx5IG1lZXRpbmcNCm9wcG9ydHVuaXRpZXMgdGhhdCBjYW4gc3BhcmsgY29sbGFib3JhdGlvbiBpbnRlcmVzdHMuIEF0IGFuDQpvcmdhbml6YXRpb25hbCBsZXZlbCwgdGhlIHJlbG9jYXRpb24gb2YgUmFkYm91ZOKAmXMgd2hvbGUgc29jaWFsIHNjaWVuY2UNCmRlcGFydG1lbnQgdG8gYSBuZXcgYnVpbGRpbmcgaW4gMjAyMSBtaWdodCBoYXZlIHJlc3VsdGVkIGluIGEgc2hpZnQNCndpdGhpbiB0aGUgcHJldmlvdXMgY29sbGFib3JhdGlvbiBzdHJ1Y3R1cmUuIFRoaXMgcmVzdWx0cyBpbiB0aGUNCmZvbGxvd2luZyBxdWVzdGlvbnM6IFtSUTJiXSBUbyB3aGF0IGV4dGVudCBoYXMgdGhlIHJlbGF0aW9uIGJldHdlZW4NCmdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgd2l0aGluLWRlcGFydG1lbnQgY29sbGFib3JhdGlvbiBuZXR3b3JrDQpjaGFuZ2VkIG92ZXIgdGltZT8gQW5kIFtSUTJjXSBXaGF0IHBhdHRlcm5zIGNhbiBiZSBkaXNjb3ZlcmVkIHdpdGhpbiB0aGUNCmNvbGxhYm9yYXRpb24gbmV0d29yaz8NCg0KIyMgUlEncyBvcCBlZW4gcmlqdGplOg0KDQpSUTE6IGRlc2NyaXB0aXZlIFRvIHdoYXQgZXh0ZW50IGRvZXMgdGhlIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuDQpTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzIGluZmx1ZW5jZSB0aGUNCmJldHdlZW4tdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyBsb2NhdGVkIGF0IHRoZXNlDQp1bml2ZXJzaXRpZXM/DQoNCi0gICBUbyB3aGF0IGV4dGVudCBoYXMgdGhpcyBjaGFuZ2VkIG92ZXIgdGltZT8NCg0KLSAgIFdoYXQgcGF0dGVybnMgY2FuIGJlIGRpc2NvdmVyZWQgd2l0aGluIHRoZSBjb2xsYWJvcmF0aW9uIG5ldHdvcms/DQoNClJRMjogQ0FTRSBTVFVEWTogVG8gd2hhdCBleHRlbnQgZG9lcyB0aGUgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIHdpdGhpbg0KdGhlIFNvY2lvbG9neSBkZXBhcnRtZW50IGF0IFJhZGJvdWQgVW5pdmVyc2l0eSAob3IgR3JvbmluZ2VuIFVuaXZlcnNpdHkpDQppbmZsdWVuY2UgdGhlIHdpdGhpbi1kZXBhcnRtZW50IGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2llbnRpc3RzDQp3aXRoaW4gdGhpcyBkZXBhcnRtZW50Pw0KDQotICAgVG8gd2hhdCBleHRlbnQgaGFzIHRoaXMgY2hhbmdlZCBvdmVyIHRpbWU/DQoNCi0gICBXaGF0IHBhdHRlcm5zIGNhbiBiZSBkaXNjb3ZlcmVkIHdpdGhpbiB0aGUgY29sbGFib3JhdGlvbiBuZXR3b3JrPw0KDQojIyBXaGljaCB2YXJpYWJsZXMgdG8gd2Vic2NyYXBlOg0KDQotICAgYWxsIGVtcGxveWVlcyBvZiBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgaW4gYXQgRHV0Y2ggVW5pdmVyc2l0aWVzDQogICAgKCtjYXJlZXIgYWdlLCB0aXRsZSwgbnVtYmVyIG9mIHB1YmxpY2F0aW9ucywgbnVtYmVyIG9mIGNpdGF0aW9ucywNCiAgICBnZW5kZXIgdmlhIGZpcnN0IG5hbWUpDQoNCi0gICBDb29yZGluYXRlcy9nZW8gbG9jYXRpb25zIG9mIFNvY2lvbG9neSBkZXBhcnRtZW50cyAtLVw+IGNhbiB5b3UNCiAgICBjcmVhdGUgYSBnZW9ncmFwaGljYWwgbWFwIGluIFI/DQogICAgW21hcF0oaHR0cHM6Ly9yaWNoYXJkbGVudC5naXRodWIuaW8vcm5vdGVib29rcy9tYXBzLm5iLmh0bWwpDQoNCjEuICBSVQ0KMi4gIFJVRw0KMy4gIEVyYXNtdXMNCjQuICBVVQ0KNS4gIFVWQQ0KNi4gIFZVDQo3LiAgVGlsYnVyZyBVbml2ZXJzaXRlaXQNCjguICBMZWlkZW4vRGVuIEhhYWcNCg0KLSAgIGFuZC9vciB0aW1lIGRpc3RhbmNlIGJldHdlZW4gZWFjaCBvZiB0aGUgZGVwYXJ0bWVudHMNCg0KICAgIFtHb29nbGUgbWFwcyBBUEldKGh0dHBzOi8vc2VycGFwaS5jb20vZ29vZ2xlLW1hcHMtYXBpKVwNCiAgICBbR29vZ2xlIG1hcHMgQVBJDQogICAgZGlyZWN0aW9uc10oaHR0cHM6Ly9zZXJwYXBpLmNvbS9nb29nbGUtbWFwcy1kaXJlY3Rpb25zLWFwaSlcDQogICAgW3ZlcnkNCiAgICBjb29sXShodHRwczovL3NlcnBhcGkuY29tL3BsYXlncm91bmQ/ZW5naW5lPWdvb2dsZV9tYXBzX2RpcmVjdGlvbnMmc3RhcnRfYWRkcj1UaG9tYXMrVmFuK0FxdWlub3N0cmFhdCs0K05pam1lZ2VuJmVuZF9hZGRyPVdhc3NlbmFhcnNld2VnKzUyK0xlaWRlbiZnbD1ubCZobD1lbiZ0cmF2ZWxfbW9kZT0wJmRpc3RhbmNlX3VuaXQ9MCkNCg0KYGBge3J9DQoNCmBgYA0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("w4.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

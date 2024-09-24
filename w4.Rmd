@@ -1,0 +1,149 @@
+---
+title: "Week 4"
+output: html_document
+author: "Frida van Teijlingen"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Revised introduction
+
+## **few sentences for summary**
+
+This study considers the continuing globalization with its subsequent
+growing interconnectedness between scientists at different universities
+and the reducing psychic distance to seek further understanding of the
+relationship between geographical distance and the collaboration
+networks of social scientists at Dutch universities. The study is
+carried out in two-fold: firstly, the collaboration network between
+Sociology departments at Dutch universities will be studied, secondly,
+the within-department collaboration network of scientists within the
+Sociology department at Radboud University will analysed. To do this, a
+social network perspective will be applied to uncover the structure of
+the collaboration networks.
+
+## **Introduction – Geographical distance and co-authorship collaboration network analysis**
+
+Over the last few centuries, globalization processes have resulted in
+economic, political and cultural interdependence, supported by an
+immense worldwide network of international connections and collaboration
+(Gui et al., 2019). According to some, the globalization of science is
+the most important aspect of modern globalization (Freeman, 2010). The
+subsequent knowledge flows are beneficial for economic development and
+specialization, networking, and the competitiveness in the scientific
+field (Gui et al., 2019). Additionally, globalization has created a
+large international collaboration network that benefits both students
+and teachers when seeking specific knowledge and specializations
+(Fitzgerald et al., 2021). While globalization is not able to shrink
+geographical distances in a literal sense, our individual perception and
+awareness of the distance between us and a secondary location, also
+referred to as ‘psychic distance’, has decreased as a result of
+globalization (Ojala, 2009). That is, communication methods, such as
+phones, e-mail, and other telecommunication technologies have made it
+much easier to reach out to others who are not directly in our immediate
+vicinity (Hoekman et al., 2010). While this relation has been proven for
+long-distance, international scientific collaboration (e.g. Hoekman et
+al., 2010), little research has been done on the relationship between
+geographical distance and scientific collaboration networks on a
+singular country and organizational level. While it can be expected to
+be less evident, geographical distance can still be expected to be a
+relevant factor in scientific collaboration networks between actors
+within a country. -elaborate on WHY- This study aims to do so by
+studying geographical distance and co-authorship collaboration networks
+in the Netherlands, resulting in the following research question: [RQ1a]
+To what extent does the geographical distance between Sociology
+departments at Dutch universities influence the between-university
+collaboration network of scientists located at these universities? Broad
+societal changes, such as the COVID-19 pandemic between 2020 and 2022
+had possibly lasting consequences for scientific collaboration networks.
+That is, government mandated measures such as working from home, limited
+travelling and avoiding close contact to others, might have changed the
+way these networks were constructed. This study will look at changing
+spatial patterns of research collaboration by studying co-authorship
+over time, resulting in the following questions: [RQ1b] To what extent
+has the relation between geographical distance and between-university
+collaboration networks of Dutch Sociology departments changed over time?
+And: [RQ1c] What patterns can be discovered within the collaboration
+network?
+
+Moreover, this study will attempt to deepen our understanding of these
+effects by looking at the relation between physical distance and
+collaboration networks on an even smaller scale. At the organizational
+level, a relation between psychic distance between two scientists and
+collaboration activities might exist as well. Scientists who work within
+close proximity might run into each other more often than those who work
+at opposite ends of a building. Regular interaction on the work floor
+can spark ideas and interest in collaboration (SOURCE). RQ2a: To what
+extent does the geographical distance within the Sociology department at
+Radboud University influence the within-department collaboration network
+of scientists within this department? Similar to the previous set of
+research questions, this study will also look into changes in
+collaboration activities over time within a university department.
+Studying these changes can provide insight into the extent to which
+broader societal changes (e.g. a global pandemic) and
+organizational-level developments (e.g. department relocation) influence
+collaboration networks on a small spatial scale. For example, the
+outbreak of the COVID-19 pandemic between 2020 and 2022 might have
+resulted different collaboration activities within the department as
+employees were forced to work from home, thereby possibly experiencing
+greater psychic distance and missing out on the daily meeting
+opportunities that can spark collaboration interests. At an
+organizational level, the relocation of Radboud’s whole social science
+department to a new building in 2021 might have resulted in a shift
+within the previous collaboration structure. This results in the
+following questions: [RQ2b] To what extent has the relation between
+geographical distance and within-department collaboration network
+changed over time? And [RQ2c] What patterns can be discovered within the
+collaboration network?
+
+## RQ's op een rijtje:
+
+RQ1: descriptive To what extent does the geographical distance between
+Sociology departments at Dutch universities influence the
+between-university collaboration network of scientists located at these
+universities?
+
+-   To what extent has this changed over time?
+
+-   What patterns can be discovered within the collaboration network?
+
+RQ2: CASE STUDY: To what extent does the geographical distance within
+the Sociology department at Radboud University (or Groningen University)
+influence the within-department collaboration network of scientists
+within this department?
+
+-   To what extent has this changed over time?
+
+-   What patterns can be discovered within the collaboration network?
+
+## Which variables to webscrape:
+
+-   all employees of Sociology departments in at Dutch Universities
+    (+career age, title, number of publications, number of citations,
+    gender via first name)
+
+-   Coordinates/geo locations of Sociology departments --\> can you
+    create a geographical map in R?
+    [map](https://richardlent.github.io/rnotebooks/maps.nb.html)
+
+1.  RU
+2.  RUG
+3.  Erasmus
+4.  UU
+5.  UVA
+6.  VU
+7.  Tilburg Universiteit
+8.  Leiden/Den Haag
+
+-   and/or time distance between each of the departments
+
+    [Google maps API](https://serpapi.com/google-maps-api)\
+    [Google maps API
+    directions](https://serpapi.com/google-maps-directions-api)\
+    [very
+    cool](https://serpapi.com/playground?engine=google_maps_directions&start_addr=Thomas+Van+Aquinostraat+4+Nijmegen&end_addr=Wassenaarseweg+52+Leiden&gl=nl&hl=en&travel_mode=0&distance_unit=0)
+
+```{r}
+
+```

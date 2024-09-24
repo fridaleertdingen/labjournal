@@ -15,9 +15,12 @@ navbar:
       - text: "Page 1 - Week 1"
         href: tutorial.html
       - text: "Page 2 - Week 2"
-        href: lab1.html
+        href: w2.html
       - text: "Page 3 - Week 3"
-        href: 
+        href: w3webscraping.html
+      - text: "Page 4 - Week 4"
+        href: w4.html
+        
 #      menu:
  #     - text: "mogelijk meer info"
  #       href: tutorial.html

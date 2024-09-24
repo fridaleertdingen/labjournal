@@ -3,7 +3,9 @@ title: "Week 3"
 output: html_document
 author: "Frida van Teijlingen"
 ---
+# Assignments during class
 
+## Packages
 ```{r}
 # start with clean workspace
 rm(list = ls())
@@ -30,7 +32,7 @@ setwd('C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social netwo
 ```
 
 
-
+## Finding a data source
 ```{r}
 # Let's first get the staff page read_html is a function that simply extracts html webpages and
 # puts them in xml format
@@ -44,6 +46,7 @@ head(soc_staff)
 
 class(soc_staff)
 ```
+## finding the right html elements and rvest
 ```{r}
 # so we need to find WHERE the table is located in the html 'inspect element' in mozilla firefox or
 # 'view page source' and you see that everything AFTER /td in the 'body' of the page seems to be
@@ -75,7 +78,7 @@ soc_staff
 
 
 ```
-
+## Number of people on the list
 ```{r}
 fodd <- function(x) x%%2 != 0
 feven <- function(x) x%%2 == 0
@@ -87,7 +90,7 @@ nstaf
 soc_names <- soc_staff[fodd(1:nstaf)]  # in the 1 until 94st number, get the odd elements
 head(soc_names)
 ```
-#Looking for all names of Leiden Political science
+## Looking for all names of Leiden Political science
 ```{r}
 leidse_staff <- read_html("https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1")
 head(leidse_staff)
@@ -107,5 +110,114 @@ leidse_staff
 #when including the things below you select to little info, can do this separately, and combine the names (strong) and function (span)
 #    rvest::html_elements("strong") %>%
 #    rvest::html_elements("span") %>%
+```
+
+## RSelenium
+```{r}
+#RSelenium usefull for websites where the data is 'loaded in', rvest cant handle that
+#packages: "RSelenium", "rvest", "tidyverse", "netstat", "pingr", "stringr"
+#install.packages("RSelenium")
+#install.packages("netstat")
+#install.packages("pingr")
+
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(netstat)
+library(pingr)
+library(stringr)
+```
+
+## OpenAlex
+```{r}
+#install.packages("openalexR")
+library(openalexR)
+
+
+df <- oa_fetch(entity= "author", search = "Jochem+Tolsma", mailto = "fridakooptdingen@gmail.com")
+df
+#send to email, wont really send it to my mail but lifts some limitations
+
+
+df_papers <-oa_fetch(entity = "works", author.id = df$id)
+df_papers$author[1]
+
+#zoek institution ID
+options(openalexR.mailto = "fridakooptdingen@gmail.com")
+df_institution <- oa_fetch(entity = "institutions", search = "Radboud+University+Nijmegen")$id[1]
+df_institution
+
+
+oa_fetch(entity = "author", search = "Jochem Tolsma", affiliations.institution.id = "https://openalex.org/I145872427")
+
+
+```
+## Compiling a network
+
+```{r}
+#network in elkaar zetten
+options(openalexR.mailto = "fridakooptdingen@gmail.com")
+ 
+#Jochem
+id1<- oa_fetch(entity = "author", search = "Jochem Tolsma", affiliations.institution.id = "https://openalex.org/I145872427")
+
+
+#Tom van der Meer
+#id van UvA
+#oa_fetch(entity = "institutions", search = "University of Amsterdam")$id[1]
+#was de eerste, gecheckt via openalex	
+
+id2<- oa_fetch(entity = "author", search = "Tom van der Meer", affiliations.institution.id = "https://openalex.org/I887064364")
+id2 <- id2[1,]
+
+#Maurice Gesthuizen
+id3<- oa_fetch(entity = "author", search = "Maurice Gesthuizen", affiliations.institution.id = "https://openalex.org/I145872427")
+
+#Michael Savelkoul
+id4<- oa_fetch(entity = "author", search = "Michael Savelkoul", affiliations.institution.id = "https://openalex.org/I145872427")
+
+all_id <- c(id1$id, id2$id, id3$id, id4$id)
+all_id 
+
+worksJT<- oa_fetch(entity = "works", author.id = id1$id)
+worksTVDM<- oa_fetch(entity = "works", author.id = id2$id)
+worksMG<- oa_fetch(entity = "works", author.id = id3$id)
+worksMS<- oa_fetch(entity = "works", author.id = id4$id)
+
+all_works <- rbind(worksJT, worksTVDM)
+all_works <- rbind(all_works, worksMG)
+all_works <- rbind(all_works, worksMS)
+View(all_works)
+
+wave1 <- matrix(0, nrow=4, ncol=4)
+wave1
+
+attributes(all_works)
+library(tidyverse)
+all_works_1 <- filter(all_works, publication_year >= 2016)
+all_works_1 <- filter(all_works_1, publication_year <= 2020)
+View(all_works_1)
+
+rownames(wave1)<- c(id1$id, id2$id, id3$id, id4$id)
+colnames(wave1)<- c(id1$id, id2$id, id3$id, id4$id)
+wave1
+
+#selecting first row of large datafile, when loop use 'i' instead of '1'
+ego <- all_works_1[1,]$author[[1]]$au_id[1]
+ego
+#%in% To determine whether a specific value is present in a column of an R data frame
+alter <- all_works_1[1,]$author[[1]]$au_id[-1][all_works_1[1,]$author[[1]]$au_id[-1] %in% all_id]
+alter 
+wave1[ego, alter] <- 1
+
+wave1
+
+
+
+
+
+
+
+
 ```
 
