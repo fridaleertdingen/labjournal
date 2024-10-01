@@ -20,6 +20,11 @@ navbar:
         href: w3webscraping.html
       - text: "Page 4 - Week 4"
         href: w4.html
+      - text: "Page 5 - Week 5"
+        href: w5dataselect.html
+      - text: "Page 5 - Week 5 pt.2"
+        href: tryleaflet.html
+ 
         
 #      menu:
  #     - text: "mogelijk meer info"

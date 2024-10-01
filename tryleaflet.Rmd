@@ -1,0 +1,54 @@
+# Trying out leaflet
+```{r}
+#install.packages("leaflet")
+library(leaflet)
+
+#providers
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles(provider = "OpenStreetMap") %>%
+  setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)
+
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles(provider = "CartoDB.Voyager") %>%
+  setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)
+```
+
+```{r}
+uni_longitude <- c(5.171430, 6.557490, 4.912590, 4.525170, 4.4780664, 5.8623425, 4.8735998, 5.046225, 4.3695136, 5.171807)
+
+uni_latitude <- c(52.084460, 53.222250, 52.363210, 51.919050,  52.1696475, 51.8192069, 52.3348043,  51.5624972, 52.0024433, 52.0845094)  
+
+uni_label <- c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH")
+
+
+leaflet() %>%
+  addProviderTiles(provider = "CartoDB.Voyager") %>%
+  setView(lng = 5.2913, lat = 52.1326, zoom = 7.2) %>%
+  addMarkers(lng = uni_longitude, lat = uni_latitude, label = uni_label)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
