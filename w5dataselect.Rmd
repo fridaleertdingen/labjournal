@@ -388,19 +388,7 @@ plot(check$perc_female, check$n)
 
 
 
-```{r}
-#in df_allunis zit: data (demographics, scholars, works) en nets
-# uiteindelijk minstens nodig: ego, nets
 
-
-fsave(df_allunis, file = "df_allunis", location = "./data/processed/")
-fsave(df_ego, file = "df_ego", location = "./data/processed/")
-fsave(df_works, file = "df_works", location = "./data/processed/")
-
-write_rds(df_ego, "df_ego.rds")
-write_rds(df_works, "df_works.rds")
-write.csv(df_allunis, "df_allunis.csv")
-```
 
 
 

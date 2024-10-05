@@ -384,11 +384,25 @@ div.tocify {
     <li>
       <a href="w4.html">Page 4 - Week 4</a>
     </li>
-    <li>
-      <a href="w5dataselect.html">Page 5 - Week 5</a>
-    </li>
-    <li>
-      <a href="tryleaflet.html">Page 5 - Week 5 pt.2</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Page 5 - Week 5</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="w5dataselect.html">Week 5 - dataselection</a>
+        </li>
+        <li>
+          <a href="tryleaflet.html">Week 5 - trying leaflet</a>
+        </li>
+        <li>
+          <a href="w5Rsiena.html">Week 5 - RSiena lecture pt 1</a>
+        </li>
+        <li>
+          <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
+        </li>
+        <li>
+          <a href="w5RSienaTRY.html">Week 5 - Rsiena own data</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -458,13 +472,13 @@ package.check &lt;- function(packages) {
 packages = c(&quot;tidyverse&quot;, &quot;haven&quot;, &quot;dplyr&quot;, &quot;knitr&quot;, &quot;klippy&quot;, &quot;labelled&quot;)
 package.check(packages)</code></pre>
 <pre><code>## Loading required package: tidyverse</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
-## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors

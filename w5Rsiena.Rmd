@@ -158,7 +158,7 @@ ts_sims(nsims = 1, net = ts_net1, startvalues = c(rate, degree, recip), statisti
 #ans <- ts_estim(net1 = s501, net2 = s502, statistics = list(ts_degree, ts_recip), p2step = c(1, 0, 0),
     #conv = 0.01, phase3 = FALSE, itef3 = 50, verbose = TRUE, startvalues = )
 
-doesnt work
+#doesnt work
 ```
 ## Interpretation of parameters
 ```{r}

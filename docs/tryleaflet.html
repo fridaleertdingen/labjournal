@@ -367,11 +367,25 @@ div.tocify {
     <li>
       <a href="w4.html">Page 4 - Week 4</a>
     </li>
-    <li>
-      <a href="w5dataselect.html">Page 5 - Week 5</a>
-    </li>
-    <li>
-      <a href="tryleaflet.html">Page 5 - Week 5 pt.2</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Page 5 - Week 5</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="w5dataselect.html">Week 5 - dataselection</a>
+        </li>
+        <li>
+          <a href="tryleaflet.html">Week 5 - trying leaflet</a>
+        </li>
+        <li>
+          <a href="w5Rsiena.html">Week 5 - RSiena lecture pt 1</a>
+        </li>
+        <li>
+          <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
+        </li>
+        <li>
+          <a href="w5RSienaTRY.html">Week 5 - Rsiena own data</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -415,13 +429,13 @@ library(leaflet)
 <pre class="r"><code>leaflet() %&gt;%
   addProviderTiles(provider = &quot;OpenStreetMap&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-91ea4b167c362e58f33e" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-91ea4b167c362e58f33e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-3a74e414908af7b3dc64" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3a74e414908af7b3dc64">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>leaflet() %&gt;%
   addProviderTiles(provider = &quot;CartoDB.Voyager&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-ba3f51e44a32b4b39e1e" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-ba3f51e44a32b4b39e1e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-5863e806de534d5b69f7" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5863e806de534d5b69f7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>uni_longitude &lt;- c(5.171430, 6.557490, 4.912590, 4.525170, 4.4780664, 5.8623425, 4.8735998, 5.046225, 4.3695136, 5.171807)
 
 uni_latitude &lt;- c(52.084460, 53.222250, 52.363210, 51.919050,  52.1696475, 51.8192069, 52.3348043,  51.5624972, 52.0024433, 52.0845094)  
@@ -433,8 +447,8 @@ leaflet() %&gt;%
   addProviderTiles(provider = &quot;CartoDB.Voyager&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2) %&gt;%
   addMarkers(lng = uni_longitude, lat = uni_latitude, label = uni_label)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-2b487cb3d30b38ff13c1" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-2b487cb3d30b38ff13c1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[52.08446,53.22225,52.36321,51.91905,52.1696475,51.8192069,52.3348043,51.5624972,52.0024433,52.0845094],[5.17143,6.55749,4.91259,4.52517,4.4780664,5.8623425,4.8735998,5.046225,4.3695136,5.171807],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["UU","RUG","UvA","EUR","Leiden","RU","VU","UvT","TU Delft","UvH"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[52.1326,5.2913],7.2,[]],"limits":{"lat":[51.5624972,53.22225],"lng":[4.3695136,6.55749]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-046c617aa578909eefe1" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-046c617aa578909eefe1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[52.08446,53.22225,52.36321,51.91905,52.1696475,51.8192069,52.3348043,51.5624972,52.0024433,52.0845094],[5.17143,6.55749,4.91259,4.52517,4.4780664,5.8623425,4.8735998,5.046225,4.3695136,5.171807],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["UU","RUG","UvA","EUR","Leiden","RU","VU","UvT","TU Delft","UvH"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[52.1326,5.2913],7.2,[]],"limits":{"lat":[51.5624972,53.22225],"lng":[4.3695136,6.55749]}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 <div id="rmd-source-code">IyBUcnlpbmcgb3V0IGxlYWZsZXQNCmBgYHtyfQ0KI2luc3RhbGwucGFja2FnZXMoImxlYWZsZXQiKQ0KbGlicmFyeShsZWFmbGV0KQ0KDQojcHJvdmlkZXJzDQpgYGANCg0KYGBge3J9DQpsZWFmbGV0KCkgJT4lDQogIGFkZFByb3ZpZGVyVGlsZXMocHJvdmlkZXIgPSAiT3BlblN0cmVldE1hcCIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikNCg0KYGBgDQoNCmBgYHtyfQ0KbGVhZmxldCgpICU+JQ0KICBhZGRQcm92aWRlclRpbGVzKHByb3ZpZGVyID0gIkNhcnRvREIuVm95YWdlciIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikNCmBgYA0KDQpgYGB7cn0NCnVuaV9sb25naXR1ZGUgPC0gYyg1LjE3MTQzMCwgNi41NTc0OTAsIDQuOTEyNTkwLCA0LjUyNTE3MCwgNC40NzgwNjY0LCA1Ljg2MjM0MjUsIDQuODczNTk5OCwgNS4wNDYyMjUsIDQuMzY5NTEzNiwgNS4xNzE4MDcpDQoNCnVuaV9sYXRpdHVkZSA8LSBjKDUyLjA4NDQ2MCwgNTMuMjIyMjUwLCA1Mi4zNjMyMTAsIDUxLjkxOTA1MCwgIDUyLjE2OTY0NzUsIDUxLjgxOTIwNjksIDUyLjMzNDgwNDMsICA1MS41NjI0OTcyLCA1Mi4wMDI0NDMzLCA1Mi4wODQ1MDk0KSAgDQoNCnVuaV9sYWJlbCA8LSBjKCJVVSIsICJSVUciLCAiVXZBIiwgIkVVUiIsICJMZWlkZW4iLCAiUlUiLCAiVlUiLCAiVXZUIiwgIlRVIERlbGZ0IiwgIlV2SCIpDQoNCg0KbGVhZmxldCgpICU+JQ0KICBhZGRQcm92aWRlclRpbGVzKHByb3ZpZGVyID0gIkNhcnRvREIuVm95YWdlciIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikgJT4lDQogIGFkZE1hcmtlcnMobG5nID0gdW5pX2xvbmdpdHVkZSwgbGF0ID0gdW5pX2xhdGl0dWRlLCBsYWJlbCA9IHVuaV9sYWJlbCkNCmBgYA0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg==</div>

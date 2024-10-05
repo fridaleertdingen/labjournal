@@ -71,87 +71,87 @@ step 5: estimate the model, chapter 12 for effects
 # Step 1: Define the data
 Functie werkt niet, waarschijnlijk omdat ik niet de juiste dingen aan elkaar heb kunnen koppelen. Het lukt me tot nu toe niet om terug te vinden waar het precies mis gaat
 ```{r}
-f_pubnets <- function(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
-    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024))) {
+#f_pubnets <- function(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
+#    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024))) {
 
-    df_works <- list_publications %>%
-        bind_rows() %>%
-        distinct(title, .keep_all = TRUE)
+#    df_works <- list_publications %>%
+#        bind_rows() %>%
+#        distinct(title, .keep_all = TRUE)
 
-    df_scholars %>%
-        filter(affil1 == affiliation | affil2 == affiliation) %>%
-        filter(discipline == discip) -> df_sel
+#    df_scholars %>%
+#        filter(affil1 == affiliation | affil2 == affiliation) %>%
+#        filter(discipline == discip) -> df_sel
 
-    networklist <- list()
-    for (wave in 1:length(waves)) {
-        networklist[[wave]] <- matrix(0, nrow = nrow(df_sel), ncol = nrow(df_sel))
-    }
+#    networklist <- list()
+#    for (wave in 1:length(waves)) {
+#        networklist[[wave]] <- matrix(0, nrow = nrow(df_sel), ncol = nrow(df_sel))
+#    }
 
-    publicationlist <- list()
-    for (wave in 1:length(waves)) {
-        publicationlist[[wave]] <- publications %>%
-            filter(gs_id %in% df_sel$gs_id) %>%
-            filter(year %in% waves[[wave]]) %>%
-            select(author) %>%
-            lapply(str_split, pattern = ",")
-    }
+#    publicationlist <- list()
+#    for (wave in 1:length(waves)) {
+#        publicationlist[[wave]] <- publications %>%
+#            filter(gs_id %in% df_sel$gs_id) %>%
+#            filter(year %in% waves[[wave]]) %>%
+#            select(author) %>%
+#            lapply(str_split, pattern = ",")
+#    }
 
-    publicationlist2 <- list()
-    for (wave in 1:length(waves)) {
-        publicationlist2[[wave]] <- publicationlist[[wave]]$author %>%
-            # lowercase
-        lapply(tolower) %>%
-            # Removing diacritics
-        lapply(stri_trans_general, id = "latin-ascii") %>%
-            # only last name
-        lapply(word, start = -1, sep = " ") %>%
-            # only last last name
-        lapply(word, start = -1, sep = "-")
-    }
+#    publicationlist2 <- list()
+#    for (wave in 1:length(waves)) {
+#        publicationlist2[[wave]] <- publicationlist[[wave]]$author %>%
+#            # lowercase
+#        lapply(tolower) %>%
+#            # Removing diacritics
+#        lapply(stri_trans_general, id = "latin-ascii") %>%
+#            # only last name
+#        lapply(word, start = -1, sep = " ") %>%
+#            # only last last name
+#        lapply(word, start = -1, sep = "-")
+#    }
 
-    for (wave in 1:length(waves)) {
-        # let us remove all publications with only one author
-        remove <- which(sapply(publicationlist2[[wave]], FUN = function(x) length(x) == 1) == TRUE)
-        publicationlist2[[wave]] <- publicationlist2[[wave]][-remove]
-    }
+#    for (wave in 1:length(waves)) {
+#        # let us remove all publications with only one author
+#        remove <- which(sapply(publicationlist2[[wave]], FUN = function(x) length(x) == 1) == TRUE)
+#        publicationlist2[[wave]] <- publicationlist2[[wave]][-remove]
+#    }
 
-    for (wave in 1:length(waves)) {
-        pubs <- publicationlist2[[wave]]
-        for (ego in 1:nrow(df_sel)) {
-            # which ego?
-            lastname_ego <- df_sel$lastname[ego]
-            # for all publications
-            for (pub in 1:length(pubs)) {
-                # only continue if ego is author of pub
-                if (lastname_ego %in% pubs[[pub]]) {
-                  aut_pot <- which.max(pubs[[pub]] %in% lastname_ego)
-                  # only continue if ego is first author of pub
-                  if (aut_pot == 1) {
-                    # check all alters/co-authors
-                    for (alter in 1:nrow(df_sel)) {
-                      # which alter
-                      lastname_alter <- df_sel$lastname[alter]
-                      if (lastname_alter %in% pubs[[pub]]) {
-                        networklist[[wave]][ego, alter] <- networklist[[wave]][ego, alter] + 1
-                      }
-                    }
-                  }
-                }
-            }
-        }
-    }
-    return(list(df = df_sel, network = networklist))
-}
+#    for (wave in 1:length(waves)) {
+#        pubs <- publicationlist2[[wave]]
+#        for (ego in 1:nrow(df_sel)) {
+#           # which ego?
+#            lastname_ego <- df_sel$lastname[ego]
+#            # for all publications
+#            for (pub in 1:length(pubs)) {
+#                # only continue if ego is author of pub
+#                if (lastname_ego %in% pubs[[pub]]) {
+#                 aut_pot <- which.max(pubs[[pub]] %in% lastname_ego)
+#                  # only continue if ego is first author of pub
+#                 if (aut_pot == 1) {
+#                    # check all alters/co-authors
+#                   for (alter in 1:nrow(df_sel)) {
+#                      # which alter
+#                      lastname_alter <- df_sel$lastname[alter]
+#                      if (lastname_alter %in% pubs[[pub]]) {
+#                        networklist[[wave]][ego, alter] <- networklist[[wave]][ego, alter] + 1
+#                      }
+#                    }
+#                  }
+#                }
+#            }
+#        }
+#    }
+#    return(list(df = df_sel, network = networklist))
+#}
 ```
 
 
 ```{r}
 #dependent variable
-output <- f_pubnets(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
-    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024)))
+#output <- f_pubnets(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", #affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
+#    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024)))
 
-df_soc <- output[[1]]
-df_network <- output[[2]]
+#df_soc <- output[[1]]
+#df_network <- output[[2]]
 
 ```
 
