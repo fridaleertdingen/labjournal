@@ -27,13 +27,13 @@ navbar:
           text: "Week 5 - trying leaflet"
           href: tryleaflet.html
           text: "Week 5 - RSiena lecture pt 1"
-          href: w5RSiena.html
+          href: w5Rsiena.html
           text: "Week 5 - RSiena lecture pt 2"
-          href: w5RSienaLEC.html
+          href: w5RsienaLEC.html
           text: "Week 5 - Rsiena own data"
-          href: w5RsienaTRY.html
+          href: w5RSienaTRY.html
           
-      
+
           
         
 #      menu:
