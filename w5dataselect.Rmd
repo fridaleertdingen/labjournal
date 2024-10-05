@@ -205,9 +205,6 @@ fcolnet <- function(data = scholars, university = "RU", discipline = "sociology"
 }
 ```
 
-```{r}
-
-```
 
 
 ```{r}
@@ -240,8 +237,11 @@ plot(test_w1,
 df_allunis <- fcolnet(data = scholars, 
                 university = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
                 discipline = c("sociology"), 
-                waves = list(c(2015, 2018), c(2020, 2023)), 
+                waves = list(c(2018, 2019), c(2020, 2021), c(2022, 2023)), 
                 type = c("first"))
+
+
+
 ```
 
 
@@ -283,6 +283,25 @@ plot(allunis_w2,
 
 
 ```
+```{r}
+#wave 3
+allunis_w3 <- igraph::graph_from_adjacency_matrix(
+  df_allunis$nets[3,,], #for this example I take the second wave of data.
+  mode = c("directed"),
+  weighted = NULL,
+  diag = FALSE,
+  add.colnames = NULL,
+  add.rownames = NULL
+)
+
+plot(allunis_w3,
+  vertex.label = NA,
+  vertex.size = 3,
+  edge.width = 0.2,
+  edge.arrow.size =0.2)
+```
+
+
 # webscraping gender
 ```{r}
 df <- df_allunis$data
@@ -358,10 +377,10 @@ gender_scraper.NV <- function(names = "names element", web_page = "https://nvb.m
 }  # end function
 
 # ?mutate() ?case_when
-testing <- gender_scraper.NV(names = df_ego, web_page = "https://nvb.meertens.knaw.nl/naam/is/")
+df_ego <- gender_scraper.NV(names = df_ego, web_page = "https://nvb.meertens.knaw.nl/naam/is/")
 ```
 ```{r}
-check <- testing %>%
+check <- df_ego %>%
     count(perc_female)
 
 plot(check$perc_female, check$n)
@@ -369,6 +388,19 @@ plot(check$perc_female, check$n)
 
 
 
+```{r}
+#in df_allunis zit: data (demographics, scholars, works) en nets
+# uiteindelijk minstens nodig: ego, nets
+
+
+fsave(df_allunis, file = "df_allunis", location = "./data/processed/")
+fsave(df_ego, file = "df_ego", location = "./data/processed/")
+fsave(df_works, file = "df_works", location = "./data/processed/")
+
+write_rds(df_ego, "df_ego.rds")
+write_rds(df_works, "df_works.rds")
+write.csv(df_allunis, "df_allunis.csv")
+```
 
 
 

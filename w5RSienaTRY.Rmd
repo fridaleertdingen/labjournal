@@ -1,0 +1,181 @@
+
+
+```{r loading in data, echo = F, include = F}
+#df_works
+load("~/GitHub/labjournal/data/processed/df_works_20241002.rda")
+df_works <- x
+rm(x)
+#df_eg
+load("~/GitHub/labjournal/data/processed/df_ego_20241002.rda")
+df_ego <- x
+rm(x)
+#df_allunis
+load("~/GitHub/labjournal/data/processed/df_allunis_20241002.rda")
+df_allunis <- x
+rm(x)
+```
+
+```{r}
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, file, "_", datename, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+packages <- c("tidyverse", "scholar", "openalexR", "rvest", "jsonlite")
+fpackage.check(packages)
+
+
+
+
+
+#install.packages("Rsiena")
+
+
+packages = c("RSiena", "tidyverse", "stringdist", "stringi")
+
+fpackage.check(packages)
+```
+step 1: define the data
+step 2: create the effects structure
+step 3: get initial description, look at this file, report something on it (mydata, myeff objects)
+        object options, control variables: isolateNet, inPop, outAct
+step 4: specify the model (back and forth between 2 & 4) 
+step 5: estimate the model, chapter 12 for effects
+
+
+# Step 1: Define the data
+Functie werkt niet, waarschijnlijk omdat ik niet de juiste dingen aan elkaar heb kunnen koppelen. Het lukt me tot nu toe niet om terug te vinden waar het precies mis gaat
+```{r}
+f_pubnets <- function(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
+    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024))) {
+
+    df_works <- list_publications %>%
+        bind_rows() %>%
+        distinct(title, .keep_all = TRUE)
+
+    df_scholars %>%
+        filter(affil1 == affiliation | affil2 == affiliation) %>%
+        filter(discipline == discip) -> df_sel
+
+    networklist <- list()
+    for (wave in 1:length(waves)) {
+        networklist[[wave]] <- matrix(0, nrow = nrow(df_sel), ncol = nrow(df_sel))
+    }
+
+    publicationlist <- list()
+    for (wave in 1:length(waves)) {
+        publicationlist[[wave]] <- publications %>%
+            filter(gs_id %in% df_sel$gs_id) %>%
+            filter(year %in% waves[[wave]]) %>%
+            select(author) %>%
+            lapply(str_split, pattern = ",")
+    }
+
+    publicationlist2 <- list()
+    for (wave in 1:length(waves)) {
+        publicationlist2[[wave]] <- publicationlist[[wave]]$author %>%
+            # lowercase
+        lapply(tolower) %>%
+            # Removing diacritics
+        lapply(stri_trans_general, id = "latin-ascii") %>%
+            # only last name
+        lapply(word, start = -1, sep = " ") %>%
+            # only last last name
+        lapply(word, start = -1, sep = "-")
+    }
+
+    for (wave in 1:length(waves)) {
+        # let us remove all publications with only one author
+        remove <- which(sapply(publicationlist2[[wave]], FUN = function(x) length(x) == 1) == TRUE)
+        publicationlist2[[wave]] <- publicationlist2[[wave]][-remove]
+    }
+
+    for (wave in 1:length(waves)) {
+        pubs <- publicationlist2[[wave]]
+        for (ego in 1:nrow(df_sel)) {
+            # which ego?
+            lastname_ego <- df_sel$lastname[ego]
+            # for all publications
+            for (pub in 1:length(pubs)) {
+                # only continue if ego is author of pub
+                if (lastname_ego %in% pubs[[pub]]) {
+                  aut_pot <- which.max(pubs[[pub]] %in% lastname_ego)
+                  # only continue if ego is first author of pub
+                  if (aut_pot == 1) {
+                    # check all alters/co-authors
+                    for (alter in 1:nrow(df_sel)) {
+                      # which alter
+                      lastname_alter <- df_sel$lastname[alter]
+                      if (lastname_alter %in% pubs[[pub]]) {
+                        networklist[[wave]][ego, alter] <- networklist[[wave]][ego, alter] + 1
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    }
+    return(list(df = df_sel, network = networklist))
+}
+```
+
+
+```{r}
+#dependent variable
+output <- f_pubnets(df_scholars = df_allunis, list_publications = df_works, discip = "sociology", affiliation = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
+    waves = list(wave1 = c(2015, 2016, 2017, 2018, 2019), wave2 = c(2020, 2021, 2022, 2023, 2024)))
+
+df_soc <- output[[1]]
+df_network <- output[[2]]
+
+```
+
+
+
+
+
+
+# Step 2: Create the effects structure
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
