@@ -22,15 +22,15 @@ navbar:
         href: w4.html
       - text: "Page 5 - Week 5"
         menu:
-          text: "Week 5 - dataselection"
+        - text: "Week 5 - dataselection"
           href: w5dataselect.html
-          text: "Week 5 - trying leaflet"
+        - text: "Week 5 - trying leaflet"
           href: tryleaflet.html
-          text: "Week 5 - RSiena lecture pt 1"
+        - text: "Week 5 - RSiena lecture pt 1"
           href: w5Rsiena.html
-          text: "Week 5 - RSiena lecture pt 2"
+        - text: "Week 5 - RSiena lecture pt 2"
           href: w5RsienaLEC.html
-          text: "Week 5 - Rsiena own data"
+        - text: "Week 5 - Rsiena own data"
           href: w5RSienaTRY.html
           
 
