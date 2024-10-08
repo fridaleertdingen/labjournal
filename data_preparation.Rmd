@@ -1,8 +1,13 @@
-# Getting started
+---
+title: "Data preparation"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+# Set up
 ```{r}
 rm(list = ls())
 
-
+#---- Loading packages ----
 fpackage.check <- function(packages) {
     lapply(packages, FUN = function(x) {
         if (!require(x, character.only = TRUE)) {
@@ -12,6 +17,7 @@ fpackage.check <- function(packages) {
     })
 }
 
+#---- Data saving ----
 fsave <- function(x, file = NULL, location = "./data/processed/") {
     ifelse(!dir.exists("data"), dir.create("data"), FALSE)
     ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
@@ -22,109 +28,20 @@ fsave <- function(x, file = NULL, location = "./data/processed/") {
     save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
 }
 
+#---- Loading in data ----
 fload <- function(filename) {
     load(filename)
     get(ls()[ls() != "filename"])
 }
 
+#---- Output ----
 fshowdf <- function(x, ...) {
     knitr::kable(x, digits = 2, "html", ...) %>%
         kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
         kableExtra::scroll_box(width = "100%", height = "300px")
 }
 
-packages <- c("tidyverse", "scholar", "openalexR", "rvest", "jsonlite")
-fpackage.check(packages)
-```
-
-```{r}
-scholars <- fload("./data/scholars_20240924.rda")
-```
-
-```{r}
-# (sociology, RU)
-demographics <- do.call(rbind.data.frame, scholars$demographics)
-demographics <- demographics %>%
-    mutate(Universiteit1.22 = replace(Universiteit1.22, is.na(Universiteit1.22), ""), Universiteit2.22 = replace(Universiteit2.22,
-        is.na(Universiteit2.22), ""), Universiteit1.24 = replace(Universiteit1.24, is.na(Universiteit1.24),
-        ""), Universiteit2.24 = replace(Universiteit2.24, is.na(Universiteit2.24), ""), discipline.22 = replace(discipline.22,
-        is.na(discipline.22), ""), discipline.24 = replace(discipline.24, is.na(discipline.24), ""))
-
-sample <- which((demographics$Universiteit1.22 == "RU" | demographics$Universiteit2.22 == "RU" | demographics$Universiteit1.24 ==
-    "RU" | demographics$Universiteit2.24 == "RU") & (demographics$discipline.22 == "sociology" | demographics$discipline.24 ==
-    "sociology"))
-
-demographics_soc <- demographics[sample, ]
-scholars_sel <- lapply(scholars, "[", sample)
-```
-
-```{r}
-ids <- demographics_soc$au_id
-wave2 <- wave1 <- matrix(0, nrow = length(ids), ncol = length(ids), dimnames = list(ids, ids))
-```
-
-```{r}
-works <- scholars_sel$work
-
-works_id <- unlist(lapply(works, function(l) l$id))
-works_author <- unlist(lapply(works, function(l) l$author), recursive = FALSE)
-works_year <- unlist(lapply(works, function(l) l$publication_year), recursive = FALSE)
-
-df_works <- tibble(works_id, works_author, works_year)
-
-dups <- which(duplicated(works_id))
-# why are there some many papers of Batenburg duplicates
-
-df_works <- df_works[-dups, ]
-df_works_w2 <- df_works[df_works$works_year > 2019, ]
-```
-
-```{r}
-# first to others
-for (i in 1:nrow(df_works_w2)) {
-    ego <- df_works_w2$works_author[i][[1]]$au_id[1]
-    alters <- df_works_w2$works_author[i][[1]]$au_id[-1]
-
-    if (sum(ids %in% ego) > 0 & sum(ids %in% alters) > 0) {
-        wave2[which(ids %in% ego), which(ids %in% alters)] <- 1
-    }
-}
-
-# last to others
-for (i in 1:nrow(df_works_w2)) {
-    ego <- rev(df_works_w2$works_author[i][[1]]$au_id)[1]
-    alters <- rev(df_works_w2$works_author[i][[1]]$au_id)[-1]
-
-    if (sum(ids %in% ego) > 0 & sum(ids %in% alters) > 0) {
-        wave2[which(ids %in% ego), which(ids %in% alters)] <- 1
-    }
-}
-
-# undirected
-for (i in 1:nrow(df_works_w2)) {
-    egos <- df_works_w2$works_author[i][[1]]$au_id
-
-    if (sum(ids %in% egos) > 0) {
-        wave2[which(ids %in% egos), which(ids %in% egos)] <- 1
-    }
-}
-```
-
-About the parameters:
-
-    data: our scholars file
-    university: Character vector with names of universities. We have several universities in the Netherlands. See above for relevant names.
-    discipline: Character vector, either sociology or political science or both.
-    waves: a list of numeric vectors with start and end year of wave.
-    type:
-        "first": directed: first author sending to others
-        "last": directed: last author sending to others
-        "all": undirected: ties between all authors
-
-Output: - a list
-- $nets: array of nomination networks.
-- $data: sample of data (scholars)
-```{r}
+#---- Network data function ----
 fcolnet <- function(data = scholars, university = "RU", discipline = "sociology", waves = list(c(2015,
     2018), c(2019, 2023)), type = c("first")) {
 
@@ -203,129 +120,9 @@ fcolnet <- function(data = scholars, university = "RU", discipline = "sociology"
     output$nets <- nets
     return(output)
 }
-```
 
 
-
-```{r}
-#save the output of your function
-test <- fcolnet(data = scholars, 
-                university = "RU", 
-                discipline = "sociology", 
-                waves = list(c(2015, 2018), c(2019, 2023)), 
-                type = c("first"))
-
-
-
-
-test_w1 <- igraph::graph_from_adjacency_matrix(
-  test$nets[1,,], #for this example I take the first wave of data. (thus I select the array of networks and take the first matrix)
-  mode = c("directed"),
-  weighted = NULL,
-  diag = FALSE,
-  add.colnames = NULL,
-  add.rownames = NULL
-)
-
-plot(test_w1,
-  vertex.label = NA,
-  edge.width = 0.2,
-  edge.arrow.size =0.2)
-```
-# Select sociology departments of Dutch universities: df_allunis
-```{r}
-df_allunis <- fcolnet(data = scholars, 
-                university = c("UU", "RUG", "UvA", "EUR", "Leiden", "RU", "VU", "UvT", "TU Delft", "UvH"),
-                discipline = c("sociology"), 
-                waves = list(c(2018, 2019), c(2020, 2021), c(2022, 2023)), 
-                type = c("first"))
-```
-
-
-```{r}
-#wave 1
-allunis_w1 <- igraph::graph_from_adjacency_matrix(
-  df_allunis$nets[1,,], #the first wave of data. (thus I select the array of networks and take the first matrix)
-  mode = c("directed"),
-  weighted = NULL,
-  diag = FALSE,
-  add.colnames = NULL,
-  add.rownames = NULL
-)
-
-plot(allunis_w1,
-  vertex.label = NA,
-  vertex.size = 3,
-  edge.width = 0.2,
-  edge.arrow.size =0.2)
-```
-
-
-```{r}
-#wave 2
-allunis_w2 <- igraph::graph_from_adjacency_matrix(
-  df_allunis$nets[2,,], #the second wave of data.
-  mode = c("directed"),
-  weighted = NULL,
-  diag = FALSE,
-  add.colnames = NULL,
-  add.rownames = NULL
-)
-
-plot(allunis_w2,
-  vertex.label = NA,
-  vertex.size = 3,
-  edge.width = 0.2,
-  edge.arrow.size =0.2)
-
-
-```
-```{r}
-#wave 3
-allunis_w3 <- igraph::graph_from_adjacency_matrix(
-  df_allunis$nets[3,,], #for this example I take the second wave of data.
-  mode = c("directed"),
-  weighted = NULL,
-  diag = FALSE,
-  add.colnames = NULL,
-  add.rownames = NULL
-)
-
-plot(allunis_w3,
-  vertex.label = NA,
-  vertex.size = 3,
-  edge.width = 0.2,
-  edge.arrow.size =0.2)
-```
-
-
-# webscraping gender
-```{r}
-df <- df_allunis$data
-df_ego <- do.call(rbind.data.frame, df$demographics)
-```
-
-## first names
-```{r}
-x <- data.frame(Naam = df_ego$Naam)
-
-first_name <- sapply(strsplit(x$Naam, " "), `[`, 1)  # This code should work as a way to extract first names from the ego characteristics dataset
-
-
-
-df_names <- data.frame(x, first_name, male = NA, female = NA)  # seem to have worked
-
-head(df_names)
-
-# df_names <- df_names[1:5,] # take first elements to try out
-
-#test
-i <- 1
-df_names$first_name[i]
-```
-
-
-```{r}
+#---- Gender scraper -----
 gender_scraper.NV <- function(names = "names element", web_page = "https://nvb.meertens.knaw.nl/naam/is/") {
 
     names$first_name <- sapply(strsplit(names$Naam, " "), `[`, 1)  # This code should work as a way to extract first names from the ego characteristics dataset
@@ -373,19 +170,138 @@ gender_scraper.NV <- function(names = "names element", web_page = "https://nvb.m
 
 }  # end function
 
-# ?mutate() ?case_when
+
+```
+
+# Libraries
+```{r}
+packages <- c("tidyverse", "scholar", "openalexR", "rvest", "jsonlite")
+fpackage.check(packages)
+```
+
+```{r}
+# Use multiple functions across libraries
+# igraph::triad.census()
+# sna::triad.census()
+```
+
+# Loading data
+```{r}
+scholars <- fload("./data/scholars_20240924.rda")
+```
+
+# Data selection
+## Select sociology departments of Dutch universities: df_allunis
+```{r}
+unidata <- fcolnet(data = scholars, 
+                university = c("UU", "RUG", "UvA", "RU"),
+                discipline = c("sociology"), 
+                waves = list(c(2015, 2019), c(2020, 2024)), 
+                type = c("first"))
+```
+## Creating df ego characteristics
+```{r}
+df_ego <- do.call(rbind.data.frame, unidata$data$demographics)
+```
+## Creating df works characteristics
+```{r}
+df_works <- do.call(rbind.data.frame, unidata$data$works)
+```
+
+# Data preparation
+Adding and manipulating variables
+## First names for Gender Scraper
+```{r}
+x <- data.frame(Naam = df_ego$Naam)
+
+first_name <- sapply(strsplit(x$Naam, " "), `[`, 1)  # This code should work as a way to extract first names from the ego characteristics dataset
+
+
+
+df_names <- data.frame(x, first_name, male = NA, female = NA)  # seem to have worked
+
+head(df_names)
+
+# df_names <- df_names[1:5,] # take first elements to try out
+
+#test
+i <- 1
+df_names$first_name[i]
+```
+## Adding gender to ego characteristics
+```{r}
+# Function at top of document
 df_ego <- gender_scraper.NV(names = df_ego, web_page = "https://nvb.meertens.knaw.nl/naam/is/")
 ```
+## Gender distribution plotcheck
 ```{r}
-check <- df_ego %>%
+gendercheck <- df_ego %>%
     count(perc_female)
 
-plot(check$perc_female, check$n)
+plot(gendercheck$perc_female, gendercheck$n)
+```
+# Network visuals
+## Wave 1: 2015-2019
+```{r}
+#wave 1
+unis_w1 <- igraph::graph_from_adjacency_matrix(
+  unidata$nets[1,,], #the first wave of data. (thus I select the array of networks and take the first matrix)
+  mode = c("directed"),
+  weighted = NULL,
+  diag = FALSE,
+  add.colnames = NULL,
+  add.rownames = NULL
+)
+
+plot(unis_w1,
+  vertex.label = NA,
+  vertex.size = 3,
+  edge.width = 0.2,
+  edge.arrow.size =0.2)
+```
+
+## Wave 2: 2020-2024
+```{r}
+#wave 2
+unis_w2 <- igraph::graph_from_adjacency_matrix(
+  unidata$nets[2,,], #the second wave of data.
+  mode = c("directed"),
+  weighted = NULL,
+  diag = FALSE,
+  add.colnames = NULL,
+  add.rownames = NULL
+)
+
+plot(unis_w2,
+  vertex.label = NA,
+  vertex.size = 3,
+  edge.width = 0.2,
+  edge.arrow.size =0.2)
+```
+# Linking travel distance to universities
+```{r}
+traveltimetbl <- read_csv2("traveltime_ov.csv")
+
+#dplyr::inner_join(df_ego, traveltimetbl, by = "Universiteit.22")
+
+#Ask jochem: how to match traveltimes to people in df_ego? apart voor de 2 waves?
+# dplyr inner_join()? aggregating the traveltime table?
+#dplyr::inner_join(df_ego, traveltimetbl, by = "Universiteit.22")
+
+
+
+
+
 ```
 
 
 
+# Saving the prepared data
+```{r}
+fsave(df_ego, file = "df_ego", location = "data/processed/")
+fsave(df_works, file = "df_works", location = "data/processed/")
+fsave(unidata, file = "unidata", location = "data/processed/")
+#fsave  data incl. travel time
 
-
-
+```
 

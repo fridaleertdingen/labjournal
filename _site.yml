@@ -22,7 +22,7 @@ navbar:
         href: w4.html
       - text: "Page 5 - Week 5"
         menu:
-        - text: "Week 5 - dataselection"
+        - text: "Week 5 - trying data selection"
           href: w5dataselect.html
         - text: "Week 5 - trying leaflet"
           href: tryleaflet.html
@@ -32,7 +32,8 @@ navbar:
           href: w5RsienaLEC.html
         - text: "Week 5 - Rsiena own data"
           href: w5RSienaTRY.html
-          
+    - text: "Data preparation"
+      href: data_preparation.html          
 
           
         
@@ -50,7 +51,7 @@ navbar:
 
   right:
   - icon: fab fa-github
-    href:  fridaleertdingen.github.io/labjournal/ 
+    href: https://fridaleertdingen.github.io/labjournal/ 
 output:
   html_document:
     theme: flatly
