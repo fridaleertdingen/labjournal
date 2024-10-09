@@ -361,7 +361,7 @@ div.tocify {
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Page 5 - Week 5</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="w5dataselect.html">Week 5 - dataselection</a>
+          <a href="w5dataselect.html">Week 5 - trying data selection</a>
         </li>
         <li>
           <a href="tryleaflet.html">Week 5 - trying leaflet</a>
@@ -379,10 +379,13 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li>
+  <a href="data_preparation.html">Data preparation</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="fridaleertdingen.github.io/labjournal/">
+  <a href="https://fridaleertdingen.github.io/labjournal/">
     <span class="fab fa-github"></span>
      
   </a>
@@ -439,14 +442,8 @@ library(data.table)  # mainly for faster data handling</code></pre>
 require(xml2)</code></pre>
 <pre><code>## Loading required package: xml2</code></pre>
 <pre class="r"><code>#install.packages(&quot;rvest&quot;)
-require(rvest)</code></pre>
-<pre><code>## Loading required package: rvest</code></pre>
-<pre><code>## 
-## Attaching package: &#39;rvest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     guess_encoding</code></pre>
-<pre class="r"><code>#install.packages(&quot;devtools&quot;)
+require(rvest)
+#install.packages(&quot;devtools&quot;)
 require(devtools)</code></pre>
 <pre><code>## Loading required package: devtools</code></pre>
 <pre><code>## Loading required package: usethis</code></pre>
@@ -456,9 +453,9 @@ devtools::install_github(&quot;jkeirstead/scholar&quot;)</code></pre>
 <pre><code>## Using GitHub PAT from the git credential store.</code></pre>
 <pre><code>## Skipping install of &#39;scholar&#39; from a github remote, the SHA1 (2d38dcc3) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
-<pre class="r"><code>require(scholar)</code></pre>
-<pre><code>## Loading required package: scholar</code></pre>
-<pre class="r"><code># define workdirectory, note the double *backslashes* if you&#39;re on windows setwd(&#39;/yourpathhere)&#39;
+<pre class="r"><code>require(scholar)
+
+# define workdirectory, note the double *backslashes* if you&#39;re on windows setwd(&#39;/yourpathhere)&#39;
 setwd(&#39;C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social networks&#39;)</code></pre>
 </div>
 <div id="finding-a-data-source" class="section level2" number="1.2">
@@ -473,10 +470,10 @@ source</h2>
 soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001fe25efedd0&gt;
+## &lt;pointer: 0x00000178885c5570&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001fe23ed05a0&gt;</code></pre>
+## &lt;pointer: 0x000001785c8feb50&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(soc_staff)</code></pre>
@@ -608,10 +605,10 @@ soc_staff</code></pre>
 <pre class="r"><code>soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001fe2e0f3b50&gt;
+## &lt;pointer: 0x00000178799f8f50&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001fe1dc7c930&gt;</code></pre>
+## &lt;pointer: 0x000001785c8ff440&gt;</code></pre>
 <pre class="r"><code>#trying to get a table from the website
 soc_staff &lt;- soc_staff %&gt;%
     rvest::html_elements(&quot;body&quot;) %&gt;%
@@ -669,10 +666,10 @@ of Leiden Political science</h2>
 <pre class="r"><code>leidse_staff &lt;- read_html(&quot;https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1&quot;)
 head(leidse_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001fe307cc470&gt;
+## &lt;pointer: 0x00000178781dcaf0&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001fe23ecd940&gt;</code></pre>
+## &lt;pointer: 0x000001785c8fe470&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(leidse_staff)</code></pre>
@@ -791,20 +788,20 @@ leidse_staff</code></pre>
 ## [106] &quot;\n\n\n\n\n                    \n        Rick van Well\n            Lecturer\n    \n&quot;                                                                     
 ## [107] &quot;\n\n\n\n\n                    \n        Daan van den Wollenberg\n            PhD candidate / self funded\n    \n&quot;                                        
 ## [108] &quot;\n\n\n\n\n                    \n        Elina Zorina\n            PhD candidate\n    \n&quot;                                                                 
-## [109] &quot;\n\n\n\n\n                    \n        Agha Bayramov\n            Lecturer\n    \n&quot;                                                                     
-## [110] &quot;\n\n\n\n\n                    \n        Jelena Belic\n            Lecturer\n    \n&quot;                                                                      
-## [111] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
-## [112] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
-## [113] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
-## [114] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
-## [115] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
-## [116] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
-## [117] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
-## [118] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
-## [119] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
-## [120] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
-## [121] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
-## [122] &quot;\n\n\n\n\n                    \n        José Lourenço\n            Lecturer\n    \n&quot;                                                                     
+## [109] &quot;\n\n\n\n\n                    \n        José Baptista Alves Lourenço\n            Lecturer\n    \n&quot;                                                      
+## [110] &quot;\n\n\n\n\n                    \n        Agha Bayramov\n            Lecturer\n    \n&quot;                                                                     
+## [111] &quot;\n\n\n\n\n                    \n        Jelena Belic\n            Lecturer\n    \n&quot;                                                                      
+## [112] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
+## [113] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
+## [114] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
+## [115] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
+## [116] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
+## [117] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
+## [118] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
+## [119] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [120] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
+## [121] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
+## [122] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
 ## [123] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
 ## [124] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
 ## [125] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
@@ -908,16 +905,15 @@ library(stringr)</code></pre>
 <div id="openalex" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> OpenAlex</h2>
 <pre class="r"><code>#install.packages(&quot;openalexR&quot;)
-library(openalexR)</code></pre>
-<pre><code>## Thank you for using openalexR!
-## To acknowledge our work, please cite the package by calling `citation(&quot;openalexR&quot;)`.
-## To suppress this message, add `openalexR.message = suppressed` to your .Renviron file.</code></pre>
-<pre class="r"><code>df &lt;- oa_fetch(entity= &quot;author&quot;, search = &quot;Jochem+Tolsma&quot;, mailto = &quot;fridakooptdingen@gmail.com&quot;)
+library(openalexR)
+
+
+df &lt;- oa_fetch(entity= &quot;author&quot;, search = &quot;Jochem+Tolsma&quot;, mailto = &quot;fridakooptdingen@gmail.com&quot;)
 df</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8974. &lt;chr&gt; http…          85           2034
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8949. &lt;chr&gt; http…          85           2034
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
@@ -952,7 +948,7 @@ df_institution</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8974. &lt;chr&gt; http…          85           2034
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8949. &lt;chr&gt; http…          85           2034
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,

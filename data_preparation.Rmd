@@ -278,6 +278,7 @@ plot(unis_w2,
   edge.width = 0.2,
   edge.arrow.size =0.2)
 ```
+
 # Linking travel distance to universities
 ```{r}
 traveltimetbl <- read_csv2("traveltime_ov.csv")
