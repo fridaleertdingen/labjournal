@@ -34,7 +34,8 @@ navbar:
           href: w5and6RSienaTRY.html
     - text: "Data preparation"
       href: data_preparation.html
-        - text: "Matching/looping traveltimes"
+      menu:
+        - text: "Matching and looping traveltimes"
           href: w6traveltimes.html
     - text: "Final journal"
       href: 

@@ -12,7 +12,7 @@
 <meta name="author" content="by: Frida van Teijlingen" />
 
 
-<title>Rsiena tutorial with my own data</title>
+<title>Week 7 lecture</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -373,14 +373,26 @@ div.tocify {
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
         <li>
-          <a href="w5RSienaTRY.html">Week 5 - Rsiena own data</a>
+          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
         </li>
       </ul>
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data preparation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="data_preparation.html">Data preparation</a>
+  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -409,7 +421,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Rsiena tutorial with my own data</h1>
+<h1 class="title toc-ignore">Week 7 lecture</h1>
 <h4 class="author">by: Frida van Teijlingen</h4>
 
 </div>
@@ -419,6 +431,7 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Set up</h1>
 <pre class="r"><code>rm(list = ls())
 
+#---- Loading packages ----
 fpackage.check &lt;- function(packages) {
     lapply(packages, FUN = function(x) {
         if (!require(x, character.only = TRUE)) {
@@ -428,6 +441,7 @@ fpackage.check &lt;- function(packages) {
     })
 }
 
+#---- Data saving ----
 fsave &lt;- function(x, file = NULL, location = &quot;./data/processed/&quot;) {
     ifelse(!dir.exists(&quot;data&quot;), dir.create(&quot;data&quot;), FALSE)
     ifelse(!dir.exists(&quot;data/processed&quot;), dir.create(&quot;data/processed&quot;), FALSE)
@@ -438,66 +452,37 @@ fsave &lt;- function(x, file = NULL, location = &quot;./data/processed/&quot;) {
     save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
 }
 
+#---- Loading in data ----
 fload &lt;- function(filename) {
     load(filename)
     get(ls()[ls() != &quot;filename&quot;])
 }
 
+#---- Output ----
 fshowdf &lt;- function(x, ...) {
     knitr::kable(x, digits = 2, &quot;html&quot;, ...) %&gt;%
         kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;)) %&gt;%
         kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)
-}
-
-
-
-
-packages = c(&quot;RSiena&quot;, &quot;tidyverse&quot;, &quot;stringdist&quot;, &quot;stringi&quot;)
-
-fpackage.check(packages)</code></pre>
-<pre><code>## [[1]]
-## NULL
-## 
-## [[2]]
-## NULL
-## 
-## [[3]]
-## NULL
-## 
-## [[4]]
-## NULL</code></pre>
+}</code></pre>
 </div>
-<div id="loading-in-data" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Loading in data</h1>
-<p>step 1: define the data step 2: create the effects structure step 3:
-get initial description, look at this file, report something on it
-(mydata, myeff objects) object options, control variables: isolateNet,
-inPop, outAct step 4: specify the model (back and forth between 2 &amp;
-4) step 5: estimate the model, chapter 12 for effects</p>
-</div>
-<div id="step-1-define-the-data" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Step 1: Define the
-data</h1>
-<p>We need to define dependent variables on an ego level or network
-level. We also need to define independent variables, these can be time
-constant and time varying.</p>
-<pre class="r"><code>df_uni &lt;- unidata$data
-df_network &lt;- unidata$nets
+<div id="libraries" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Libraries</h1>
+<pre class="r"><code>#packages &lt;- c(&quot;&quot;)
+#fpackage.check(packages)</code></pre>
+<p>#Data</p>
+<pre class="r"><code>#df_ego
+#df_ego &lt;- fload(&quot;./data/processed/df_ego_20241009.rda&quot;)
 
-df_demo &lt;- do.call(rbind.data.frame, df_uni$demographics)</code></pre>
-<pre class="r"><code>length(df_network)</code></pre>
-<pre><code>## [1] 109512</code></pre>
-<pre class="r"><code>dim(unidata$nets)#[1]      #1= eerste dimensie, 2=kolom, 3=rij</code></pre>
-<pre><code>## [1]   2 234 234</code></pre>
-<pre class="r"><code>#2 waves, dus 2 adjacency matrices van elk 234*234</code></pre>
-</div>
-<div id="step-2-create-the-effects-structure" class="section level1"
-number="4">
-<h1><span class="header-section-number">4</span> Step 2: Create the
-effects structure</h1>
+#df_works
+#df_works &lt;- fload(&quot;data/processed/df_works_20241009.rda&quot;)
+
+#df_allunis
+#unidata &lt;- fload(&quot;data/processed/unidata_20241007.rda&quot;)
+
+#travelt_matrix &lt;- fload(&quot;data/processed/travelt_matrix20241009&quot;)</code></pre>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJzaWVuYSB0dXRvcmlhbCB3aXRoIG15IG93biBkYXRhIg0KYXV0aG9yOiAiYnk6IEZyaWRhIHZhbiBUZWlqbGluZ2VuIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KLS0tDQojIFNldCB1cA0KYGBge3J9DQpybShsaXN0ID0gbHMoKSkNCg0KZnBhY2thZ2UuY2hlY2sgPC0gZnVuY3Rpb24ocGFja2FnZXMpIHsNCiAgICBsYXBwbHkocGFja2FnZXMsIEZVTiA9IGZ1bmN0aW9uKHgpIHsNCiAgICAgICAgaWYgKCFyZXF1aXJlKHgsIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSkpIHsNCiAgICAgICAgICAgIGluc3RhbGwucGFja2FnZXMoeCwgZGVwZW5kZW5jaWVzID0gVFJVRSkNCiAgICAgICAgICAgIGxpYnJhcnkoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKQ0KICAgICAgICB9DQogICAgfSkNCn0NCg0KZnNhdmUgPC0gZnVuY3Rpb24oeCwgZmlsZSA9IE5VTEwsIGxvY2F0aW9uID0gIi4vZGF0YS9wcm9jZXNzZWQvIikgew0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YSIpLCBkaXIuY3JlYXRlKCJkYXRhIiksIEZBTFNFKQ0KICAgIGlmZWxzZSghZGlyLmV4aXN0cygiZGF0YS9wcm9jZXNzZWQiKSwgZGlyLmNyZWF0ZSgiZGF0YS9wcm9jZXNzZWQiKSwgRkFMU0UpDQogICAgaWYgKGlzLm51bGwoZmlsZSkpDQogICAgICAgIGZpbGUgPSBkZXBhcnNlKHN1YnN0aXR1dGUoeCkpDQogICAgZGF0ZW5hbWUgPC0gc3Vic3RyKGdzdWIoIls6LV0iLCAiIiwgU3lzLnRpbWUoKSksIDEsIDgpDQogICAgdG90YWxuYW1lIDwtIHBhc3RlKGxvY2F0aW9uLCBmaWxlLCAiXyIsIGRhdGVuYW1lLCAiLnJkYSIsIHNlcCA9ICIiKQ0KICAgIHNhdmUoeCwgZmlsZSA9IHRvdGFsbmFtZSkgICNuZWVkIHRvIGZpeCBpZiBmaWxlIGlzIHJlbG9hZGVkIGFzIGlucHV0IG5hbWUsIG5vdCBhcyB4LiANCn0NCg0KZmxvYWQgPC0gZnVuY3Rpb24oZmlsZW5hbWUpIHsNCiAgICBsb2FkKGZpbGVuYW1lKQ0KICAgIGdldChscygpW2xzKCkgIT0gImZpbGVuYW1lIl0pDQp9DQoNCmZzaG93ZGYgPC0gZnVuY3Rpb24oeCwgLi4uKSB7DQogICAga25pdHI6OmthYmxlKHgsIGRpZ2l0cyA9IDIsICJodG1sIiwgLi4uKSAlPiUNCiAgICAgICAga2FibGVFeHRyYTo6a2FibGVfc3R5bGluZyhib290c3RyYXBfb3B0aW9ucyA9IGMoInN0cmlwZWQiLCAiaG92ZXIiKSkgJT4lDQogICAgICAgIGthYmxlRXh0cmE6OnNjcm9sbF9ib3god2lkdGggPSAiMTAwJSIsIGhlaWdodCA9ICIzMDBweCIpDQp9DQoNCg0KDQoNCnBhY2thZ2VzID0gYygiUlNpZW5hIiwgInRpZHl2ZXJzZSIsICJzdHJpbmdkaXN0IiwgInN0cmluZ2kiKQ0KDQpmcGFja2FnZS5jaGVjayhwYWNrYWdlcykNCmBgYA0KDQojIExvYWRpbmcgaW4gZGF0YQ0KYGBge3IgbG9hZGluZyBpbiBkYXRhLCBlY2hvID0gRiwgaW5jbHVkZSA9IEZ9DQojZGZfd29ya3MNCmRmX3dvcmtzIDwtIGZsb2FkKCJkYXRhL3Byb2Nlc3NlZC9kZl93b3Jrc18yMDI0MTAwNy5yZGEiKQ0KDQojZGZfZWcNCmRmX2VnbyA8LSBmbG9hZCgiZGF0YS9wcm9jZXNzZWQvZGZfZWdvXzIwMjQxMDA3LnJkYSIpDQoNCiNkZl9hbGx1bmlzDQp1bmlkYXRhIDwtIGZsb2FkKCJkYXRhL3Byb2Nlc3NlZC91bmlkYXRhXzIwMjQxMDA3LnJkYSIpDQoNCmBgYA0KDQoNCg0Kc3RlcCAxOiBkZWZpbmUgdGhlIGRhdGENCnN0ZXAgMjogY3JlYXRlIHRoZSBlZmZlY3RzIHN0cnVjdHVyZQ0Kc3RlcCAzOiBnZXQgaW5pdGlhbCBkZXNjcmlwdGlvbiwgbG9vayBhdCB0aGlzIGZpbGUsIHJlcG9ydCBzb21ldGhpbmcgb24gaXQgKG15ZGF0YSwgbXllZmYgb2JqZWN0cykNCiAgICAgICAgb2JqZWN0IG9wdGlvbnMsIGNvbnRyb2wgdmFyaWFibGVzOiBpc29sYXRlTmV0LCBpblBvcCwgb3V0QWN0DQpzdGVwIDQ6IHNwZWNpZnkgdGhlIG1vZGVsIChiYWNrIGFuZCBmb3J0aCBiZXR3ZWVuIDIgJiA0KSANCnN0ZXAgNTogZXN0aW1hdGUgdGhlIG1vZGVsLCBjaGFwdGVyIDEyIGZvciBlZmZlY3RzDQoNCg0KIyBTdGVwIDE6IERlZmluZSB0aGUgZGF0YQ0KV2UgbmVlZCB0byBkZWZpbmUgZGVwZW5kZW50IHZhcmlhYmxlcyBvbiBhbiBlZ28gbGV2ZWwgb3IgbmV0d29yayBsZXZlbC4gV2UgYWxzbyBuZWVkIHRvIGRlZmluZSBpbmRlcGVuZGVudCB2YXJpYWJsZXMsIHRoZXNlIGNhbiBiZSB0aW1lIGNvbnN0YW50IGFuZCB0aW1lIHZhcnlpbmcuDQpgYGB7cn0NCmRmX3VuaSA8LSB1bmlkYXRhJGRhdGENCmRmX25ldHdvcmsgPC0gdW5pZGF0YSRuZXRzDQoNCmRmX2RlbW8gPC0gZG8uY2FsbChyYmluZC5kYXRhLmZyYW1lLCBkZl91bmkkZGVtb2dyYXBoaWNzKQ0KDQpgYGANCg0KDQpgYGB7cn0NCmxlbmd0aChkZl9uZXR3b3JrKQ0KZGltKHVuaWRhdGEkbmV0cykjWzFdICAgICAgIzE9IGVlcnN0ZSBkaW1lbnNpZSwgMj1rb2xvbSwgMz1yaWoNCiMyIHdhdmVzLCBkdXMgMiBhZGphY2VuY3kgbWF0cmljZXMgdmFuIGVsayAyMzQqMjM0DQpgYGANCg0KDQoNCg0KDQoNCiMgU3RlcCAyOiBDcmVhdGUgdGhlIGVmZmVjdHMgc3RydWN0dXJlDQpgYGB7cn0NCg0KYGBgDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgNyBsZWN0dXJlIg0KYXV0aG9yOiAiYnk6IEZyaWRhIHZhbiBUZWlqbGluZ2VuIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KLS0tDQojIFNldCB1cA0KYGBge3J9DQpybShsaXN0ID0gbHMoKSkNCg0KIy0tLS0gTG9hZGluZyBwYWNrYWdlcyAtLS0tDQpmcGFja2FnZS5jaGVjayA8LSBmdW5jdGlvbihwYWNrYWdlcykgew0KICAgIGxhcHBseShwYWNrYWdlcywgRlVOID0gZnVuY3Rpb24oeCkgew0KICAgICAgICBpZiAoIXJlcXVpcmUoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKSkgew0KICAgICAgICAgICAgaW5zdGFsbC5wYWNrYWdlcyh4LCBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICAgICAgICAgICAgbGlicmFyeSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQogICAgICAgIH0NCiAgICB9KQ0KfQ0KDQojLS0tLSBEYXRhIHNhdmluZyAtLS0tDQpmc2F2ZSA8LSBmdW5jdGlvbih4LCBmaWxlID0gTlVMTCwgbG9jYXRpb24gPSAiLi9kYXRhL3Byb2Nlc3NlZC8iKSB7DQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhIiksIGRpci5jcmVhdGUoImRhdGEiKSwgRkFMU0UpDQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhL3Byb2Nlc3NlZCIpLCBkaXIuY3JlYXRlKCJkYXRhL3Byb2Nlc3NlZCIpLCBGQUxTRSkNCiAgICBpZiAoaXMubnVsbChmaWxlKSkNCiAgICAgICAgZmlsZSA9IGRlcGFyc2Uoc3Vic3RpdHV0ZSh4KSkNCiAgICBkYXRlbmFtZSA8LSBzdWJzdHIoZ3N1YigiWzotXSIsICIiLCBTeXMudGltZSgpKSwgMSwgOCkNCiAgICB0b3RhbG5hbWUgPC0gcGFzdGUobG9jYXRpb24sIGZpbGUsICJfIiwgZGF0ZW5hbWUsICIucmRhIiwgc2VwID0gIiIpDQogICAgc2F2ZSh4LCBmaWxlID0gdG90YWxuYW1lKSAgI25lZWQgdG8gZml4IGlmIGZpbGUgaXMgcmVsb2FkZWQgYXMgaW5wdXQgbmFtZSwgbm90IGFzIHguIA0KfQ0KDQojLS0tLSBMb2FkaW5nIGluIGRhdGEgLS0tLQ0KZmxvYWQgPC0gZnVuY3Rpb24oZmlsZW5hbWUpIHsNCiAgICBsb2FkKGZpbGVuYW1lKQ0KICAgIGdldChscygpW2xzKCkgIT0gImZpbGVuYW1lIl0pDQp9DQoNCiMtLS0tIE91dHB1dCAtLS0tDQpmc2hvd2RmIDwtIGZ1bmN0aW9uKHgsIC4uLikgew0KICAgIGtuaXRyOjprYWJsZSh4LCBkaWdpdHMgPSAyLCAiaHRtbCIsIC4uLikgJT4lDQogICAgICAgIGthYmxlRXh0cmE6OmthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSBjKCJzdHJpcGVkIiwgImhvdmVyIikpICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjpzY3JvbGxfYm94KHdpZHRoID0gIjEwMCUiLCBoZWlnaHQgPSAiMzAwcHgiKQ0KfQ0KDQpgYGANCg0KIyBMaWJyYXJpZXMNCmBgYHtyfQ0KI3BhY2thZ2VzIDwtIGMoIiIpDQojZnBhY2thZ2UuY2hlY2socGFja2FnZXMpDQpgYGANCg0KI0RhdGENCmBgYHtyfQ0KI2RmX2Vnbw0KI2RmX2VnbyA8LSBmbG9hZCgiLi9kYXRhL3Byb2Nlc3NlZC9kZl9lZ29fMjAyNDEwMDkucmRhIikNCg0KI2RmX3dvcmtzDQojZGZfd29ya3MgPC0gZmxvYWQoImRhdGEvcHJvY2Vzc2VkL2RmX3dvcmtzXzIwMjQxMDA5LnJkYSIpDQoNCiNkZl9hbGx1bmlzDQojdW5pZGF0YSA8LSBmbG9hZCgiZGF0YS9wcm9jZXNzZWQvdW5pZGF0YV8yMDI0MTAwNy5yZGEiKQ0KDQojdHJhdmVsdF9tYXRyaXggPC0gZmxvYWQoImRhdGEvcHJvY2Vzc2VkL3RyYXZlbHRfbWF0cml4MjAyNDEwMDkiKQ0KYGBgDQoNCg==</div>
 
 
 </div>
@@ -535,7 +520,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("w5RSienaTRY.Rmd");
+  window.initializeSourceEmbed("w7.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

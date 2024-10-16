@@ -54,13 +54,11 @@ fpackage.check(packages)
 ```{r}
 traveltimetbl <- read_csv2("traveltime_ov.csv")
 
+#df_ego
 df_ego <- fload("./data/processed/df_ego_20241009.rda")
 
 #df_works
-df_works <- fload("data/processed/df_works_20241007.rda")
-
-#df_eg
-df_ego <- fload("data/processed/df_ego_20241007.rda")
+df_works <- fload("data/processed/df_works_20241009.rda")
 
 #df_allunis
 unidata <- fload("data/processed/unidata_20241007.rda")

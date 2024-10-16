@@ -373,14 +373,26 @@ div.tocify {
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
         <li>
-          <a href="w5RSienaTRY.html">Week 5 - Rsiena own data</a>
+          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
         </li>
       </ul>
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data preparation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="data_preparation.html">Data preparation</a>
+  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -470,10 +482,10 @@ source</h2>
 soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001bd640c5df0&gt;
+## &lt;pointer: 0x000002aec8ec5df0&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001bd380fe9f0&gt;</code></pre>
+## &lt;pointer: 0x000002ae9c9ff5a0&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(soc_staff)</code></pre>
@@ -605,10 +617,10 @@ soc_staff</code></pre>
 <pre class="r"><code>soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001bd54af8750&gt;
+## &lt;pointer: 0x000002aeba1f84d0&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001bd380ff390&gt;</code></pre>
+## &lt;pointer: 0x000002ae9c9ff180&gt;</code></pre>
 <pre class="r"><code>#trying to get a table from the website
 soc_staff &lt;- soc_staff %&gt;%
     rvest::html_elements(&quot;body&quot;) %&gt;%
@@ -666,10 +678,10 @@ of Leiden Political science</h2>
 <pre class="r"><code>leidse_staff &lt;- read_html(&quot;https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1&quot;)
 head(leidse_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001bd53adc270&gt;
+## &lt;pointer: 0x000002aeabedc2f0&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001bd380feec0&gt;</code></pre>
+## &lt;pointer: 0x000002ae9cdfed60&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(leidse_staff)</code></pre>
@@ -772,7 +784,7 @@ leidse_staff</code></pre>
 ##  [90] &quot;\n\n\n\n\n                    \n        Yuan Yi Zhu\n            Assistant professor\n    \n&quot;                                                            
 ##  [91] &quot;\n\n\n\n\n                    \n        Frank de Zwart\n            Guest\n    \n&quot;                                                                       
 ##  [92] &quot;\n\n\n\n\n                    \n        Alyssa Akkerman\n            PhD candidate\n    \n&quot;                                                              
-##  [93] &quot;\n\n\n\n\n                    \n        Alessia Aspide\n            PhD candidate\n    \n&quot;                                                               
+##  [93] &quot;\n\n\n\n\n                    \n        Alessia Aspide\n            Guest\n    \n&quot;                                                                       
 ##  [94] &quot;\n\n\n\n\n                    \n        Cyan Bae\n            PhD candidate\n    \n&quot;                                                                     
 ##  [95] &quot;\n\n\n\n\n                    \n        Kathleen Brown\n            PhD candidate\n    \n&quot;                                                               
 ##  [96] &quot;\n\n\n\n\n                    \n        Mateo Cohen\n            External PhD candidate\n    \n&quot;                                                         
@@ -794,95 +806,97 @@ leidse_staff</code></pre>
 ## [112] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
 ## [113] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
 ## [114] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
-## [115] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
-## [116] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
-## [117] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
-## [118] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
-## [119] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
-## [120] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
-## [121] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
-## [122] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
-## [123] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
-## [124] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
-## [125] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
-## [126] &quot;\n\n\n\n\n                    \n        Alexandros Ntaflos\n            Lecturer\n    \n&quot;                                                                
-## [127] &quot;\n\n\n\n\n                    \n        Joyce Outshoorn\n            Emeritus professor vrouwenstudies\n    \n&quot;                                          
-## [128] &quot;\n\n\n\n\n                    \n        Siebe Overdijk\n            Lecturer\n    \n&quot;                                                                    
-## [129] &quot;\n\n\n\n\n                    \n        Jimena Pacheco Miranda\n            Lecturer\n    \n&quot;                                                            
-## [130] &quot;\n\n\n\n\n                    \n        Julia Puente Duyn\n            Lecturer\n    \n&quot;                                                                 
-## [131] &quot;\n\n\n\n\n                    \n        Ellen van Reuler\n            Lecturer\n    \n&quot;                                                                  
-## [132] &quot;\n\n\n\n\n                    \n        Thomas Scarff\n            Lecturer\n    \n&quot;                                                                     
-## [133] &quot;\n\n\n\n\n                    \n        Radostina Sharenkova-Toshkova\n            Guest\n    \n&quot;                                                        
-## [134] &quot;\n\n\n\n\n\n                    \n        Justin Spruit\n            Lecturer\n    \n&quot;                                                                   
-## [135] &quot;\n\n\n\n\n                    \n        Vishwesh Sundar\n            Lecturer\n    \n&quot;                                                                   
-## [136] &quot;\n\n\n\n\n                    \n        Eldad Vainstoc\n            Lecturer\n    \n&quot;                                                                    
-## [137] &quot;\n\n\n\n\n                    \n        Harmen van der Veer\n            Lecturer\n    \n&quot;                                                               
-## [138] &quot;\n\n\n\n\n                    \n        Amy Verdun\n            Guest professor\n    \n&quot;                                                                 
-## [139] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
-## [140] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
-## [141] &quot;\n\n\n\n\n                    \n        Carina van de Wetering\n            Lecturer\n    \n&quot;                                                            
-## [142] &quot;\n\n\n\n\n\n                    \n        Gul-i-Hina van der Zwan\n            Postdoc / guest\n    \n&quot;                                                  
-## [143] &quot;\n\n\n\n\n                    \n        Wencke Appelman\n            Study adviser\n    \n&quot;                                                              
-## [144] &quot;\n\n\n\n\n                    \n        Ester Blom\n            Study Adviser\n    \n&quot;                                                                   
-## [145] &quot;\n\n\n\n\n                    \n        Anna van Dijk\n            Management/office-assistent\n    \n&quot;                                                  
-## [146] &quot;\n\n\n\n\n                    \n        Nathalie van Dooren\n            Coordinator Marketing &amp; Student Recruitment\n    \n&quot;                            
-## [147] &quot;\n\n\n\n\n                    \n        Desiree van Drongelen\n            Staff Member Studentregistrations\n    \n&quot;                                    
-## [148] &quot;\n\n\n\n\n                    \n        Nynke Heegstra\n            Study Advisor\n    \n&quot;                                                               
-## [149] &quot;\n\n\n\n\n                    \n        Ingrid van Heeringen-Göbbels\n            Institute manager\n    \n&quot;                                             
-## [150] &quot;\n\n\n\n\n                    \n        Katie Hudson\n            Data Steward\n    \n&quot;                                                                  
-## [151] &quot;\n\n\n\n\n                    \n        Lianne Janssen\n            Policy Officer Education and Quality Assurance\n    \n&quot;                              
-## [152] &quot;\n\n\n\n\n                    \n        Eline Joor\n            Internationalisation Officer\n    \n&quot;                                                    
-## [153] &quot;\n\n\n\n\n                    \n        Ian Lau\n            Study adviser\n    \n&quot;                                                                      
-## [154] &quot;\n\n\n\n\n                    \n        Daniëlle Lovink\n            Study Adviser\n    \n&quot;                                                              
-## [155] &quot;\n\n\n\n\n                    \n        Carien Nelissen\n            Education manager\n    \n&quot;                                                          
-## [156] &quot;\n\n\n\n\n                    \n        Caroline Remmerswaal\n            Secretary board of examiners\n    \n&quot;                                          
-## [157] &quot;\n\n\n\n\n                    \n        Marjan Rijnja\n            Teaching Coordinator\n    \n&quot;                                                         
-## [158] &quot;\n\n\n\n\n                    \n        Elka Smith\n            Research Project Manager\n    \n&quot;                                                        
-## [159] &quot;\n\n\n\n\n                    \n        Judy Spruit\n            Management/office-assistent\n    \n&quot;                                                    
-## [160] &quot;\n\n\n\n\n                    \n        Tessa Thomas\n            Management assistant\n    \n&quot;                                                          
-## [161] &quot;\n\n\n\n\n                    \n        Debbie Tromper\n            Management assistant\n    \n&quot;                                                        
-## [162] &quot;\n\n\n\n\n                    \n        Gerard van der Veer\n            Secretary board of examiners\n    \n&quot;                                           
-## [163] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
-## [164] &quot;\n\n\n\n\n                    \n        Jeanne Viet\n            Communication staff member\n    \n&quot;                                                     
-## [165] &quot;\n\n\n\n\n                    \n        Marieke de Vries\n            Student member institute board\n    \n&quot;                                            
-## [166] &quot;\n\n\n\n\n                    \n        Denise Zeeuw-van Veen\n            Management/office assistant\n    \n&quot;                                          
-## [167] &quot;Bachelor&#39;s programmes&quot;                                                                                                                                   
-## [168] &quot;Master&#39;s programmes&quot;                                                                                                                                     
-## [169] &quot;PhD programmes&quot;                                                                                                                                          
-## [170] &quot;Education for Professionals&quot;                                                                                                                             
-## [171] &quot;Summer Schools&quot;                                                                                                                                          
-## [172] &quot;Other modes of study&quot;                                                                                                                                    
-## [173] &quot;Bachelor&#39;s Open Days&quot;                                                                                                                                    
-## [174] &quot;Master&#39;s Open Days&quot;                                                                                                                                      
-## [175] &quot;Admission &amp; Application&quot;                                                                                                                                 
-## [176] &quot;Archaeology&quot;                                                                                                                                             
-## [177] &quot;Governance and Global Affairs&quot;                                                                                                                           
-## [178] &quot;Humanities&quot;                                                                                                                                              
-## [179] &quot;Law&quot;                                                                                                                                                     
-## [180] &quot;Medicine/LUMC&quot;                                                                                                                                           
-## [181] &quot;Science&quot;                                                                                                                                                 
-## [182] &quot;Social and Behavioural Sciences&quot;                                                                                                                         
-## [183] &quot;African Studies Centre Leiden&quot;                                                                                                                           
-## [184] &quot;Honours Academy&quot;                                                                                                                                         
-## [185] &quot;ICLON (Graduate School of Teaching)&quot;                                                                                                                     
-## [186] &quot;Working at Leiden University&quot;                                                                                                                            
-## [187] &quot;Support Leiden University&quot;                                                                                                                               
-## [188] &quot;Alumni&quot;                                                                                                                                                  
-## [189] &quot;Impact&quot;                                                                                                                                                  
-## [190] &quot;Leiden-Delft-Erasmus Universities&quot;                                                                                                                       
-## [191] &quot;Locations&quot;                                                                                                                                               
-## [192] &quot;Disclaimer&quot;                                                                                                                                              
-## [193] &quot;Cookies&quot;                                                                                                                                                 
-## [194] &quot;Privacy&quot;                                                                                                                                                 
-## [195] &quot;Contact&quot;                                                                                                                                                 
-## [196] &quot;Sign up to receive our monthly newsletter&quot;                                                                                                               
-## [197] &quot;&quot;                                                                                                                                                        
-## [198] &quot;&quot;                                                                                                                                                        
+## [115] &quot;\n\n\n\n\n                    \n        Shawn Donnelly\n            Guest lecturer\n    \n&quot;                                                              
+## [116] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
+## [117] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
+## [118] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
+## [119] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
+## [120] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [121] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
+## [122] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
+## [123] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
+## [124] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
+## [125] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
+## [126] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
+## [127] &quot;\n\n\n\n\n                    \n        Alexandros Ntaflos\n            Lecturer\n    \n&quot;                                                                
+## [128] &quot;\n\n\n\n\n                    \n        Joyce Outshoorn\n            Emeritus professor vrouwenstudies\n    \n&quot;                                          
+## [129] &quot;\n\n\n\n\n                    \n        Siebe Overdijk\n            Lecturer\n    \n&quot;                                                                    
+## [130] &quot;\n\n\n\n\n                    \n        Jimena Pacheco Miranda\n            Lecturer\n    \n&quot;                                                            
+## [131] &quot;\n\n\n\n\n                    \n        Julia Puente Duyn\n            Lecturer\n    \n&quot;                                                                 
+## [132] &quot;\n\n\n\n\n                    \n        Ellen van Reuler\n            Lecturer\n    \n&quot;                                                                  
+## [133] &quot;\n\n\n\n\n                    \n        Thomas Scarff\n            Lecturer\n    \n&quot;                                                                     
+## [134] &quot;\n\n\n\n\n                    \n        Radostina Sharenkova-Toshkova\n            Guest\n    \n&quot;                                                        
+## [135] &quot;\n\n\n\n\n\n                    \n        Justin Spruit\n            Lecturer\n    \n&quot;                                                                   
+## [136] &quot;\n\n\n\n\n                    \n        Vishwesh Sundar\n            Lecturer\n    \n&quot;                                                                   
+## [137] &quot;\n\n\n\n\n                    \n        Eldad Vainstoc\n            Lecturer\n    \n&quot;                                                                    
+## [138] &quot;\n\n\n\n\n                    \n        Harmen van der Veer\n            Lecturer\n    \n&quot;                                                               
+## [139] &quot;\n\n\n\n\n                    \n        Amy Verdun\n            Guest professor\n    \n&quot;                                                                 
+## [140] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [141] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
+## [142] &quot;\n\n\n\n\n                    \n        Carina van de Wetering\n            Lecturer\n    \n&quot;                                                            
+## [143] &quot;\n\n\n\n\n\n                    \n        Gul-i-Hina van der Zwan\n            Postdoc / guest\n    \n&quot;                                                  
+## [144] &quot;\n\n\n\n\n                    \n        Wencke Appelman\n            Study adviser\n    \n&quot;                                                              
+## [145] &quot;\n\n\n\n\n                    \n        Brigitta van den Berg\n            Education manager\n    \n&quot;                                                    
+## [146] &quot;\n\n\n\n\n                    \n        Ester Blom\n            Study Adviser\n    \n&quot;                                                                   
+## [147] &quot;\n\n\n\n\n                    \n        Anna van Dijk\n            Management/office-assistent\n    \n&quot;                                                  
+## [148] &quot;\n\n\n\n\n                    \n        Nathalie van Dooren\n            Coordinator Marketing &amp; Student Recruitment\n    \n&quot;                            
+## [149] &quot;\n\n\n\n\n                    \n        Desiree van Drongelen\n            Staff Member Studentregistrations\n    \n&quot;                                    
+## [150] &quot;\n\n\n\n\n                    \n        Nynke Heegstra\n            Study Advisor\n    \n&quot;                                                               
+## [151] &quot;\n\n\n\n\n                    \n        Ingrid van Heeringen-Göbbels\n            Institute manager\n    \n&quot;                                             
+## [152] &quot;\n\n\n\n\n                    \n        Katie Hudson\n            Data Steward\n    \n&quot;                                                                  
+## [153] &quot;\n\n\n\n\n                    \n        Lianne Janssen\n            Policy Officer Education and Quality Assurance\n    \n&quot;                              
+## [154] &quot;\n\n\n\n\n                    \n        Eline Joor\n            Internationalisation Officer\n    \n&quot;                                                    
+## [155] &quot;\n\n\n\n\n                    \n        Ian Lau\n            Study adviser\n    \n&quot;                                                                      
+## [156] &quot;\n\n\n\n\n                    \n        Daniëlle Lovink\n            Study Adviser\n    \n&quot;                                                              
+## [157] &quot;\n\n\n\n\n                    \n        Carien Nelissen\n            Education manager\n    \n&quot;                                                          
+## [158] &quot;\n\n\n\n\n                    \n        Caroline Remmerswaal\n            Secretary board of examiners\n    \n&quot;                                          
+## [159] &quot;\n\n\n\n\n                    \n        Marjan Rijnja\n            Teaching Coordinator\n    \n&quot;                                                         
+## [160] &quot;\n\n\n\n\n                    \n        Elka Smith\n            Research Project Manager\n    \n&quot;                                                        
+## [161] &quot;\n\n\n\n\n                    \n        Judy Spruit\n            Management/office-assistent\n    \n&quot;                                                    
+## [162] &quot;\n\n\n\n\n                    \n        Tessa Thomas\n            Management assistant\n    \n&quot;                                                          
+## [163] &quot;\n\n\n\n\n                    \n        Debbie Tromper\n            Management assistant\n    \n&quot;                                                        
+## [164] &quot;\n\n\n\n\n                    \n        Gerard van der Veer\n            Secretary board of examiners\n    \n&quot;                                           
+## [165] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [166] &quot;\n\n\n\n\n                    \n        Jeanne Viet\n            Communication staff member\n    \n&quot;                                                     
+## [167] &quot;\n\n\n\n\n                    \n        Marieke de Vries\n            Student member institute board\n    \n&quot;                                            
+## [168] &quot;\n\n\n\n\n                    \n        Denise Zeeuw-van Veen\n            Management/office assistant\n    \n&quot;                                          
+## [169] &quot;Bachelor&#39;s programmes&quot;                                                                                                                                   
+## [170] &quot;Master&#39;s programmes&quot;                                                                                                                                     
+## [171] &quot;PhD programmes&quot;                                                                                                                                          
+## [172] &quot;Education for Professionals&quot;                                                                                                                             
+## [173] &quot;Summer Schools&quot;                                                                                                                                          
+## [174] &quot;Other modes of study&quot;                                                                                                                                    
+## [175] &quot;Bachelor&#39;s Open Days&quot;                                                                                                                                    
+## [176] &quot;Master&#39;s Open Days&quot;                                                                                                                                      
+## [177] &quot;Admission &amp; Application&quot;                                                                                                                                 
+## [178] &quot;Archaeology&quot;                                                                                                                                             
+## [179] &quot;Governance and Global Affairs&quot;                                                                                                                           
+## [180] &quot;Humanities&quot;                                                                                                                                              
+## [181] &quot;Law&quot;                                                                                                                                                     
+## [182] &quot;Medicine/LUMC&quot;                                                                                                                                           
+## [183] &quot;Science&quot;                                                                                                                                                 
+## [184] &quot;Social and Behavioural Sciences&quot;                                                                                                                         
+## [185] &quot;African Studies Centre Leiden&quot;                                                                                                                           
+## [186] &quot;Honours Academy&quot;                                                                                                                                         
+## [187] &quot;ICLON (Graduate School of Teaching)&quot;                                                                                                                     
+## [188] &quot;Working at Leiden University&quot;                                                                                                                            
+## [189] &quot;Support Leiden University&quot;                                                                                                                               
+## [190] &quot;Alumni&quot;                                                                                                                                                  
+## [191] &quot;Impact&quot;                                                                                                                                                  
+## [192] &quot;Leiden-Delft-Erasmus Universities&quot;                                                                                                                       
+## [193] &quot;Locations&quot;                                                                                                                                               
+## [194] &quot;Disclaimer&quot;                                                                                                                                              
+## [195] &quot;Cookies&quot;                                                                                                                                                 
+## [196] &quot;Privacy&quot;                                                                                                                                                 
+## [197] &quot;Contact&quot;                                                                                                                                                 
+## [198] &quot;Sign up to receive our monthly newsletter&quot;                                                                                                               
 ## [199] &quot;&quot;                                                                                                                                                        
 ## [200] &quot;&quot;                                                                                                                                                        
 ## [201] &quot;&quot;                                                                                                                                                        
 ## [202] &quot;&quot;                                                                                                                                                        
-## [203] &quot;\nMore information. &quot;</code></pre>
+## [203] &quot;&quot;                                                                                                                                                        
+## [204] &quot;&quot;                                                                                                                                                        
+## [205] &quot;\nMore information. &quot;</code></pre>
 <pre class="r"><code>#when including the things below you select to little info, can do this separately, and combine the names (strong) and function (span)
 #    rvest::html_elements(&quot;strong&quot;) %&gt;%
 #    rvest::html_elements(&quot;span&quot;) %&gt;%</code></pre>
@@ -913,7 +927,7 @@ df</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8955. &lt;chr&gt; http…          85           2034
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
@@ -948,7 +962,7 @@ df_institution</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8955. &lt;chr&gt; http…          85           2034
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
@@ -1032,7 +1046,7 @@ wave1</code></pre>
 ## [300] 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322
 ## [323] 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345
 ## [346] 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368
-## [369] 369 370 371 372 373 374 375
+## [369] 369 370 371 372 373 374
 ## 
 ## $class
 ## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>

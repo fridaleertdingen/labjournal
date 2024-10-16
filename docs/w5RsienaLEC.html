@@ -372,14 +372,26 @@ div.tocify {
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
         <li>
-          <a href="w5RSienaTRY.html">Week 5 - Rsiena own data</a>
+          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
         </li>
       </ul>
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data preparation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="data_preparation.html">Data preparation</a>
+  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -471,13 +483,6 @@ fpackage.check(packages)</code></pre>
 packages = c(&quot;RSiena&quot;, &quot;tidyverse&quot;, &quot;stringdist&quot;, &quot;stringi&quot;)
 
 fpackage.check(packages)</code></pre>
-<pre><code>## Loading required package: stringdist</code></pre>
-<pre><code>## 
-## Attaching package: &#39;stringdist&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     extract</code></pre>
-<pre><code>## Loading required package: stringi</code></pre>
 <pre><code>## [[1]]
 ## NULL
 ## 
@@ -654,16 +659,16 @@ ansM1</code></pre>
 ##                                            Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter       3.0862  ( 0.5317   )             
+##   0       Rate parameter       3.0730  ( 0.5362   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density) -1.8468  ( 0.1310   )   -0.1146   
-##   2. eval reciprocity          1.1647  ( 0.3856   )   -0.0811   
+##   1. eval outdegree (density) -1.8532  ( 0.1360   )   -0.0817   
+##   2. eval reciprocity          1.1759  ( 0.4000   )   -0.0566   
 ## 
-## Overall maximum convergence ratio:    0.1209 
+## Overall maximum convergence ratio:    0.0862 
 ## 
 ## 
-## Total of 1935 iteration steps.</code></pre>
+## Total of 1965 iteration steps.</code></pre>
 <pre class="r"><code>#convergence ratio should be below .25</code></pre>
 <p>step 1: define the data step 2: create the effects structure step 3:
 get initial description, look at this file, report something on it

@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Frida van Teijlingen" />
+
+
+<title>Week 3</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tutorial.html">Page 1 - Week 1</a>
+    </li>
+    <li>
+      <a href="w2.html">Page 2 - Week 2</a>
+    </li>
+    <li>
+      <a href="w3webscraping.html">Page 3 - Week 3</a>
+    </li>
+    <li>
+      <a href="w4.html">Page 4 - Week 4</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Page 5 - Week 5</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="w5dataselect.html">Week 5 - trying data selection</a>
+        </li>
+        <li>
+          <a href="tryleaflet.html">Week 5 - trying leaflet</a>
+        </li>
+        <li>
+          <a href="w5Rsiena.html">Week 5 - RSiena lecture pt 1</a>
+        </li>
+        <li>
+          <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
+        </li>
+        <li>
+          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Data preparation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://fridaleertdingen.github.io/labjournal/">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Week 3</h1>
+<h4 class="author">Frida van Teijlingen</h4>
+
+</div>
+
+
+<div id="assignments-during-class" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Assignments during
+class</h1>
+<div id="packages" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Packages</h2>
+<pre class="r"><code># start with clean workspace
+rm(list = ls())
+
+#install.packages(&#39;data.table&#39;)
+library(data.table)  # mainly for faster data handling</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week, yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     transpose</code></pre>
+<pre class="r"><code>library(tidyverse)  # I assume you already installed this one!
+#install.packages(&#39;httr&#39;) # we don&#39;t need this for now require(httr)
+#install.packages(&quot;xml2&quot;)
+require(xml2)</code></pre>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre class="r"><code>#install.packages(&quot;rvest&quot;)
+require(rvest)
+#install.packages(&quot;devtools&quot;)
+require(devtools)</code></pre>
+<pre><code>## Loading required package: devtools</code></pre>
+<pre><code>## Loading required package: usethis</code></pre>
+<pre class="r"><code># Note we&#39;re doing something different here. We&#39;re installing a *latest* version directly from
+# GitHub This is because the released version of this packages contains some errors!
+devtools::install_github(&quot;jkeirstead/scholar&quot;)</code></pre>
+<pre><code>## Using GitHub PAT from the git credential store.</code></pre>
+<pre><code>## Skipping install of &#39;scholar&#39; from a github remote, the SHA1 (2d38dcc3) has not changed since last install.
+##   Use `force = TRUE` to force installation</code></pre>
+<pre class="r"><code>require(scholar)
+
+# define workdirectory, note the double *backslashes* if you&#39;re on windows setwd(&#39;/yourpathhere)&#39;
+setwd(&#39;C:/Users/frida/OneDrive/Documenten/RADBOUD researchmaster/P1 Social networks&#39;)</code></pre>
+</div>
+<div id="finding-a-data-source" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Finding a data
+source</h2>
+<pre class="r"><code># Let&#39;s first get the staff page read_html is a function that simply extracts html webpages and
+# puts them in xml format
+#soc_staff &lt;- read_html(&quot;https://www.ru.nl/sociology/research/staff/&quot;)
+
+#error! because old website --&gt; use the wayback machine to retrieve the old website
+
+soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
+head(soc_staff)</code></pre>
+<pre><code>## $node
+## &lt;pointer: 0x00000222699c5170&gt;
+## 
+## $doc
+## &lt;pointer: 0x000002223d6fed60&gt;</code></pre>
+<pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
+
+class(soc_staff)</code></pre>
+<pre><code>## [1] &quot;xml_document&quot; &quot;xml_node&quot;</code></pre>
+</div>
+<div id="finding-the-right-html-elements-and-rvest"
+class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> finding the right
+html elements and rvest</h2>
+<pre class="r"><code># so we need to find WHERE the table is located in the html &#39;inspect element&#39; in mozilla firefox or
+# &#39;view page source&#39; and you see that everything AFTER /td in the &#39;body&#39; of the page seems to be
+# the table we do need
+
+
+
+
+#install.packages(&#39;selectr&#39;)
+library(selectr)
+
+
+# wihtout xml2 things but using html_elements because that is in the same package, sloppy programming to mix different programming languages 
+soc_staff &lt;- soc_staff %&gt;%
+    rvest::html_elements(&quot;body&quot;) %&gt;%
+    rvest::html_elements(&quot;td&quot;) %&gt;%
+    rvest::html_text()
+soc_staff</code></pre>
+<pre><code>##   [1] &quot;Staff:&quot;                                                                                                                                                      
+##   [2] &quot;Expertise:&quot;                                                                                                                                                  
+##   [3] &quot;Batenburg, prof. dr. R. (Ronald)&quot;                                                                                                                            
+##   [4] &quot;Healthcare, labour market and healthcare professions and training&quot;                                                                                           
+##   [5] &quot;Begall, dr. K.H. (Katia)&quot;                                                                                                                                    
+##   [6] &quot;Family, life course, labour market participation, division of household tasks and gender norms&quot;                                                              
+##   [7] &quot;Bekhuis, dr. H. (Hidde)&quot;                                                                                                                                     
+##   [8] &quot;Welfare state, nationalism and sports&quot;                                                                                                                       
+##   [9] &quot;Berg, dr. L. van den (Lonneke)&quot;                                                                                                                              
+##  [10] &quot;Family, life course and transition to adulthood&quot;                                                                                                             
+##  [11] &quot;Blommaert, dr. L. (Lieselotte)&quot;                                                                                                                              
+##  [12] &quot;Discrimination and inequality on the labour market&quot;                                                                                                          
+##  [13] &quot;Eisinga, prof. dr. R.N. (Rob)&quot;                                                                                                                               
+##  [14] &quot;Methods of research and statistics&quot;                                                                                                                          
+##  [15] &quot;Gesthuizen, dr. M.J.W. (Maurice)&quot;                                                                                                                            
+##  [16] &quot;\n                                Poverty en social cohesion\n                              &quot;                                                                
+##  [17] &quot;Geurts, dr. P.G. (Nella)&quot;                                                                                                                                    
+##  [18] &quot;\n                                Integration and migration\n                              &quot;                                                                 
+##  [19] &quot;Glas, dr. S. (Saskia)&quot;                                                                                                                                       
+##  [20] &quot;Islam, gender attitudes and sexuality&quot;                                                                                                                       
+##  [21] &quot;Hek, dr. M. van (Margriet)&quot;                                                                                                                                  
+##  [22] &quot;Educational inequality, gender inequality, organizational sociology and culture&quot;                                                                             
+##  [23] &quot;Hoekman, dr. R. H. A.(Remco)&quot;                                                                                                                                
+##  [24] &quot;Sports and policy sociology&quot;                                                                                                                                 
+##  [25] &quot;Hofstra, dr. B. (Bas)&quot;                                                                                                                                       
+##  [26] &quot;Diversity, inequality and innovation&quot;                                                                                                                        
+##  [27] &quot;Koops, dr. J. (Judith)&quot;                                                                                                                                      
+##  [28] &quot;Family sociology and demography&quot;                                                                                                                             
+##  [29] &quot;Kraaykamp, prof. dr. G.L.M. (Gerbert)&quot;                                                                                                                       
+##  [30] &quot;Educational inequality, culture and health&quot;                                                                                                                  
+##  [31] &quot;Meuleman, dr. (Roza)&quot;                                                                                                                                        
+##  [32] &quot;Culture and nationalism&quot;                                                                                                                                     
+##  [33] &quot;Savelkoul, dr. M.J. (Michael)&quot;                                                                                                                               
+##  [34] &quot;Ethnic diversity, prejudice and social cohesion&quot;                                                                                                             
+##  [35] &quot;Scheepers, prof. dr. P.L.H. (Peer)&quot;                                                                                                                          
+##  [36] &quot;Comparative research, social cohesion and diversity&quot;                                                                                                         
+##  [37] &quot;Spierings, dr. C.H.B.M. (Niels)&quot;                                                                                                                             
+##  [38] &quot;Islam, gender, populism, social media, Middle East and migration&quot;                                                                                            
+##  [39] &quot;Tolsma, dr. J. (Jochem)&quot;                                                                                                                                     
+##  [40] &quot;Inequality, criminology and ethnic diversity&quot;                                                                                                                
+##  [41] &quot;\n                                Verbakel, prof. dr. C.M.C. (Ellen)\n                                Head of the department\n                              &quot;
+##  [42] &quot;Health, family and work&quot;                                                                                                                                     
+##  [43] &quot;Visser, dr. M. (Mark)&quot;                                                                                                                                       
+##  [44] &quot;Older workers, radicalism and social cohesion&quot;                                                                                                               
+##  [45] &quot;Wolbers, prof. dr. M.H.J. (Maarten)&quot;                                                                                                                         
+##  [46] &quot;Educational inequality and labour market inequality&quot;                                                                                                         
+##  [47] &quot;PhD:&quot;                                                                                                                                                        
+##  [48] &quot;Expertise:&quot;                                                                                                                                                  
+##  [49] &quot;Bussemakers, C. (Carlijn) MSc&quot;                                                                                                                               
+##  [50] &quot;Adverse youth experiences and social inequality&quot;                                                                                                             
+##  [51] &quot;Franken, R. (Rob) MSc&quot;                                                                                                                                       
+##  [52] &quot;Sport networks and motivation for sustainable sports participation&quot;                                                                                          
+##  [53] &quot;Firat, M. (Mustafa) MSc&quot;                                                                                                                                     
+##  [54] &quot;Social inequality, older workers, life course and retirement&quot;                                                                                                
+##  [55] &quot;\n                                Güneyli, A. (Ayşegül)\n                              &quot;                                                                     
+##  [56] &quot;Work-care&quot;                                                                                                                                                   
+##  [57] &quot;Hendriks, I.P. (Inge) MSc&quot;                                                                                                                                   
+##  [58] &quot;Resistance to refugees and social cohesion&quot;                                                                                                                  
+##  [59] &quot;Jeroense, T.M.G. (Thijmen) MSc&quot;                                                                                                                              
+##  [60] &quot;Political participation, segregation, opinion polarization and voting behaviour&quot;                                                                             
+##  [61] &quot;Kollar, R. (Rachel)&quot;                                                                                                                                         
+##  [62] &quot;Spirit project&quot;                                                                                                                                              
+##  [63] &quot;Linders, N. (Nik) MSc&quot;                                                                                                                                       
+##  [64] &quot;Populism, gender, masculinity and sexuality&quot;                                                                                                                 
+##  [65] &quot;Loh, S.M. (Renae) MSc&quot;                                                                                                                                       
+##  [66] &quot;Educational sociology, social stratification, gender inequality and information communication technology (ICT)&quot;                                              
+##  [67] &quot;Meijeren, M. (Maikel) MSc&quot;                                                                                                                                   
+##  [68] &quot;Social capital, volunteer work and diversity&quot;                                                                                                                
+##  [69] &quot;Mensvoort, C.A. van (Carly) MSc&quot;                                                                                                                             
+##  [70] &quot;Gender, leadership and social norms&quot;                                                                                                                         
+##  [71] &quot;\n                                Mulders, A.M. (Anne Maaike) MSc\n                              &quot;                                                           
+##  [72] &quot;Social inequality in science&quot;                                                                                                                                
+##  [73] &quot;Müller, K. (Katrin) MSc&quot;                                                                                                                                     
+##  [74] &quot;Opinions about discrimination, migration and inequality&quot;                                                                                                     
+##  [75] &quot;Raiber, K. (Klara) MSc&quot;                                                                                                                                      
+##  [76] &quot;Informal care, employment, social inequality and gender&quot;                                                                                                     
+##  [77] &quot;Ramaekers, M.J.M. (Marlou) MSc&quot;                                                                                                                              
+##  [78] &quot;Prosocial behaviour and family&quot;                                                                                                                              
+##  [79] &quot;Wiertsema, S. (Sara) MSc&quot;                                                                                                                                    
+##  [80] &quot;Inequality in sports and physical activity, school-to-work transition and employment&quot;                                                                        
+##  [81] &quot;External PhD:&quot;                                                                                                                                               
+##  [82] &quot;Expertise:&quot;                                                                                                                                                  
+##  [83] &quot;Betkó, drs. J.G. (János)&quot;                                                                                                                                    
+##  [84] &quot;Social assistance benefit, poverty, reintegration, RCT and social experiment&quot;                                                                                
+##  [85] &quot;Middendorp J. (Jansje) van MSc&quot;                                                                                                                              
+##  [86] &quot;Home administration&quot;                                                                                                                                         
+##  [87] &quot;Vis, E. (Elize) MSc&quot;                                                                                                                                         
+##  [88] &quot;Healthcare, labour market, healthcare professions and training, health and social capital&quot;                                                                   
+##  [89] &quot;Weber, T. (Tijmen) MSc&quot;                                                                                                                                      
+##  [90] &quot;International student mobility and the internationalization of higher education&quot;                                                                             
+##  [91] &quot;Guest researchers:&quot;                                                                                                                                          
+##  [92] &quot;Expertise:&quot;                                                                                                                                                  
+##  [93] &quot;Khawli, E. el (Elissa) post-doc, Dr.&quot;                                                                                                                        
+##  [94] &quot;Inequality in older age&quot;                                                                                                                                     
+##  [95] &quot;Sterkens, dr. C.J.A. (Carl)&quot;                                                                                                                                 
+##  [96] &quot;Religious conflicts, cohesion, religion and the philosophy of life&quot;                                                                                          
+##  [97] &quot;Vermeer, dr. P.A.D.M. (Paul)&quot;                                                                                                                                
+##  [98] &quot;Socialization processes, secularisation, religion and the philosophy of life&quot;                                                                                
+##  [99] &quot;Other researchers:&quot;                                                                                                                                          
+## [100] &quot;Expertise:&quot;                                                                                                                                                  
+## [101] &quot;Grubben, M. (Malou)&quot;                                                                                                                                         
+## [102] &quot;Inequality in sports and movement&quot;</code></pre>
+<pre class="r"><code>soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
+head(soc_staff)</code></pre>
+<pre><code>## $node
+## &lt;pointer: 0x0000022259af8850&gt;
+## 
+## $doc
+## &lt;pointer: 0x000002223d6fef70&gt;</code></pre>
+<pre class="r"><code>#trying to get a table from the website
+soc_staff &lt;- soc_staff %&gt;%
+    rvest::html_elements(&quot;body&quot;) %&gt;%
+    rvest::html_table()  
+soc_staff</code></pre>
+<pre><code>## [[1]]
+## # A tibble: 51 × 2
+##    X1                               X2                                                              
+##    &lt;chr&gt;                            &lt;chr&gt;                                                           
+##  1 Staff:                           Expertise:                                                      
+##  2 Batenburg, prof. dr. R. (Ronald) Healthcare, labour market and healthcare professions and traini…
+##  3 Begall, dr. K.H. (Katia)         Family, life course, labour market participation, division of h…
+##  4 Bekhuis, dr. H. (Hidde)          Welfare state, nationalism and sports                           
+##  5 Berg, dr. L. van den (Lonneke)   Family, life course and transition to adulthood                 
+##  6 Blommaert, dr. L. (Lieselotte)   Discrimination and inequality on the labour market              
+##  7 Eisinga, prof. dr. R.N. (Rob)    Methods of research and statistics                              
+##  8 Gesthuizen, dr. M.J.W. (Maurice) Poverty en social cohesion                                      
+##  9 Geurts, dr. P.G. (Nella)         Integration and migration                                       
+## 10 Glas, dr. S. (Saskia)            Islam, gender attitudes and sexuality                           
+## # ℹ 41 more rows</code></pre>
+</div>
+<div id="number-of-people-on-the-list" class="section level2"
+number="1.4">
+<h2><span class="header-section-number">1.4</span> Number of people on
+the list</h2>
+<pre class="r"><code>fodd &lt;- function(x) x%%2 != 0
+feven &lt;- function(x) x%%2 == 0
+
+nstaf &lt;- length(soc_staff)
+nstaf</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code> # Do you understand why we need the nstaf? What it does?
+soc_names &lt;- soc_staff[fodd(1:nstaf)]  # in the 1 until 94st number, get the odd elements
+head(soc_names)</code></pre>
+<pre><code>## [[1]]
+## # A tibble: 51 × 2
+##    X1                               X2                                                              
+##    &lt;chr&gt;                            &lt;chr&gt;                                                           
+##  1 Staff:                           Expertise:                                                      
+##  2 Batenburg, prof. dr. R. (Ronald) Healthcare, labour market and healthcare professions and traini…
+##  3 Begall, dr. K.H. (Katia)         Family, life course, labour market participation, division of h…
+##  4 Bekhuis, dr. H. (Hidde)          Welfare state, nationalism and sports                           
+##  5 Berg, dr. L. van den (Lonneke)   Family, life course and transition to adulthood                 
+##  6 Blommaert, dr. L. (Lieselotte)   Discrimination and inequality on the labour market              
+##  7 Eisinga, prof. dr. R.N. (Rob)    Methods of research and statistics                              
+##  8 Gesthuizen, dr. M.J.W. (Maurice) Poverty en social cohesion                                      
+##  9 Geurts, dr. P.G. (Nella)         Integration and migration                                       
+## 10 Glas, dr. S. (Saskia)            Islam, gender attitudes and sexuality                           
+## # ℹ 41 more rows</code></pre>
+</div>
+<div id="looking-for-all-names-of-leiden-political-science"
+class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Looking for all names
+of Leiden Political science</h2>
+<pre class="r"><code>leidse_staff &lt;- read_html(&quot;https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1&quot;)
+head(leidse_staff)</code></pre>
+<pre><code>## $node
+## &lt;pointer: 0x000002224c7dc970&gt;
+## 
+## $doc
+## &lt;pointer: 0x000002223d8ff4f0&gt;</code></pre>
+<pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
+
+class(leidse_staff)</code></pre>
+<pre><code>## [1] &quot;xml_document&quot; &quot;xml_node&quot;</code></pre>
+<pre class="r"><code>#
+leidse_staff &lt;- leidse_staff %&gt;%
+    rvest::html_elements(&quot;body&quot;) %&gt;%
+    rvest::html_elements(&quot;a&quot;) %&gt;%
+    rvest::html_text()
+leidse_staff</code></pre>
+<pre><code>##   [1] &quot;Leiden University&quot;                                                                                                                                       
+##   [2] &quot;Students&quot;                                                                                                                                                
+##   [3] &quot;Staff members&quot;                                                                                                                                           
+##   [4] &quot;Organisational structure&quot;                                                                                                                                
+##   [5] &quot;Library&quot;                                                                                                                                                 
+##   [6] &quot;\n&quot;                                                                                                                                                      
+##   [7] &quot;\nAll categories &quot;                                                                                                                                       
+##   [8] &quot;\nPersons\n&quot;                                                                                                                                             
+##   [9] &quot;\nEducation\n&quot;                                                                                                                                           
+##  [10] &quot;\nResearch\n&quot;                                                                                                                                            
+##  [11] &quot;\nNews\n&quot;                                                                                                                                                
+##  [12] &quot;\nEvents\n&quot;                                                                                                                                              
+##  [13] &quot;\nDossiers\n&quot;                                                                                                                                            
+##  [14] &quot;\nLocations\n&quot;                                                                                                                                           
+##  [15] &quot;\nCourses\n&quot;                                                                                                                                             
+##  [16] &quot;\nVacancies\n&quot;                                                                                                                                           
+##  [17] &quot;\nOther\n&quot;                                                                                                                                               
+##  [18] &quot;\nKeywords\n&quot;                                                                                                                                            
+##  [19] &quot;\nnl\n&quot;                                                                                                                                                  
+##  [20] &quot;Home&quot;                                                                                                                                                    
+##  [21] &quot;Research&quot;                                                                                                                                                
+##  [22] &quot;Education&quot;                                                                                                                                               
+##  [23] &quot;Academic staff&quot;                                                                                                                                          
+##  [24] &quot;About us&quot;                                                                                                                                                
+##  [25] &quot;Collaboration&quot;                                                                                                                                           
+##  [26] &quot;Faculties&quot;                                                                                                                                               
+##  [27] &quot;Campus The Hague&quot;                                                                                                                                        
+##  [28] &quot;Alumni&quot;                                                                                                                                                  
+##  [29] &quot;Library&quot;                                                                                                                                                 
+##  [30] &quot;Home&quot;                                                                                                                                                    
+##  [31] &quot;\nSocial and Behavioural Sciences\n&quot;                                                                                                                     
+##  [32] &quot;\nPolitical Science\n&quot;                                                                                                                                   
+##  [33] &quot;Political Science&quot;                                                                                                                                       
+##  [34] &quot;Research&quot;                                                                                                                                                
+##  [35] &quot;Education&quot;                                                                                                                                               
+##  [36] &quot;PhD&quot;                                                                                                                                                     
+##  [37] &quot;Organisation&quot;                                                                                                                                            
+##  [38] &quot;Staff&quot;                                                                                                                                                   
+##  [39] &quot;Contact&quot;                                                                                                                                                 
+##  [40] &quot;\n\n\n\n\n                    \n        Adina Akbik\n            Senior Assistant Professor\n    \n&quot;                                                     
+##  [41] &quot;\n\n\n\n\n                    \n        Femke Bakker\n            Senior assistant professor\n    \n&quot;                                                    
+##  [42] &quot;\n\n\n\n\n                    \n        Ingrid van Biezen\n            Professor of Comparative Politics\n    \n&quot;                                        
+##  [43] &quot;\n\n\n\n\n                    \n        Nicolas Blarel\n            Associate Professor\n    \n&quot;                                                         
+##  [44] &quot;\n\n\n\n\n                    \n        Arjen Boin\n            Professor of Public Institutions and Governance\n    \n&quot;                                 
+##  [45] &quot;\n\n\n\n\n                    \n        Theo Brinkel\n            Professor by Special Appointment Military-social studies\n    \n&quot;                      
+##  [46] &quot;\n\n\n\n\n\n                    \n        Manuel Cabal Lopez\n            Assistant professor\n    \n&quot;                                                   
+##  [47] &quot;\n\n\n\n\n\n                    \n        Valentina Carraro\n            Assistant Professor in Global Transformations and Governance Challenges\n    \n&quot;
+##  [48] &quot;\n\n\n\n\n                    \n        Stefan Cetkovic\n            Assistant Professor\n    \n&quot;                                                        
+##  [49] &quot;\n\n\n\n\n\n                    \n        Diana Davila Gordillo\n            Assistant professor\n    \n&quot;                                                
+##  [50] &quot;\n\n\n\n\n                    \n        Leila Demarest\n            Associate Professor\n    \n&quot;                                                         
+##  [51] &quot;\n\n\n\n\n                    \n        Matthew di Giuseppe\n            Director of Studies / Associate Professor\n    \n&quot;                              
+##  [52] &quot;\n\n\n\n\n                    \n        Roos van der Haer\n            Assistant Professor\n    \n&quot;                                                      
+##  [53] &quot;\n\n\n\n\n                    \n        Gisela Hirschmann\n            Senior Assistant Professor\n    \n&quot;                                               
+##  [54] &quot;\n\n\n\n\n                    \n        Joop van Holsteijn\n            Professor emeritus Political Behaviour and Research Methods\n    \n&quot;             
+##  [55] &quot;\n\n\n\n\n                    \n        Corinna Jentzsch\n            Assistant Professor\n    \n&quot;                                                       
+##  [56] &quot;\n\n\n\n\n                    \n        Petr Kopecky\n            Professor of Comparative Studies Political Parties and Party Systems\n    \n&quot;          
+##  [57] &quot;\n\n\n\n\n                    \n        Matthew Longo\n            Senior Assistant Professor\n    \n&quot;                                                   
+##  [58] &quot;\n\n\n\n\n                    \n        Tom Louwerse\n            Director of Research / Associate Professor\n    \n&quot;                                    
+##  [59] &quot;\n\n\n\n\n                    \n        Floris Mansvelt Beck\n            Assistant Professor\n    \n&quot;                                                   
+##  [60] &quot;\n\n\n\n\n                    \n        Hilde van Meegdenburg\n            Assistant Professor\n    \n&quot;                                                  
+##  [61] &quot;\n\n\n\n\n                    \n        Michael Meffert\n            Assistant Professor\n    \n&quot;                                                        
+##  [62] &quot;\n\n\n\n\n                    \n        Frits Meijerink\n            Assistant professor\n    \n&quot;                                                        
+##  [63] &quot;\n\n\n\n\n                    \n        Tim Mickler\n            Senior assistant professor\n    \n&quot;                                                     
+##  [64] &quot;\n\n\n\n\n                    \n        Martijn Mos\n            Assistant Professor\n    \n&quot;                                                            
+##  [65] &quot;\n\n\n\n\n                    \n        Katharina Natter\n            Senior assistant professor\n    \n&quot;                                                
+##  [66] &quot;\n\n\n\n\n                    \n        Paul Nieuwenburg\n            Professor Political Philosophy\n    \n&quot;                                            
+##  [67] &quot;\n\n\n\n\n                    \n        Simon Otjes\n            Senior Assistant Professor\n    \n&quot;                                                     
+##  [68] &quot;\n\n\n\n\n                    \n        Hans Oversloot\n            Guest researcher\n    \n&quot;                                                            
+##  [69] &quot;\n\n\n\n\n                    \n        Jonathan Phillips\n            Assistant Professor\n    \n&quot;                                                      
+##  [70] &quot;\n\n\n\n\n                    \n        Rebecca Ploof\n            Assistant Professor\n    \n&quot;                                                          
+##  [71] &quot;\n\n\n\n\n                    \n        Karolina Pomorska\n            Associate professor\n    \n&quot;                                                      
+##  [72] &quot;\n\n\n\n\n                    \n        Francesco Ragazzi\n            Associate professor\n    \n&quot;                                                      
+##  [73] &quot;\n\n\n\n\n                    \n        Babak Rezaeedaryakenari\n            Senior Assistant Professor\n    \n&quot;                                         
+##  [74] &quot;\n\n\n\n\n                    \n        Josh Robison\n            Assistant Professor\n    \n&quot;                                                           
+##  [75] &quot;\n\n\n\n\n                    \n        Michael Sampson\n            Senior Assistant Professor\n    \n&quot;                                                 
+##  [76] &quot;\n\n\n\n\n\n                    \n        Jan Aart Scholte\n            Professor Global Transformations and Governance Challenges\n    \n&quot;              
+##  [77] &quot;\n\n\n\n\n                    \n        Jonah Schulhofer-Wohl\n            Senior assistant professor\n    \n&quot;                                           
+##  [78] &quot;\n\n\n\n\n                    \n        Maria Spirova\n            Associate Professor\n    \n&quot;                                                          
+##  [79] &quot;\n\n\n\n\n                    \n        Tilko Arne Swalve\n            Assistant Professor\n    \n&quot;                                                      
+##  [80] &quot;\n\n\n\n\n                    \n        Tom Theuns\n            Senior Assistant Professor\n    \n&quot;                                                      
+##  [81] &quot;\n\n\n\n\n                    \n        Daniel Thomas\n            Professor of International Relations\n    \n&quot;                                         
+##  [82] &quot;\n\n\n\n\n                    \n        Christina Luise Toenshoff\n            Assistant professor\n    \n&quot;                                              
+##  [83] &quot;\n\n\n\n\n                    \n        Vasiliki (Billy) Tsagkroni\n            Senior assistant professor\n    \n&quot;                                      
+##  [84] &quot;\n\n\n\n\n                    \n        Wouter Veenendaal\n            Professor by Special Appointment Kingdom Relations\n    \n&quot;                       
+##  [85] &quot;\n\n\n\n\n                    \n        Claire Vergerio\n            Guest\n    \n&quot;                                                                      
+##  [86] &quot;\n\n\n\n\n                    \n        Marco Verschoor\n            Assistant Professor\n    \n&quot;                                                        
+##  [87] &quot;\n\n\n\n\n                    \n        Cynthia van Vonno\n            Assistant Professor\n    \n&quot;                                                      
+##  [88] &quot;\n\n\n\n\n                    \n        Niels van Willigen\n            Director of Studies/Associate Professor\n    \n&quot;                                 
+##  [89] &quot;\n\n\n\n\n                    \n        Nikoleta Yordanova\n            Associate professor\n    \n&quot;                                                     
+##  [90] &quot;\n\n\n\n\n                    \n        Yuan Yi Zhu\n            Assistant professor\n    \n&quot;                                                            
+##  [91] &quot;\n\n\n\n\n                    \n        Frank de Zwart\n            Guest\n    \n&quot;                                                                       
+##  [92] &quot;\n\n\n\n\n                    \n        Alyssa Akkerman\n            PhD candidate\n    \n&quot;                                                              
+##  [93] &quot;\n\n\n\n\n                    \n        Alessia Aspide\n            Guest\n    \n&quot;                                                                       
+##  [94] &quot;\n\n\n\n\n                    \n        Cyan Bae\n            PhD candidate\n    \n&quot;                                                                     
+##  [95] &quot;\n\n\n\n\n                    \n        Kathleen Brown\n            PhD candidate\n    \n&quot;                                                               
+##  [96] &quot;\n\n\n\n\n                    \n        Mateo Cohen\n            External PhD candidate\n    \n&quot;                                                         
+##  [97] &quot;\n\n\n\n\n                    \n        Josette Daemen\n            Postdoc\n    \n&quot;                                                                     
+##  [98] &quot;\n\n\n\n\n                    \n        Jesse Doornenbal\n            Lecturer\n    \n&quot;                                                                  
+##  [99] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [100] &quot;\n\n\n\n\n                    \n        Aleksandra Khokhlova\n            PhD candidate\n    \n&quot;                                                         
+## [101] &quot;\n\n\n\n\n                    \n        Hannah Kuhn\n            PhD candidate\n    \n&quot;                                                                  
+## [102] &quot;\n\n\n\n\n                    \n        Ruben van de Ven\n            PhD candidate\n    \n&quot;                                                             
+## [103] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
+## [104] &quot;\n\n\n\n\n                    \n        Denny van der Vlist\n            PhD candidate\n    \n&quot;                                                          
+## [105] &quot;\n\n\n\n\n                    \n        Thijs Vos\n            PhD candidate\n    \n&quot;                                                                    
+## [106] &quot;\n\n\n\n\n                    \n        Rick van Well\n            Lecturer\n    \n&quot;                                                                     
+## [107] &quot;\n\n\n\n\n                    \n        Daan van den Wollenberg\n            PhD candidate / self funded\n    \n&quot;                                        
+## [108] &quot;\n\n\n\n\n                    \n        Elina Zorina\n            PhD candidate\n    \n&quot;                                                                 
+## [109] &quot;\n\n\n\n\n                    \n        José Baptista Alves Lourenço\n            Lecturer\n    \n&quot;                                                      
+## [110] &quot;\n\n\n\n\n                    \n        Agha Bayramov\n            Lecturer\n    \n&quot;                                                                     
+## [111] &quot;\n\n\n\n\n                    \n        Jelena Belic\n            Lecturer\n    \n&quot;                                                                      
+## [112] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
+## [113] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
+## [114] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
+## [115] &quot;\n\n\n\n\n                    \n        Shawn Donnelly\n            Guest lecturer\n    \n&quot;                                                              
+## [116] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
+## [117] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
+## [118] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
+## [119] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
+## [120] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [121] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
+## [122] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
+## [123] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
+## [124] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
+## [125] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
+## [126] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
+## [127] &quot;\n\n\n\n\n                    \n        Alexandros Ntaflos\n            Lecturer\n    \n&quot;                                                                
+## [128] &quot;\n\n\n\n\n                    \n        Joyce Outshoorn\n            Emeritus professor vrouwenstudies\n    \n&quot;                                          
+## [129] &quot;\n\n\n\n\n                    \n        Siebe Overdijk\n            Lecturer\n    \n&quot;                                                                    
+## [130] &quot;\n\n\n\n\n                    \n        Jimena Pacheco Miranda\n            Lecturer\n    \n&quot;                                                            
+## [131] &quot;\n\n\n\n\n                    \n        Julia Puente Duyn\n            Lecturer\n    \n&quot;                                                                 
+## [132] &quot;\n\n\n\n\n                    \n        Ellen van Reuler\n            Lecturer\n    \n&quot;                                                                  
+## [133] &quot;\n\n\n\n\n                    \n        Thomas Scarff\n            Lecturer\n    \n&quot;                                                                     
+## [134] &quot;\n\n\n\n\n                    \n        Radostina Sharenkova-Toshkova\n            Guest\n    \n&quot;                                                        
+## [135] &quot;\n\n\n\n\n\n                    \n        Justin Spruit\n            Lecturer\n    \n&quot;                                                                   
+## [136] &quot;\n\n\n\n\n                    \n        Vishwesh Sundar\n            Lecturer\n    \n&quot;                                                                   
+## [137] &quot;\n\n\n\n\n                    \n        Eldad Vainstoc\n            Lecturer\n    \n&quot;                                                                    
+## [138] &quot;\n\n\n\n\n                    \n        Harmen van der Veer\n            Lecturer\n    \n&quot;                                                               
+## [139] &quot;\n\n\n\n\n                    \n        Amy Verdun\n            Guest professor\n    \n&quot;                                                                 
+## [140] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [141] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
+## [142] &quot;\n\n\n\n\n                    \n        Carina van de Wetering\n            Lecturer\n    \n&quot;                                                            
+## [143] &quot;\n\n\n\n\n\n                    \n        Gul-i-Hina van der Zwan\n            Postdoc / guest\n    \n&quot;                                                  
+## [144] &quot;\n\n\n\n\n                    \n        Wencke Appelman\n            Study adviser\n    \n&quot;                                                              
+## [145] &quot;\n\n\n\n\n                    \n        Brigitta van den Berg\n            Education manager\n    \n&quot;                                                    
+## [146] &quot;\n\n\n\n\n                    \n        Ester Blom\n            Study Adviser\n    \n&quot;                                                                   
+## [147] &quot;\n\n\n\n\n                    \n        Anna van Dijk\n            Management/office-assistent\n    \n&quot;                                                  
+## [148] &quot;\n\n\n\n\n                    \n        Nathalie van Dooren\n            Coordinator Marketing &amp; Student Recruitment\n    \n&quot;                            
+## [149] &quot;\n\n\n\n\n                    \n        Desiree van Drongelen\n            Staff Member Studentregistrations\n    \n&quot;                                    
+## [150] &quot;\n\n\n\n\n                    \n        Nynke Heegstra\n            Study Advisor\n    \n&quot;                                                               
+## [151] &quot;\n\n\n\n\n                    \n        Ingrid van Heeringen-Göbbels\n            Institute manager\n    \n&quot;                                             
+## [152] &quot;\n\n\n\n\n                    \n        Katie Hudson\n            Data Steward\n    \n&quot;                                                                  
+## [153] &quot;\n\n\n\n\n                    \n        Lianne Janssen\n            Policy Officer Education and Quality Assurance\n    \n&quot;                              
+## [154] &quot;\n\n\n\n\n                    \n        Eline Joor\n            Internationalisation Officer\n    \n&quot;                                                    
+## [155] &quot;\n\n\n\n\n                    \n        Ian Lau\n            Study adviser\n    \n&quot;                                                                      
+## [156] &quot;\n\n\n\n\n                    \n        Daniëlle Lovink\n            Study Adviser\n    \n&quot;                                                              
+## [157] &quot;\n\n\n\n\n                    \n        Carien Nelissen\n            Education manager\n    \n&quot;                                                          
+## [158] &quot;\n\n\n\n\n                    \n        Caroline Remmerswaal\n            Secretary board of examiners\n    \n&quot;                                          
+## [159] &quot;\n\n\n\n\n                    \n        Marjan Rijnja\n            Teaching Coordinator\n    \n&quot;                                                         
+## [160] &quot;\n\n\n\n\n                    \n        Elka Smith\n            Research Project Manager\n    \n&quot;                                                        
+## [161] &quot;\n\n\n\n\n                    \n        Judy Spruit\n            Management/office-assistent\n    \n&quot;                                                    
+## [162] &quot;\n\n\n\n\n                    \n        Tessa Thomas\n            Management assistant\n    \n&quot;                                                          
+## [163] &quot;\n\n\n\n\n                    \n        Debbie Tromper\n            Management assistant\n    \n&quot;                                                        
+## [164] &quot;\n\n\n\n\n                    \n        Gerard van der Veer\n            Secretary board of examiners\n    \n&quot;                                           
+## [165] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [166] &quot;\n\n\n\n\n                    \n        Jeanne Viet\n            Communication staff member\n    \n&quot;                                                     
+## [167] &quot;\n\n\n\n\n                    \n        Marieke de Vries\n            Student member institute board\n    \n&quot;                                            
+## [168] &quot;\n\n\n\n\n                    \n        Denise Zeeuw-van Veen\n            Management/office assistant\n    \n&quot;                                          
+## [169] &quot;Bachelor&#39;s programmes&quot;                                                                                                                                   
+## [170] &quot;Master&#39;s programmes&quot;                                                                                                                                     
+## [171] &quot;PhD programmes&quot;                                                                                                                                          
+## [172] &quot;Education for Professionals&quot;                                                                                                                             
+## [173] &quot;Summer Schools&quot;                                                                                                                                          
+## [174] &quot;Other modes of study&quot;                                                                                                                                    
+## [175] &quot;Bachelor&#39;s Open Days&quot;                                                                                                                                    
+## [176] &quot;Master&#39;s Open Days&quot;                                                                                                                                      
+## [177] &quot;Admission &amp; Application&quot;                                                                                                                                 
+## [178] &quot;Archaeology&quot;                                                                                                                                             
+## [179] &quot;Governance and Global Affairs&quot;                                                                                                                           
+## [180] &quot;Humanities&quot;                                                                                                                                              
+## [181] &quot;Law&quot;                                                                                                                                                     
+## [182] &quot;Medicine/LUMC&quot;                                                                                                                                           
+## [183] &quot;Science&quot;                                                                                                                                                 
+## [184] &quot;Social and Behavioural Sciences&quot;                                                                                                                         
+## [185] &quot;African Studies Centre Leiden&quot;                                                                                                                           
+## [186] &quot;Honours Academy&quot;                                                                                                                                         
+## [187] &quot;ICLON (Graduate School of Teaching)&quot;                                                                                                                     
+## [188] &quot;Working at Leiden University&quot;                                                                                                                            
+## [189] &quot;Support Leiden University&quot;                                                                                                                               
+## [190] &quot;Alumni&quot;                                                                                                                                                  
+## [191] &quot;Impact&quot;                                                                                                                                                  
+## [192] &quot;Leiden-Delft-Erasmus Universities&quot;                                                                                                                       
+## [193] &quot;Locations&quot;                                                                                                                                               
+## [194] &quot;Disclaimer&quot;                                                                                                                                              
+## [195] &quot;Cookies&quot;                                                                                                                                                 
+## [196] &quot;Privacy&quot;                                                                                                                                                 
+## [197] &quot;Contact&quot;                                                                                                                                                 
+## [198] &quot;Sign up to receive our monthly newsletter&quot;                                                                                                               
+## [199] &quot;&quot;                                                                                                                                                        
+## [200] &quot;&quot;                                                                                                                                                        
+## [201] &quot;&quot;                                                                                                                                                        
+## [202] &quot;&quot;                                                                                                                                                        
+## [203] &quot;&quot;                                                                                                                                                        
+## [204] &quot;&quot;                                                                                                                                                        
+## [205] &quot;\nMore information. &quot;</code></pre>
+<pre class="r"><code>#when including the things below you select to little info, can do this separately, and combine the names (strong) and function (span)
+#    rvest::html_elements(&quot;strong&quot;) %&gt;%
+#    rvest::html_elements(&quot;span&quot;) %&gt;%</code></pre>
+</div>
+<div id="rselenium" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> RSelenium</h2>
+<pre class="r"><code>#RSelenium usefull for websites where the data is &#39;loaded in&#39;, rvest cant handle that
+#packages: &quot;RSelenium&quot;, &quot;rvest&quot;, &quot;tidyverse&quot;, &quot;netstat&quot;, &quot;pingr&quot;, &quot;stringr&quot;
+#install.packages(&quot;RSelenium&quot;)
+#install.packages(&quot;netstat&quot;)
+#install.packages(&quot;pingr&quot;)
+
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(netstat)
+library(pingr)
+library(stringr)</code></pre>
+</div>
+<div id="openalex" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> OpenAlex</h2>
+<pre class="r"><code>#install.packages(&quot;openalexR&quot;)
+library(openalexR)
+
+
+df &lt;- oa_fetch(entity= &quot;author&quot;, search = &quot;Jochem+Tolsma&quot;, mailto = &quot;fridakooptdingen@gmail.com&quot;)
+df</code></pre>
+<pre><code>## # A tibble: 1 × 18
+##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
+##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
+## # ℹ abbreviated name: ¹​display_name_alternatives
+## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
+## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
+## #   affiliation_lineage &lt;chr&gt;, affiliations_other &lt;list&gt;, topics &lt;list&gt;, works_api_url &lt;chr&gt;</code></pre>
+<pre class="r"><code>#send to email, wont really send it to my mail but lifts some limitations
+
+
+df_papers &lt;-oa_fetch(entity = &quot;works&quot;, author.id = df$id)
+df_papers$author[1]</code></pre>
+<pre><code>## [[1]]
+##                              au_id  au_display_name                              au_orcid
+## 1 https://openalex.org/A5010780363 Tom van der Meer https://orcid.org/0000-0002-6164-2926
+## 2 https://openalex.org/A5087380803    Jochem Tolsma https://orcid.org/0000-0002-4411-6932
+##   author_position is_corresponding
+## 1           first            FALSE
+## 2            last            FALSE
+##                                                                              au_affiliation_raw
+## 1 Department of Political Science, University of Amsterdam, 1012 DL Amsterdam, The Netherlands;
+## 2               Department of Sociology, Radboud University, 6500 HE Nijmegen, The Netherlands;
+##                    institution_id    institution_display_name           institution_ror
+## 1 https://openalex.org/I887064364     University of Amsterdam https://ror.org/04dkp9463
+## 2 https://openalex.org/I145872427 Radboud University Nijmegen https://ror.org/016xsfp80
+##   institution_country_code institution_type             institution_lineage
+## 1                       NL        education https://openalex.org/I887064364
+## 2                       NL        education https://openalex.org/I145872427</code></pre>
+<pre class="r"><code>#zoek institution ID
+options(openalexR.mailto = &quot;fridakooptdingen@gmail.com&quot;)
+df_institution &lt;- oa_fetch(entity = &quot;institutions&quot;, search = &quot;Radboud+University+Nijmegen&quot;)$id[1]
+df_institution</code></pre>
+<pre><code>## [1] &quot;https://openalex.org/I145872427&quot;</code></pre>
+<pre class="r"><code>oa_fetch(entity = &quot;author&quot;, search = &quot;Jochem Tolsma&quot;, affiliations.institution.id = &quot;https://openalex.org/I145872427&quot;)</code></pre>
+<pre><code>## # A tibble: 1 × 18
+##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
+##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
+## # ℹ abbreviated name: ¹​display_name_alternatives
+## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
+## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
+## #   affiliation_lineage &lt;chr&gt;, affiliations_other &lt;list&gt;, topics &lt;list&gt;, works_api_url &lt;chr&gt;</code></pre>
+</div>
+<div id="compiling-a-network" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Compiling a
+network</h2>
+<pre class="r"><code>#network in elkaar zetten
+options(openalexR.mailto = &quot;fridakooptdingen@gmail.com&quot;)
+ 
+#Jochem
+id1&lt;- oa_fetch(entity = &quot;author&quot;, search = &quot;Jochem Tolsma&quot;, affiliations.institution.id = &quot;https://openalex.org/I145872427&quot;)
+
+
+#Tom van der Meer
+#id van UvA
+#oa_fetch(entity = &quot;institutions&quot;, search = &quot;University of Amsterdam&quot;)$id[1]
+#was de eerste, gecheckt via openalex   
+
+id2&lt;- oa_fetch(entity = &quot;author&quot;, search = &quot;Tom van der Meer&quot;, affiliations.institution.id = &quot;https://openalex.org/I887064364&quot;)
+id2 &lt;- id2[1,]
+
+#Maurice Gesthuizen
+id3&lt;- oa_fetch(entity = &quot;author&quot;, search = &quot;Maurice Gesthuizen&quot;, affiliations.institution.id = &quot;https://openalex.org/I145872427&quot;)
+
+#Michael Savelkoul
+id4&lt;- oa_fetch(entity = &quot;author&quot;, search = &quot;Michael Savelkoul&quot;, affiliations.institution.id = &quot;https://openalex.org/I145872427&quot;)
+
+all_id &lt;- c(id1$id, id2$id, id3$id, id4$id)
+all_id </code></pre>
+<pre><code>## [1] &quot;https://openalex.org/A5087380803&quot; &quot;https://openalex.org/A5010780363&quot;
+## [3] &quot;https://openalex.org/A5007673492&quot; &quot;https://openalex.org/A5048988743&quot;</code></pre>
+<pre class="r"><code>worksJT&lt;- oa_fetch(entity = &quot;works&quot;, author.id = id1$id)
+worksTVDM&lt;- oa_fetch(entity = &quot;works&quot;, author.id = id2$id)
+worksMG&lt;- oa_fetch(entity = &quot;works&quot;, author.id = id3$id)
+worksMS&lt;- oa_fetch(entity = &quot;works&quot;, author.id = id4$id)
+
+all_works &lt;- rbind(worksJT, worksTVDM)
+all_works &lt;- rbind(all_works, worksMG)
+all_works &lt;- rbind(all_works, worksMS)
+View(all_works)
+
+wave1 &lt;- matrix(0, nrow=4, ncol=4)
+wave1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## [3,]    0    0    0    0
+## [4,]    0    0    0    0</code></pre>
+<pre class="r"><code>attributes(all_works)</code></pre>
+<pre><code>## $names
+##  [1] &quot;id&quot;                          &quot;title&quot;                       &quot;display_name&quot;               
+##  [4] &quot;author&quot;                      &quot;ab&quot;                          &quot;publication_date&quot;           
+##  [7] &quot;so&quot;                          &quot;so_id&quot;                       &quot;host_organization&quot;          
+## [10] &quot;issn_l&quot;                      &quot;url&quot;                         &quot;pdf_url&quot;                    
+## [13] &quot;license&quot;                     &quot;version&quot;                     &quot;first_page&quot;                 
+## [16] &quot;last_page&quot;                   &quot;volume&quot;                      &quot;issue&quot;                      
+## [19] &quot;is_oa&quot;                       &quot;is_oa_anywhere&quot;              &quot;oa_status&quot;                  
+## [22] &quot;oa_url&quot;                      &quot;any_repository_has_fulltext&quot; &quot;language&quot;                   
+## [25] &quot;grants&quot;                      &quot;cited_by_count&quot;              &quot;counts_by_year&quot;             
+## [28] &quot;publication_year&quot;            &quot;cited_by_api_url&quot;            &quot;ids&quot;                        
+## [31] &quot;doi&quot;                         &quot;type&quot;                        &quot;referenced_works&quot;           
+## [34] &quot;related_works&quot;               &quot;is_paratext&quot;                 &quot;is_retracted&quot;               
+## [37] &quot;concepts&quot;                    &quot;topics&quot;                     
+## 
+## $row.names
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23
+##  [24]  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46
+##  [47]  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69
+##  [70]  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92
+##  [93]  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115
+## [116] 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138
+## [139] 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
+## [162] 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
+## [185] 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
+## [208] 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230
+## [231] 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253
+## [254] 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276
+## [277] 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299
+## [300] 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322
+## [323] 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345
+## [346] 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368
+## [369] 369 370 371 372 373 374
+## 
+## $class
+## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>library(tidyverse)
+all_works_1 &lt;- filter(all_works, publication_year &gt;= 2016)
+all_works_1 &lt;- filter(all_works_1, publication_year &lt;= 2020)
+View(all_works_1)
+
+rownames(wave1)&lt;- c(id1$id, id2$id, id3$id, id4$id)
+colnames(wave1)&lt;- c(id1$id, id2$id, id3$id, id4$id)
+wave1</code></pre>
+<pre><code>##                                  https://openalex.org/A5087380803 https://openalex.org/A5010780363
+## https://openalex.org/A5087380803                                0                                0
+## https://openalex.org/A5010780363                                0                                0
+## https://openalex.org/A5007673492                                0                                0
+## https://openalex.org/A5048988743                                0                                0
+##                                  https://openalex.org/A5007673492 https://openalex.org/A5048988743
+## https://openalex.org/A5087380803                                0                                0
+## https://openalex.org/A5010780363                                0                                0
+## https://openalex.org/A5007673492                                0                                0
+## https://openalex.org/A5048988743                                0                                0</code></pre>
+<pre class="r"><code>#selecting first row of large datafile, when loop use &#39;i&#39; instead of &#39;1&#39;
+ego &lt;- all_works_1[1,]$author[[1]]$au_id[1]
+ego</code></pre>
+<pre><code>## [1] &quot;https://openalex.org/A5048988743&quot;</code></pre>
+<pre class="r"><code>#%in% To determine whether a specific value is present in a column of an R data frame
+alter &lt;- all_works_1[1,]$author[[1]]$au_id[-1][all_works_1[1,]$author[[1]]$au_id[-1] %in% all_id]
+alter </code></pre>
+<pre><code>## [1] &quot;https://openalex.org/A5087380803&quot;</code></pre>
+<pre class="r"><code>wave1[ego, alter] &lt;- 1
+
+wave1</code></pre>
+<pre><code>##                                  https://openalex.org/A5087380803 https://openalex.org/A5010780363
+## https://openalex.org/A5087380803                                0                                0
+## https://openalex.org/A5010780363                                0                                0
+## https://openalex.org/A5007673492                                0                                0
+## https://openalex.org/A5048988743                                1                                0
+##                                  https://openalex.org/A5007673492 https://openalex.org/A5048988743
+## https://openalex.org/A5087380803                                0                                0
+## https://openalex.org/A5010780363                                0                                0
+## https://openalex.org/A5007673492                                0                                0
+## https://openalex.org/A5048988743                                0                                0</code></pre>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgMyINCm91dHB1dDogaHRtbF9kb2N1bWVudA0KYXV0aG9yOiAiRnJpZGEgdmFuIFRlaWpsaW5nZW4iDQotLS0NCiMgQXNzaWdubWVudHMgZHVyaW5nIGNsYXNzDQoNCiMjIFBhY2thZ2VzDQpgYGB7cn0NCiMgc3RhcnQgd2l0aCBjbGVhbiB3b3Jrc3BhY2UNCnJtKGxpc3QgPSBscygpKQ0KDQojaW5zdGFsbC5wYWNrYWdlcygnZGF0YS50YWJsZScpDQpsaWJyYXJ5KGRhdGEudGFibGUpICAjIG1haW5seSBmb3IgZmFzdGVyIGRhdGEgaGFuZGxpbmcNCmxpYnJhcnkodGlkeXZlcnNlKSAgIyBJIGFzc3VtZSB5b3UgYWxyZWFkeSBpbnN0YWxsZWQgdGhpcyBvbmUhDQojaW5zdGFsbC5wYWNrYWdlcygnaHR0cicpICMgd2UgZG9uJ3QgbmVlZCB0aGlzIGZvciBub3cgcmVxdWlyZShodHRyKQ0KI2luc3RhbGwucGFja2FnZXMoInhtbDIiKQ0KcmVxdWlyZSh4bWwyKQ0KI2luc3RhbGwucGFja2FnZXMoInJ2ZXN0IikNCnJlcXVpcmUocnZlc3QpDQojaW5zdGFsbC5wYWNrYWdlcygiZGV2dG9vbHMiKQ0KcmVxdWlyZShkZXZ0b29scykNCiMgTm90ZSB3ZSdyZSBkb2luZyBzb21ldGhpbmcgZGlmZmVyZW50IGhlcmUuIFdlJ3JlIGluc3RhbGxpbmcgYSAqbGF0ZXN0KiB2ZXJzaW9uIGRpcmVjdGx5IGZyb20NCiMgR2l0SHViIFRoaXMgaXMgYmVjYXVzZSB0aGUgcmVsZWFzZWQgdmVyc2lvbiBvZiB0aGlzIHBhY2thZ2VzIGNvbnRhaW5zIHNvbWUgZXJyb3JzIQ0KZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCJqa2VpcnN0ZWFkL3NjaG9sYXIiKQ0KDQpyZXF1aXJlKHNjaG9sYXIpDQoNCiMgZGVmaW5lIHdvcmtkaXJlY3RvcnksIG5vdGUgdGhlIGRvdWJsZSAqYmFja3NsYXNoZXMqIGlmIHlvdSdyZSBvbiB3aW5kb3dzIHNldHdkKCcveW91cnBhdGhoZXJlKScNCnNldHdkKCdDOi9Vc2Vycy9mcmlkYS9PbmVEcml2ZS9Eb2N1bWVudGVuL1JBREJPVUQgcmVzZWFyY2htYXN0ZXIvUDEgU29jaWFsIG5ldHdvcmtzJykNCg0KYGBgDQoNCg0KIyMgRmluZGluZyBhIGRhdGEgc291cmNlDQpgYGB7cn0NCiMgTGV0J3MgZmlyc3QgZ2V0IHRoZSBzdGFmZiBwYWdlIHJlYWRfaHRtbCBpcyBhIGZ1bmN0aW9uIHRoYXQgc2ltcGx5IGV4dHJhY3RzIGh0bWwgd2VicGFnZXMgYW5kDQojIHB1dHMgdGhlbSBpbiB4bWwgZm9ybWF0DQojc29jX3N0YWZmIDwtIHJlYWRfaHRtbCgiaHR0cHM6Ly93d3cucnUubmwvc29jaW9sb2d5L3Jlc2VhcmNoL3N0YWZmLyIpDQoNCiNlcnJvciEgYmVjYXVzZSBvbGQgd2Vic2l0ZSAtLT4gdXNlIHRoZSB3YXliYWNrIG1hY2hpbmUgdG8gcmV0cmlldmUgdGhlIG9sZCB3ZWJzaXRlDQoNCnNvY19zdGFmZiA8LSByZWFkX2h0bWwoImh0dHBzOi8vd2ViLmFyY2hpdmUub3JnL3dlYi8yMDIzMDUyODE1MzMzNi9odHRwczovL3d3dy5ydS5ubC9zb2Npb2xvZ3kvcmVzZWFyY2gvc3RhZmYvIikNCmhlYWQoc29jX3N0YWZmKQ0KI1doYXQgdHlwZSBvZiBvYmplY3QgZGlkIHdlIHN0b3JlIGl0IGJ5IHB1dHRpbmcgdGhlIGh0bWwgaW50byBzb2Nfc3RhZmY/DQoNCmNsYXNzKHNvY19zdGFmZikNCmBgYA0KIyMgZmluZGluZyB0aGUgcmlnaHQgaHRtbCBlbGVtZW50cyBhbmQgcnZlc3QNCmBgYHtyfQ0KIyBzbyB3ZSBuZWVkIHRvIGZpbmQgV0hFUkUgdGhlIHRhYmxlIGlzIGxvY2F0ZWQgaW4gdGhlIGh0bWwgJ2luc3BlY3QgZWxlbWVudCcgaW4gbW96aWxsYSBmaXJlZm94IG9yDQojICd2aWV3IHBhZ2Ugc291cmNlJyBhbmQgeW91IHNlZSB0aGF0IGV2ZXJ5dGhpbmcgQUZURVIgL3RkIGluIHRoZSAnYm9keScgb2YgdGhlIHBhZ2Ugc2VlbXMgdG8gYmUNCiMgdGhlIHRhYmxlIHdlIGRvIG5lZWQNCg0KDQoNCg0KI2luc3RhbGwucGFja2FnZXMoJ3NlbGVjdHInKQ0KbGlicmFyeShzZWxlY3RyKQ0KDQoNCiMgd2lodG91dCB4bWwyIHRoaW5ncyBidXQgdXNpbmcgaHRtbF9lbGVtZW50cyBiZWNhdXNlIHRoYXQgaXMgaW4gdGhlIHNhbWUgcGFja2FnZSwgc2xvcHB5IHByb2dyYW1taW5nIHRvIG1peCBkaWZmZXJlbnQgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2VzIA0Kc29jX3N0YWZmIDwtIHNvY19zdGFmZiAlPiUNCiAgICBydmVzdDo6aHRtbF9lbGVtZW50cygiYm9keSIpICU+JQ0KICAgIHJ2ZXN0OjpodG1sX2VsZW1lbnRzKCJ0ZCIpICU+JQ0KICAgIHJ2ZXN0OjpodG1sX3RleHQoKQ0Kc29jX3N0YWZmDQoNCnNvY19zdGFmZiA8LSByZWFkX2h0bWwoImh0dHBzOi8vd2ViLmFyY2hpdmUub3JnL3dlYi8yMDIzMDUyODE1MzMzNi9odHRwczovL3d3dy5ydS5ubC9zb2Npb2xvZ3kvcmVzZWFyY2gvc3RhZmYvIikNCmhlYWQoc29jX3N0YWZmKQ0KDQojdHJ5aW5nIHRvIGdldCBhIHRhYmxlIGZyb20gdGhlIHdlYnNpdGUNCnNvY19zdGFmZiA8LSBzb2Nfc3RhZmYgJT4lDQogICAgcnZlc3Q6Omh0bWxfZWxlbWVudHMoImJvZHkiKSAlPiUNCiAgICBydmVzdDo6aHRtbF90YWJsZSgpICANCnNvY19zdGFmZg0KDQoNCg0KYGBgDQojIyBOdW1iZXIgb2YgcGVvcGxlIG9uIHRoZSBsaXN0DQpgYGB7cn0NCmZvZGQgPC0gZnVuY3Rpb24oeCkgeCUlMiAhPSAwDQpmZXZlbiA8LSBmdW5jdGlvbih4KSB4JSUyID09IDANCg0KbnN0YWYgPC0gbGVuZ3RoKHNvY19zdGFmZikNCm5zdGFmDQoNCiAjIERvIHlvdSB1bmRlcnN0YW5kIHdoeSB3ZSBuZWVkIHRoZSBuc3RhZj8gV2hhdCBpdCBkb2VzPw0Kc29jX25hbWVzIDwtIHNvY19zdGFmZltmb2RkKDE6bnN0YWYpXSAgIyBpbiB0aGUgMSB1bnRpbCA5NHN0IG51bWJlciwgZ2V0IHRoZSBvZGQgZWxlbWVudHMNCmhlYWQoc29jX25hbWVzKQ0KYGBgDQojIyBMb29raW5nIGZvciBhbGwgbmFtZXMgb2YgTGVpZGVuIFBvbGl0aWNhbCBzY2llbmNlDQpgYGB7cn0NCmxlaWRzZV9zdGFmZiA8LSByZWFkX2h0bWwoImh0dHBzOi8vd3d3LnVuaXZlcnNpdGVpdGxlaWRlbi5ubC9lbi9zb2NpYWwtYmVoYXZpb3VyYWwtc2NpZW5jZXMvcG9saXRpY2FsLXNjaWVuY2Uvc3RhZmYjdGFiLTEiKQ0KaGVhZChsZWlkc2Vfc3RhZmYpDQojV2hhdCB0eXBlIG9mIG9iamVjdCBkaWQgd2Ugc3RvcmUgaXQgYnkgcHV0dGluZyB0aGUgaHRtbCBpbnRvIHNvY19zdGFmZj8NCg0KY2xhc3MobGVpZHNlX3N0YWZmKQ0KDQoNCiMNCmxlaWRzZV9zdGFmZiA8LSBsZWlkc2Vfc3RhZmYgJT4lDQogICAgcnZlc3Q6Omh0bWxfZWxlbWVudHMoImJvZHkiKSAlPiUNCiAgICBydmVzdDo6aHRtbF9lbGVtZW50cygiYSIpICU+JQ0KICAgIHJ2ZXN0OjpodG1sX3RleHQoKQ0KbGVpZHNlX3N0YWZmDQoNCg0KI3doZW4gaW5jbHVkaW5nIHRoZSB0aGluZ3MgYmVsb3cgeW91IHNlbGVjdCB0byBsaXR0bGUgaW5mbywgY2FuIGRvIHRoaXMgc2VwYXJhdGVseSwgYW5kIGNvbWJpbmUgdGhlIG5hbWVzIChzdHJvbmcpIGFuZCBmdW5jdGlvbiAoc3BhbikNCiMgICAgcnZlc3Q6Omh0bWxfZWxlbWVudHMoInN0cm9uZyIpICU+JQ0KIyAgICBydmVzdDo6aHRtbF9lbGVtZW50cygic3BhbiIpICU+JQ0KYGBgDQoNCiMjIFJTZWxlbml1bQ0KYGBge3J9DQojUlNlbGVuaXVtIHVzZWZ1bGwgZm9yIHdlYnNpdGVzIHdoZXJlIHRoZSBkYXRhIGlzICdsb2FkZWQgaW4nLCBydmVzdCBjYW50IGhhbmRsZSB0aGF0DQojcGFja2FnZXM6ICJSU2VsZW5pdW0iLCAicnZlc3QiLCAidGlkeXZlcnNlIiwgIm5ldHN0YXQiLCAicGluZ3IiLCAic3RyaW5nciINCiNpbnN0YWxsLnBhY2thZ2VzKCJSU2VsZW5pdW0iKQ0KI2luc3RhbGwucGFja2FnZXMoIm5ldHN0YXQiKQ0KI2luc3RhbGwucGFja2FnZXMoInBpbmdyIikNCg0KbGlicmFyeShSU2VsZW5pdW0pDQpsaWJyYXJ5KHJ2ZXN0KQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KG5ldHN0YXQpDQpsaWJyYXJ5KHBpbmdyKQ0KbGlicmFyeShzdHJpbmdyKQ0KYGBgDQoNCiMjIE9wZW5BbGV4DQpgYGB7cn0NCiNpbnN0YWxsLnBhY2thZ2VzKCJvcGVuYWxleFIiKQ0KbGlicmFyeShvcGVuYWxleFIpDQoNCg0KZGYgPC0gb2FfZmV0Y2goZW50aXR5PSAiYXV0aG9yIiwgc2VhcmNoID0gIkpvY2hlbStUb2xzbWEiLCBtYWlsdG8gPSAiZnJpZGFrb29wdGRpbmdlbkBnbWFpbC5jb20iKQ0KZGYNCiNzZW5kIHRvIGVtYWlsLCB3b250IHJlYWxseSBzZW5kIGl0IHRvIG15IG1haWwgYnV0IGxpZnRzIHNvbWUgbGltaXRhdGlvbnMNCg0KDQpkZl9wYXBlcnMgPC1vYV9mZXRjaChlbnRpdHkgPSAid29ya3MiLCBhdXRob3IuaWQgPSBkZiRpZCkNCmRmX3BhcGVycyRhdXRob3JbMV0NCg0KI3pvZWsgaW5zdGl0dXRpb24gSUQNCm9wdGlvbnMob3BlbmFsZXhSLm1haWx0byA9ICJmcmlkYWtvb3B0ZGluZ2VuQGdtYWlsLmNvbSIpDQpkZl9pbnN0aXR1dGlvbiA8LSBvYV9mZXRjaChlbnRpdHkgPSAiaW5zdGl0dXRpb25zIiwgc2VhcmNoID0gIlJhZGJvdWQrVW5pdmVyc2l0eStOaWptZWdlbiIpJGlkWzFdDQpkZl9pbnN0aXR1dGlvbg0KDQoNCm9hX2ZldGNoKGVudGl0eSA9ICJhdXRob3IiLCBzZWFyY2ggPSAiSm9jaGVtIFRvbHNtYSIsIGFmZmlsaWF0aW9ucy5pbnN0aXR1dGlvbi5pZCA9ICJodHRwczovL29wZW5hbGV4Lm9yZy9JMTQ1ODcyNDI3IikNCg0KDQpgYGANCiMjIENvbXBpbGluZyBhIG5ldHdvcmsNCg0KYGBge3J9DQojbmV0d29yayBpbiBlbGthYXIgemV0dGVuDQpvcHRpb25zKG9wZW5hbGV4Ui5tYWlsdG8gPSAiZnJpZGFrb29wdGRpbmdlbkBnbWFpbC5jb20iKQ0KIA0KI0pvY2hlbQ0KaWQxPC0gb2FfZmV0Y2goZW50aXR5ID0gImF1dGhvciIsIHNlYXJjaCA9ICJKb2NoZW0gVG9sc21hIiwgYWZmaWxpYXRpb25zLmluc3RpdHV0aW9uLmlkID0gImh0dHBzOi8vb3BlbmFsZXgub3JnL0kxNDU4NzI0MjciKQ0KDQoNCiNUb20gdmFuIGRlciBNZWVyDQojaWQgdmFuIFV2QQ0KI29hX2ZldGNoKGVudGl0eSA9ICJpbnN0aXR1dGlvbnMiLCBzZWFyY2ggPSAiVW5pdmVyc2l0eSBvZiBBbXN0ZXJkYW0iKSRpZFsxXQ0KI3dhcyBkZSBlZXJzdGUsIGdlY2hlY2t0IHZpYSBvcGVuYWxleAkNCg0KaWQyPC0gb2FfZmV0Y2goZW50aXR5ID0gImF1dGhvciIsIHNlYXJjaCA9ICJUb20gdmFuIGRlciBNZWVyIiwgYWZmaWxpYXRpb25zLmluc3RpdHV0aW9uLmlkID0gImh0dHBzOi8vb3BlbmFsZXgub3JnL0k4ODcwNjQzNjQiKQ0KaWQyIDwtIGlkMlsxLF0NCg0KI01hdXJpY2UgR2VzdGh1aXplbg0KaWQzPC0gb2FfZmV0Y2goZW50aXR5ID0gImF1dGhvciIsIHNlYXJjaCA9ICJNYXVyaWNlIEdlc3RodWl6ZW4iLCBhZmZpbGlhdGlvbnMuaW5zdGl0dXRpb24uaWQgPSAiaHR0cHM6Ly9vcGVuYWxleC5vcmcvSTE0NTg3MjQyNyIpDQoNCiNNaWNoYWVsIFNhdmVsa291bA0KaWQ0PC0gb2FfZmV0Y2goZW50aXR5ID0gImF1dGhvciIsIHNlYXJjaCA9ICJNaWNoYWVsIFNhdmVsa291bCIsIGFmZmlsaWF0aW9ucy5pbnN0aXR1dGlvbi5pZCA9ICJodHRwczovL29wZW5hbGV4Lm9yZy9JMTQ1ODcyNDI3IikNCg0KYWxsX2lkIDwtIGMoaWQxJGlkLCBpZDIkaWQsIGlkMyRpZCwgaWQ0JGlkKQ0KYWxsX2lkIA0KDQp3b3Jrc0pUPC0gb2FfZmV0Y2goZW50aXR5ID0gIndvcmtzIiwgYXV0aG9yLmlkID0gaWQxJGlkKQ0Kd29ya3NUVkRNPC0gb2FfZmV0Y2goZW50aXR5ID0gIndvcmtzIiwgYXV0aG9yLmlkID0gaWQyJGlkKQ0Kd29ya3NNRzwtIG9hX2ZldGNoKGVudGl0eSA9ICJ3b3JrcyIsIGF1dGhvci5pZCA9IGlkMyRpZCkNCndvcmtzTVM8LSBvYV9mZXRjaChlbnRpdHkgPSAid29ya3MiLCBhdXRob3IuaWQgPSBpZDQkaWQpDQoNCmFsbF93b3JrcyA8LSByYmluZCh3b3Jrc0pULCB3b3Jrc1RWRE0pDQphbGxfd29ya3MgPC0gcmJpbmQoYWxsX3dvcmtzLCB3b3Jrc01HKQ0KYWxsX3dvcmtzIDwtIHJiaW5kKGFsbF93b3Jrcywgd29ya3NNUykNClZpZXcoYWxsX3dvcmtzKQ0KDQp3YXZlMSA8LSBtYXRyaXgoMCwgbnJvdz00LCBuY29sPTQpDQp3YXZlMQ0KDQphdHRyaWJ1dGVzKGFsbF93b3JrcykNCmxpYnJhcnkodGlkeXZlcnNlKQ0KYWxsX3dvcmtzXzEgPC0gZmlsdGVyKGFsbF93b3JrcywgcHVibGljYXRpb25feWVhciA+PSAyMDE2KQ0KYWxsX3dvcmtzXzEgPC0gZmlsdGVyKGFsbF93b3Jrc18xLCBwdWJsaWNhdGlvbl95ZWFyIDw9IDIwMjApDQpWaWV3KGFsbF93b3Jrc18xKQ0KDQpyb3duYW1lcyh3YXZlMSk8LSBjKGlkMSRpZCwgaWQyJGlkLCBpZDMkaWQsIGlkNCRpZCkNCmNvbG5hbWVzKHdhdmUxKTwtIGMoaWQxJGlkLCBpZDIkaWQsIGlkMyRpZCwgaWQ0JGlkKQ0Kd2F2ZTENCg0KI3NlbGVjdGluZyBmaXJzdCByb3cgb2YgbGFyZ2UgZGF0YWZpbGUsIHdoZW4gbG9vcCB1c2UgJ2knIGluc3RlYWQgb2YgJzEnDQplZ28gPC0gYWxsX3dvcmtzXzFbMSxdJGF1dGhvcltbMV1dJGF1X2lkWzFdDQplZ28NCiMlaW4lIFRvIGRldGVybWluZSB3aGV0aGVyIGEgc3BlY2lmaWMgdmFsdWUgaXMgcHJlc2VudCBpbiBhIGNvbHVtbiBvZiBhbiBSIGRhdGEgZnJhbWUNCmFsdGVyIDwtIGFsbF93b3Jrc18xWzEsXSRhdXRob3JbWzFdXSRhdV9pZFstMV1bYWxsX3dvcmtzXzFbMSxdJGF1dGhvcltbMV1dJGF1X2lkWy0xXSAlaW4lIGFsbF9pZF0NCmFsdGVyIA0Kd2F2ZTFbZWdvLCBhbHRlcl0gPC0gMQ0KDQp3YXZlMQ0KDQoNCg0KDQoNCg0KDQoNCmBgYA0KDQo=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("w3webscraping.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

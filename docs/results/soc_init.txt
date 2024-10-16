@@ -6,7 +6,7 @@ Filename is ./results/soc_init.txt.
 
 This file contains primary output for SIENA project <<./results/soc_init>>.
 
-Date and time: 09/10/2024 09:09:37 
+Date and time: 16/10/2024 09:53:44 
 
 RSiena version 1.4.7 (20 02 2024)
 

@@ -48,13 +48,13 @@ fpackage.check(packages)
 # Loading in data
 ```{r loading in data, echo = F, include = F}
 #df_works
-df_works <- fload("data/processed/df_works_20241007.rda")
+df_works <- fload("data/processed/df_works_20241009.rda")
 
 #df_eg
-df_ego <- fload("data/processed/df_ego_20241007.rda")
+df_ego <- fload("data/processed/df_ego_20241009.rda")
 
 #df_allunis
-unidata <- fload("data/processed/unidata_20241007.rda")
+unidata <- fload("data/processed/unidata_20241009.rda")
 
 ```
 
