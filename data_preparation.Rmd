@@ -283,13 +283,12 @@ plot(unis_w2,
 ```{r}
 traveltimetbl <- read_csv2("traveltime_ov.csv")
 
-#dplyr::inner_join(df_ego, traveltimetbl, by = "Universiteit.22")
+#make the traveltimetbl file into a matrix (rownames and colomn names are the universities, exactly like in df_ego, remove Universiteit.22)
+#no need to do it for universiteit 22 and 24, as independent variable i can see it as timeconstant. 
+# remove authors with many missing data.
 
-#Ask jochem: how to match traveltimes to people in df_ego? apart voor de 2 waves?
-# dplyr inner_join()? aggregating the traveltime table?
-#dplyr::inner_join(df_ego, traveltimetbl, by = "Universiteit.22")
-
-
+#write looping code, first row 1: how many authors, than col, for 1:how many authors
+#in same code, loop and  match with time distance table to correct time, zie schrift.
 
 
 
@@ -299,10 +298,22 @@ traveltimetbl <- read_csv2("traveltime_ov.csv")
 
 # Saving the prepared data
 ```{r}
-fsave(df_ego, file = "df_ego", location = "data/processed/")
-fsave(df_works, file = "df_works", location = "data/processed/")
-fsave(unidata, file = "unidata", location = "data/processed/")
-#fsave  data incl. travel time
+#fsave(df_ego, file = "df_ego", location = "data/processed/")
+#fsave(df_works, file = "df_works", location = "data/processed/")
+#fsave(unidata, file = "unidata", location = "data/processed/")
 
+
+```
+# Code for loading in the prepared data
+travelt_matrix in w6traveltimes.html
+```{r}
+
+#df_works <- fload("data/processed/df_works_20241009.rda")
+
+#df_ego <- fload("data/processed/df_ego_20241009.rda")
+
+#unidata <- fload("data/processed/unidata_20241009.rda")
+
+#travelt_matrix <- fload("data/processed/travelt_matrix20241009")
 ```
 

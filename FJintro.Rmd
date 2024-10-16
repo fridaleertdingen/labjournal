@@ -1,0 +1,19 @@
+---
+title: "Introduction"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+
+***TITLE: ‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+
+#Introduction
+Over the last few centuries, globalization processes have resulted in economic, political and cultural interdependence. According to some, the globalization of science is one of the most important, if not the most important, aspect of modern globalization (Freeman, 2010). With a globalizing world also comes an immense and growing worldwide network of international connections and collaboration. The subsequent knowledge flows as a result of these connections and collaborations are beneficial for economic development, specialization, networking, and the competitiveness in the scientific field (Gui et al., 2019). Additionally, the large international collaboration network benefits both students and teachers when seeking specific knowledge and specializations (Fitzgerald et al., 2021).
+
+While seeking collaboration, geographical distance can be experienced as a barrier. A greater distance can affect the effectiveness and efficiency of collaboration, if it does not prevent collaboration entirely in the first place (Pallot et al., 2010). While globalization is not able to shrink geographical distances in a literal sense, our individual perception and awareness of the distance between us and a secondary location, also referred to as ‘psychic distance’, has decreased as a result of globalization (Ojala, 2009). That is, phones, e-mail, and other telecommunication technologies have made it much easier to reach out to others who are not directly in our immediate vicinity, advancing collaboration opportunities (Hoekman et al., 2010). While this relation has been proven for long-distance, international scientific collaboration (e.g. Hoekman et al., 2010), little research has been done on the relationship between geographical distance and scientific collaboration networks on a single country level. While it can be expected to be less evident, geographical distance can still be expected to be a relevant factor in scientific collaboration networks between actors within a country, as travel time and convenience can still be of relevant influence. Studying this on a single country level can give us more insight into the degree of influence geographical distance can have on scientific collaboration.
+
+This study aims to do so by studying the influence of geographical distance on co-authorship collaboration networks in the Netherlands, specifically between the sociology departments at several Dutch universities. This leads to the following research question: ***[RQ1] To what extent does the geographical distance between Sociology departments at Dutch universities influence the between-university collaboration network of scientists located at these universities?***
+
+Broad societal changes, such as the COVID-19 pandemic between 2020 and 2022 had possibly lasting consequences for scientific collaboration networks. That is, government mandated measures such as working from home, limited travelling and avoiding close contact to others, might have changed the way these networks were constructed. This study will look at changing spatial patterns of research collaboration by studying co-authorship over time, resulting in the following questions: ***[RQ2] To what extent has the relation between geographical distance and between-university collaboration networks of Dutch Sociology departments changed over time?*** And: ***[RQ3] What patterns can be discovered within the collaboration network, for example by gender?***
+
+ADD?: In what way does a previous collaboration influence the impact of geographical distance on the likelihood of collaboration?
+IMPROVE: SNA perspective

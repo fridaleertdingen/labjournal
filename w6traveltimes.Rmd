@@ -1,0 +1,113 @@
+---
+title: "Week 6 lecture"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+# Set up
+```{r}
+rm(list = ls())
+
+#---- Loading packages ----
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+#---- Data saving ----
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, file, "_", datename, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+#---- Loading in data ----
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+#---- Output ----
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+```
+
+# Libraries
+```{r}
+packages <- c("tidyverse")
+fpackage.check(packages)
+```
+
+
+# Data
+```{r}
+traveltimetbl <- read_csv2("traveltime_ov.csv")
+
+df_ego <- fload("./data/processed/df_ego_20241009.rda")
+
+#df_works
+df_works <- fload("data/processed/df_works_20241007.rda")
+
+#df_eg
+df_ego <- fload("data/processed/df_ego_20241007.rda")
+
+#df_allunis
+unidata <- fload("data/processed/unidata_20241007.rda")
+```
+
+```{r}
+class(traveltimetbl)
+
+#convert to matrix
+traveltime_matrix <- as.matrix(traveltimetbl)
+ colnames(traveltime_matrix)
+ rownames(traveltime_matrix)
+ # copying the colnames to the rownames, same order
+ rownames(traveltime_matrix) <- colnames(traveltime_matrix)
+```
+
+```{r}
+zeromatrix <- matrix(NA, nrow = 234, ncol = 234)
+```
+
+# Loop travel times for all egos
+```{r}
+for(ego in 1:nrow(zeromatrix)) {
+  for(alter in 1:ncol(zeromatrix)){
+    egouni <- df_ego$Universiteit1.22[ego] #select university for ego, let op .1, opgeschoonde variabele
+    alteruni <- df_ego$Universiteit1.22[alter] #select university for alter
+    if (egouni != "" & alteruni != ""){ #egouni nie leeg is EN als alteruni nie leeg is doe dan het volgende 
+                                        #!= betekent NOT, == betekent IS, | betekent OR, & betekent AND
+                                        #voornamelijk logica, HEEL goed nadenken over betekenis en einddoel
+      travel <- traveltime_matrix[egouni,alteruni] #selecting traveltime between ego and alter universities
+      zeromatrix[ego,alter] <- travel 
+    }
+  }
+}
+
+ travelt_matrix<- zeromatrix
+ 
+```
+
+# Saving the travel time matrix
+```{r}
+#fsave(travelt_matrix, file = "travelt_matrix", location = "data/processed/")
+
+#for loading in:
+#travelt_matrix <- fload("data/processed/travelt_matrix20241009")
+```
+
+# Notes
+traveltime_matrix is not (yet) mirrored. R Automatically takes the top right values. Would be neater to mirror the matrix (because you need to travel to and from). OR add up, OR leave it like it is right now.
+

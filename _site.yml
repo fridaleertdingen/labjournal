@@ -31,10 +31,19 @@ navbar:
         - text: "Week 5 - RSiena lecture pt 2"
           href: w5RsienaLEC.html
         - text: "Week 5 - Rsiena own data"
-          href: w5RSienaTRY.html
+          href: w5and6RSienaTRY.html
     - text: "Data preparation"
-      href: data_preparation.html          
-
+      href: data_preparation.html
+        - text: "Matching/looping traveltimes"
+          href: w6traveltimes.html
+    - text: "Final journal"
+      href: 
+        - text: "Introduction"
+          href: FJintro.html
+        - text: "Theory"
+          href: FJtheory.html
+#        - text: "Methods"
+#          href:         
           
         
 #      menu:
