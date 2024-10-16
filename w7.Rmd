@@ -45,8 +45,8 @@ fshowdf <- function(x, ...) {
 
 # Libraries
 ```{r}
-packages <- c("")
-fpackage.check(packages)
+#packages <- c("")
+#fpackage.check(packages)
 ```
 
 #Data

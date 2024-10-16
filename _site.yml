@@ -32,19 +32,21 @@ navbar:
           href: w5RsienaLEC.html
         - text: "Week 5 - Rsiena own data"
           href: w5and6RSienaTRY.html
-    - text: "Data preparation"
-      href: data_preparation.html
-      menu:
-        - text: "Matching and looping traveltimes"
-          href: w6traveltimes.html
+
     - text: "Final journal"
-      href: 
+      menu:
         - text: "Introduction"
           href: FJintro.html
         - text: "Theory"
           href: FJtheory.html
-#        - text: "Methods"
-#          href:         
+        - text: "Data preparation and methods"
+#          menu: 
+#            - text: "Methods"
+#            - href: {{tekstbestand met beschrijving, kaartje etc}}
+#            - text: "Data preparation"
+#            - href: data_preparation.html
+#            - text: Matching and looping travel times
+#            - href: w6traveltimes.html
           
         
 #      menu:

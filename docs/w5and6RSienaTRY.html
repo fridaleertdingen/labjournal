@@ -391,8 +391,20 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li>
-  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="FJintro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="FJtheory.html">Theory</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -578,16 +590,16 @@ ansM1</code></pre>
 ##                                            Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter       3.3216  ( 0.3741   )             
+##   0       Rate parameter       3.3118  ( 0.4039   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density) -3.1526  ( 0.0755   )    0.0204   
-##   2. eval reciprocity          2.8614  ( 0.2147   )   -0.0713   
+##   1. eval outdegree (density) -3.1521  ( 0.0771   )   0.0130    
+##   2. eval reciprocity          2.8678  ( 0.2146   )   0.0019    
 ## 
-## Overall maximum convergence ratio:    0.0925 
+## Overall maximum convergence ratio:    0.0138 
 ## 
 ## 
-## Total of 2023 iteration steps.</code></pre>
+## Total of 2282 iteration steps.</code></pre>
 <pre class="r"><code>#convergence ratio should be below .25</code></pre>
 </div>
 

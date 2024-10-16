@@ -390,8 +390,20 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li>
-  <a href="list(text = &quot;Introduction&quot;, href = &quot;FJintro.html&quot;) list(text = &quot;Theory&quot;, href = &quot;FJtheory.html&quot;)">Final journal</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Final journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="FJintro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="FJtheory.html">Theory</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -659,16 +671,16 @@ ansM1</code></pre>
 ##                                            Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter       3.0730  ( 0.5362   )             
+##   0       Rate parameter       3.0811  ( 0.5397   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density) -1.8532  ( 0.1360   )   -0.0817   
-##   2. eval reciprocity          1.1759  ( 0.4000   )   -0.0566   
+##   1. eval outdegree (density) -1.8453  ( 0.1357   )   0.0500    
+##   2. eval reciprocity          1.1634  ( 0.4176   )   0.0381    
 ## 
-## Overall maximum convergence ratio:    0.0862 
+## Overall maximum convergence ratio:    0.0527 
 ## 
 ## 
-## Total of 1965 iteration steps.</code></pre>
+## Total of 1797 iteration steps.</code></pre>
 <pre class="r"><code>#convergence ratio should be below .25</code></pre>
 <p>step 1: define the data step 2: create the effects structure step 3:
 get initial description, look at this file, report something on it

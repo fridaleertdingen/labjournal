@@ -7,15 +7,24 @@ bibliography: references.bib
 #Theory
 Scientific collaboration can be more or less likely under various circumstances. For example, a few obvious ones being having an overlap in area of research interest, both parties having the time and funds, and both parties being interested in collaboration.  Geographical proximity is seen as a particularly important indicator of scientific collaboration, as it increases the likelihood of scholars coming into face-to-face contact with one another (Rua-Gomez et al., 2023). A smaller geographic distance increases the chances of participating in all kinds of formal and semi-formal activities that can harbour learning and knowledge sharing among scientists (Biancani et al., 2014; Hoegl et al., 2004; Ter Wal, 2014).
 ...
+
 -> Hypothesis 1: Universities that are geographically closer to each other will have a denser collaboration network than those that are geographically more far apart.
+---
+
 
 Trend in increasing use of online communication methods. Scholars got tech savvier, find it easier to communicate, and thus collaborate, online than before. Covid normalized the use of online communication methods even further, thereby decreasing the obstacle that geographical distance made
 ...
--> Hypothesis 2: Between university collaboration of Dutch Sociology departments has increased over time between 2015 and 2024. 
+
+-> Hypothesis 2: Between university collaboration of Dutch Sociology departments has increased over time (between 2015 and 2024). 
+---
+
 
 Longer travel time collaborations means more long days, commute time increases. Due to higher demand of work-life balance for women: more expected at home than men, so longer workdays less convenient, therefore less likely to engage in geographically distanced collaboration.
 ...
+
 -> Hypothesis 3: Female scholars are less likely to collaborate with scholars at universities distanced further away, 
+---
 
 
--> Hypothesis 4: Collaboration in the first wave will decrease the negative impact of distance on collaboration in the second wave
+
+-> Hypothesis 4: Collaboration in the first wave will decrease the negative impact of distance on collaboration in the second wave             ?
