@@ -391,18 +391,6 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Data preparation
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Final journal
      
     <span class="caret"></span>
@@ -413,6 +401,19 @@ div.tocify {
     </li>
     <li>
       <a href="FJtheory.html">Theory</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Data preparation</li>
+        <li>
+          <a href="data_preparation.html"></a>
+        </li>
+        <li class="dropdown-header">Matching and looping travel times</li>
+        <li>
+          <a href="w6traveltimes.html"></a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -456,13 +457,13 @@ library(leaflet)
 <pre class="r"><code>leaflet() %&gt;%
   addProviderTiles(provider = &quot;OpenStreetMap&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-1be65b56c025d785915e" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1be65b56c025d785915e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-2ec07f8d467307a7da60" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2ec07f8d467307a7da60">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>leaflet() %&gt;%
   addProviderTiles(provider = &quot;CartoDB.Voyager&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-5dfcfae5f39e4260b71d" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-5dfcfae5f39e4260b71d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-e90cfe0739457e55a012" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e90cfe0739457e55a012">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[52.1326,5.2913],7.2,[]]},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>uni_longitude &lt;- c(5.171430, 6.557490, 4.912590, 4.525170, 4.4780664, 5.8623425, 4.8735998, 5.046225, 4.3695136, 5.171807)
 
 uni_latitude &lt;- c(52.084460, 53.222250, 52.363210, 51.919050,  52.1696475, 51.8192069, 52.3348043,  51.5624972, 52.0024433, 52.0845094)  
@@ -474,8 +475,8 @@ leaflet() %&gt;%
   addProviderTiles(provider = &quot;CartoDB.Voyager&quot;) %&gt;%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2) %&gt;%
   addMarkers(lng = uni_longitude, lat = uni_latitude, label = uni_label)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-f7b2821c6f22d74abda2" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f7b2821c6f22d74abda2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[52.08446,53.22225,52.36321,51.91905,52.1696475,51.8192069,52.3348043,51.5624972,52.0024433,52.0845094],[5.17143,6.55749,4.91259,4.52517,4.4780664,5.8623425,4.8735998,5.046225,4.3695136,5.171807],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["UU","RUG","UvA","EUR","Leiden","RU","VU","UvT","TU Delft","UvH"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[52.1326,5.2913],7.2,[]],"limits":{"lat":[51.5624972,53.22225],"lng":[4.3695136,6.55749]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-a398ba594b6e51140a92" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a398ba594b6e51140a92">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Voyager",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[52.08446,53.22225,52.36321,51.91905,52.1696475,51.8192069,52.3348043,51.5624972,52.0024433,52.0845094],[5.17143,6.55749,4.91259,4.52517,4.4780664,5.8623425,4.8735998,5.046225,4.3695136,5.171807],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["UU","RUG","UvA","EUR","Leiden","RU","VU","UvT","TU Delft","UvH"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[52.1326,5.2913],7.2,[]],"limits":{"lat":[51.5624972,53.22225],"lng":[4.3695136,6.55749]}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 <div id="rmd-source-code">IyBUcnlpbmcgb3V0IGxlYWZsZXQNCmBgYHtyfQ0KI2luc3RhbGwucGFja2FnZXMoImxlYWZsZXQiKQ0KbGlicmFyeShsZWFmbGV0KQ0KDQojcHJvdmlkZXJzDQpgYGANCg0KYGBge3J9DQpsZWFmbGV0KCkgJT4lDQogIGFkZFByb3ZpZGVyVGlsZXMocHJvdmlkZXIgPSAiT3BlblN0cmVldE1hcCIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikNCg0KYGBgDQoNCmBgYHtyfQ0KbGVhZmxldCgpICU+JQ0KICBhZGRQcm92aWRlclRpbGVzKHByb3ZpZGVyID0gIkNhcnRvREIuVm95YWdlciIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikNCmBgYA0KDQpgYGB7cn0NCnVuaV9sb25naXR1ZGUgPC0gYyg1LjE3MTQzMCwgNi41NTc0OTAsIDQuOTEyNTkwLCA0LjUyNTE3MCwgNC40NzgwNjY0LCA1Ljg2MjM0MjUsIDQuODczNTk5OCwgNS4wNDYyMjUsIDQuMzY5NTEzNiwgNS4xNzE4MDcpDQoNCnVuaV9sYXRpdHVkZSA8LSBjKDUyLjA4NDQ2MCwgNTMuMjIyMjUwLCA1Mi4zNjMyMTAsIDUxLjkxOTA1MCwgIDUyLjE2OTY0NzUsIDUxLjgxOTIwNjksIDUyLjMzNDgwNDMsICA1MS41NjI0OTcyLCA1Mi4wMDI0NDMzLCA1Mi4wODQ1MDk0KSAgDQoNCnVuaV9sYWJlbCA8LSBjKCJVVSIsICJSVUciLCAiVXZBIiwgIkVVUiIsICJMZWlkZW4iLCAiUlUiLCAiVlUiLCAiVXZUIiwgIlRVIERlbGZ0IiwgIlV2SCIpDQoNCg0KbGVhZmxldCgpICU+JQ0KICBhZGRQcm92aWRlclRpbGVzKHByb3ZpZGVyID0gIkNhcnRvREIuVm95YWdlciIpICU+JQ0KICBzZXRWaWV3KGxuZyA9IDUuMjkxMywgbGF0ID0gNTIuMTMyNiwgem9vbSA9IDcuMikgJT4lDQogIGFkZE1hcmtlcnMobG5nID0gdW5pX2xvbmdpdHVkZSwgbGF0ID0gdW5pX2xhdGl0dWRlLCBsYWJlbCA9IHVuaV9sYWJlbCkNCmBgYA0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg==</div>

@@ -380,18 +380,6 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Data preparation
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="w6traveltimes.html">Matching and looping traveltimes</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Final journal
      
     <span class="caret"></span>
@@ -402,6 +390,19 @@ div.tocify {
     </li>
     <li>
       <a href="FJtheory.html">Theory</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Data preparation</li>
+        <li>
+          <a href="data_preparation.html"></a>
+        </li>
+        <li class="dropdown-header">Matching and looping travel times</li>
+        <li>
+          <a href="w6traveltimes.html"></a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -671,16 +672,16 @@ ansM1</code></pre>
 ##                                            Error      t-ratio   
 ## 
 ## Rate parameters: 
-##   0       Rate parameter       3.0811  ( 0.5397   )             
+##   0       Rate parameter       3.0895  ( 0.5337   )             
 ## 
 ## Other parameters: 
-##   1. eval outdegree (density) -1.8453  ( 0.1357   )   0.0500    
-##   2. eval reciprocity          1.1634  ( 0.4176   )   0.0381    
+##   1. eval outdegree (density) -1.8444  ( 0.1342   )   0.0334    
+##   2. eval reciprocity          1.1586  ( 0.3937   )   0.0087    
 ## 
-## Overall maximum convergence ratio:    0.0527 
+## Overall maximum convergence ratio:    0.0341 
 ## 
 ## 
-## Total of 1797 iteration steps.</code></pre>
+## Total of 2027 iteration steps.</code></pre>
 <pre class="r"><code>#convergence ratio should be below .25</code></pre>
 <p>step 1: define the data step 2: create the effects structure step 3:
 get initial description, look at this file, report something on it
