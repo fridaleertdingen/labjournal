@@ -241,7 +241,7 @@ map_tt <- data.frame(
 
 ```{r}
 map <- leaflet() %>%
-  addProviderTiles(provider = "Stadia") %>%
+  addProviderTiles(provider = "CartoDB.Voyager") %>%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.4) %>%
   addMarkers(
     lng = uni_coords$lng,
