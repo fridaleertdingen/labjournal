@@ -399,7 +399,7 @@ div.tocify {
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="FJdatamethods.html">Data</a>
+          <a href="FJdatamethods2.html">Data</a>
         </li>
         <li>
           <a href="data_preparation.html">Data preparation - code</a>
@@ -631,61 +631,12 @@ Chapter 9</h1>
 <p>Network visualization</p>
 <pre class="r"><code>#install.packages(&quot;sna&quot;)
 #packages
-library(sna)</code></pre>
-<pre><code>## Loading required package: statnet.common</code></pre>
-<pre><code>## 
-## Attaching package: &#39;statnet.common&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     attr, order</code></pre>
-<pre><code>## Loading required package: network</code></pre>
-<pre><code>## 
-## &#39;network&#39; 1.18.2 (2023-12-04), part of the Statnet Project
-## * &#39;news(package=&quot;network&quot;)&#39; for changes since last version
-## * &#39;citation(&quot;network&quot;)&#39; for citation information
-## * &#39;https://statnet.org&#39; for help, support, and other information</code></pre>
-<pre><code>## sna: Tools for Social Network Analysis
-## Version 2.8 created on 2024-09-07.
-## copyright (c) 2005, Carter T. Butts, University of California-Irvine
-##  For citation information, type citation(&quot;sna&quot;).
-##  Type help(package=&quot;sna&quot;) to get started.</code></pre>
-<pre class="r"><code>library(lavaan)</code></pre>
+library(sna)
+library(lavaan)</code></pre>
 <pre><code>## This is lavaan 0.6-18
 ## lavaan is FREE software! Please report any bugs.</code></pre>
 <pre class="r"><code>library(RSiena)
 library(igraph)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;igraph&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:sna&#39;:
-## 
-##     betweenness, bonpow, closeness, components, degree, dyad.census, evcent, hierarchy,
-##     is.connected, neighborhood, triad.census</code></pre>
-<pre><code>## The following objects are masked from &#39;package:network&#39;:
-## 
-##     %c%, %s%, add.edges, add.vertices, delete.edges, delete.vertices, get.edge.attribute,
-##     get.edges, get.vertex.attribute, is.bipartite, is.directed, list.edge.attributes,
-##     list.vertex.attributes, set.edge.attribute, set.vertex.attribute</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
-## 
-##     %--%, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     as_data_frame, groups, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
-## 
-##     compose, simplify</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     crossing</code></pre>
-<pre><code>## The following object is masked from &#39;package:tibble&#39;:
-## 
-##     as_data_frame</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     union</code></pre>
 <div id="zacharys-karate-club" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Zachary’s karate
 club</h2>
@@ -837,11 +788,12 @@ igraph::betweenness(g, directed = FALSE)</code></pre>
 
 #tryad census
 igraph::triad.census(g)</code></pre>
-<pre><code>## Warning: `triad.census()` was deprecated in igraph 2.0.0.
+<pre><code>## Warning: `triad.census()` was deprecated in igraph
+## 2.0.0.
 ## ℹ Please use `triad_census()` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to
+## see where this warning was generated.</code></pre>
 <pre><code>## Warning in triad_census(graph = graph): At vendor/cigraph/src/misc/motifs.c:1140 : Triad census
 ## called on an undirected graph. All connections will be treated as mutual.</code></pre>
 <pre><code>##  [1] 3971    0 1575    0    0    0    0    0    0    0  393    0    0    0    0   45</code></pre>
@@ -2397,11 +2349,12 @@ plot.igraph(G_w, mode = &quot;undirected&quot;, layout = owncoords, rescale = F,
 # red if between parties
 
 edges &lt;- get.adjacency(G_w)</code></pre>
-<pre><code>## Warning: `get.adjacency()` was deprecated in igraph 2.0.0.
+<pre><code>## Warning: `get.adjacency()` was deprecated in igraph
+## 2.0.0.
 ## ℹ Please use `as_adjacency_matrix()` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to
+## see where this warning was generated.</code></pre>
 <pre class="r"><code>edges_mat &lt;- matrix(as.numeric(edges), nrow = nrow(edges))
 # edges_mat
 
@@ -2591,11 +2544,12 @@ net1_un &lt;- (net1_mat + t(net1_mat)) &gt; 0
 net1_un &lt;- graph_from_adjacency_matrix(net1_un, mode = &quot;undirected&quot;)
 
 net_sel &lt;- induced.subgraph(net1_un, vids = (in_network$vcol == &quot;#56B4E9&quot;))</code></pre>
-<pre><code>## Warning: `induced.subgraph()` was deprecated in igraph 2.0.0.
+<pre><code>## Warning: `induced.subgraph()` was deprecated in igraph
+## 2.0.0.
 ## ℹ Please use `induced_subgraph()` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to
+## see where this warning was generated.</code></pre>
 <pre class="r"><code>plot(net_sel)</code></pre>
 <p><img src="w4_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre class="r"><code>clp &lt;- cluster_optimal(net_sel)

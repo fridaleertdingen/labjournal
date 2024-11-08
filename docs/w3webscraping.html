@@ -399,7 +399,7 @@ div.tocify {
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="FJdatamethods.html">Data</a>
+          <a href="FJdatamethods2.html">Data</a>
         </li>
         <li>
           <a href="data_preparation.html">Data preparation - code</a>
@@ -516,10 +516,10 @@ source</h2>
 soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001e3ee2c56f0&gt;
+## &lt;pointer: 0x000002a9e08c5770&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001e3c20feaa0&gt;</code></pre>
+## &lt;pointer: 0x000002a9b44fe470&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(soc_staff)</code></pre>
@@ -651,10 +651,10 @@ soc_staff</code></pre>
 <pre class="r"><code>soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001e3d50fa650&gt;
+## &lt;pointer: 0x000002a9bd5f3550&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001e3c1efe5d0&gt;</code></pre>
+## &lt;pointer: 0x000002a9b44fe680&gt;</code></pre>
 <pre class="r"><code>#trying to get a table from the website
 soc_staff &lt;- soc_staff %&gt;%
     rvest::html_elements(&quot;body&quot;) %&gt;%
@@ -712,10 +712,10 @@ of Leiden Political science</h2>
 <pre class="r"><code>leidse_staff &lt;- read_html(&quot;https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1&quot;)
 head(leidse_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x000001e3d60c5e70&gt;
+## &lt;pointer: 0x000002a9c49dcb70&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x000001e3c1eff390&gt;</code></pre>
+## &lt;pointer: 0x000002a9b43feaa0&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(leidse_staff)</code></pre>
