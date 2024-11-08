@@ -115,29 +115,29 @@ gender <- coCovar(df_ego$perc_female)
 
 ### Combine variables and create effects structre
 ```{r}
-mydata <- sienaDataCreate(net, traveltime)
-
-myeff <- getEffects(mydata)
+# mydata <- sienaDataCreate(net, traveltime)
+# 
+# myeff <- getEffects(mydata)
 
 #effectsDocumentation(myeff)
 ```
 
 ### Initial description
 ```{r}
-ifelse(!dir.exists("results"), dir.create("results"), FALSE)
-print01Report(mydata, modelname = "./results/m0_init")
+# ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+# print01Report(mydata, modelname = "./results/m0_init")
 ```
 ### Estimate Model 0
 ```{r}
-myAlgorithm <- sienaAlgorithmCreate(projname = "m0_init")
+# myAlgorithm <- sienaAlgorithmCreate(projname = "m0_init")
 ```
 
 
 ```{r}
-ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
 # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
 # prevAns = ansM0, returnDeps=TRUE)
-ansM0
+# ansM0
 
 #convergence ratio should be below .25
 
@@ -155,22 +155,22 @@ ansM0
 ## Model 1: added network effects
 ### Update Rsiena data object
 ```{r}
-mydata <- sienaDataCreate(net, traveltime, uni)
+# mydata <- sienaDataCreate(net, traveltime, uni)
 ```
 
 ### Update myeff
 ```{r}
-myeff <- getEffects(mydata)
-myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
-myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+# myeff <- getEffects(mydata)
+# myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+# myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
 
 ```
 ### Run Model 1
 ```{r}
-ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
-# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
-# prevAns = ansM0, returnDeps=TRUE)
-ansM1
+# ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# # prevAns = ansM0, returnDeps=TRUE)
+# ansM1
 
 
 
@@ -189,23 +189,23 @@ ansM1
 ## Model 2: added ego characteristics: gender
 ### Update Rsiena data object
 ```{r}
-mydata <- sienaDataCreate(net, traveltime, gender, uni)
+# mydata <- sienaDataCreate(net, traveltime, gender, uni)
 ```
 
 ### Update myeff
 ```{r}
-myeff <- getEffects(mydata)
-myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
-myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
-myeff <- includeEffects(myeff, egoX, interaction1 = "gender")
+# myeff <- getEffects(mydata)
+# myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+# myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+# myeff <- includeEffects(myeff, egoX, interaction1 = "gender")
 ```
 
 ### Run Model 2
 ```{r}
-ansM2 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
-# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
-# prevAns = ansM0, returnDeps=TRUE)
-ansM2
+# ansM2 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# # prevAns = ansM0, returnDeps=TRUE)
+# ansM2
 
 
 #---- INTERPRETATION: (remove once written)-----
@@ -230,25 +230,25 @@ structural embeddedness?
 
 ### Update Rsiena data object
 ```{r}
-mydata <- sienaDataCreate(net, traveltime, uni, ### )
+# mydata <- sienaDataCreate(net, traveltime, uni, ### )
 #frida: create var in code at top
 ```
 
 ### Update myeff
 ```{r}
-myeff <- getEffects(mydata)
-myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
-myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
-myeff <- includeEffects(myeff, ###, ###)
+# myeff <- getEffects(mydata)
+# myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+# myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+# myeff <- includeEffects(myeff, ###, ###)
 
 ```
 
 ### Run Model 3
 ```{r}
-ansM3 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
-# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
-# prevAns = ansM0, returnDeps=TRUE)
-ansM3
+# ansM3 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# # prevAns = ansM0, returnDeps=TRUE)
+# ansM3
 
 
 #---- INTERPRETATION: (remove once written)-----
@@ -355,14 +355,14 @@ to try, no need to include in final paper: interaction effect of previous collab
 
 
 ```{r}
-jochem klad
-
-```{r}
-# put the nets in an array
-net_soc_array <- array(data = c(wave1[1:10, 1:10], wave2[1:10, 1:10]), dim = c(10,10, 2))
-
-# dependent
-net <- sienaDependent(net_soc_array)
+# jochem klad
+# 
+# 
+# # put the nets in an array
+# net_soc_array <- array(data = c(wave1[1:10, 1:10], wave2[1:10, 1:10]), dim = c(10,10, 2))
+# 
+# # dependent
+# net <- sienaDependent(net_soc_array)
 ```
 
 ### Independent variable
@@ -374,11 +374,11 @@ traveltime <- coDyadCovar(matrix(rnorm(100), 10, 10))
 ```
 ### Combine variables and create effects structre
 ```{r}
-mydata <- sienaDataCreate(net, traveltime)
-
-myeff <- getEffects(mydata)
-
-myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+# mydata <- sienaDataCreate(net, traveltime)
+# 
+# myeff <- getEffects(mydata)
+# 
+# myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
 
 
 #effectsDocumentation(myeff)

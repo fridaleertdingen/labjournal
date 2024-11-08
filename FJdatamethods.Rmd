@@ -10,6 +10,12 @@ body {
 text-align: justify}
 </style>
 ```
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
 ```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
 
 library(knitr)
@@ -31,10 +37,6 @@ klippy::klippy(position = c('top', 'right'))
 
 --------------------------------
 
-# Set up
-```{r}
-rm(list = ls())
-```
 
 ## Functions
 ```{r}
@@ -174,7 +176,7 @@ fMoran.I <- function(x, weight, scaled = FALSE, na.rm = FALSE, alternative = "tw
 ## Libraries
 
 ```{r, warning=FALSE, message=FALSE, results='hide'}
-packages <- c("RSiena", "tidyverse", "stringdist", "stringi", "igraph", "leaflet", "sna", "statnet")
+packages <- c("RSiena", "tidyverse", "stringdist", "stringi", "igraph", "leaflet")
 fpackage.check(packages)
 ```
 

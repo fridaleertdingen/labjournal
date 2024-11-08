@@ -10,6 +10,12 @@ body {
 text-align: justify}
 </style>
 ```
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
 ```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
 
 library(knitr)
@@ -25,12 +31,11 @@ rgl::setupKnitr()
 klippy::klippy(position = c('top', 'right'))
 ```
 
-## ***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
 
-# Set up
-```{r}
-rm(list = ls())
-```
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+
+--------------------------------
+
 
 ## Functions
 ```{r}
@@ -407,7 +412,7 @@ ansModel5 <- fload("data/processed/ansModel5_20241107.rda")
 ansModel5
 ```
 
-# Model 6:
+## Model 6:
 
 After the Goodness of Fit results of I decided to run one more model without outActsqrt, but instead a squared root version of indegree popularity (inPopsqrt). The raw version of this effect was excluded, the raw outdegree activity effect was included again. The overall convergence ratio of this final model was still smaller than 0.25.
 

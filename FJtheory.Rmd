@@ -25,8 +25,11 @@ rgl::setupKnitr()
 klippy::klippy(position = c('top', 'right'))
 ```
 
+
 ***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
--------------------------------------
+
+--------------------------------
+
 
 # Theory
 
@@ -40,13 +43,23 @@ Besides an interest in co-authorship, there are some other factors to consider b
 
 ## Theory - References
 Biancani, S., McFarland, D. A., & Dahlander, L. (2014). The semiformal organization. Organization Science, 25(5), 1306-1324.
+
 Byrnes, K. G., Kiely, P. A., Dunne, C. P., McDermott, K. W., & Coffey, J. C. (2021). Communication, collaboration and contagion:“Virtualisation” of anatomy during COVID‐19. Clinical anatomy, 34(1), 82-89. https://doi.org/10.1002/ca.23649
+
 Hoegl, M., Weinkauf, K., & Gemuenden, H. G. (2004). Interteam coordination, project commitment, and teamwork in multiteam R&D projects: A longitudinal study. Organization science, 15(1), 38-55.
+
 Jain, J., & Lyons, G. (2008). The gift of travel time. Journal of transport geography, 16(2), 81-89. https://doi.org/10.1016/j.jtrangeo.2007.05.001 
+
 Longo, M., & Magnolo, S. (2009). The author and authorship in the internet society: new perspectives for scientific communication. Current Sociology, 57(6), 829-850. https://doi.org/10.1177/0011392109342221
+
 Osler, L., & Zahavi, D. (2023). Sociality and embodiment: Online communication during and after Covid-19. Foundations of Science, 28(4), 1125-1142. https://doi.org/10.1007/s10699-022-09861-1 
+
 Pace, F., & Sciotto, G. (2021). Gender differences in the relationship between work–life balance, career opportunities and general health perception. Sustainability, 14(1), 357. https://doi.org/10.3390/su14010357
+
 Rua-Gomez, C., Carnabuci, G., & Goossen, M. C. (2023). Reaching for the stars: How gender influences the formation of high-status collaboration ties. Academy of Management Journal, 66(5), 1501-1528. https://doi.org/10.5465/amj.2021.0218
+
 Samtleben, C., & Müller, K.-U. (2022). Care and careers: Gender (in)equality in unpaid care, housework and employment. Research in Social Stratification and Mobility, 77. https://doi.org/10.1016/j.rssm.2021.100659 
+
 Vessey, I. (1994). The effect of information presentation on decision making: A cost-benefit analysis. Information & management, 27(2), 103-119. https://doi.org/10.1016/0378-7206(94)90010-8
+
 Ter Wal, A. L. (2014). The dynamics of the inventor network in German biotechnology: geographic proximity versus triadic closure. Journal of Economic Geography, 14(3), 589-620. doi.org/10.1093/jeg/lbs063 

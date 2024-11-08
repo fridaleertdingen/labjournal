@@ -229,7 +229,7 @@ transitivity_g
 ```{r}
 #Making size proportional to betweenness score
 # changing V
-V(g)$size = betweenness(g, normalized = T, directed = FALSE) * 60 + 10  #after some trial and error
+#V(g)$size = betweenness(g, normalized = TRUE, directed = FALSE) * 60 + 10  #after some trial and error
 plot(g, mode = "undirected")
 
 set.seed(2345)

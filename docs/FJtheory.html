@@ -38,6 +38,10 @@
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -372,16 +376,19 @@ div.tocify {
         <li>
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
-        <li>
-          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
-        </li>
       </ul>
+    </li>
+    <li>
+      <a href="w5and6RSienaTRY.html">Week 6 - Rsiena own data</a>
+    </li>
+    <li>
+      <a href="w7.html">Week 7 - GOF</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Final journal
+    My final assignment
      
     <span class="caret"></span>
   </a>
@@ -393,17 +400,35 @@ div.tocify {
       <a href="FJtheory.html">Theory</a>
     </li>
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header">Data preparation</li>
         <li>
-          <a href="data_preparation.html"></a>
+          <a href="FJdatamethods.html">Data</a>
         </li>
-        <li class="dropdown-header">Matching and looping travel times</li>
         <li>
-          <a href="w6traveltimes.html"></a>
+          <a href="data_preparation.html">Data preparation - code</a>
+        </li>
+        <li>
+          <a href="travel_times.html">Matching and looping travel times - code</a>
         </li>
       </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RSiena model analyses</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJanalysis.html">RSiena models</a>
+        </li>
+        <li>
+          <a href="FJinteraction.html">Interaction of gender</a>
+        </li>
+        <li>
+          <a href="FJgof.html">Goodness of Fit</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="FJconclusion.html">Conclusion</a>
     </li>
   </ul>
 </li>
@@ -440,52 +465,152 @@ div.tocify {
 </div>
 
 
-<p>#Theory Scientific collaboration can be more or less likely under
-various circumstances. For example, a few obvious ones being having an
-overlap in area of research interest, both parties having the time and
-funds, and both parties being interested in collaboration. Geographical
-proximity is seen as a particularly important indicator of scientific
-collaboration, as it increases the likelihood of scholars coming into
-face-to-face contact with one another (Rua-Gomez et al., 2023). A
-smaller geographic distance increases the chances of participating in
-all kinds of formal and semi-formal activities that can harbour learning
-and knowledge sharing among scientists (Biancani et al., 2014; Hoegl et
-al., 2004; Ter Wal, 2014). …</p>
-<div
-id="hypothesis-1-universities-that-are-geographically-closer-to-each-other-will-have-a-denser-collaboration-network-than-those-that-are-geographically-more-far-apart."
-class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> -&gt; Hypothesis 1:
-Universities that are geographically closer to each other will have a
-denser collaboration network than those that are geographically more far
-apart.</h2>
-<p>Trend in increasing use of online communication methods. Scholars got
-tech savvier, find it easier to communicate, and thus collaborate,
-online than before. Covid normalized the use of online communication
-methods even further, thereby decreasing the obstacle that geographical
-distance made …</p>
+<style>
+body {
+text-align: justify}
+</style>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p><strong><em>‘Out of sight, out of mind: a social network approach to
+geographical distance and co-authorship collaboration at four Sociology
+departments in the Netherlands’</em></strong></p>
+<hr />
+<div id="theory" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Theory</h1>
+<p>Scientific collaboration can be more or less probable under various
+circumstances. For example, scholars might be more likely to collaborate
+on a project when they have overlapping research interests and
+experience, all involved parties having the time and funds, and all
+parties being interested and willing to collaborate. Another
+particularly important indicator for scientific collaboration is
+geographical proximity. Co-presence is generally seen as a requirement
+for the formation and maintenance of (social) relationships, as this can
+offer a deeper level of interaction than phone calls and email can (Jain
+&amp; Lyons, 2008). For scholars, geographical increases the possibility
+of co-presence and thus the likelihood of coming into face-to-face
+contact with other scholars. (Rua-Gomez et al., 2023). The mechanism
+behind the effect of geographical proximity can be explained as twofold.
+First, the effect of geographical proximity can result in more frequent
+in-person interactions, as a smaller geographic distance increases the
+chances of participation in all kinds of formal and semi-formal
+activities that can harbour learning and knowledge sharing among
+scientists (Biancani et al., 2014; Hoegl et al., 2004; Ter Wal, 2014).
+At these formal and semi-formal events, scholars usually network and
+socialize, inciting the possibility of future collaboration based on
+shared interests and objectives. Thus, in this paper I theorize that
+smaller geographical distance increases the likelihood of in-person
+interaction, which in turn can foster future collaboration more easily
+compared to greater geographical distance. Second, geographical
+proximity is related to fewer travel constraints. While relatively
+close, greater travel times between Dutch universities can hinder
+in-person meeting opportunities of scholars. Individuals are likely to
+take travel time into consideration when making the decision whether or
+not the time and effort taken to reach the destination is worthwhile, in
+this case the possibility for in-person meeting opportunities (Jain
+&amp; Lyons, 2008). This mechanism can be linked to cost-benefit
+analyses that individuals make in everyday life: the cost (traveltime)
+needs to be less or equal to the benefits (in-person meeting
+opportunities to foster collaboration) in order to be worth the effort
+(Vessey, 1994). For scholars with greater geographical distance between
+them, the travel costs and constraints might more often outweigh the
+benefits, thus decreasing the likelihood of collaboration. For scholars
+with a smaller geographical distance between them, the travel costs and
+constraints might be of less importance, thus increasing the likelihood
+of face-to-face interaction, which can lead to future collaboration.
+These related mechanisms result in the following hypothesis:
+<em>Universities that are geographically closer to each other will have
+a denser collaboration network than those that are geographically more
+far apart</em> [Hypothesis 1].</p>
+<p>Major innovations in communication methods have likely lowered the
+barrier of geographical distance in academic collaboration. Developments
+such as the introduction of the internet and the advancement of online
+technologies such as video-conferencing, content sharing, and
+application integration have made collaboration at a distance much more
+accessible and manageable (Longe &amp; Magnolo, 2009; Byrnes et al.,
+2021). Together with this development, scholars, like many others, have
+become increasingly digitally literate, making the application of these
+advanced communication methods easier. With these progressing
+communication methods, collaboration through these online channels have
+also become more commonplace than before. Recent events have accelerated
+the development and standardization of more accessible and convenient
+online communication methods for scholars, such as the worldwide
+Covid-19 pandemic (Osler &amp; Zahavi, 2022). Through this circumstance,
+the obstacle for collaboration because of geographical distance was
+lowered even further. This reasoning leads to the second hypothesis:
+<em>The influence of geographical distance on between university
+collaboration of Dutch Sociology departments has increased over
+time</em> [Hypothesis 2].</p>
+<p>Besides an interest in co-authorship, there are some other factors to
+consider before one can make the decision to pursue collaboration, such
+as the commute time that is added to the regular workday. For some, this
+additional commitment might not be as convenient as for others. For
+example, a long workday with an additionally lengthy commute time can
+compete with a work-life balance and the responsibilities at home. While
+gender roles no longer convey a clear division between home care
+responsibilities and career responsibilities, various studies show that
+work-family conflict is generally a greater issue for women in
+comparison to men (Pace &amp; Sciotto, 2021; Samtleben &amp; Müller,
+2022). So, as women will likely experience a higher demand from the
+responsibilities at home compared to men, I expect women to decide to
+stay away from geographically distanced collaboration more often than
+men. This leads to the third hypothesis: <em>Female scholars are less
+likely to collaborate with scholars at universities with greater
+geographical distance between them then male scholars</em> [Hypothesis
+3].</p>
+<div id="theory---references" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Theory -
+References</h2>
+<p>Biancani, S., McFarland, D. A., &amp; Dahlander, L. (2014). The
+semiformal organization. Organization Science, 25(5), 1306-1324.</p>
+<p>Byrnes, K. G., Kiely, P. A., Dunne, C. P., McDermott, K. W., &amp;
+Coffey, J. C. (2021). Communication, collaboration and
+contagion:“Virtualisation” of anatomy during COVID‐19. Clinical anatomy,
+34(1), 82-89. <a href="https://doi.org/10.1002/ca.23649"
+class="uri">https://doi.org/10.1002/ca.23649</a></p>
+<p>Hoegl, M., Weinkauf, K., &amp; Gemuenden, H. G. (2004). Interteam
+coordination, project commitment, and teamwork in multiteam R&amp;D
+projects: A longitudinal study. Organization science, 15(1), 38-55.</p>
+<p>Jain, J., &amp; Lyons, G. (2008). The gift of travel time. Journal of
+transport geography, 16(2), 81-89. <a
+href="https://doi.org/10.1016/j.jtrangeo.2007.05.001"
+class="uri">https://doi.org/10.1016/j.jtrangeo.2007.05.001</a></p>
+<p>Longo, M., &amp; Magnolo, S. (2009). The author and authorship in the
+internet society: new perspectives for scientific communication. Current
+Sociology, 57(6), 829-850. <a
+href="https://doi.org/10.1177/0011392109342221"
+class="uri">https://doi.org/10.1177/0011392109342221</a></p>
+<p>Osler, L., &amp; Zahavi, D. (2023). Sociality and embodiment: Online
+communication during and after Covid-19. Foundations of Science, 28(4),
+1125-1142. <a href="https://doi.org/10.1007/s10699-022-09861-1"
+class="uri">https://doi.org/10.1007/s10699-022-09861-1</a></p>
+<p>Pace, F., &amp; Sciotto, G. (2021). Gender differences in the
+relationship between work–life balance, career opportunities and general
+health perception. Sustainability, 14(1), 357. <a
+href="https://doi.org/10.3390/su14010357"
+class="uri">https://doi.org/10.3390/su14010357</a></p>
+<p>Rua-Gomez, C., Carnabuci, G., &amp; Goossen, M. C. (2023). Reaching
+for the stars: How gender influences the formation of high-status
+collaboration ties. Academy of Management Journal, 66(5), 1501-1528. <a
+href="https://doi.org/10.5465/amj.2021.0218"
+class="uri">https://doi.org/10.5465/amj.2021.0218</a></p>
+<p>Samtleben, C., &amp; Müller, K.-U. (2022). Care and careers: Gender
+(in)equality in unpaid care, housework and employment. Research in
+Social Stratification and Mobility, 77. <a
+href="https://doi.org/10.1016/j.rssm.2021.100659"
+class="uri">https://doi.org/10.1016/j.rssm.2021.100659</a></p>
+<p>Vessey, I. (1994). The effect of information presentation on decision
+making: A cost-benefit analysis. Information &amp; management, 27(2),
+103-119. <a href="https://doi.org/10.1016/0378-7206(94)90010-8"
+class="uri">https://doi.org/10.1016/0378-7206(94)90010-8</a></p>
+<p>Ter Wal, A. L. (2014). The dynamics of the inventor network in German
+biotechnology: geographic proximity versus triadic closure. Journal of
+Economic Geography, 14(3), 589-620. doi.org/10.1093/jeg/lbs063</p>
 </div>
-<div
-id="hypothesis-2-between-university-collaboration-of-dutch-sociology-departments-has-increased-over-time-between-2015-and-2024."
-class="section level2" number="0.2">
-<h2><span class="header-section-number">0.2</span> -&gt; Hypothesis 2:
-Between university collaboration of Dutch Sociology departments has
-increased over time (between 2015 and 2024).</h2>
-<p>Longer travel time collaborations means more long days, commute time
-increases. Due to higher demand of work-life balance for women: more
-expected at home than men, so longer workdays less convenient, therefore
-less likely to engage in geographically distanced collaboration. …</p>
-</div>
-<div
-id="hypothesis-3-female-scholars-are-less-likely-to-collaborate-with-scholars-at-universities-distanced-further-away"
-class="section level2" number="0.3">
-<h2><span class="header-section-number">0.3</span> -&gt; Hypothesis 3:
-Female scholars are less likely to collaborate with scholars at
-universities distanced further away,</h2>
-<p>-&gt; Hypothesis 4: Collaboration in the first wave will decrease the
-negative impact of distance on collaboration in the second wave ?</p>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlRoZW9yeSINCmF1dGhvcjogImJ5OiBGcmlkYSB2YW4gVGVpamxpbmdlbiINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCi0tLQ0KDQojVGhlb3J5DQpTY2llbnRpZmljIGNvbGxhYm9yYXRpb24gY2FuIGJlIG1vcmUgb3IgbGVzcyBsaWtlbHkgdW5kZXIgdmFyaW91cyBjaXJjdW1zdGFuY2VzLiBGb3IgZXhhbXBsZSwgYSBmZXcgb2J2aW91cyBvbmVzIGJlaW5nIGhhdmluZyBhbiBvdmVybGFwIGluIGFyZWEgb2YgcmVzZWFyY2ggaW50ZXJlc3QsIGJvdGggcGFydGllcyBoYXZpbmcgdGhlIHRpbWUgYW5kIGZ1bmRzLCBhbmQgYm90aCBwYXJ0aWVzIGJlaW5nIGludGVyZXN0ZWQgaW4gY29sbGFib3JhdGlvbi4gIEdlb2dyYXBoaWNhbCBwcm94aW1pdHkgaXMgc2VlbiBhcyBhIHBhcnRpY3VsYXJseSBpbXBvcnRhbnQgaW5kaWNhdG9yIG9mIHNjaWVudGlmaWMgY29sbGFib3JhdGlvbiwgYXMgaXQgaW5jcmVhc2VzIHRoZSBsaWtlbGlob29kIG9mIHNjaG9sYXJzIGNvbWluZyBpbnRvIGZhY2UtdG8tZmFjZSBjb250YWN0IHdpdGggb25lIGFub3RoZXIgKFJ1YS1Hb21leiBldCBhbC4sIDIwMjMpLiBBIHNtYWxsZXIgZ2VvZ3JhcGhpYyBkaXN0YW5jZSBpbmNyZWFzZXMgdGhlIGNoYW5jZXMgb2YgcGFydGljaXBhdGluZyBpbiBhbGwga2luZHMgb2YgZm9ybWFsIGFuZCBzZW1pLWZvcm1hbCBhY3Rpdml0aWVzIHRoYXQgY2FuIGhhcmJvdXIgbGVhcm5pbmcgYW5kIGtub3dsZWRnZSBzaGFyaW5nIGFtb25nIHNjaWVudGlzdHMgKEJpYW5jYW5pIGV0IGFsLiwgMjAxNDsgSG9lZ2wgZXQgYWwuLCAyMDA0OyBUZXIgV2FsLCAyMDE0KS4NCi4uLg0KDQotPiBIeXBvdGhlc2lzIDE6IFVuaXZlcnNpdGllcyB0aGF0IGFyZSBnZW9ncmFwaGljYWxseSBjbG9zZXIgdG8gZWFjaCBvdGhlciB3aWxsIGhhdmUgYSBkZW5zZXIgY29sbGFib3JhdGlvbiBuZXR3b3JrIHRoYW4gdGhvc2UgdGhhdCBhcmUgZ2VvZ3JhcGhpY2FsbHkgbW9yZSBmYXIgYXBhcnQuDQotLS0NCg0KDQpUcmVuZCBpbiBpbmNyZWFzaW5nIHVzZSBvZiBvbmxpbmUgY29tbXVuaWNhdGlvbiBtZXRob2RzLiBTY2hvbGFycyBnb3QgdGVjaCBzYXZ2aWVyLCBmaW5kIGl0IGVhc2llciB0byBjb21tdW5pY2F0ZSwgYW5kIHRodXMgY29sbGFib3JhdGUsIG9ubGluZSB0aGFuIGJlZm9yZS4gQ292aWQgbm9ybWFsaXplZCB0aGUgdXNlIG9mIG9ubGluZSBjb21tdW5pY2F0aW9uIG1ldGhvZHMgZXZlbiBmdXJ0aGVyLCB0aGVyZWJ5IGRlY3JlYXNpbmcgdGhlIG9ic3RhY2xlIHRoYXQgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIG1hZGUNCi4uLg0KDQotPiBIeXBvdGhlc2lzIDI6IEJldHdlZW4gdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG9mIER1dGNoIFNvY2lvbG9neSBkZXBhcnRtZW50cyBoYXMgaW5jcmVhc2VkIG92ZXIgdGltZSAoYmV0d2VlbiAyMDE1IGFuZCAyMDI0KS4gDQotLS0NCg0KDQpMb25nZXIgdHJhdmVsIHRpbWUgY29sbGFib3JhdGlvbnMgbWVhbnMgbW9yZSBsb25nIGRheXMsIGNvbW11dGUgdGltZSBpbmNyZWFzZXMuIER1ZSB0byBoaWdoZXIgZGVtYW5kIG9mIHdvcmstbGlmZSBiYWxhbmNlIGZvciB3b21lbjogbW9yZSBleHBlY3RlZCBhdCBob21lIHRoYW4gbWVuLCBzbyBsb25nZXIgd29ya2RheXMgbGVzcyBjb252ZW5pZW50LCB0aGVyZWZvcmUgbGVzcyBsaWtlbHkgdG8gZW5nYWdlIGluIGdlb2dyYXBoaWNhbGx5IGRpc3RhbmNlZCBjb2xsYWJvcmF0aW9uLg0KLi4uDQoNCi0+IEh5cG90aGVzaXMgMzogRmVtYWxlIHNjaG9sYXJzIGFyZSBsZXNzIGxpa2VseSB0byBjb2xsYWJvcmF0ZSB3aXRoIHNjaG9sYXJzIGF0IHVuaXZlcnNpdGllcyBkaXN0YW5jZWQgZnVydGhlciBhd2F5LCANCi0tLQ0KDQoNCg0KLT4gSHlwb3RoZXNpcyA0OiBDb2xsYWJvcmF0aW9uIGluIHRoZSBmaXJzdCB3YXZlIHdpbGwgZGVjcmVhc2UgdGhlIG5lZ2F0aXZlIGltcGFjdCBvZiBkaXN0YW5jZSBvbiBjb2xsYWJvcmF0aW9uIGluIHRoZSBzZWNvbmQgd2F2ZSAgICAgICAgICAgICA/</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlRoZW9yeSINCmF1dGhvcjogImJ5OiBGcmlkYSB2YW4gVGVpamxpbmdlbiINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCi0tLQ0KYGBgez1odG1sfQ0KPHN0eWxlPg0KYm9keSB7DQp0ZXh0LWFsaWduOiBqdXN0aWZ5fQ0KPC9zdHlsZT4NCmBgYA0KYGBge3IsIGdsb2JhbHNldHRpbmdzLCBlY2hvPUZBTFNFLCB3YXJuaW5nPUZBTFNFLCByZXN1bHRzPSdoaWRlJ30NCg0KbGlicmFyeShrbml0cikNCmxpYnJhcnkoZm9ybWF0UikNCg0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0Kb3B0c19jaHVuayRzZXQodGlkeS5vcHRzPWxpc3Qod2lkdGguY3V0b2ZmPTEwMCksdGlkeT1UUlVFLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSxjb21tZW50ID0gIiM+IiwgY2FjaGU9VFJVRSwgY2xhc3Muc291cmNlPWMoInRlc3QiKSwgY2xhc3Mub3V0cHV0PWMoInRlc3QyIikpDQpvcHRpb25zKHdpZHRoID0gMTAwKQ0KcmdsOjpzZXR1cEtuaXRyKCkNCg0KYGBgDQoNCmBgYHtyIGtsaXBweSwgZWNobz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0Ka2xpcHB5OjprbGlwcHkocG9zaXRpb24gPSBjKCd0b3AnLCAncmlnaHQnKSkNCmBgYA0KDQoNCioqKuKAmE91dCBvZiBzaWdodCwgb3V0IG9mIG1pbmQ6IGEgc29jaWFsIG5ldHdvcmsgYXBwcm9hY2ggdG8gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBjby1hdXRob3JzaGlwIGNvbGxhYm9yYXRpb24gYXQgZm91ciBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgaW4gdGhlIE5ldGhlcmxhbmRz4oCZKioqDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCg0KIyBUaGVvcnkNCg0KU2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uIGNhbiBiZSBtb3JlIG9yIGxlc3MgcHJvYmFibGUgdW5kZXIgdmFyaW91cyBjaXJjdW1zdGFuY2VzLiBGb3IgZXhhbXBsZSwgc2Nob2xhcnMgbWlnaHQgYmUgbW9yZSBsaWtlbHkgdG8gY29sbGFib3JhdGUgb24gYSBwcm9qZWN0IHdoZW4gdGhleSBoYXZlIG92ZXJsYXBwaW5nIHJlc2VhcmNoIGludGVyZXN0cyBhbmQgZXhwZXJpZW5jZSwgYWxsIGludm9sdmVkIHBhcnRpZXMgaGF2aW5nIHRoZSB0aW1lIGFuZCBmdW5kcywgYW5kIGFsbCBwYXJ0aWVzIGJlaW5nIGludGVyZXN0ZWQgYW5kIHdpbGxpbmcgdG8gY29sbGFib3JhdGUuIEFub3RoZXIgcGFydGljdWxhcmx5IGltcG9ydGFudCBpbmRpY2F0b3IgZm9yIHNjaWVudGlmaWMgY29sbGFib3JhdGlvbiBpcyBnZW9ncmFwaGljYWwgcHJveGltaXR5LiBDby1wcmVzZW5jZSBpcyBnZW5lcmFsbHkgc2VlbiBhcyBhIHJlcXVpcmVtZW50IGZvciB0aGUgZm9ybWF0aW9uIGFuZCBtYWludGVuYW5jZSBvZiAoc29jaWFsKSByZWxhdGlvbnNoaXBzLCBhcyB0aGlzIGNhbiBvZmZlciBhIGRlZXBlciBsZXZlbCBvZiBpbnRlcmFjdGlvbiB0aGFuIHBob25lIGNhbGxzIGFuZCBlbWFpbCBjYW4gKEphaW4gJiBMeW9ucywgMjAwOCkuIEZvciBzY2hvbGFycywgZ2VvZ3JhcGhpY2FsIGluY3JlYXNlcyB0aGUgcG9zc2liaWxpdHkgb2YgY28tcHJlc2VuY2UgYW5kIHRodXMgdGhlIGxpa2VsaWhvb2Qgb2YgY29taW5nIGludG8gZmFjZS10by1mYWNlIGNvbnRhY3Qgd2l0aCBvdGhlciBzY2hvbGFycy4gKFJ1YS1Hb21leiBldCBhbC4sIDIwMjMpLiBUaGUgbWVjaGFuaXNtIGJlaGluZCB0aGUgZWZmZWN0IG9mIGdlb2dyYXBoaWNhbCBwcm94aW1pdHkgY2FuIGJlIGV4cGxhaW5lZCBhcyB0d29mb2xkLiBGaXJzdCwgdGhlIGVmZmVjdCBvZiBnZW9ncmFwaGljYWwgcHJveGltaXR5IGNhbiByZXN1bHQgaW4gbW9yZSBmcmVxdWVudCBpbi1wZXJzb24gaW50ZXJhY3Rpb25zLCBhcyBhIHNtYWxsZXIgZ2VvZ3JhcGhpYyBkaXN0YW5jZSBpbmNyZWFzZXMgdGhlIGNoYW5jZXMgb2YgcGFydGljaXBhdGlvbiBpbiBhbGwga2luZHMgb2YgZm9ybWFsIGFuZCBzZW1pLWZvcm1hbCBhY3Rpdml0aWVzIHRoYXQgY2FuIGhhcmJvdXIgbGVhcm5pbmcgYW5kIGtub3dsZWRnZSBzaGFyaW5nIGFtb25nIHNjaWVudGlzdHMgKEJpYW5jYW5pIGV0IGFsLiwgMjAxNDsgSG9lZ2wgZXQgYWwuLCAyMDA0OyBUZXIgV2FsLCAyMDE0KS4gQXQgdGhlc2UgZm9ybWFsIGFuZCBzZW1pLWZvcm1hbCBldmVudHMsIHNjaG9sYXJzIHVzdWFsbHkgbmV0d29yayBhbmQgc29jaWFsaXplLCBpbmNpdGluZyB0aGUgcG9zc2liaWxpdHkgb2YgZnV0dXJlIGNvbGxhYm9yYXRpb24gYmFzZWQgb24gc2hhcmVkIGludGVyZXN0cyBhbmQgb2JqZWN0aXZlcy4gVGh1cywgaW4gdGhpcyBwYXBlciBJIHRoZW9yaXplIHRoYXQgc21hbGxlciBnZW9ncmFwaGljYWwgZGlzdGFuY2UgaW5jcmVhc2VzIHRoZSBsaWtlbGlob29kIG9mIGluLXBlcnNvbiBpbnRlcmFjdGlvbiwgd2hpY2ggaW4gdHVybiBjYW4gZm9zdGVyIGZ1dHVyZSBjb2xsYWJvcmF0aW9uIG1vcmUgZWFzaWx5IGNvbXBhcmVkIHRvIGdyZWF0ZXIgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlLiBTZWNvbmQsIGdlb2dyYXBoaWNhbCBwcm94aW1pdHkgaXMgcmVsYXRlZCB0byBmZXdlciB0cmF2ZWwgY29uc3RyYWludHMuIFdoaWxlIHJlbGF0aXZlbHkgY2xvc2UsIGdyZWF0ZXIgdHJhdmVsIHRpbWVzIGJldHdlZW4gRHV0Y2ggdW5pdmVyc2l0aWVzIGNhbiBoaW5kZXIgaW4tcGVyc29uIG1lZXRpbmcgb3Bwb3J0dW5pdGllcyBvZiBzY2hvbGFycy4gSW5kaXZpZHVhbHMgYXJlIGxpa2VseSB0byB0YWtlIHRyYXZlbCB0aW1lIGludG8gY29uc2lkZXJhdGlvbiB3aGVuIG1ha2luZyB0aGUgZGVjaXNpb24gd2hldGhlciBvciBub3QgdGhlIHRpbWUgYW5kIGVmZm9ydCB0YWtlbiB0byByZWFjaCB0aGUgZGVzdGluYXRpb24gaXMgd29ydGh3aGlsZSwgaW4gdGhpcyBjYXNlIHRoZSBwb3NzaWJpbGl0eSBmb3IgaW4tcGVyc29uIG1lZXRpbmcgb3Bwb3J0dW5pdGllcyAoSmFpbiAmIEx5b25zLCAyMDA4KS4gVGhpcyBtZWNoYW5pc20gY2FuIGJlIGxpbmtlZCB0byBjb3N0LWJlbmVmaXQgYW5hbHlzZXMgdGhhdCBpbmRpdmlkdWFscyBtYWtlIGluIGV2ZXJ5ZGF5IGxpZmU6IHRoZSBjb3N0ICh0cmF2ZWx0aW1lKSBuZWVkcyB0byBiZSBsZXNzIG9yIGVxdWFsIHRvIHRoZSBiZW5lZml0cyAoaW4tcGVyc29uIG1lZXRpbmcgb3Bwb3J0dW5pdGllcyB0byBmb3N0ZXIgY29sbGFib3JhdGlvbikgaW4gb3JkZXIgdG8gYmUgd29ydGggdGhlIGVmZm9ydCAoVmVzc2V5LCAxOTk0KS4gRm9yIHNjaG9sYXJzIHdpdGggZ3JlYXRlciBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYmV0d2VlbiB0aGVtLCB0aGUgdHJhdmVsIGNvc3RzIGFuZCBjb25zdHJhaW50cyBtaWdodCBtb3JlIG9mdGVuIG91dHdlaWdoIHRoZSBiZW5lZml0cywgdGh1cyBkZWNyZWFzaW5nIHRoZSBsaWtlbGlob29kIG9mIGNvbGxhYm9yYXRpb24uIEZvciBzY2hvbGFycyB3aXRoIGEgc21hbGxlciBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYmV0d2VlbiB0aGVtLCB0aGUgdHJhdmVsIGNvc3RzIGFuZCBjb25zdHJhaW50cyBtaWdodCBiZSBvZiBsZXNzIGltcG9ydGFuY2UsIHRodXMgaW5jcmVhc2luZyB0aGUgbGlrZWxpaG9vZCBvZiBmYWNlLXRvLWZhY2UgaW50ZXJhY3Rpb24sIHdoaWNoIGNhbiBsZWFkIHRvIGZ1dHVyZSBjb2xsYWJvcmF0aW9uLiBUaGVzZSByZWxhdGVkIG1lY2hhbmlzbXMgcmVzdWx0IGluIHRoZSBmb2xsb3dpbmcgaHlwb3RoZXNpczogKlVuaXZlcnNpdGllcyB0aGF0IGFyZSBnZW9ncmFwaGljYWxseSBjbG9zZXIgdG8gZWFjaCBvdGhlciB3aWxsIGhhdmUgYSBkZW5zZXIgY29sbGFib3JhdGlvbiBuZXR3b3JrIHRoYW4gdGhvc2UgdGhhdCBhcmUgZ2VvZ3JhcGhpY2FsbHkgbW9yZSBmYXIgYXBhcnQqIFtIeXBvdGhlc2lzIDFdLg0KDQpNYWpvciBpbm5vdmF0aW9ucyBpbiBjb21tdW5pY2F0aW9uIG1ldGhvZHMgaGF2ZSBsaWtlbHkgbG93ZXJlZCB0aGUgYmFycmllciBvZiBnZW9ncmFwaGljYWwgZGlzdGFuY2UgaW4gYWNhZGVtaWMgY29sbGFib3JhdGlvbi4gRGV2ZWxvcG1lbnRzIHN1Y2ggYXMgdGhlIGludHJvZHVjdGlvbiBvZiB0aGUgaW50ZXJuZXQgYW5kIHRoZSBhZHZhbmNlbWVudCBvZiBvbmxpbmUgdGVjaG5vbG9naWVzIHN1Y2ggYXMgdmlkZW8tY29uZmVyZW5jaW5nLCBjb250ZW50IHNoYXJpbmcsIGFuZCBhcHBsaWNhdGlvbiBpbnRlZ3JhdGlvbiBoYXZlIG1hZGUgY29sbGFib3JhdGlvbiBhdCBhIGRpc3RhbmNlIG11Y2ggbW9yZSBhY2Nlc3NpYmxlIGFuZCBtYW5hZ2VhYmxlIChMb25nZSAmIE1hZ25vbG8sIDIwMDk7IEJ5cm5lcyBldCBhbC4sIDIwMjEpLiBUb2dldGhlciB3aXRoIHRoaXMgZGV2ZWxvcG1lbnQsIHNjaG9sYXJzLCBsaWtlIG1hbnkgb3RoZXJzLCBoYXZlIGJlY29tZSBpbmNyZWFzaW5nbHkgZGlnaXRhbGx5IGxpdGVyYXRlLCBtYWtpbmcgdGhlIGFwcGxpY2F0aW9uIG9mIHRoZXNlIGFkdmFuY2VkIGNvbW11bmljYXRpb24gbWV0aG9kcyBlYXNpZXIuIFdpdGggdGhlc2UgcHJvZ3Jlc3NpbmcgY29tbXVuaWNhdGlvbiBtZXRob2RzLCBjb2xsYWJvcmF0aW9uIHRocm91Z2ggdGhlc2Ugb25saW5lIGNoYW5uZWxzIGhhdmUgYWxzbyBiZWNvbWUgbW9yZSBjb21tb25wbGFjZSB0aGFuIGJlZm9yZS4gUmVjZW50IGV2ZW50cyBoYXZlIGFjY2VsZXJhdGVkIHRoZSBkZXZlbG9wbWVudCBhbmQgc3RhbmRhcmRpemF0aW9uIG9mIG1vcmUgYWNjZXNzaWJsZSBhbmQgY29udmVuaWVudCBvbmxpbmUgY29tbXVuaWNhdGlvbiBtZXRob2RzIGZvciBzY2hvbGFycywgc3VjaCBhcyB0aGUgd29ybGR3aWRlIENvdmlkLTE5IHBhbmRlbWljIChPc2xlciAmIFphaGF2aSwgMjAyMikuIFRocm91Z2ggdGhpcyBjaXJjdW1zdGFuY2UsIHRoZSBvYnN0YWNsZSBmb3IgY29sbGFib3JhdGlvbiBiZWNhdXNlIG9mIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSB3YXMgbG93ZXJlZCBldmVuIGZ1cnRoZXIuIFRoaXMgcmVhc29uaW5nIGxlYWRzIHRvIHRoZSBzZWNvbmQgaHlwb3RoZXNpczogKlRoZSBpbmZsdWVuY2Ugb2YgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIG9uIGJldHdlZW4gdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG9mIER1dGNoIFNvY2lvbG9neSBkZXBhcnRtZW50cyBoYXMgaW5jcmVhc2VkIG92ZXIgdGltZSogW0h5cG90aGVzaXMgMl0uDQoNCkJlc2lkZXMgYW4gaW50ZXJlc3QgaW4gY28tYXV0aG9yc2hpcCwgdGhlcmUgYXJlIHNvbWUgb3RoZXIgZmFjdG9ycyB0byBjb25zaWRlciBiZWZvcmUgb25lIGNhbiBtYWtlIHRoZSBkZWNpc2lvbiB0byBwdXJzdWUgY29sbGFib3JhdGlvbiwgc3VjaCBhcyB0aGUgY29tbXV0ZSB0aW1lIHRoYXQgaXMgYWRkZWQgdG8gdGhlIHJlZ3VsYXIgd29ya2RheS4gRm9yIHNvbWUsIHRoaXMgYWRkaXRpb25hbCBjb21taXRtZW50IG1pZ2h0IG5vdCBiZSBhcyBjb252ZW5pZW50IGFzIGZvciBvdGhlcnMuIEZvciBleGFtcGxlLCBhIGxvbmcgd29ya2RheSB3aXRoIGFuIGFkZGl0aW9uYWxseSBsZW5ndGh5IGNvbW11dGUgdGltZSBjYW4gY29tcGV0ZSB3aXRoIGEgd29yay1saWZlIGJhbGFuY2UgYW5kIHRoZSByZXNwb25zaWJpbGl0aWVzIGF0IGhvbWUuIFdoaWxlIGdlbmRlciByb2xlcyBubyBsb25nZXIgY29udmV5IGEgY2xlYXIgZGl2aXNpb24gYmV0d2VlbiBob21lIGNhcmUgcmVzcG9uc2liaWxpdGllcyBhbmQgY2FyZWVyIHJlc3BvbnNpYmlsaXRpZXMsIHZhcmlvdXMgc3R1ZGllcyBzaG93IHRoYXQgd29yay1mYW1pbHkgY29uZmxpY3QgaXMgZ2VuZXJhbGx5IGEgZ3JlYXRlciBpc3N1ZSBmb3Igd29tZW4gaW4gY29tcGFyaXNvbiB0byBtZW4gKFBhY2UgJiBTY2lvdHRvLCAyMDIxOyBTYW10bGViZW4gJiBNw7xsbGVyLCAyMDIyKS4gU28sIGFzIHdvbWVuIHdpbGwgbGlrZWx5IGV4cGVyaWVuY2UgYSBoaWdoZXIgZGVtYW5kIGZyb20gdGhlIHJlc3BvbnNpYmlsaXRpZXMgYXQgaG9tZSBjb21wYXJlZCB0byBtZW4sIEkgZXhwZWN0IHdvbWVuIHRvIGRlY2lkZSB0byBzdGF5IGF3YXkgZnJvbSBnZW9ncmFwaGljYWxseSBkaXN0YW5jZWQgY29sbGFib3JhdGlvbiBtb3JlIG9mdGVuIHRoYW4gbWVuLiBUaGlzIGxlYWRzIHRvIHRoZSB0aGlyZCBoeXBvdGhlc2lzOiAqRmVtYWxlIHNjaG9sYXJzIGFyZSBsZXNzIGxpa2VseSB0byBjb2xsYWJvcmF0ZSB3aXRoIHNjaG9sYXJzIGF0IHVuaXZlcnNpdGllcyB3aXRoIGdyZWF0ZXIgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGJldHdlZW4gdGhlbSB0aGVuIG1hbGUgc2Nob2xhcnMqIFtIeXBvdGhlc2lzIDNdLg0KDQoNCg0KIyMgVGhlb3J5IC0gUmVmZXJlbmNlcw0KQmlhbmNhbmksIFMuLCBNY0ZhcmxhbmQsIEQuIEEuLCAmIERhaGxhbmRlciwgTC4gKDIwMTQpLiBUaGUgc2VtaWZvcm1hbCBvcmdhbml6YXRpb24uIE9yZ2FuaXphdGlvbiBTY2llbmNlLCAyNSg1KSwgMTMwNi0xMzI0Lg0KDQpCeXJuZXMsIEsuIEcuLCBLaWVseSwgUC4gQS4sIER1bm5lLCBDLiBQLiwgTWNEZXJtb3R0LCBLLiBXLiwgJiBDb2ZmZXksIEouIEMuICgyMDIxKS4gQ29tbXVuaWNhdGlvbiwgY29sbGFib3JhdGlvbiBhbmQgY29udGFnaW9uOuKAnFZpcnR1YWxpc2F0aW9u4oCdIG9mIGFuYXRvbXkgZHVyaW5nIENPVklE4oCQMTkuIENsaW5pY2FsIGFuYXRvbXksIDM0KDEpLCA4Mi04OS4gaHR0cHM6Ly9kb2kub3JnLzEwLjEwMDIvY2EuMjM2NDkNCg0KSG9lZ2wsIE0uLCBXZWlua2F1ZiwgSy4sICYgR2VtdWVuZGVuLCBILiBHLiAoMjAwNCkuIEludGVydGVhbSBjb29yZGluYXRpb24sIHByb2plY3QgY29tbWl0bWVudCwgYW5kIHRlYW13b3JrIGluIG11bHRpdGVhbSBSJkQgcHJvamVjdHM6IEEgbG9uZ2l0dWRpbmFsIHN0dWR5LiBPcmdhbml6YXRpb24gc2NpZW5jZSwgMTUoMSksIDM4LTU1Lg0KDQpKYWluLCBKLiwgJiBMeW9ucywgRy4gKDIwMDgpLiBUaGUgZ2lmdCBvZiB0cmF2ZWwgdGltZS4gSm91cm5hbCBvZiB0cmFuc3BvcnQgZ2VvZ3JhcGh5LCAxNigyKSwgODEtODkuIGh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2L2ouanRyYW5nZW8uMjAwNy4wNS4wMDEgDQoNCkxvbmdvLCBNLiwgJiBNYWdub2xvLCBTLiAoMjAwOSkuIFRoZSBhdXRob3IgYW5kIGF1dGhvcnNoaXAgaW4gdGhlIGludGVybmV0IHNvY2lldHk6IG5ldyBwZXJzcGVjdGl2ZXMgZm9yIHNjaWVudGlmaWMgY29tbXVuaWNhdGlvbi4gQ3VycmVudCBTb2Npb2xvZ3ksIDU3KDYpLCA4MjktODUwLiBodHRwczovL2RvaS5vcmcvMTAuMTE3Ny8wMDExMzkyMTA5MzQyMjIxDQoNCk9zbGVyLCBMLiwgJiBaYWhhdmksIEQuICgyMDIzKS4gU29jaWFsaXR5IGFuZCBlbWJvZGltZW50OiBPbmxpbmUgY29tbXVuaWNhdGlvbiBkdXJpbmcgYW5kIGFmdGVyIENvdmlkLTE5LiBGb3VuZGF0aW9ucyBvZiBTY2llbmNlLCAyOCg0KSwgMTEyNS0xMTQyLiBodHRwczovL2RvaS5vcmcvMTAuMTAwNy9zMTA2OTktMDIyLTA5ODYxLTEgDQoNClBhY2UsIEYuLCAmIFNjaW90dG8sIEcuICgyMDIxKS4gR2VuZGVyIGRpZmZlcmVuY2VzIGluIHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiB3b3Jr4oCTbGlmZSBiYWxhbmNlLCBjYXJlZXIgb3Bwb3J0dW5pdGllcyBhbmQgZ2VuZXJhbCBoZWFsdGggcGVyY2VwdGlvbi4gU3VzdGFpbmFiaWxpdHksIDE0KDEpLCAzNTcuIGh0dHBzOi8vZG9pLm9yZy8xMC4zMzkwL3N1MTQwMTAzNTcNCg0KUnVhLUdvbWV6LCBDLiwgQ2FybmFidWNpLCBHLiwgJiBHb29zc2VuLCBNLiBDLiAoMjAyMykuIFJlYWNoaW5nIGZvciB0aGUgc3RhcnM6IEhvdyBnZW5kZXIgaW5mbHVlbmNlcyB0aGUgZm9ybWF0aW9uIG9mIGhpZ2gtc3RhdHVzIGNvbGxhYm9yYXRpb24gdGllcy4gQWNhZGVteSBvZiBNYW5hZ2VtZW50IEpvdXJuYWwsIDY2KDUpLCAxNTAxLTE1MjguIGh0dHBzOi8vZG9pLm9yZy8xMC41NDY1L2Ftai4yMDIxLjAyMTgNCg0KU2FtdGxlYmVuLCBDLiwgJiBNw7xsbGVyLCBLLi1VLiAoMjAyMikuIENhcmUgYW5kIGNhcmVlcnM6IEdlbmRlciAoaW4pZXF1YWxpdHkgaW4gdW5wYWlkIGNhcmUsIGhvdXNld29yayBhbmQgZW1wbG95bWVudC4gUmVzZWFyY2ggaW4gU29jaWFsIFN0cmF0aWZpY2F0aW9uIGFuZCBNb2JpbGl0eSwgNzcuIGh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2L2oucnNzbS4yMDIxLjEwMDY1OSANCg0KVmVzc2V5LCBJLiAoMTk5NCkuIFRoZSBlZmZlY3Qgb2YgaW5mb3JtYXRpb24gcHJlc2VudGF0aW9uIG9uIGRlY2lzaW9uIG1ha2luZzogQSBjb3N0LWJlbmVmaXQgYW5hbHlzaXMuIEluZm9ybWF0aW9uICYgbWFuYWdlbWVudCwgMjcoMiksIDEwMy0xMTkuIGh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2LzAzNzgtNzIwNig5NCk5MDAxMC04DQoNClRlciBXYWwsIEEuIEwuICgyMDE0KS4gVGhlIGR5bmFtaWNzIG9mIHRoZSBpbnZlbnRvciBuZXR3b3JrIGluIEdlcm1hbiBiaW90ZWNobm9sb2d5OiBnZW9ncmFwaGljIHByb3hpbWl0eSB2ZXJzdXMgdHJpYWRpYyBjbG9zdXJlLiBKb3VybmFsIG9mIEVjb25vbWljIEdlb2dyYXBoeSwgMTQoMyksIDU4OS02MjAuIGRvaS5vcmcvMTAuMTA5My9qZWcvbGJzMDYzIA0K</div>
 
 
 </div>

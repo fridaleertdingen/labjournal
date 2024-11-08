@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="by: Frida van Teijlingen" />
+
+
+<title>Conclusion</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="tweaks.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My journal
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tutorial.html">Page 1 - Week 1</a>
+    </li>
+    <li>
+      <a href="w2.html">Page 2 - Week 2</a>
+    </li>
+    <li>
+      <a href="w3webscraping.html">Page 3 - Week 3</a>
+    </li>
+    <li>
+      <a href="w4.html">Page 4 - Week 4</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Page 5 - Week 5</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="w5dataselect.html">Week 5 - trying data selection</a>
+        </li>
+        <li>
+          <a href="tryleaflet.html">Week 5 - trying leaflet</a>
+        </li>
+        <li>
+          <a href="w5Rsiena.html">Week 5 - RSiena lecture pt 1</a>
+        </li>
+        <li>
+          <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="w5and6RSienaTRY.html">Week 6 - Rsiena own data</a>
+    </li>
+    <li>
+      <a href="w7.html">Week 7 - GOF</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    My final assignment
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="FJintro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="FJtheory.html">Theory</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJdatamethods.html">Data</a>
+        </li>
+        <li>
+          <a href="data_preparation.html">Data preparation - code</a>
+        </li>
+        <li>
+          <a href="travel_times.html">Matching and looping travel times - code</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RSiena model analyses</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJanalysis.html">RSiena models</a>
+        </li>
+        <li>
+          <a href="FJinteraction.html">Interaction of gender</a>
+        </li>
+        <li>
+          <a href="FJgof.html">Goodness of Fit</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="FJconclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://fridaleertdingen.github.io/labjournal/">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Conclusion</h1>
+<h4 class="author">by: Frida van Teijlingen</h4>
+
+</div>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p><strong><em>‘Out of sight, out of mind: a social network approach to
+geographical distance and co-authorship collaboration at four Sociology
+departments in the Netherlands’</em></strong></p>
+<hr />
+<div id="conclusion" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Conclusion</h1>
+<p>This study considered the continuing globalization with its
+subsequent growing interconnectedness and shrinking psychic distance
+between scientists to gain understanding of the relationship between
+geographical distance and the collaboration networks of social
+scientists at Dutch universities. Utilizing a social network approach,
+the collaboration network of scholars at Sociology departments at four
+Dutch universities was studied to uncover the true structure of this
+network and behaviour of actors within.</p>
+<p>Based on existing literature and theory, one would expect that with
+greater geographical distance between one scholar and another, the
+travel costs and constraints might often impose a barrier for scholars,
+thus decreasing the likelihood of collaboration between scholars of
+distanced universities. With smaller geographical distance between one
+scholar to another, the travel costs and constraints might be of less
+importance, thus increasing the likelihood of face-to-face interaction,
+which results in more collaboration [Hypothesis 1]. Additionally, this
+mechanism has likely increased over time due to the introduction and
+dexterity of modern communication methods, as this normalized
+collaboration through online channels. Thus, it was expected that the
+collaboration between scholars of different Dutch Sociology departments
+has increased over time [Hypothesis 2]. Moreover, due to different
+attitudes and experiences regarding work-life balance, this study
+expected that female scholars were less likely to collaborate with
+scholars at universities with greater geographical distance between them
+then male scholars [Hypothesis 3].</p>
+<p>This study used co-authorship as an indicator for collaboration
+between scholars and travel time by public transport as a proxy for
+geographical distance. The results of this study show support for the
+first hypothesis, as scholars show a tendency to form denser
+collaborative ties to scholars at universities that are spatially closer
+compared to scholars at universities that are spatially further away. As
+a comparison of the two waves showed that the network has become more
+clustered and similar over time, thus providing evidence for the second
+hypothesis. The interaction effect of gender was not found in the simple
+network model, therefore there is no concluding evidence of the
+existence of an interacting mechanism of gender, thus rejecting the
+third hypothesis.</p>
+<p>Like many other studies, this study was not flawless and can be
+refined in multiple ways. First, as discussed earlier, the low
+Jaccard-index suggested that there would be difficulties in the accuracy
+of parameter estimation. As a result, the found (and not found) effects
+needed to be cautiously interpreted. Additional research would need to
+be done in order to confirm the found results in a more fitting context.
+Future research would need to confirm the found results in more similar
+networks in order to make more justified claims. The poor Goodness of
+Fit indicates that there is indeed room for model improvement. A future
+addition of external control variables might improve the model fit and
+overall accuracy of the analysis. Second, a multiplex network analysis
+approach could also provide opportunities to gain a better understanding
+of the research topic at hand, as this approach would allow for a
+multi-layered network analysis. With this approach, collaboration
+behaviour in relation to geographical distance at the actor, network,
+and university level could be studied, which would be relevant due to
+the various layers of collaboration opportunities in this network
+(e.g. previous collaborations, partnership between universities, etc.).
+Third, future studies could also expand on the current study and
+literature by focusing on the cost-benefit trade-off that is central to
+the relationship between geographical distance and collaboration
+opportunities of scholars. This approach would potentially also benefit
+from taking the role of varying academic status into account: Are actors
+willing to travel further to collaborate with scholars with higher
+academic status compared to scholars with lower academic status?</p>
+<p>In conclusion, this study confirmed existing theory regarding the
+role of geographical distance in collaboration networks. However, it
+also showed that there is much more to detangle before we can reach a
+full understanding of this relationship and to what extent the effect
+reaches. Future research will further the search for answers and
+understanding.</p>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNvbmNsdXNpb24iDQphdXRob3I6ICJieTogRnJpZGEgdmFuIFRlaWpsaW5nZW4iDQpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliDQotLS0NCmBgYHs9aHRtbH0NCjxzdHlsZT4NCmJvZHkgew0KdGV4dC1hbGlnbjoganVzdGlmeX0NCjwvc3R5bGU+DQpgYGANCmBgYHtyLCBnbG9iYWxzZXR0aW5ncywgZWNobz1GQUxTRSwgd2FybmluZz1GQUxTRSwgcmVzdWx0cz0naGlkZSd9DQoNCmxpYnJhcnkoa25pdHIpDQpsaWJyYXJ5KGZvcm1hdFIpDQoNCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCm9wdHNfY2h1bmskc2V0KHRpZHkub3B0cz1saXN0KHdpZHRoLmN1dG9mZj0xMDApLHRpZHk9VFJVRSwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsY29tbWVudCA9ICIjPiIsIGNhY2hlPVRSVUUsIGNsYXNzLnNvdXJjZT1jKCJ0ZXN0IiksIGNsYXNzLm91dHB1dD1jKCJ0ZXN0MiIpKQ0Kb3B0aW9ucyh3aWR0aCA9IDEwMCkNCnJnbDo6c2V0dXBLbml0cigpDQoNCmBgYA0KDQpgYGB7ciBrbGlwcHksIGVjaG89RkFMU0UsIGluY2x1ZGU9VFJVRX0NCmtsaXBweTo6a2xpcHB5KHBvc2l0aW9uID0gYygndG9wJywgJ3JpZ2h0JykpDQpgYGANCg0KKioq4oCYT3V0IG9mIHNpZ2h0LCBvdXQgb2YgbWluZDogYSBzb2NpYWwgbmV0d29yayBhcHByb2FjaCB0byBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYW5kIGNvLWF1dGhvcnNoaXAgY29sbGFib3JhdGlvbiBhdCBmb3VyIFNvY2lvbG9neSBkZXBhcnRtZW50cyBpbiB0aGUgTmV0aGVybGFuZHPigJkqKioNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyBDb25jbHVzaW9uDQoNClRoaXMgc3R1ZHkgY29uc2lkZXJlZCB0aGUgY29udGludWluZyBnbG9iYWxpemF0aW9uIHdpdGggaXRzIHN1YnNlcXVlbnQgZ3Jvd2luZyBpbnRlcmNvbm5lY3RlZG5lc3MgYW5kIHNocmlua2luZyBwc3ljaGljIGRpc3RhbmNlIGJldHdlZW4gc2NpZW50aXN0cyB0byBnYWluIHVuZGVyc3RhbmRpbmcgb2YgdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgdGhlIGNvbGxhYm9yYXRpb24gbmV0d29ya3Mgb2Ygc29jaWFsIHNjaWVudGlzdHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzLiBVdGlsaXppbmcgYSBzb2NpYWwgbmV0d29yayBhcHByb2FjaCwgdGhlIGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2hvbGFycyBhdCBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgYXQgZm91ciBEdXRjaCB1bml2ZXJzaXRpZXMgd2FzIHN0dWRpZWQgdG8gdW5jb3ZlciB0aGUgdHJ1ZSBzdHJ1Y3R1cmUgb2YgdGhpcyBuZXR3b3JrIGFuZCBiZWhhdmlvdXIgb2YgYWN0b3JzIHdpdGhpbi4NCg0KQmFzZWQgb24gZXhpc3RpbmcgbGl0ZXJhdHVyZSBhbmQgdGhlb3J5LCBvbmUgd291bGQgZXhwZWN0IHRoYXQgd2l0aCBncmVhdGVyIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuIG9uZSBzY2hvbGFyIGFuZCBhbm90aGVyLCB0aGUgdHJhdmVsIGNvc3RzIGFuZCBjb25zdHJhaW50cyBtaWdodCBvZnRlbiBpbXBvc2UgYSBiYXJyaWVyIGZvciBzY2hvbGFycywgdGh1cyBkZWNyZWFzaW5nIHRoZSBsaWtlbGlob29kIG9mIGNvbGxhYm9yYXRpb24gYmV0d2VlbiBzY2hvbGFycyBvZiBkaXN0YW5jZWQgdW5pdmVyc2l0aWVzLiBXaXRoIHNtYWxsZXIgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGJldHdlZW4gb25lIHNjaG9sYXIgdG8gYW5vdGhlciwgdGhlIHRyYXZlbCBjb3N0cyBhbmQgY29uc3RyYWludHMgbWlnaHQgYmUgb2YgbGVzcyBpbXBvcnRhbmNlLCB0aHVzIGluY3JlYXNpbmcgdGhlIGxpa2VsaWhvb2Qgb2YgZmFjZS10by1mYWNlIGludGVyYWN0aW9uLCB3aGljaCByZXN1bHRzIGluIG1vcmUgY29sbGFib3JhdGlvbiBbSHlwb3RoZXNpcyAxXS4gIEFkZGl0aW9uYWxseSwgdGhpcyBtZWNoYW5pc20gaGFzIGxpa2VseSBpbmNyZWFzZWQgb3ZlciB0aW1lIGR1ZSB0byB0aGUgaW50cm9kdWN0aW9uIGFuZCBkZXh0ZXJpdHkgb2YgbW9kZXJuIGNvbW11bmljYXRpb24gbWV0aG9kcywgYXMgdGhpcyBub3JtYWxpemVkIGNvbGxhYm9yYXRpb24gdGhyb3VnaCBvbmxpbmUgY2hhbm5lbHMuIFRodXMsIGl0IHdhcyBleHBlY3RlZCB0aGF0IHRoZSBjb2xsYWJvcmF0aW9uIGJldHdlZW4gc2Nob2xhcnMgb2YgZGlmZmVyZW50IER1dGNoIFNvY2lvbG9neSBkZXBhcnRtZW50cyBoYXMgaW5jcmVhc2VkIG92ZXIgdGltZSBbSHlwb3RoZXNpcyAyXS4gIE1vcmVvdmVyLCBkdWUgdG8gZGlmZmVyZW50IGF0dGl0dWRlcyBhbmQgZXhwZXJpZW5jZXMgcmVnYXJkaW5nIHdvcmstbGlmZSBiYWxhbmNlLCB0aGlzIHN0dWR5IGV4cGVjdGVkIHRoYXQgZmVtYWxlIHNjaG9sYXJzIHdlcmUgbGVzcyBsaWtlbHkgdG8gY29sbGFib3JhdGUgd2l0aCBzY2hvbGFycyBhdCB1bml2ZXJzaXRpZXMgd2l0aCBncmVhdGVyIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBiZXR3ZWVuIHRoZW0gdGhlbiBtYWxlIHNjaG9sYXJzIFtIeXBvdGhlc2lzIDNdLg0KDQpUaGlzIHN0dWR5IHVzZWQgY28tYXV0aG9yc2hpcCBhcyBhbiBpbmRpY2F0b3IgZm9yIGNvbGxhYm9yYXRpb24gYmV0d2VlbiBzY2hvbGFycyBhbmQgdHJhdmVsIHRpbWUgYnkgcHVibGljIHRyYW5zcG9ydCBhcyBhIHByb3h5IGZvciBnZW9ncmFwaGljYWwgZGlzdGFuY2UuIFRoZSByZXN1bHRzIG9mIHRoaXMgc3R1ZHkgc2hvdyBzdXBwb3J0IGZvciB0aGUgZmlyc3QgaHlwb3RoZXNpcywgYXMgc2Nob2xhcnMgc2hvdyBhIHRlbmRlbmN5IHRvIGZvcm0gZGVuc2VyIGNvbGxhYm9yYXRpdmUgdGllcyB0byBzY2hvbGFycyBhdCB1bml2ZXJzaXRpZXMgdGhhdCBhcmUgc3BhdGlhbGx5IGNsb3NlciBjb21wYXJlZCB0byBzY2hvbGFycyBhdCB1bml2ZXJzaXRpZXMgdGhhdCBhcmUgc3BhdGlhbGx5IGZ1cnRoZXIgYXdheS4gQXMgYSBjb21wYXJpc29uIG9mIHRoZSB0d28gd2F2ZXMgc2hvd2VkIHRoYXQgdGhlIG5ldHdvcmsgaGFzIGJlY29tZSBtb3JlIGNsdXN0ZXJlZCBhbmQgc2ltaWxhciBvdmVyIHRpbWUsIHRodXMgcHJvdmlkaW5nIGV2aWRlbmNlIGZvciB0aGUgc2Vjb25kIGh5cG90aGVzaXMuIFRoZSBpbnRlcmFjdGlvbiBlZmZlY3Qgb2YgZ2VuZGVyIHdhcyBub3QgZm91bmQgaW4gdGhlIHNpbXBsZSBuZXR3b3JrIG1vZGVsLCB0aGVyZWZvcmUgdGhlcmUgaXMgbm8gY29uY2x1ZGluZyBldmlkZW5jZSBvZiB0aGUgZXhpc3RlbmNlIG9mIGFuIGludGVyYWN0aW5nIG1lY2hhbmlzbSBvZiBnZW5kZXIsIHRodXMgcmVqZWN0aW5nIHRoZSB0aGlyZCBoeXBvdGhlc2lzLiANCg0KTGlrZSBtYW55IG90aGVyIHN0dWRpZXMsIHRoaXMgc3R1ZHkgd2FzIG5vdCBmbGF3bGVzcyBhbmQgY2FuIGJlIHJlZmluZWQgaW4gbXVsdGlwbGUgd2F5cy4gRmlyc3QsIGFzIGRpc2N1c3NlZCBlYXJsaWVyLCB0aGUgbG93IEphY2NhcmQtaW5kZXggc3VnZ2VzdGVkIHRoYXQgdGhlcmUgd291bGQgYmUgZGlmZmljdWx0aWVzIGluIHRoZSBhY2N1cmFjeSBvZiBwYXJhbWV0ZXIgZXN0aW1hdGlvbi4gQXMgYSByZXN1bHQsIHRoZSBmb3VuZCAoYW5kIG5vdCBmb3VuZCkgZWZmZWN0cyBuZWVkZWQgdG8gYmUgY2F1dGlvdXNseSBpbnRlcnByZXRlZC4gQWRkaXRpb25hbCByZXNlYXJjaCB3b3VsZCBuZWVkIHRvIGJlIGRvbmUgaW4gb3JkZXIgdG8gY29uZmlybSB0aGUgZm91bmQgcmVzdWx0cyBpbiBhIG1vcmUgZml0dGluZyBjb250ZXh0LiBGdXR1cmUgcmVzZWFyY2ggd291bGQgbmVlZCB0byBjb25maXJtIHRoZSBmb3VuZCByZXN1bHRzIGluIG1vcmUgc2ltaWxhciBuZXR3b3JrcyBpbiBvcmRlciB0byBtYWtlIG1vcmUganVzdGlmaWVkIGNsYWltcy4gVGhlIHBvb3IgR29vZG5lc3Mgb2YgRml0IGluZGljYXRlcyB0aGF0IHRoZXJlIGlzIGluZGVlZCByb29tIGZvciBtb2RlbCBpbXByb3ZlbWVudC4gQSBmdXR1cmUgYWRkaXRpb24gb2YgZXh0ZXJuYWwgY29udHJvbCB2YXJpYWJsZXMgbWlnaHQgaW1wcm92ZSB0aGUgbW9kZWwgZml0IGFuZCBvdmVyYWxsIGFjY3VyYWN5IG9mIHRoZSBhbmFseXNpcy4gU2Vjb25kLCBhIG11bHRpcGxleCBuZXR3b3JrIGFuYWx5c2lzIGFwcHJvYWNoIGNvdWxkIGFsc28gcHJvdmlkZSBvcHBvcnR1bml0aWVzIHRvIGdhaW4gYSBiZXR0ZXIgdW5kZXJzdGFuZGluZyBvZiB0aGUgcmVzZWFyY2ggdG9waWMgYXQgaGFuZCwgYXMgdGhpcyBhcHByb2FjaCB3b3VsZCBhbGxvdyBmb3IgYSBtdWx0aS1sYXllcmVkIG5ldHdvcmsgYW5hbHlzaXMuIFdpdGggdGhpcyBhcHByb2FjaCwgY29sbGFib3JhdGlvbiBiZWhhdmlvdXIgaW4gcmVsYXRpb24gdG8gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGF0IHRoZSBhY3RvciwgbmV0d29yaywgYW5kIHVuaXZlcnNpdHkgbGV2ZWwgY291bGQgYmUgc3R1ZGllZCwgd2hpY2ggd291bGQgYmUgcmVsZXZhbnQgZHVlIHRvIHRoZSB2YXJpb3VzIGxheWVycyBvZiBjb2xsYWJvcmF0aW9uIG9wcG9ydHVuaXRpZXMgaW4gdGhpcyBuZXR3b3JrIChlLmcuIHByZXZpb3VzIGNvbGxhYm9yYXRpb25zLCBwYXJ0bmVyc2hpcCBiZXR3ZWVuIHVuaXZlcnNpdGllcywgZXRjLikuIFRoaXJkLCBmdXR1cmUgc3R1ZGllcyBjb3VsZCBhbHNvIGV4cGFuZCBvbiB0aGUgY3VycmVudCBzdHVkeSBhbmQgbGl0ZXJhdHVyZSBieSBmb2N1c2luZyBvbiB0aGUgY29zdC1iZW5lZml0IHRyYWRlLW9mZiB0aGF0IGlzIGNlbnRyYWwgdG8gdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgY29sbGFib3JhdGlvbiBvcHBvcnR1bml0aWVzIG9mIHNjaG9sYXJzLiBUaGlzIGFwcHJvYWNoIHdvdWxkIHBvdGVudGlhbGx5IGFsc28gYmVuZWZpdCBmcm9tIHRha2luZyB0aGUgcm9sZSBvZiB2YXJ5aW5nIGFjYWRlbWljIHN0YXR1cyBpbnRvIGFjY291bnQ6IEFyZSBhY3RvcnMgd2lsbGluZyB0byB0cmF2ZWwgZnVydGhlciB0byBjb2xsYWJvcmF0ZSB3aXRoIHNjaG9sYXJzIHdpdGggaGlnaGVyIGFjYWRlbWljIHN0YXR1cyBjb21wYXJlZCB0byBzY2hvbGFycyB3aXRoIGxvd2VyIGFjYWRlbWljIHN0YXR1cz8gDQoNCkluIGNvbmNsdXNpb24sIHRoaXMgc3R1ZHkgY29uZmlybWVkIGV4aXN0aW5nIHRoZW9yeSByZWdhcmRpbmcgdGhlIHJvbGUgb2YgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGluIGNvbGxhYm9yYXRpb24gbmV0d29ya3MuIEhvd2V2ZXIsIGl0IGFsc28gc2hvd2VkIHRoYXQgdGhlcmUgaXMgbXVjaCBtb3JlIHRvIGRldGFuZ2xlIGJlZm9yZSB3ZSBjYW4gcmVhY2ggYSBmdWxsIHVuZGVyc3RhbmRpbmcgb2YgdGhpcyByZWxhdGlvbnNoaXAgYW5kIHRvIHdoYXQgZXh0ZW50IHRoZSBlZmZlY3QgcmVhY2hlcy4gRnV0dXJlIHJlc2VhcmNoIHdpbGwgZnVydGhlciB0aGUgc2VhcmNoIGZvciBhbnN3ZXJzIGFuZCB1bmRlcnN0YW5kaW5nLg0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("FJconclusion.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

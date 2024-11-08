@@ -38,6 +38,10 @@
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -372,16 +376,19 @@ div.tocify {
         <li>
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
-        <li>
-          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
-        </li>
       </ul>
+    </li>
+    <li>
+      <a href="w5and6RSienaTRY.html">Week 6 - Rsiena own data</a>
+    </li>
+    <li>
+      <a href="w7.html">Week 7 - GOF</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Final journal
+    My final assignment
      
     <span class="caret"></span>
   </a>
@@ -393,17 +400,35 @@ div.tocify {
       <a href="FJtheory.html">Theory</a>
     </li>
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header">Data preparation</li>
         <li>
-          <a href="data_preparation.html"></a>
+          <a href="FJdatamethods.html">Data</a>
         </li>
-        <li class="dropdown-header">Matching and looping travel times</li>
         <li>
-          <a href="w6traveltimes.html"></a>
+          <a href="data_preparation.html">Data preparation - code</a>
+        </li>
+        <li>
+          <a href="travel_times.html">Matching and looping travel times - code</a>
         </li>
       </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RSiena model analyses</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJanalysis.html">RSiena models</a>
+        </li>
+        <li>
+          <a href="FJinteraction.html">Interaction of gender</a>
+        </li>
+        <li>
+          <a href="FJgof.html">Goodness of Fit</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="FJconclusion.html">Conclusion</a>
     </li>
   </ul>
 </li>
@@ -440,22 +465,33 @@ div.tocify {
 </div>
 
 
-<p><strong><em>TITLE: ‘Out of sight, out of mind: a social network
-approach to geographical distance and co-authorship collaboration at
-four Sociology departments in the Netherlands’</em></strong></p>
-<p>#Introduction Over the last few centuries, globalization processes
-have resulted in economic, political and cultural interdependence.
-According to some, the globalization of science is one of the most
-important, if not the most important, aspect of modern globalization
-(Freeman, 2010). With a globalizing world also comes an immense and
-growing worldwide network of international connections and
+<style>
+body {
+text-align: justify}
+</style>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p><strong><em>‘Out of sight, out of mind: a social network approach to
+geographical distance and co-authorship collaboration at four Sociology
+departments in the Netherlands’</em></strong></p>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Over the last few centuries, globalization processes have resulted in
+greater economic, political and cultural connections and
+interdependence. According to some, the globalization of science is one
+of the most important, if not the most important, aspect of modern
+globalization (Freeman, 2010). With a globalizing world also comes an
+immense (and growing) worldwide network of international connections and
 collaboration. The subsequent knowledge flows as a result of these
-connections and collaborations are beneficial for economic development,
-specialization, networking, and the competitiveness in the scientific
-field (Gui et al., 2019). Additionally, the large international
-collaboration network benefits both students and teachers when seeking
-specific knowledge and specializations (Fitzgerald et al., 2021).</p>
-<p>While seeking collaboration, geographical distance can be experienced
+connections and collaborations are experienced as beneficial for
+economic development, specialization, networking, and the
+competitiveness in the scientific field (Gui et al., 2019).
+Additionally, on an smaller level, the large international collaboration
+network can benefit both students and teachers when seeking specific
+knowledge and specializations (Fitzgerald et al., 2021).</p>
+<p>When seeking collaboration, geographical distance can be experienced
 as a barrier. A greater distance can affect the effectiveness and
 efficiency of collaboration, if it does not prevent collaboration
 entirely in the first place (Pallot et al., 2010). While globalization
@@ -464,43 +500,74 @@ individual perception and awareness of the distance between us and a
 secondary location, also referred to as ‘psychic distance’, has
 decreased as a result of globalization (Ojala, 2009). That is, phones,
 e-mail, and other telecommunication technologies have made it much
-easier to reach out to others who are not directly in our immediate
-vicinity, advancing collaboration opportunities (Hoekman et al., 2010).
-While this relation has been proven for long-distance, international
-scientific collaboration (e.g. Hoekman et al., 2010), little research
-has been done on the relationship between geographical distance and
-scientific collaboration networks on a single country level. While it
-can be expected to be less evident, geographical distance can still be
-expected to be a relevant factor in scientific collaboration networks
-between actors within a country, as travel time and convenience can
-still be of relevant influence. Studying this on a single country level
-can give us more insight into the degree of influence geographical
-distance can have on scientific collaboration.</p>
+easier to reach out to others who are not in our immediate vicinity,
+advancing collaboration opportunities (Hoekman et al., 2010). While this
+relation has been proven for long-distance, international scientific
+collaboration (e.g. Hoekman et al., 2010), little research has been done
+on the relationship between geographical distance and scientific
+collaboration networks on a single country level. While it can be
+expected to be less evident, geographical distance can still be expected
+to be an affecting factor in scientific collaboration networks between
+actors within a country, as travel time and convenience can still be of
+relevant influence. Studying this on a single country level can give us
+more insight into the degree of influence geographical distance can have
+on scientific collaboration.</p>
 <p>This study aims to do so by studying the influence of geographical
 distance on co-authorship collaboration networks in the Netherlands,
 specifically between the sociology departments at several Dutch
-universities. This leads to the following research question:
-<strong><em>[RQ1] To what extent does the geographical distance between
-Sociology departments at Dutch universities influence the
-between-university collaboration network of scientists located at these
-universities?</em></strong></p>
+universities. This leads to the following research question: <em>To what
+extent does the geographical distance between Sociology departments at
+Dutch universities influence the between-university collaboration
+network of scientists located at these universities</em>
+[RQ1]<em>?</em></p>
 <p>Broad societal changes, such as the COVID-19 pandemic between 2020
-and 2022 had possibly lasting consequences for scientific collaboration
+and 2022, likely had lasting consequences for scientific collaboration
 networks. That is, government mandated measures such as working from
 home, limited travelling and avoiding close contact to others, might
 have changed the way these networks were constructed. This study will
-look at changing spatial patterns of research collaboration by studying
-co-authorship over time, resulting in the following questions:
-<strong><em>[RQ2] To what extent has the relation between geographical
-distance and between-university collaboration networks of Dutch
-Sociology departments changed over time?</em></strong> And:
-<strong><em>[RQ3] What patterns can be discovered within the
-collaboration network, for example by gender?</em></strong></p>
-<p>ADD?: In what way does a previous collaboration influence the impact
-of geographical distance on the likelihood of collaboration? IMPROVE:
-SNA perspective</p>
+therefore also look at changing spatial patterns of research
+collaboration by studying co-authorship over time, resulting in the
+following questions: <em>To what extent has the relation between
+geographical distance and between-university collaboration networks of
+Dutch Sociology departments changed over time</em> [RQ2]<em>?</em> And:
+<em>What patterns can be discovered within the collaboration network and
+within the changes over time</em> [RQ3]<em>?</em></p>
+<div id="introduction---references" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction -
+References</h2>
+<p>Fitzgerald, J., Ojanperä, S., &amp; O’Clery, N. (2021). Is academia
+becoming more localised? The growth of regional knowledge networks
+within international research collaboration. Applied Network Science,
+6(1), 1-27. <a href="https://doi.org/10.1007/s41109-021-00371-w"
+class="uri">https://doi.org/10.1007/s41109-021-00371-w</a></p>
+<p>Freeman, R. B. (2010). Globalization of scientific and engineering
+talent: international mobility of students, workers, and ideas and the
+world economy. Economics of Innovation and New Technology, 19(5),
+393-406. <a href="https://doi.org/10.1080/10438590903432871"
+class="uri">https://doi.org/10.1080/10438590903432871</a></p>
+<p>Gui, Q., Liu, C., &amp; Du, D. (2019). Globalization of science and
+international scientific collaboration: A network perspective. Geoforum,
+105, 1-12. <a href="https://doi.org/10.1016/j.geoforum.2019.06.017"
+class="uri">https://doi.org/10.1016/j.geoforum.2019.06.017</a></p>
+<p>Hoekman, J., Frenken, K., &amp; Tijssen, R. J. (2010). Research
+collaboration at a distance: Changing spatial patterns of scientific
+collaboration within Europe. Research policy, 39(5), 662-673. <a
+href="https://doi.org/10.1016/j.respol.2010.01.012"
+class="uri">https://doi.org/10.1016/j.respol.2010.01.012</a></p>
+<p>Ojala, A. (2009). Is globalization reducing distances between
+countries? Some empirical evidence from foreign software firms operating
+in Japan. Journal of Japan Academy for Asian Market Economies,
+12(1).</p>
+<p>Pallot, M., Bergmann, U., Kühnle, H., Pawar, K. S., &amp; Riedel, J.
+C. (2010, June). Collaborative working environments: Distance factors
+affecting collaboration. In 2010 IEEE International Technology
+Management Conference (ICE) (pp. 1-10). IEEE. <a
+href="https://doi.org/10.1109/ICE.2010.7476990"
+class="uri">https://doi.org/10.1109/ICE.2010.7476990</a>.</p>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludHJvZHVjdGlvbiINCmF1dGhvcjogImJ5OiBGcmlkYSB2YW4gVGVpamxpbmdlbiINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCi0tLQ0KDQoqKipUSVRMRTog4oCYT3V0IG9mIHNpZ2h0LCBvdXQgb2YgbWluZDogYSBzb2NpYWwgbmV0d29yayBhcHByb2FjaCB0byBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYW5kIGNvLWF1dGhvcnNoaXAgY29sbGFib3JhdGlvbiBhdCBmb3VyIFNvY2lvbG9neSBkZXBhcnRtZW50cyBpbiB0aGUgTmV0aGVybGFuZHPigJkqKioNCg0KI0ludHJvZHVjdGlvbg0KT3ZlciB0aGUgbGFzdCBmZXcgY2VudHVyaWVzLCBnbG9iYWxpemF0aW9uIHByb2Nlc3NlcyBoYXZlIHJlc3VsdGVkIGluIGVjb25vbWljLCBwb2xpdGljYWwgYW5kIGN1bHR1cmFsIGludGVyZGVwZW5kZW5jZS4gQWNjb3JkaW5nIHRvIHNvbWUsIHRoZSBnbG9iYWxpemF0aW9uIG9mIHNjaWVuY2UgaXMgb25lIG9mIHRoZSBtb3N0IGltcG9ydGFudCwgaWYgbm90IHRoZSBtb3N0IGltcG9ydGFudCwgYXNwZWN0IG9mIG1vZGVybiBnbG9iYWxpemF0aW9uIChGcmVlbWFuLCAyMDEwKS4gV2l0aCBhIGdsb2JhbGl6aW5nIHdvcmxkIGFsc28gY29tZXMgYW4gaW1tZW5zZSBhbmQgZ3Jvd2luZyB3b3JsZHdpZGUgbmV0d29yayBvZiBpbnRlcm5hdGlvbmFsIGNvbm5lY3Rpb25zIGFuZCBjb2xsYWJvcmF0aW9uLiBUaGUgc3Vic2VxdWVudCBrbm93bGVkZ2UgZmxvd3MgYXMgYSByZXN1bHQgb2YgdGhlc2UgY29ubmVjdGlvbnMgYW5kIGNvbGxhYm9yYXRpb25zIGFyZSBiZW5lZmljaWFsIGZvciBlY29ub21pYyBkZXZlbG9wbWVudCwgc3BlY2lhbGl6YXRpb24sIG5ldHdvcmtpbmcsIGFuZCB0aGUgY29tcGV0aXRpdmVuZXNzIGluIHRoZSBzY2llbnRpZmljIGZpZWxkIChHdWkgZXQgYWwuLCAyMDE5KS4gQWRkaXRpb25hbGx5LCB0aGUgbGFyZ2UgaW50ZXJuYXRpb25hbCBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgYmVuZWZpdHMgYm90aCBzdHVkZW50cyBhbmQgdGVhY2hlcnMgd2hlbiBzZWVraW5nIHNwZWNpZmljIGtub3dsZWRnZSBhbmQgc3BlY2lhbGl6YXRpb25zIChGaXR6Z2VyYWxkIGV0IGFsLiwgMjAyMSkuDQoNCldoaWxlIHNlZWtpbmcgY29sbGFib3JhdGlvbiwgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGNhbiBiZSBleHBlcmllbmNlZCBhcyBhIGJhcnJpZXIuIEEgZ3JlYXRlciBkaXN0YW5jZSBjYW4gYWZmZWN0IHRoZSBlZmZlY3RpdmVuZXNzIGFuZCBlZmZpY2llbmN5IG9mIGNvbGxhYm9yYXRpb24sIGlmIGl0IGRvZXMgbm90IHByZXZlbnQgY29sbGFib3JhdGlvbiBlbnRpcmVseSBpbiB0aGUgZmlyc3QgcGxhY2UgKFBhbGxvdCBldCBhbC4sIDIwMTApLiBXaGlsZSBnbG9iYWxpemF0aW9uIGlzIG5vdCBhYmxlIHRvIHNocmluayBnZW9ncmFwaGljYWwgZGlzdGFuY2VzIGluIGEgbGl0ZXJhbCBzZW5zZSwgb3VyIGluZGl2aWR1YWwgcGVyY2VwdGlvbiBhbmQgYXdhcmVuZXNzIG9mIHRoZSBkaXN0YW5jZSBiZXR3ZWVuIHVzIGFuZCBhIHNlY29uZGFyeSBsb2NhdGlvbiwgYWxzbyByZWZlcnJlZCB0byBhcyDigJhwc3ljaGljIGRpc3RhbmNl4oCZLCBoYXMgZGVjcmVhc2VkIGFzIGEgcmVzdWx0IG9mIGdsb2JhbGl6YXRpb24gKE9qYWxhLCAyMDA5KS4gVGhhdCBpcywgcGhvbmVzLCBlLW1haWwsIGFuZCBvdGhlciB0ZWxlY29tbXVuaWNhdGlvbiB0ZWNobm9sb2dpZXMgaGF2ZSBtYWRlIGl0IG11Y2ggZWFzaWVyIHRvIHJlYWNoIG91dCB0byBvdGhlcnMgd2hvIGFyZSBub3QgZGlyZWN0bHkgaW4gb3VyIGltbWVkaWF0ZSB2aWNpbml0eSwgYWR2YW5jaW5nIGNvbGxhYm9yYXRpb24gb3Bwb3J0dW5pdGllcyAoSG9la21hbiBldCBhbC4sIDIwMTApLiBXaGlsZSB0aGlzIHJlbGF0aW9uIGhhcyBiZWVuIHByb3ZlbiBmb3IgbG9uZy1kaXN0YW5jZSwgaW50ZXJuYXRpb25hbCBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gKGUuZy4gSG9la21hbiBldCBhbC4sIDIwMTApLCBsaXR0bGUgcmVzZWFyY2ggaGFzIGJlZW4gZG9uZSBvbiB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3Mgb24gYSBzaW5nbGUgY291bnRyeSBsZXZlbC4gV2hpbGUgaXQgY2FuIGJlIGV4cGVjdGVkIHRvIGJlIGxlc3MgZXZpZGVudCwgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGNhbiBzdGlsbCBiZSBleHBlY3RlZCB0byBiZSBhIHJlbGV2YW50IGZhY3RvciBpbiBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MgYmV0d2VlbiBhY3RvcnMgd2l0aGluIGEgY291bnRyeSwgYXMgdHJhdmVsIHRpbWUgYW5kIGNvbnZlbmllbmNlIGNhbiBzdGlsbCBiZSBvZiByZWxldmFudCBpbmZsdWVuY2UuIFN0dWR5aW5nIHRoaXMgb24gYSBzaW5nbGUgY291bnRyeSBsZXZlbCBjYW4gZ2l2ZSB1cyBtb3JlIGluc2lnaHQgaW50byB0aGUgZGVncmVlIG9mIGluZmx1ZW5jZSBnZW9ncmFwaGljYWwgZGlzdGFuY2UgY2FuIGhhdmUgb24gc2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uLg0KDQpUaGlzIHN0dWR5IGFpbXMgdG8gZG8gc28gYnkgc3R1ZHlpbmcgdGhlIGluZmx1ZW5jZSBvZiBnZW9ncmFwaGljYWwgZGlzdGFuY2Ugb24gY28tYXV0aG9yc2hpcCBjb2xsYWJvcmF0aW9uIG5ldHdvcmtzIGluIHRoZSBOZXRoZXJsYW5kcywgc3BlY2lmaWNhbGx5IGJldHdlZW4gdGhlIHNvY2lvbG9neSBkZXBhcnRtZW50cyBhdCBzZXZlcmFsIER1dGNoIHVuaXZlcnNpdGllcy4gVGhpcyBsZWFkcyB0byB0aGUgZm9sbG93aW5nIHJlc2VhcmNoIHF1ZXN0aW9uOiAqKipbUlExXSBUbyB3aGF0IGV4dGVudCBkb2VzIHRoZSBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYmV0d2VlbiBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgYXQgRHV0Y2ggdW5pdmVyc2l0aWVzIGluZmx1ZW5jZSB0aGUgYmV0d2Vlbi11bml2ZXJzaXR5IGNvbGxhYm9yYXRpb24gbmV0d29yayBvZiBzY2llbnRpc3RzIGxvY2F0ZWQgYXQgdGhlc2UgdW5pdmVyc2l0aWVzPyoqKg0KDQpCcm9hZCBzb2NpZXRhbCBjaGFuZ2VzLCBzdWNoIGFzIHRoZSBDT1ZJRC0xOSBwYW5kZW1pYyBiZXR3ZWVuIDIwMjAgYW5kIDIwMjIgaGFkIHBvc3NpYmx5IGxhc3RpbmcgY29uc2VxdWVuY2VzIGZvciBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MuIFRoYXQgaXMsIGdvdmVybm1lbnQgbWFuZGF0ZWQgbWVhc3VyZXMgc3VjaCBhcyB3b3JraW5nIGZyb20gaG9tZSwgbGltaXRlZCB0cmF2ZWxsaW5nIGFuZCBhdm9pZGluZyBjbG9zZSBjb250YWN0IHRvIG90aGVycywgbWlnaHQgaGF2ZSBjaGFuZ2VkIHRoZSB3YXkgdGhlc2UgbmV0d29ya3Mgd2VyZSBjb25zdHJ1Y3RlZC4gVGhpcyBzdHVkeSB3aWxsIGxvb2sgYXQgY2hhbmdpbmcgc3BhdGlhbCBwYXR0ZXJucyBvZiByZXNlYXJjaCBjb2xsYWJvcmF0aW9uIGJ5IHN0dWR5aW5nIGNvLWF1dGhvcnNoaXAgb3ZlciB0aW1lLCByZXN1bHRpbmcgaW4gdGhlIGZvbGxvd2luZyBxdWVzdGlvbnM6ICoqKltSUTJdIFRvIHdoYXQgZXh0ZW50IGhhcyB0aGUgcmVsYXRpb24gYmV0d2VlbiBnZW9ncmFwaGljYWwgZGlzdGFuY2UgYW5kIGJldHdlZW4tdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG5ldHdvcmtzIG9mIER1dGNoIFNvY2lvbG9neSBkZXBhcnRtZW50cyBjaGFuZ2VkIG92ZXIgdGltZT8qKiogQW5kOiAqKipbUlEzXSBXaGF0IHBhdHRlcm5zIGNhbiBiZSBkaXNjb3ZlcmVkIHdpdGhpbiB0aGUgY29sbGFib3JhdGlvbiBuZXR3b3JrLCBmb3IgZXhhbXBsZSBieSBnZW5kZXI/KioqDQoNCkFERD86IEluIHdoYXQgd2F5IGRvZXMgYSBwcmV2aW91cyBjb2xsYWJvcmF0aW9uIGluZmx1ZW5jZSB0aGUgaW1wYWN0IG9mIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBvbiB0aGUgbGlrZWxpaG9vZCBvZiBjb2xsYWJvcmF0aW9uPw0KSU1QUk9WRTogU05BIHBlcnNwZWN0aXZlDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludHJvZHVjdGlvbiINCmF1dGhvcjogImJ5OiBGcmlkYSB2YW4gVGVpamxpbmdlbiINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCi0tLQ0KDQpgYGB7PWh0bWx9DQo8c3R5bGU+DQpib2R5IHsNCnRleHQtYWxpZ246IGp1c3RpZnl9DQo8L3N0eWxlPg0KYGBgDQpgYGB7ciwgZ2xvYmFsc2V0dGluZ3MsIGVjaG89RkFMU0UsIHdhcm5pbmc9RkFMU0UsIHJlc3VsdHM9J2hpZGUnfQ0KDQpsaWJyYXJ5KGtuaXRyKQ0KbGlicmFyeShmb3JtYXRSKQ0KDQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpvcHRzX2NodW5rJHNldCh0aWR5Lm9wdHM9bGlzdCh3aWR0aC5jdXRvZmY9MTAwKSx0aWR5PVRSVUUsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLGNvbW1lbnQgPSAiIz4iLCBjYWNoZT1UUlVFLCBjbGFzcy5zb3VyY2U9YygidGVzdCIpLCBjbGFzcy5vdXRwdXQ9YygidGVzdDIiKSkNCm9wdGlvbnMod2lkdGggPSAxMDApDQpyZ2w6OnNldHVwS25pdHIoKQ0KDQpgYGANCg0KYGBge3Iga2xpcHB5LCBlY2hvPUZBTFNFLCBpbmNsdWRlPVRSVUV9DQprbGlwcHk6OmtsaXBweShwb3NpdGlvbiA9IGMoJ3RvcCcsICdyaWdodCcpKQ0KYGBgDQoNCioqKuKAmE91dCBvZiBzaWdodCwgb3V0IG9mIG1pbmQ6IGEgc29jaWFsIG5ldHdvcmsgYXBwcm9hY2ggdG8gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBjby1hdXRob3JzaGlwIGNvbGxhYm9yYXRpb24gYXQgZm91ciBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgaW4gdGhlIE5ldGhlcmxhbmRz4oCZKioqDQoNCg0KIyBJbnRyb2R1Y3Rpb24NCg0KT3ZlciB0aGUgbGFzdCBmZXcgY2VudHVyaWVzLCBnbG9iYWxpemF0aW9uIHByb2Nlc3NlcyBoYXZlIHJlc3VsdGVkIGluIGdyZWF0ZXIgZWNvbm9taWMsIHBvbGl0aWNhbCBhbmQgY3VsdHVyYWwgY29ubmVjdGlvbnMgYW5kIGludGVyZGVwZW5kZW5jZS4gQWNjb3JkaW5nIHRvIHNvbWUsIHRoZSBnbG9iYWxpemF0aW9uIG9mIHNjaWVuY2UgaXMgb25lIG9mIHRoZSBtb3N0IGltcG9ydGFudCwgaWYgbm90IHRoZSBtb3N0IGltcG9ydGFudCwgYXNwZWN0IG9mIG1vZGVybiBnbG9iYWxpemF0aW9uIChGcmVlbWFuLCAyMDEwKS4gV2l0aCBhIGdsb2JhbGl6aW5nIHdvcmxkIGFsc28gY29tZXMgYW4gaW1tZW5zZSAoYW5kIGdyb3dpbmcpIHdvcmxkd2lkZSBuZXR3b3JrIG9mIGludGVybmF0aW9uYWwgY29ubmVjdGlvbnMgYW5kIGNvbGxhYm9yYXRpb24uIFRoZSBzdWJzZXF1ZW50IGtub3dsZWRnZSBmbG93cyBhcyBhIHJlc3VsdCBvZiB0aGVzZSBjb25uZWN0aW9ucyBhbmQgY29sbGFib3JhdGlvbnMgYXJlIGV4cGVyaWVuY2VkIGFzIGJlbmVmaWNpYWwgZm9yIGVjb25vbWljIGRldmVsb3BtZW50LCBzcGVjaWFsaXphdGlvbiwgbmV0d29ya2luZywgYW5kIHRoZSBjb21wZXRpdGl2ZW5lc3MgaW4gdGhlIHNjaWVudGlmaWMgZmllbGQgKEd1aSBldCBhbC4sIDIwMTkpLiBBZGRpdGlvbmFsbHksIG9uIGFuIHNtYWxsZXIgbGV2ZWwsIHRoZSBsYXJnZSBpbnRlcm5hdGlvbmFsIGNvbGxhYm9yYXRpb24gbmV0d29yayBjYW4gYmVuZWZpdCBib3RoIHN0dWRlbnRzIGFuZCB0ZWFjaGVycyB3aGVuIHNlZWtpbmcgc3BlY2lmaWMga25vd2xlZGdlIGFuZCBzcGVjaWFsaXphdGlvbnMgKEZpdHpnZXJhbGQgZXQgYWwuLCAyMDIxKS4NCg0KV2hlbiBzZWVraW5nIGNvbGxhYm9yYXRpb24sIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBjYW4gYmUgZXhwZXJpZW5jZWQgYXMgYSBiYXJyaWVyLiBBIGdyZWF0ZXIgZGlzdGFuY2UgY2FuIGFmZmVjdCB0aGUgZWZmZWN0aXZlbmVzcyBhbmQgZWZmaWNpZW5jeSBvZiBjb2xsYWJvcmF0aW9uLCBpZiBpdCBkb2VzIG5vdCBwcmV2ZW50IGNvbGxhYm9yYXRpb24gZW50aXJlbHkgaW4gdGhlIGZpcnN0IHBsYWNlIChQYWxsb3QgZXQgYWwuLCAyMDEwKS4gV2hpbGUgZ2xvYmFsaXphdGlvbiBpcyBub3QgYWJsZSB0byBzaHJpbmsgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlcyBpbiBhIGxpdGVyYWwgc2Vuc2UsIG91ciBpbmRpdmlkdWFsIHBlcmNlcHRpb24gYW5kIGF3YXJlbmVzcyBvZiB0aGUgZGlzdGFuY2UgYmV0d2VlbiB1cyBhbmQgYSBzZWNvbmRhcnkgbG9jYXRpb24sIGFsc28gcmVmZXJyZWQgdG8gYXMg4oCYcHN5Y2hpYyBkaXN0YW5jZeKAmSwgaGFzIGRlY3JlYXNlZCBhcyBhIHJlc3VsdCBvZiBnbG9iYWxpemF0aW9uIChPamFsYSwgMjAwOSkuIFRoYXQgaXMsIHBob25lcywgZS1tYWlsLCBhbmQgb3RoZXIgdGVsZWNvbW11bmljYXRpb24gdGVjaG5vbG9naWVzIGhhdmUgbWFkZSBpdCBtdWNoIGVhc2llciB0byByZWFjaCBvdXQgdG8gb3RoZXJzIHdobyBhcmUgbm90IGluIG91ciBpbW1lZGlhdGUgdmljaW5pdHksIGFkdmFuY2luZyBjb2xsYWJvcmF0aW9uIG9wcG9ydHVuaXRpZXMgKEhvZWttYW4gZXQgYWwuLCAyMDEwKS4gV2hpbGUgdGhpcyByZWxhdGlvbiBoYXMgYmVlbiBwcm92ZW4gZm9yIGxvbmctZGlzdGFuY2UsIGludGVybmF0aW9uYWwgc2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uIChlLmcuIEhvZWttYW4gZXQgYWwuLCAyMDEwKSwgbGl0dGxlIHJlc2VhcmNoIGhhcyBiZWVuIGRvbmUgb24gdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBhbmQgc2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uIG5ldHdvcmtzIG9uIGEgc2luZ2xlIGNvdW50cnkgbGV2ZWwuIFdoaWxlIGl0IGNhbiBiZSBleHBlY3RlZCB0byBiZSBsZXNzIGV2aWRlbnQsIGdlb2dyYXBoaWNhbCBkaXN0YW5jZSBjYW4gc3RpbGwgYmUgZXhwZWN0ZWQgdG8gYmUgYW4gYWZmZWN0aW5nIGZhY3RvciBpbiBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MgYmV0d2VlbiBhY3RvcnMgd2l0aGluIGEgY291bnRyeSwgYXMgdHJhdmVsIHRpbWUgYW5kIGNvbnZlbmllbmNlIGNhbiBzdGlsbCBiZSBvZiByZWxldmFudCBpbmZsdWVuY2UuIFN0dWR5aW5nIHRoaXMgb24gYSBzaW5nbGUgY291bnRyeSBsZXZlbCBjYW4gZ2l2ZSB1cyBtb3JlIGluc2lnaHQgaW50byB0aGUgZGVncmVlIG9mIGluZmx1ZW5jZSBnZW9ncmFwaGljYWwgZGlzdGFuY2UgY2FuIGhhdmUgb24gc2NpZW50aWZpYyBjb2xsYWJvcmF0aW9uLg0KDQpUaGlzIHN0dWR5IGFpbXMgdG8gZG8gc28gYnkgc3R1ZHlpbmcgdGhlIGluZmx1ZW5jZSBvZiBnZW9ncmFwaGljYWwgZGlzdGFuY2Ugb24gY28tYXV0aG9yc2hpcCBjb2xsYWJvcmF0aW9uIG5ldHdvcmtzIGluIHRoZSBOZXRoZXJsYW5kcywgc3BlY2lmaWNhbGx5IGJldHdlZW4gdGhlIHNvY2lvbG9neSBkZXBhcnRtZW50cyBhdCBzZXZlcmFsIER1dGNoIHVuaXZlcnNpdGllcy4gVGhpcyBsZWFkcyB0byB0aGUgZm9sbG93aW5nIHJlc2VhcmNoIHF1ZXN0aW9uOiAqVG8gd2hhdCBleHRlbnQgZG9lcyB0aGUgZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGJldHdlZW4gU29jaW9sb2d5IGRlcGFydG1lbnRzIGF0IER1dGNoIHVuaXZlcnNpdGllcyBpbmZsdWVuY2UgdGhlIGJldHdlZW4tdW5pdmVyc2l0eSBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgb2Ygc2NpZW50aXN0cyBsb2NhdGVkIGF0IHRoZXNlIHVuaXZlcnNpdGllcyogW1JRMV0qPyoNCg0KQnJvYWQgc29jaWV0YWwgY2hhbmdlcywgc3VjaCBhcyB0aGUgQ09WSUQtMTkgcGFuZGVtaWMgYmV0d2VlbiAyMDIwIGFuZCAyMDIyLCBsaWtlbHkgaGFkIGxhc3RpbmcgY29uc2VxdWVuY2VzIGZvciBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gbmV0d29ya3MuIFRoYXQgaXMsIGdvdmVybm1lbnQgbWFuZGF0ZWQgbWVhc3VyZXMgc3VjaCBhcyB3b3JraW5nIGZyb20gaG9tZSwgbGltaXRlZCB0cmF2ZWxsaW5nIGFuZCBhdm9pZGluZyBjbG9zZSBjb250YWN0IHRvIG90aGVycywgbWlnaHQgaGF2ZSBjaGFuZ2VkIHRoZSB3YXkgdGhlc2UgbmV0d29ya3Mgd2VyZSBjb25zdHJ1Y3RlZC4gVGhpcyBzdHVkeSB3aWxsIHRoZXJlZm9yZSBhbHNvIGxvb2sgYXQgY2hhbmdpbmcgc3BhdGlhbCBwYXR0ZXJucyBvZiByZXNlYXJjaCBjb2xsYWJvcmF0aW9uIGJ5IHN0dWR5aW5nIGNvLWF1dGhvcnNoaXAgb3ZlciB0aW1lLCByZXN1bHRpbmcgaW4gdGhlIGZvbGxvd2luZyBxdWVzdGlvbnM6ICpUbyB3aGF0IGV4dGVudCBoYXMgdGhlIHJlbGF0aW9uIGJldHdlZW4gZ2VvZ3JhcGhpY2FsIGRpc3RhbmNlIGFuZCBiZXR3ZWVuLXVuaXZlcnNpdHkgY29sbGFib3JhdGlvbiBuZXR3b3JrcyBvZiBEdXRjaCBTb2Npb2xvZ3kgZGVwYXJ0bWVudHMgY2hhbmdlZCBvdmVyIHRpbWUqIFtSUTJdKj8qIEFuZDogKldoYXQgcGF0dGVybnMgY2FuIGJlIGRpc2NvdmVyZWQgd2l0aGluIHRoZSBjb2xsYWJvcmF0aW9uIG5ldHdvcmsgYW5kIHdpdGhpbiB0aGUgY2hhbmdlcyBvdmVyIHRpbWUqIFtSUTNdKj8qDQoNCiMjIEludHJvZHVjdGlvbiAtIFJlZmVyZW5jZXMNCg0KRml0emdlcmFsZCwgSi4sIE9qYW5wZXLDpCwgUy4sICYgT+KAmUNsZXJ5LCBOLiAoMjAyMSkuIElzIGFjYWRlbWlhIGJlY29taW5nIG1vcmUgbG9jYWxpc2VkPyBUaGUgZ3Jvd3RoIG9mIHJlZ2lvbmFsIGtub3dsZWRnZSBuZXR3b3JrcyB3aXRoaW4gaW50ZXJuYXRpb25hbCByZXNlYXJjaCBjb2xsYWJvcmF0aW9uLiBBcHBsaWVkIE5ldHdvcmsgU2NpZW5jZSwgNigxKSwgMS0yNy4gPGh0dHBzOi8vZG9pLm9yZy8xMC4xMDA3L3M0MTEwOS0wMjEtMDAzNzEtdz4gDQoNCkZyZWVtYW4sIFIuIEIuICgyMDEwKS4gR2xvYmFsaXphdGlvbiBvZiBzY2llbnRpZmljIGFuZCBlbmdpbmVlcmluZyB0YWxlbnQ6IGludGVybmF0aW9uYWwgbW9iaWxpdHkgb2Ygc3R1ZGVudHMsIHdvcmtlcnMsIGFuZCBpZGVhcyBhbmQgdGhlIHdvcmxkIGVjb25vbXkuIEVjb25vbWljcyBvZiBJbm5vdmF0aW9uIGFuZCBOZXcgVGVjaG5vbG9neSwgMTkoNSksIDM5My00MDYuIDxodHRwczovL2RvaS5vcmcvMTAuMTA4MC8xMDQzODU5MDkwMzQzMjg3MT4gDQoNCkd1aSwgUS4sIExpdSwgQy4sICYgRHUsIEQuICgyMDE5KS4gR2xvYmFsaXphdGlvbiBvZiBzY2llbmNlIGFuZCBpbnRlcm5hdGlvbmFsIHNjaWVudGlmaWMgY29sbGFib3JhdGlvbjogQSBuZXR3b3JrIHBlcnNwZWN0aXZlLiBHZW9mb3J1bSwgMTA1LCAxLTEyLiA8aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvai5nZW9mb3J1bS4yMDE5LjA2LjAxNz4gDQoNCkhvZWttYW4sIEouLCBGcmVua2VuLCBLLiwgJiBUaWpzc2VuLCBSLiBKLiAoMjAxMCkuIFJlc2VhcmNoIGNvbGxhYm9yYXRpb24gYXQgYSBkaXN0YW5jZTogQ2hhbmdpbmcgc3BhdGlhbCBwYXR0ZXJucyBvZiBzY2llbnRpZmljIGNvbGxhYm9yYXRpb24gd2l0aGluIEV1cm9wZS4gUmVzZWFyY2ggcG9saWN5LCAzOSg1KSwgNjYyLTY3My4gPGh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2L2oucmVzcG9sLjIwMTAuMDEuMDEyPiANCg0KT2phbGEsIEEuICgyMDA5KS4gSXMgZ2xvYmFsaXphdGlvbiByZWR1Y2luZyBkaXN0YW5jZXMgYmV0d2VlbiBjb3VudHJpZXM/IFNvbWUgZW1waXJpY2FsIGV2aWRlbmNlIGZyb20gZm9yZWlnbiBzb2Z0d2FyZSBmaXJtcyBvcGVyYXRpbmcgaW4gSmFwYW4uIEpvdXJuYWwgb2YgSmFwYW4gQWNhZGVteSBmb3IgQXNpYW4gTWFya2V0IEVjb25vbWllcywgMTIoMSkuIA0KDQpQYWxsb3QsIE0uLCBCZXJnbWFubiwgVS4sIEvDvGhubGUsIEguLCBQYXdhciwgSy4gUy4sICYgUmllZGVsLCBKLiBDLiAoMjAxMCwgSnVuZSkuIENvbGxhYm9yYXRpdmUgd29ya2luZyBlbnZpcm9ubWVudHM6IERpc3RhbmNlIGZhY3RvcnMgYWZmZWN0aW5nIGNvbGxhYm9yYXRpb24uIEluIDIwMTAgSUVFRSBJbnRlcm5hdGlvbmFsIFRlY2hub2xvZ3kgTWFuYWdlbWVudCBDb25mZXJlbmNlIChJQ0UpIChwcC4gMS0xMCkuIElFRUUuIDxodHRwczovL2RvaS5vcmcvMTAuMTEwOS9JQ0UuMjAxMC43NDc2OTkwPi4NCg==</div>
 
 
 </div>

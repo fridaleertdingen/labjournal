@@ -41,4 +41,14 @@ Broad societal changes, such as the COVID-19 pandemic between 2020 and 2022, lik
 
 ## Introduction - References
 
-Fitzgerald, J., Ojanperä, S., & O’Clery, N. (2021). Is academia becoming more localised? The growth of regional knowledge networks within international research collaboration. Applied Network Science, 6(1), 1-27. <https://doi.org/10.1007/s41109-021-00371-w> Freeman, R. B. (2010). Globalization of scientific and engineering talent: international mobility of students, workers, and ideas and the world economy. Economics of Innovation and New Technology, 19(5), 393-406. <https://doi.org/10.1080/10438590903432871> Gui, Q., Liu, C., & Du, D. (2019). Globalization of science and international scientific collaboration: A network perspective. Geoforum, 105, 1-12. <https://doi.org/10.1016/j.geoforum.2019.06.017> Hoekman, J., Frenken, K., & Tijssen, R. J. (2010). Research collaboration at a distance: Changing spatial patterns of scientific collaboration within Europe. Research policy, 39(5), 662-673. <https://doi.org/10.1016/j.respol.2010.01.012> Ojala, A. (2009). Is globalization reducing distances between countries? Some empirical evidence from foreign software firms operating in Japan. Journal of Japan Academy for Asian Market Economies, 12(1). Pallot, M., Bergmann, U., Kühnle, H., Pawar, K. S., & Riedel, J. C. (2010, June). Collaborative working environments: Distance factors affecting collaboration. In 2010 IEEE International Technology Management Conference (ICE) (pp. 1-10). IEEE. <https://doi.org/10.1109/ICE.2010.7476990>.
+Fitzgerald, J., Ojanperä, S., & O’Clery, N. (2021). Is academia becoming more localised? The growth of regional knowledge networks within international research collaboration. Applied Network Science, 6(1), 1-27. <https://doi.org/10.1007/s41109-021-00371-w> 
+
+Freeman, R. B. (2010). Globalization of scientific and engineering talent: international mobility of students, workers, and ideas and the world economy. Economics of Innovation and New Technology, 19(5), 393-406. <https://doi.org/10.1080/10438590903432871> 
+
+Gui, Q., Liu, C., & Du, D. (2019). Globalization of science and international scientific collaboration: A network perspective. Geoforum, 105, 1-12. <https://doi.org/10.1016/j.geoforum.2019.06.017> 
+
+Hoekman, J., Frenken, K., & Tijssen, R. J. (2010). Research collaboration at a distance: Changing spatial patterns of scientific collaboration within Europe. Research policy, 39(5), 662-673. <https://doi.org/10.1016/j.respol.2010.01.012> 
+
+Ojala, A. (2009). Is globalization reducing distances between countries? Some empirical evidence from foreign software firms operating in Japan. Journal of Japan Academy for Asian Market Economies, 12(1). 
+
+Pallot, M., Bergmann, U., Kühnle, H., Pawar, K. S., & Riedel, J. C. (2010, June). Collaborative working environments: Distance factors affecting collaboration. In 2010 IEEE International Technology Management Conference (ICE) (pp. 1-10). IEEE. <https://doi.org/10.1109/ICE.2010.7476990>.

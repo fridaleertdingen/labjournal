@@ -110,31 +110,29 @@ dim(net_soc_array)
 ```{r}
 #in environment, klik op df_demo om de data set te zien
 #universiteit.24, independent variable
-uni24 <- as.numeric(df_demo$Universiteit.24 == "RU")
-uni24 <- coCovar(uni24)
-
-afstand <- matrix(0, nrow = 234, ncol = 234)
-
-afstand <- coDyadCovar(afstand)
-
-
-
-
-
-mydata <- sienaDataCreate(net, uni24, afstand)
-
-myeff <- getEffects(mydata)
+# uni24 <- as.numeric(df_demo$Universiteit.24 == "RU")
+# uni24 <- coCovar(uni24)
+# 
+# afstand <- matrix(0, nrow = 234, ncol = 234)
+# 
+# afstand <- coDyadCovar(afstand)
+# 
+# 
+# 
+# 
+# 
+# mydata <- sienaDataCreate(net, uni24, afstand)
+# 
+# myeff <- getEffects(mydata)
 
 #effectsDocumentation(myeff)
 ```
-```{r}
 
-```
 
 ```{r}
-ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+#ifelse(!dir.exists("results"), dir.create("results"), FALSE)
 
-print01Report(mydata, modelname = "./results/soc_init")
+#print01Report(mydata, modelname = "./results/soc_init")
 
 ```
 
@@ -148,10 +146,10 @@ print01Report(mydata, modelname = "./results/soc_init")
 # Step 5: Estimate the model, chapter 12 for effects
 ```{r}
 myAlgorithm <- sienaAlgorithmCreate(projname = "soc_init")
-ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+#ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
 # if necessary estimate again!  ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff,
 # prevAns = ansM1, returnDeps=TRUE)
-ansM1
+#ansM1
 
 #convergence ratio should be below .25
 ```

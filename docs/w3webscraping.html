@@ -372,16 +372,19 @@ div.tocify {
         <li>
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
-        <li>
-          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
-        </li>
       </ul>
+    </li>
+    <li>
+      <a href="w5and6RSienaTRY.html">Week 6 - Rsiena own data</a>
+    </li>
+    <li>
+      <a href="w7.html">Week 7 - GOF</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Final journal
+    My final assignment
      
     <span class="caret"></span>
   </a>
@@ -393,17 +396,35 @@ div.tocify {
       <a href="FJtheory.html">Theory</a>
     </li>
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header">Data preparation</li>
         <li>
-          <a href="data_preparation.html"></a>
+          <a href="FJdatamethods.html">Data</a>
         </li>
-        <li class="dropdown-header">Matching and looping travel times</li>
         <li>
-          <a href="w6traveltimes.html"></a>
+          <a href="data_preparation.html">Data preparation - code</a>
+        </li>
+        <li>
+          <a href="travel_times.html">Matching and looping travel times - code</a>
         </li>
       </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RSiena model analyses</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJanalysis.html">RSiena models</a>
+        </li>
+        <li>
+          <a href="FJinteraction.html">Interaction of gender</a>
+        </li>
+        <li>
+          <a href="FJgof.html">Goodness of Fit</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="FJconclusion.html">Conclusion</a>
     </li>
   </ul>
 </li>
@@ -495,10 +516,10 @@ source</h2>
 soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x0000015cf78c5af0&gt;
+## &lt;pointer: 0x000001e3ee2c56f0&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x0000015ccc2ff2e0&gt;</code></pre>
+## &lt;pointer: 0x000001e3c20feaa0&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(soc_staff)</code></pre>
@@ -630,10 +651,10 @@ soc_staff</code></pre>
 <pre class="r"><code>soc_staff &lt;- read_html(&quot;https://web.archive.org/web/20230528153336/https://www.ru.nl/sociology/research/staff/&quot;)
 head(soc_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x0000015ce8bf8150&gt;
+## &lt;pointer: 0x000001e3d50fa650&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x0000015ccc2fe050&gt;</code></pre>
+## &lt;pointer: 0x000001e3c1efe5d0&gt;</code></pre>
 <pre class="r"><code>#trying to get a table from the website
 soc_staff &lt;- soc_staff %&gt;%
     rvest::html_elements(&quot;body&quot;) %&gt;%
@@ -691,10 +712,10 @@ of Leiden Political science</h2>
 <pre class="r"><code>leidse_staff &lt;- read_html(&quot;https://www.universiteitleiden.nl/en/social-behavioural-sciences/political-science/staff#tab-1&quot;)
 head(leidse_staff)</code></pre>
 <pre><code>## $node
-## &lt;pointer: 0x0000015cdaadce70&gt;
+## &lt;pointer: 0x000001e3d60c5e70&gt;
 ## 
 ## $doc
-## &lt;pointer: 0x0000015cbaa7cca0&gt;</code></pre>
+## &lt;pointer: 0x000001e3c1eff390&gt;</code></pre>
 <pre class="r"><code>#What type of object did we store it by putting the html into soc_staff?
 
 class(leidse_staff)</code></pre>
@@ -745,171 +766,178 @@ leidse_staff</code></pre>
 ##  [38] &quot;Staff&quot;                                                                                                                                                   
 ##  [39] &quot;Contact&quot;                                                                                                                                                 
 ##  [40] &quot;\n\n\n\n\n                    \n        Adina Akbik\n            Senior Assistant Professor\n    \n&quot;                                                     
-##  [41] &quot;\n\n\n\n\n                    \n        Femke Bakker\n            Senior assistant professor\n    \n&quot;                                                    
-##  [42] &quot;\n\n\n\n\n                    \n        Ingrid van Biezen\n            Professor of Comparative Politics\n    \n&quot;                                        
-##  [43] &quot;\n\n\n\n\n                    \n        Nicolas Blarel\n            Associate Professor\n    \n&quot;                                                         
-##  [44] &quot;\n\n\n\n\n                    \n        Arjen Boin\n            Professor of Public Institutions and Governance\n    \n&quot;                                 
-##  [45] &quot;\n\n\n\n\n                    \n        Theo Brinkel\n            Professor by Special Appointment Military-social studies\n    \n&quot;                      
-##  [46] &quot;\n\n\n\n\n\n                    \n        Manuel Cabal Lopez\n            Assistant professor\n    \n&quot;                                                   
-##  [47] &quot;\n\n\n\n\n\n                    \n        Valentina Carraro\n            Assistant Professor in Global Transformations and Governance Challenges\n    \n&quot;
-##  [48] &quot;\n\n\n\n\n                    \n        Stefan Cetkovic\n            Assistant Professor\n    \n&quot;                                                        
-##  [49] &quot;\n\n\n\n\n\n                    \n        Diana Davila Gordillo\n            Assistant professor\n    \n&quot;                                                
-##  [50] &quot;\n\n\n\n\n                    \n        Leila Demarest\n            Associate Professor\n    \n&quot;                                                         
-##  [51] &quot;\n\n\n\n\n                    \n        Matthew di Giuseppe\n            Director of Studies / Associate Professor\n    \n&quot;                              
-##  [52] &quot;\n\n\n\n\n                    \n        Roos van der Haer\n            Assistant Professor\n    \n&quot;                                                      
-##  [53] &quot;\n\n\n\n\n                    \n        Gisela Hirschmann\n            Senior Assistant Professor\n    \n&quot;                                               
-##  [54] &quot;\n\n\n\n\n                    \n        Joop van Holsteijn\n            Professor emeritus Political Behaviour and Research Methods\n    \n&quot;             
-##  [55] &quot;\n\n\n\n\n                    \n        Corinna Jentzsch\n            Assistant Professor\n    \n&quot;                                                       
-##  [56] &quot;\n\n\n\n\n                    \n        Petr Kopecky\n            Professor of Comparative Studies Political Parties and Party Systems\n    \n&quot;          
-##  [57] &quot;\n\n\n\n\n                    \n        Matthew Longo\n            Senior Assistant Professor\n    \n&quot;                                                   
-##  [58] &quot;\n\n\n\n\n                    \n        Tom Louwerse\n            Director of Research / Associate Professor\n    \n&quot;                                    
-##  [59] &quot;\n\n\n\n\n                    \n        Floris Mansvelt Beck\n            Assistant Professor\n    \n&quot;                                                   
-##  [60] &quot;\n\n\n\n\n                    \n        Hilde van Meegdenburg\n            Assistant Professor\n    \n&quot;                                                  
-##  [61] &quot;\n\n\n\n\n                    \n        Michael Meffert\n            Assistant Professor\n    \n&quot;                                                        
-##  [62] &quot;\n\n\n\n\n                    \n        Frits Meijerink\n            Assistant professor\n    \n&quot;                                                        
-##  [63] &quot;\n\n\n\n\n                    \n        Tim Mickler\n            Senior assistant professor\n    \n&quot;                                                     
-##  [64] &quot;\n\n\n\n\n                    \n        Martijn Mos\n            Assistant Professor\n    \n&quot;                                                            
-##  [65] &quot;\n\n\n\n\n                    \n        Katharina Natter\n            Senior assistant professor\n    \n&quot;                                                
-##  [66] &quot;\n\n\n\n\n                    \n        Paul Nieuwenburg\n            Professor Political Philosophy\n    \n&quot;                                            
-##  [67] &quot;\n\n\n\n\n                    \n        Simon Otjes\n            Senior Assistant Professor\n    \n&quot;                                                     
-##  [68] &quot;\n\n\n\n\n                    \n        Hans Oversloot\n            Guest researcher\n    \n&quot;                                                            
-##  [69] &quot;\n\n\n\n\n                    \n        Jonathan Phillips\n            Assistant Professor\n    \n&quot;                                                      
-##  [70] &quot;\n\n\n\n\n                    \n        Rebecca Ploof\n            Assistant Professor\n    \n&quot;                                                          
-##  [71] &quot;\n\n\n\n\n                    \n        Karolina Pomorska\n            Associate professor\n    \n&quot;                                                      
-##  [72] &quot;\n\n\n\n\n                    \n        Francesco Ragazzi\n            Associate professor\n    \n&quot;                                                      
-##  [73] &quot;\n\n\n\n\n                    \n        Babak Rezaeedaryakenari\n            Senior Assistant Professor\n    \n&quot;                                         
-##  [74] &quot;\n\n\n\n\n                    \n        Josh Robison\n            Assistant Professor\n    \n&quot;                                                           
-##  [75] &quot;\n\n\n\n\n                    \n        Michael Sampson\n            Senior Assistant Professor\n    \n&quot;                                                 
-##  [76] &quot;\n\n\n\n\n\n                    \n        Jan Aart Scholte\n            Professor Global Transformations and Governance Challenges\n    \n&quot;              
-##  [77] &quot;\n\n\n\n\n                    \n        Jonah Schulhofer-Wohl\n            Senior assistant professor\n    \n&quot;                                           
-##  [78] &quot;\n\n\n\n\n                    \n        Maria Spirova\n            Associate Professor\n    \n&quot;                                                          
-##  [79] &quot;\n\n\n\n\n                    \n        Tilko Arne Swalve\n            Assistant Professor\n    \n&quot;                                                      
-##  [80] &quot;\n\n\n\n\n                    \n        Tom Theuns\n            Senior Assistant Professor\n    \n&quot;                                                      
-##  [81] &quot;\n\n\n\n\n                    \n        Daniel Thomas\n            Professor of International Relations\n    \n&quot;                                         
-##  [82] &quot;\n\n\n\n\n                    \n        Christina Luise Toenshoff\n            Assistant professor\n    \n&quot;                                              
-##  [83] &quot;\n\n\n\n\n                    \n        Vasiliki (Billy) Tsagkroni\n            Senior assistant professor\n    \n&quot;                                      
-##  [84] &quot;\n\n\n\n\n                    \n        Wouter Veenendaal\n            Professor by Special Appointment Kingdom Relations\n    \n&quot;                       
-##  [85] &quot;\n\n\n\n\n                    \n        Claire Vergerio\n            Guest\n    \n&quot;                                                                      
-##  [86] &quot;\n\n\n\n\n                    \n        Marco Verschoor\n            Assistant Professor\n    \n&quot;                                                        
-##  [87] &quot;\n\n\n\n\n                    \n        Cynthia van Vonno\n            Assistant Professor\n    \n&quot;                                                      
-##  [88] &quot;\n\n\n\n\n                    \n        Niels van Willigen\n            Director of Studies/Associate Professor\n    \n&quot;                                 
-##  [89] &quot;\n\n\n\n\n                    \n        Nikoleta Yordanova\n            Associate professor\n    \n&quot;                                                     
-##  [90] &quot;\n\n\n\n\n                    \n        Yuan Yi Zhu\n            Assistant professor\n    \n&quot;                                                            
-##  [91] &quot;\n\n\n\n\n                    \n        Frank de Zwart\n            Guest\n    \n&quot;                                                                       
-##  [92] &quot;\n\n\n\n\n                    \n        Alyssa Akkerman\n            PhD candidate\n    \n&quot;                                                              
-##  [93] &quot;\n\n\n\n\n                    \n        Alessia Aspide\n            Guest\n    \n&quot;                                                                       
-##  [94] &quot;\n\n\n\n\n                    \n        Cyan Bae\n            PhD candidate\n    \n&quot;                                                                     
-##  [95] &quot;\n\n\n\n\n                    \n        Kathleen Brown\n            PhD candidate\n    \n&quot;                                                               
-##  [96] &quot;\n\n\n\n\n                    \n        Mateo Cohen\n            External PhD candidate\n    \n&quot;                                                         
-##  [97] &quot;\n\n\n\n\n                    \n        Josette Daemen\n            Postdoc\n    \n&quot;                                                                     
-##  [98] &quot;\n\n\n\n\n                    \n        Jesse Doornenbal\n            Lecturer\n    \n&quot;                                                                  
-##  [99] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
-## [100] &quot;\n\n\n\n\n                    \n        Aleksandra Khokhlova\n            PhD candidate\n    \n&quot;                                                         
-## [101] &quot;\n\n\n\n\n                    \n        Hannah Kuhn\n            PhD candidate\n    \n&quot;                                                                  
-## [102] &quot;\n\n\n\n\n                    \n        Ruben van de Ven\n            PhD candidate\n    \n&quot;                                                             
-## [103] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
-## [104] &quot;\n\n\n\n\n                    \n        Denny van der Vlist\n            PhD candidate\n    \n&quot;                                                          
-## [105] &quot;\n\n\n\n\n                    \n        Thijs Vos\n            PhD candidate\n    \n&quot;                                                                    
-## [106] &quot;\n\n\n\n\n                    \n        Rick van Well\n            Lecturer\n    \n&quot;                                                                     
-## [107] &quot;\n\n\n\n\n                    \n        Daan van den Wollenberg\n            PhD candidate / self funded\n    \n&quot;                                        
-## [108] &quot;\n\n\n\n\n                    \n        Elina Zorina\n            PhD candidate\n    \n&quot;                                                                 
-## [109] &quot;\n\n\n\n\n                    \n        José Baptista Alves Lourenço\n            Lecturer\n    \n&quot;                                                      
-## [110] &quot;\n\n\n\n\n                    \n        Agha Bayramov\n            Lecturer\n    \n&quot;                                                                     
-## [111] &quot;\n\n\n\n\n                    \n        Jelena Belic\n            Lecturer\n    \n&quot;                                                                      
-## [112] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
-## [113] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
-## [114] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
-## [115] &quot;\n\n\n\n\n                    \n        Shawn Donnelly\n            Guest lecturer\n    \n&quot;                                                              
-## [116] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
-## [117] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
-## [118] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
-## [119] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
-## [120] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
-## [121] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
-## [122] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
-## [123] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
-## [124] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
-## [125] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
-## [126] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
-## [127] &quot;\n\n\n\n\n                    \n        Alexandros Ntaflos\n            Lecturer\n    \n&quot;                                                                
-## [128] &quot;\n\n\n\n\n                    \n        Joyce Outshoorn\n            Emeritus professor vrouwenstudies\n    \n&quot;                                          
-## [129] &quot;\n\n\n\n\n                    \n        Siebe Overdijk\n            Lecturer\n    \n&quot;                                                                    
-## [130] &quot;\n\n\n\n\n                    \n        Jimena Pacheco Miranda\n            Lecturer\n    \n&quot;                                                            
-## [131] &quot;\n\n\n\n\n                    \n        Julia Puente Duyn\n            Lecturer\n    \n&quot;                                                                 
-## [132] &quot;\n\n\n\n\n                    \n        Ellen van Reuler\n            Lecturer\n    \n&quot;                                                                  
-## [133] &quot;\n\n\n\n\n                    \n        Thomas Scarff\n            Lecturer\n    \n&quot;                                                                     
-## [134] &quot;\n\n\n\n\n                    \n        Radostina Sharenkova-Toshkova\n            Guest\n    \n&quot;                                                        
-## [135] &quot;\n\n\n\n\n\n                    \n        Justin Spruit\n            Lecturer\n    \n&quot;                                                                   
-## [136] &quot;\n\n\n\n\n                    \n        Vishwesh Sundar\n            Lecturer\n    \n&quot;                                                                   
-## [137] &quot;\n\n\n\n\n                    \n        Eldad Vainstoc\n            Lecturer\n    \n&quot;                                                                    
-## [138] &quot;\n\n\n\n\n                    \n        Harmen van der Veer\n            Lecturer\n    \n&quot;                                                               
-## [139] &quot;\n\n\n\n\n                    \n        Amy Verdun\n            Guest professor\n    \n&quot;                                                                 
-## [140] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
-## [141] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
-## [142] &quot;\n\n\n\n\n                    \n        Carina van de Wetering\n            Lecturer\n    \n&quot;                                                            
-## [143] &quot;\n\n\n\n\n\n                    \n        Gul-i-Hina van der Zwan\n            Postdoc / guest\n    \n&quot;                                                  
-## [144] &quot;\n\n\n\n\n                    \n        Wencke Appelman\n            Study adviser\n    \n&quot;                                                              
-## [145] &quot;\n\n\n\n\n                    \n        Brigitta van den Berg\n            Education manager\n    \n&quot;                                                    
-## [146] &quot;\n\n\n\n\n                    \n        Ester Blom\n            Study Adviser\n    \n&quot;                                                                   
-## [147] &quot;\n\n\n\n\n                    \n        Anna van Dijk\n            Management/office-assistent\n    \n&quot;                                                  
-## [148] &quot;\n\n\n\n\n                    \n        Nathalie van Dooren\n            Coordinator Marketing &amp; Student Recruitment\n    \n&quot;                            
-## [149] &quot;\n\n\n\n\n                    \n        Desiree van Drongelen\n            Staff Member Studentregistrations\n    \n&quot;                                    
-## [150] &quot;\n\n\n\n\n                    \n        Nynke Heegstra\n            Study Advisor\n    \n&quot;                                                               
-## [151] &quot;\n\n\n\n\n                    \n        Ingrid van Heeringen-Göbbels\n            Institute manager\n    \n&quot;                                             
-## [152] &quot;\n\n\n\n\n                    \n        Katie Hudson\n            Data Steward\n    \n&quot;                                                                  
-## [153] &quot;\n\n\n\n\n                    \n        Lianne Janssen\n            Policy Officer Education and Quality Assurance\n    \n&quot;                              
-## [154] &quot;\n\n\n\n\n                    \n        Eline Joor\n            Internationalisation Officer\n    \n&quot;                                                    
-## [155] &quot;\n\n\n\n\n                    \n        Ian Lau\n            Study adviser\n    \n&quot;                                                                      
-## [156] &quot;\n\n\n\n\n                    \n        Daniëlle Lovink\n            Study Adviser\n    \n&quot;                                                              
-## [157] &quot;\n\n\n\n\n                    \n        Carien Nelissen\n            Education manager\n    \n&quot;                                                          
-## [158] &quot;\n\n\n\n\n                    \n        Caroline Remmerswaal\n            Secretary board of examiners\n    \n&quot;                                          
-## [159] &quot;\n\n\n\n\n                    \n        Marjan Rijnja\n            Teaching Coordinator\n    \n&quot;                                                         
-## [160] &quot;\n\n\n\n\n                    \n        Elka Smith\n            Research Project Manager\n    \n&quot;                                                        
-## [161] &quot;\n\n\n\n\n                    \n        Judy Spruit\n            Management/office-assistent\n    \n&quot;                                                    
-## [162] &quot;\n\n\n\n\n                    \n        Tessa Thomas\n            Management assistant\n    \n&quot;                                                          
-## [163] &quot;\n\n\n\n\n                    \n        Debbie Tromper\n            Management assistant\n    \n&quot;                                                        
-## [164] &quot;\n\n\n\n\n                    \n        Gerard van der Veer\n            Secretary board of examiners\n    \n&quot;                                           
-## [165] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
-## [166] &quot;\n\n\n\n\n                    \n        Jeanne Viet\n            Communication staff member\n    \n&quot;                                                     
-## [167] &quot;\n\n\n\n\n                    \n        Marieke de Vries\n            Student member institute board\n    \n&quot;                                            
-## [168] &quot;\n\n\n\n\n                    \n        Denise Zeeuw-van Veen\n            Management/office assistant\n    \n&quot;                                          
-## [169] &quot;Bachelor&#39;s programmes&quot;                                                                                                                                   
-## [170] &quot;Master&#39;s programmes&quot;                                                                                                                                     
-## [171] &quot;PhD programmes&quot;                                                                                                                                          
-## [172] &quot;Education for Professionals&quot;                                                                                                                             
-## [173] &quot;Summer Schools&quot;                                                                                                                                          
-## [174] &quot;Other modes of study&quot;                                                                                                                                    
-## [175] &quot;Bachelor&#39;s Open Days&quot;                                                                                                                                    
-## [176] &quot;Master&#39;s Open Days&quot;                                                                                                                                      
-## [177] &quot;Admission &amp; Application&quot;                                                                                                                                 
-## [178] &quot;Archaeology&quot;                                                                                                                                             
-## [179] &quot;Governance and Global Affairs&quot;                                                                                                                           
-## [180] &quot;Humanities&quot;                                                                                                                                              
-## [181] &quot;Law&quot;                                                                                                                                                     
-## [182] &quot;Medicine/LUMC&quot;                                                                                                                                           
-## [183] &quot;Science&quot;                                                                                                                                                 
-## [184] &quot;Social and Behavioural Sciences&quot;                                                                                                                         
-## [185] &quot;African Studies Centre Leiden&quot;                                                                                                                           
-## [186] &quot;Honours Academy&quot;                                                                                                                                         
-## [187] &quot;ICLON (Graduate School of Teaching)&quot;                                                                                                                     
-## [188] &quot;Working at Leiden University&quot;                                                                                                                            
-## [189] &quot;Support Leiden University&quot;                                                                                                                               
-## [190] &quot;Alumni&quot;                                                                                                                                                  
-## [191] &quot;Impact&quot;                                                                                                                                                  
-## [192] &quot;Leiden-Delft-Erasmus Universities&quot;                                                                                                                       
-## [193] &quot;Locations&quot;                                                                                                                                               
-## [194] &quot;Disclaimer&quot;                                                                                                                                              
-## [195] &quot;Cookies&quot;                                                                                                                                                 
-## [196] &quot;Privacy&quot;                                                                                                                                                 
-## [197] &quot;Contact&quot;                                                                                                                                                 
-## [198] &quot;Sign up to receive our monthly newsletter&quot;                                                                                                               
-## [199] &quot;&quot;                                                                                                                                                        
-## [200] &quot;&quot;                                                                                                                                                        
-## [201] &quot;&quot;                                                                                                                                                        
-## [202] &quot;&quot;                                                                                                                                                        
-## [203] &quot;&quot;                                                                                                                                                        
-## [204] &quot;&quot;                                                                                                                                                        
-## [205] &quot;\nMore information. &quot;</code></pre>
+##  [41] &quot;\n\n\n\n\n                    \n        Anahita Arian\n            Assistant Professor\n    \n&quot;                                                          
+##  [42] &quot;\n\n\n\n\n                    \n        Femke Bakker\n            Senior assistant professor\n    \n&quot;                                                    
+##  [43] &quot;\n\n\n\n\n                    \n        Ingrid van Biezen\n            Professor of Comparative Politics\n    \n&quot;                                        
+##  [44] &quot;\n\n\n\n\n                    \n        Nicolas Blarel\n            Associate Professor\n    \n&quot;                                                         
+##  [45] &quot;\n\n\n\n\n                    \n        Arjen Boin\n            Professor of Public Institutions and Governance\n    \n&quot;                                 
+##  [46] &quot;\n\n\n\n\n                    \n        Theo Brinkel\n            Professor by Special Appointment Military-social studies\n    \n&quot;                      
+##  [47] &quot;\n\n\n\n\n\n                    \n        Manuel Cabal Lopez\n            Assistant professor\n    \n&quot;                                                   
+##  [48] &quot;\n\n\n\n\n\n                    \n        Valentina Carraro\n            Assistant Professor in Global Transformations and Governance Challenges\n    \n&quot;
+##  [49] &quot;\n\n\n\n\n                    \n        Stefan Cetkovic\n            Assistant Professor\n    \n&quot;                                                        
+##  [50] &quot;\n\n\n\n\n\n                    \n        Diana Davila Gordillo\n            Assistant professor\n    \n&quot;                                                
+##  [51] &quot;\n\n\n\n\n                    \n        Leila Demarest\n            Associate Professor\n    \n&quot;                                                         
+##  [52] &quot;\n\n\n\n\n                    \n        Matthew di Giuseppe\n            Director of Studies / Associate Professor\n    \n&quot;                              
+##  [53] &quot;\n\n\n\n\n                    \n        Roos van der Haer\n            Assistant Professor\n    \n&quot;                                                      
+##  [54] &quot;\n\n\n\n\n                    \n        Gisela Hirschmann\n            Senior Assistant Professor\n    \n&quot;                                               
+##  [55] &quot;\n\n\n\n\n                    \n        Joop van Holsteijn\n            Professor emeritus Political Behaviour and Research Methods\n    \n&quot;             
+##  [56] &quot;\n\n\n\n\n                    \n        Corinna Jentzsch\n            Assistant Professor\n    \n&quot;                                                       
+##  [57] &quot;\n\n\n\n\n                    \n        Petr Kopecky\n            Professor of Comparative Studies Political Parties and Party Systems\n    \n&quot;          
+##  [58] &quot;\n\n\n\n\n                    \n        Matthew Longo\n            Senior Assistant Professor\n    \n&quot;                                                   
+##  [59] &quot;\n\n\n\n\n                    \n        Tom Louwerse\n            Director of Research / Associate Professor\n    \n&quot;                                    
+##  [60] &quot;\n\n\n\n\n                    \n        Floris Mansvelt Beck\n            Assistant Professor\n    \n&quot;                                                   
+##  [61] &quot;\n\n\n\n\n                    \n        Juan Masullo Jimenez\n            Assistant professor/guest\n    \n&quot;                                             
+##  [62] &quot;\n\n\n\n\n                    \n        Hilde van Meegdenburg\n            Assistant Professor\n    \n&quot;                                                  
+##  [63] &quot;\n\n\n\n\n                    \n        Michael Meffert\n            Assistant Professor\n    \n&quot;                                                        
+##  [64] &quot;\n\n\n\n\n                    \n        Frits Meijerink\n            Assistant professor\n    \n&quot;                                                        
+##  [65] &quot;\n\n\n\n\n                    \n        Tim Mickler\n            Senior assistant professor\n    \n&quot;                                                     
+##  [66] &quot;\n\n\n\n\n                    \n        Martijn Mos\n            Assistant Professor\n    \n&quot;                                                            
+##  [67] &quot;\n\n\n\n\n                    \n        Katharina Natter\n            Senior assistant professor\n    \n&quot;                                                
+##  [68] &quot;\n\n\n\n\n                    \n        Paul Nieuwenburg\n            Professor Political Philosophy\n    \n&quot;                                            
+##  [69] &quot;\n\n\n\n\n                    \n        Simon Otjes\n            Senior Assistant Professor\n    \n&quot;                                                     
+##  [70] &quot;\n\n\n\n\n                    \n        Hans Oversloot\n            Guest researcher\n    \n&quot;                                                            
+##  [71] &quot;\n\n\n\n\n                    \n        Jonathan Phillips\n            Assistant Professor\n    \n&quot;                                                      
+##  [72] &quot;\n\n\n\n\n                    \n        Rebecca Ploof\n            Assistant Professor\n    \n&quot;                                                          
+##  [73] &quot;\n\n\n\n\n                    \n        Karolina Pomorska\n            Associate professor\n    \n&quot;                                                      
+##  [74] &quot;\n\n\n\n\n                    \n        Francesco Ragazzi\n            Associate professor\n    \n&quot;                                                      
+##  [75] &quot;\n\n\n\n\n                    \n        Babak Rezaeedaryakenari\n            Senior Assistant Professor\n    \n&quot;                                         
+##  [76] &quot;\n\n\n\n\n                    \n        Josh Robison\n            Assistant Professor\n    \n&quot;                                                           
+##  [77] &quot;\n\n\n\n\n                    \n        Michael Sampson\n            Senior Assistant Professor\n    \n&quot;                                                 
+##  [78] &quot;\n\n\n\n\n\n                    \n        Jan Aart Scholte\n            Professor Global Transformations and Governance Challenges\n    \n&quot;              
+##  [79] &quot;\n\n\n\n\n                    \n        Jonah Schulhofer-Wohl\n            Senior assistant professor\n    \n&quot;                                           
+##  [80] &quot;\n\n\n\n\n                    \n        Maria Spirova\n            Associate Professor\n    \n&quot;                                                          
+##  [81] &quot;\n\n\n\n\n                    \n        Tilko Arne Swalve\n            Assistant Professor\n    \n&quot;                                                      
+##  [82] &quot;\n\n\n\n\n                    \n        Tom Theuns\n            Senior Assistant Professor\n    \n&quot;                                                      
+##  [83] &quot;\n\n\n\n\n                    \n        Daniel Thomas\n            Professor of International Relations\n    \n&quot;                                         
+##  [84] &quot;\n\n\n\n\n                    \n        Christina Luise Toenshoff\n            Assistant professor\n    \n&quot;                                              
+##  [85] &quot;\n\n\n\n\n                    \n        Vasiliki (Billy) Tsagkroni\n            Senior assistant professor\n    \n&quot;                                      
+##  [86] &quot;\n\n\n\n\n                    \n        Wouter Veenendaal\n            Professor by Special Appointment Kingdom Relations\n    \n&quot;                       
+##  [87] &quot;\n\n\n\n\n                    \n        Claire Vergerio\n            Guest\n    \n&quot;                                                                      
+##  [88] &quot;\n\n\n\n\n                    \n        Marco Verschoor\n            Assistant Professor\n    \n&quot;                                                        
+##  [89] &quot;\n\n\n\n\n                    \n        Cynthia van Vonno\n            Assistant Professor\n    \n&quot;                                                      
+##  [90] &quot;\n\n\n\n\n                    \n        Niels van Willigen\n            Director of Studies/Associate Professor\n    \n&quot;                                 
+##  [91] &quot;\n\n\n\n\n                    \n        Nikoleta Yordanova\n            Associate professor\n    \n&quot;                                                     
+##  [92] &quot;\n\n\n\n\n                    \n        Yuan Yi Zhu\n            Assistant professor\n    \n&quot;                                                            
+##  [93] &quot;\n\n\n\n\n                    \n        Frank de Zwart\n            Guest\n    \n&quot;                                                                       
+##  [94] &quot;\n\n\n\n\n                    \n        Alyssa Akkerman\n            PhD candidate\n    \n&quot;                                                              
+##  [95] &quot;\n\n\n\n\n                    \n        Alessia Aspide\n            Guest\n    \n&quot;                                                                       
+##  [96] &quot;\n\n\n\n\n                    \n        Cyan Bae\n            PhD candidate\n    \n&quot;                                                                     
+##  [97] &quot;\n\n\n\n\n                    \n        Katie Brown\n            PhD candidate\n    \n&quot;                                                                  
+##  [98] &quot;\n\n\n\n\n                    \n        Mateo Cohen\n            External PhD candidate\n    \n&quot;                                                         
+##  [99] &quot;\n\n\n\n\n                    \n        Josette Daemen\n            Postdoc\n    \n&quot;                                                                     
+## [100] &quot;\n\n\n\n\n                    \n        Maartje van Diest\n            PhD Candidate\n    \n&quot;                                                            
+## [101] &quot;\n\n\n\n\n                    \n        Jesse Doornenbal\n            Lecturer\n    \n&quot;                                                                  
+## [102] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [103] &quot;\n\n\n\n\n                    \n        Aleksandra Khokhlova\n            PhD candidate\n    \n&quot;                                                         
+## [104] &quot;\n\n\n\n\n                    \n        Hannah Kuhn\n            PhD candidate\n    \n&quot;                                                                  
+## [105] &quot;\n\n\n\n\n                    \n        Marieke van der Maden\n            PhD candidate\n    \n&quot;                                                        
+## [106] &quot;\n\n\n\n\n                    \n        Constance Maly\n            PhD Candidate\n    \n&quot;                                                               
+## [107] &quot;\n\n\n\n\n                    \n        Cécile Pick\n            PhD candidate\n    \n&quot;                                                                  
+## [108] &quot;\n\n\n\n\n                    \n        Ruben van de Ven\n            PhD candidate\n    \n&quot;                                                             
+## [109] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
+## [110] &quot;\n\n\n\n\n                    \n        Denny van der Vlist\n            PhD candidate\n    \n&quot;                                                          
+## [111] &quot;\n\n\n\n\n                    \n        Thijs Vos\n            PhD candidate\n    \n&quot;                                                                    
+## [112] &quot;\n\n\n\n\n                    \n        Rick van Well\n            Lecturer\n    \n&quot;                                                                     
+## [113] &quot;\n\n\n\n\n                    \n        Daan van den Wollenberg\n            PhD candidate / self funded\n    \n&quot;                                        
+## [114] &quot;\n\n\n\n\n                    \n        Elina Zorina\n            PhD candidate\n    \n&quot;                                                                 
+## [115] &quot;\n\n\n\n\n                    \n        José Baptista Alves Lourenço\n            Lecturer\n    \n&quot;                                                      
+## [116] &quot;\n\n\n\n\n                    \n        Agha Bayramov\n            Lecturer\n    \n&quot;                                                                     
+## [117] &quot;\n\n\n\n\n                    \n        Jelena Belic\n            Lecturer\n    \n&quot;                                                                      
+## [118] &quot;\n\n\n\n\n                    \n        Jelke Bethlehem\n            Professor emeritus Survey Methodology\n    \n&quot;                                      
+## [119] &quot;\n\n\n\n\n                    \n        Peter Castenmiller\n            Lecturer\n    \n&quot;                                                                
+## [120] &quot;\n\n\n\n\n                    \n        Henk Dekker\n            Emeritus professor of Political Socialization and Integration\n    \n&quot;                  
+## [121] &quot;\n\n\n\n\n                    \n        Shawn Donnelly\n            Guest lecturer\n    \n&quot;                                                              
+## [122] &quot;\n\n\n\n\n                    \n        Rutger Hagen\n            Lecturer\n    \n&quot;                                                                      
+## [123] &quot;\n\n\n\n\n                    \n        Henriëtte van den Heuvel\n            Scientific Director ad interim\n    \n&quot;                                    
+## [124] &quot;\n\n\n\n\n                    \n        Galen Irwin\n    \n&quot;                                                                                             
+## [125] &quot;\n\n\n\n\n                    \n        Devrim Kabasakal Badamchi-\n            Guest researcher\n    \n&quot;                                                
+## [126] &quot;\n\n\n\n\n                    \n        Eleftherios Karchimakis\n            Lecturer\n    \n&quot;                                                           
+## [127] &quot;\n\n\n\n\n                    \n        Müge Kinacioglu\n            Lecturer\n    \n&quot;                                                                   
+## [128] &quot;\n\n\n\n\n                    \n        Ruud Koole\n            Professor emeritus Politicologie\n    \n&quot;                                                
+## [129] &quot;\n\n\n\n\n                    \n        Amber Lauwers\n            Lecturer\n    \n&quot;                                                                     
+## [130] &quot;\n\n\n\n\n                    \n        Jan Meijer\n            Lecturer\n    \n&quot;                                                                        
+## [131] &quot;\n\n\n\n\n                    \n        Marijn Nagtzaam\n            Lecturer\n    \n&quot;                                                                   
+## [132] &quot;\n\n\n\n\n                    \n        Christoph Niessen\n            Guest\n    \n&quot;                                                                    
+## [133] &quot;\n\n\n\n\n                    \n        Alexandros Ntaflos\n            Lecturer\n    \n&quot;                                                                
+## [134] &quot;\n\n\n\n\n                    \n        Joyce Outshoorn\n            Emeritus professor vrouwenstudies\n    \n&quot;                                          
+## [135] &quot;\n\n\n\n\n                    \n        Siebe Overdijk\n            Lecturer\n    \n&quot;                                                                    
+## [136] &quot;\n\n\n\n\n                    \n        Jimena Pacheco Miranda\n            Lecturer\n    \n&quot;                                                            
+## [137] &quot;\n\n\n\n\n                    \n        Julia Puente Duyn\n            Lecturer\n    \n&quot;                                                                 
+## [138] &quot;\n\n\n\n\n                    \n        Ellen van Reuler\n            Lecturer\n    \n&quot;                                                                  
+## [139] &quot;\n\n\n\n\n                    \n        Hirad Rezaiejoo\n            External PhD candidate\n    \n&quot;                                                     
+## [140] &quot;\n\n\n\n\n                    \n        Thomas Scarff\n            Lecturer\n    \n&quot;                                                                     
+## [141] &quot;\n\n\n\n\n                    \n        Radostina Sharenkova-Toshkova\n            Guest\n    \n&quot;                                                        
+## [142] &quot;\n\n\n\n\n\n                    \n        Justin Spruit\n            Lecturer\n    \n&quot;                                                                   
+## [143] &quot;\n\n\n\n\n                    \n        Vishwesh Sundar\n            Lecturer\n    \n&quot;                                                                   
+## [144] &quot;\n\n\n\n\n                    \n        Eldad Vainstoc\n            Lecturer\n    \n&quot;                                                                    
+## [145] &quot;\n\n\n\n\n                    \n        Harmen van der Veer\n            Lecturer\n    \n&quot;                                                               
+## [146] &quot;\n\n\n\n\n                    \n        Amy Verdun\n            Guest professor\n    \n&quot;                                                                 
+## [147] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [148] &quot;\n\n\n\n\n                    \n        Anouk van Vliet\n            Lecturer\n    \n&quot;                                                                   
+## [149] &quot;\n\n\n\n\n                    \n        Carina van de Wetering\n            Lecturer\n    \n&quot;                                                            
+## [150] &quot;\n\n\n\n\n\n                    \n        Gul-i-Hina van der Zwan\n            Postdoc / guest\n    \n&quot;                                                  
+## [151] &quot;\n\n\n\n\n                    \n        Wencke Appelman\n            Study adviser\n    \n&quot;                                                              
+## [152] &quot;\n\n\n\n\n                    \n        Brigitta van den Berg\n            Education manager\n    \n&quot;                                                    
+## [153] &quot;\n\n\n\n\n                    \n        Ester Blom\n            Study Adviser\n    \n&quot;                                                                   
+## [154] &quot;\n\n\n\n\n                    \n        Anna van Dijk\n            Management/office-assistent\n    \n&quot;                                                  
+## [155] &quot;\n\n\n\n\n                    \n        Nathalie van Dooren\n            Coordinator Marketing &amp; Student Recruitment\n    \n&quot;                            
+## [156] &quot;\n\n\n\n\n                    \n        Desiree van Drongelen\n            Staff Member Studentregistrations\n    \n&quot;                                    
+## [157] &quot;\n\n\n\n\n                    \n        Nynke Heegstra\n            Study Advisor\n    \n&quot;                                                               
+## [158] &quot;\n\n\n\n\n                    \n        Ingrid van Heeringen-Göbbels\n            Institute manager\n    \n&quot;                                             
+## [159] &quot;\n\n\n\n\n                    \n        Katie Hudson\n            Data Steward\n    \n&quot;                                                                  
+## [160] &quot;\n\n\n\n\n                    \n        Lianne Janssen\n            Policy Officer Education and Quality Assurance\n    \n&quot;                              
+## [161] &quot;\n\n\n\n\n                    \n        Eline Joor\n            Internationalisation Officer\n    \n&quot;                                                    
+## [162] &quot;\n\n\n\n\n                    \n        Ian Lau\n            Study adviser\n    \n&quot;                                                                      
+## [163] &quot;\n\n\n\n\n                    \n        Daniëlle Lovink\n            Study Adviser\n    \n&quot;                                                              
+## [164] &quot;\n\n\n\n\n                    \n        Tjet Meijer\n            Management assistant\n    \n&quot;                                                           
+## [165] &quot;\n\n\n\n\n                    \n        Carien Nelissen\n            Education manager\n    \n&quot;                                                          
+## [166] &quot;\n\n\n\n\n                    \n        Marjan Rijnja\n            Teaching Coordinator\n    \n&quot;                                                         
+## [167] &quot;\n\n\n\n\n                    \n        Elka Smith\n            Research Project Manager\n    \n&quot;                                                        
+## [168] &quot;\n\n\n\n\n                    \n        Judy Spruit\n            Management/office-assistent\n    \n&quot;                                                    
+## [169] &quot;\n\n\n\n\n                    \n        Tessa Thomas\n            Management assistant\n    \n&quot;                                                          
+## [170] &quot;\n\n\n\n\n                    \n        Debbie Tromper\n            Management assistant\n    \n&quot;                                                        
+## [171] &quot;\n\n\n\n\n                    \n        Gerard van der Veer\n            Secretary board of examiners\n    \n&quot;                                           
+## [172] &quot;\n\n\n\n\n                    \n        Ruben Verheul\n            Web editor\n    \n&quot;                                                                   
+## [173] &quot;\n\n\n\n\n                    \n        Jeanne Viet\n            Communication staff member\n    \n&quot;                                                     
+## [174] &quot;\n\n\n\n\n                    \n        Marieke de Vries\n            Student member institute board\n    \n&quot;                                            
+## [175] &quot;\n\n\n\n\n                    \n        Denise Zeeuw-van Veen\n            Management/office assistant\n    \n&quot;                                          
+## [176] &quot;Bachelor&#39;s programmes&quot;                                                                                                                                   
+## [177] &quot;Master&#39;s programmes&quot;                                                                                                                                     
+## [178] &quot;PhD programmes&quot;                                                                                                                                          
+## [179] &quot;Education for Professionals&quot;                                                                                                                             
+## [180] &quot;Summer Schools&quot;                                                                                                                                          
+## [181] &quot;Other modes of study&quot;                                                                                                                                    
+## [182] &quot;Bachelor&#39;s Open Days&quot;                                                                                                                                    
+## [183] &quot;Master&#39;s Open Days&quot;                                                                                                                                      
+## [184] &quot;Admission &amp; Application&quot;                                                                                                                                 
+## [185] &quot;Archaeology&quot;                                                                                                                                             
+## [186] &quot;Governance and Global Affairs&quot;                                                                                                                           
+## [187] &quot;Humanities&quot;                                                                                                                                              
+## [188] &quot;Law&quot;                                                                                                                                                     
+## [189] &quot;Medicine/LUMC&quot;                                                                                                                                           
+## [190] &quot;Science&quot;                                                                                                                                                 
+## [191] &quot;Social and Behavioural Sciences&quot;                                                                                                                         
+## [192] &quot;African Studies Centre Leiden&quot;                                                                                                                           
+## [193] &quot;Honours Academy&quot;                                                                                                                                         
+## [194] &quot;ICLON (Graduate School of Teaching)&quot;                                                                                                                     
+## [195] &quot;Working at Leiden University&quot;                                                                                                                            
+## [196] &quot;Support Leiden University&quot;                                                                                                                               
+## [197] &quot;Alumni&quot;                                                                                                                                                  
+## [198] &quot;Impact&quot;                                                                                                                                                  
+## [199] &quot;Leiden-Delft-Erasmus Universities&quot;                                                                                                                       
+## [200] &quot;Locations&quot;                                                                                                                                               
+## [201] &quot;Disclaimer&quot;                                                                                                                                              
+## [202] &quot;Cookies&quot;                                                                                                                                                 
+## [203] &quot;Privacy&quot;                                                                                                                                                 
+## [204] &quot;Contact&quot;                                                                                                                                                 
+## [205] &quot;Sign up to receive our monthly newsletter&quot;                                                                                                               
+## [206] &quot;Follow on facebook&quot;                                                                                                                                      
+## [207] &quot;Follow on twitter&quot;                                                                                                                                       
+## [208] &quot;Follow on youtube&quot;                                                                                                                                       
+## [209] &quot;Follow on linkedin&quot;                                                                                                                                      
+## [210] &quot;Follow on instagram&quot;                                                                                                                                     
+## [211] &quot;Follow on mastodon&quot;                                                                                                                                      
+## [212] &quot;\nMore information. &quot;</code></pre>
 <pre class="r"><code>#when including the things below you select to little info, can do this separately, and combine the names (strong) and function (span)
 #    rvest::html_elements(&quot;strong&quot;) %&gt;%
 #    rvest::html_elements(&quot;span&quot;) %&gt;%</code></pre>
@@ -940,7 +968,7 @@ df</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8949. &lt;chr&gt; http…          85           2049
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
@@ -975,7 +1003,7 @@ df_institution</code></pre>
 <pre><code>## # A tibble: 1 × 18
 ##   id      display_name display_name_alterna…¹ relevance_score ids   orcid works_count cited_by_count
 ##   &lt;chr&gt;   &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;chr&gt;       &lt;int&gt;          &lt;int&gt;
-## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8870. &lt;chr&gt; http…          85           2043
+## 1 https:… Jochem Tols… &lt;chr [3]&gt;                        8949. &lt;chr&gt; http…          85           2049
 ## # ℹ abbreviated name: ¹​display_name_alternatives
 ## # ℹ 10 more variables: counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;, affiliation_id &lt;chr&gt;,
 ## #   affiliation_ror &lt;chr&gt;, affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
@@ -1059,7 +1087,6 @@ wave1</code></pre>
 ## [300] 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322
 ## [323] 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345
 ## [346] 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368
-## [369] 369 370 371 372 373 374
 ## 
 ## $class
 ## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>

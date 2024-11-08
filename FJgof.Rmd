@@ -10,6 +10,12 @@ body {
 text-align: justify}
 </style>
 ```
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
 ```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
 
 library(knitr)
@@ -26,13 +32,11 @@ rgl::setupKnitr()
 klippy::klippy(position = c('top', 'right'))
 ```
 
-***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
-------------------------------------
 
-# Set up
-```{r}
-rm(list = ls())
-```
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+
+--------------------------------
+
 
 ## Functions
 ```{r}
@@ -237,8 +241,6 @@ As I was out of ideas on what alterations I could implement to improve the model
 
 # GOF - Model 3
 
-## Applying sienaGOF based on various auxiliary statistics
-
 ```{r}
 #testing GOF model 0
 #gofo0 <- sienaGOF(ansModel0, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
@@ -251,8 +253,6 @@ As I was out of ideas on what alterations I could implement to improve the model
 #plot(gof0.gd, main = "")
 ```
 
-## Applying sienaGOF based on various auxiliary statistics
-
 ```{r}
 gofo3 <- sienaGOF(ansModel3, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
     varName = "net")
@@ -260,9 +260,11 @@ gofi3 <- sienaGOF(ansModel3, IndegreeDistribution, verbose = FALSE, join = TRUE,
 #gof3.gd <- sienaGOF(ansModel3, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
 ```
 
+## Outdegree distribution
 ```{r}
 plot(gofo3, main = "")
 ```
+## Indegree distribution
 ```{r}
 plot(gofi3, main = "")
 ```
@@ -272,7 +274,6 @@ plot(gofi3, main = "")
 ```{r}
 ansModel4 <- fload("data/processed/ansModel4_20241103.rda")
 ```
-
 
 ```{r}
 gofo4 <- sienaGOF(ansModel4, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
@@ -306,23 +307,22 @@ gofi5 <- sienaGOF(ansModel5, IndegreeDistribution, verbose = FALSE, join = TRUE,
 #gof5.gd <- sienaGOF(ansModel5, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
 ```
 
+## Outdegree distribution
+```{r}
+plot(gofo5, main = "")
+```
+
 ## Indegree distribution
 ```{r}
 plot(gofi5, main = "")
 ```
 
 
-## Outdegree distribution
-```{r}
-plot(gofo5, main = "")
-```
-
 
 # GOF - Model 6
 ```{r}
 ansModel6 <- fload("data/processed/ansModel6_20241107.rda")
 ```
-
 
 ```{r}
 gofo6 <- sienaGOF(ansModel6, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),

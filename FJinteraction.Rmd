@@ -10,6 +10,12 @@ body {
 text-align: justify}
 </style>
 ```
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
 ```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
 
 library(knitr)
@@ -26,14 +32,11 @@ rgl::setupKnitr()
 klippy::klippy(position = c('top', 'right'))
 ```
 
+
 ***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
-------------------------------
 
+--------------------------------
 
-# Set up
-```{r}
-rm(list = ls())
-```
 ## Functions
 ```{r}
 #---- Loading packages ----
@@ -142,7 +145,6 @@ femtt <- female * traveltime
 
 
 # Model 7 
-## Simple model 7
 Lastly, in order to test hypothesis 3, an interaction effect of gender on the main relationship between travel time and network behaviour needed to be analysed. First, the scaled gender variable was dichotomized based on a 0.5 cut off point (e.g. a score of '0.51' was given a new score of '1'). In this new variable, an actor ascribe '0' meant that this actor was likely male, '1' meant the actor was likely female. 
 
 This was tested on a simple model with just network effects, including the interaction of gender (Model 7). The overall convergence ratio of this model was 0.04, thus sufficient. The interaction of gender was found to have a positive, just non-significant, and extremely small parameter (b=0.00; se= 0.00). Thus, this result is not able to conclude an interaction effect of gender. Hypothesis 3 is thereby rejected.
@@ -158,7 +160,7 @@ myeff <- includeEffects(myeff, X, interaction1 = "femtt")
 
 
 ```
-# Simple interaction model 7
+
 ```{r, eval=FALSE}
 ansM7 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
 # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
@@ -177,7 +179,6 @@ ansModel7
 
 
 # Model 8
-## Complex Model 8
 This result does not rule out that the interaction effect could not be significant in a more complex model that includes structural effects, as a more complex model would include factors that now possibly confound the effect, as well as providing a more representative testing ground for a possible interaction effect. Therefore, I attempted to test the interaction in a more complex model, namely by adding it to Model 6 (Model 8). However, I ran into several issues while testing and thus I am not able to generate any useful results for this test. Future testing in different, yet complex, models could continue the search for an interaction effect of gender.
 
 ```{r}
@@ -193,7 +194,6 @@ This result does not rule out that the interaction effect could not be significa
 # myeff <- includeEffects(myeff, inPopsqrt)
 ```
 
-## Complex interaction Model 8
 ```{r, eval=FALSE}
 # ansM8 <- siena08(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
 # # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
@@ -203,7 +203,6 @@ This result does not rule out that the interaction effect could not be significa
 # #fsave(ansM8, file = "ansModel8")
 ```
 # Trial and error: another attempt
-
 ```{r}
 # #load data
 # #df_ego <- fload("./data/processed/df_ego_20241009.rda")

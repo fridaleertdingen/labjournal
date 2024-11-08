@@ -26,7 +26,8 @@ klippy::klippy(position = c('top', 'right'))
 ```
 
 ***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
--------------------------------------
+
+--------------------------------
 
 # Conclusion
 

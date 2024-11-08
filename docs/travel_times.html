@@ -12,7 +12,7 @@
 <meta name="author" content="by: Frida van Teijlingen" />
 
 
-<title>Week 6 lecture</title>
+<title>Travel times between universities</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -372,16 +372,19 @@ div.tocify {
         <li>
           <a href="w5RsienaLEC.html">Week 5 - RSiena lecture pt 2</a>
         </li>
-        <li>
-          <a href="w5and6RSienaTRY.html">Week 5 - Rsiena own data</a>
-        </li>
       </ul>
+    </li>
+    <li>
+      <a href="w5and6RSienaTRY.html">Week 6 - Rsiena own data</a>
+    </li>
+    <li>
+      <a href="w7.html">Week 7 - GOF</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Final journal
+    My final assignment
      
     <span class="caret"></span>
   </a>
@@ -393,17 +396,35 @@ div.tocify {
       <a href="FJtheory.html">Theory</a>
     </li>
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data preparation and methods</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data, Preparation and Methods</a>
       <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header">Data preparation</li>
         <li>
-          <a href="data_preparation.html"></a>
+          <a href="FJdatamethods.html">Data</a>
         </li>
-        <li class="dropdown-header">Matching and looping travel times</li>
         <li>
-          <a href="w6traveltimes.html"></a>
+          <a href="data_preparation.html">Data preparation - code</a>
+        </li>
+        <li>
+          <a href="travel_times.html">Matching and looping travel times - code</a>
         </li>
       </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RSiena model analyses</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="FJanalysis.html">RSiena models</a>
+        </li>
+        <li>
+          <a href="FJinteraction.html">Interaction of gender</a>
+        </li>
+        <li>
+          <a href="FJgof.html">Goodness of Fit</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="FJconclusion.html">Conclusion</a>
     </li>
   </ul>
 </li>
@@ -434,7 +455,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 6 lecture</h1>
+<h1 class="title toc-ignore">Travel times between universities</h1>
 <h4 class="author">by: Frida van Teijlingen</h4>
 
 </div>
@@ -490,7 +511,7 @@ fpackage.check(packages)</code></pre>
 <pre class="r"><code>traveltimetbl &lt;- read_csv2(&quot;traveltime_ov.csv&quot;)</code></pre>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
 <pre><code>## Rows: 4 Columns: 4
-## ── Column specification ───────────────────────────
+## ── Column specification ───────────────────────────────────
 ## Delimiter: &quot;;&quot;
 ## dbl (4): UU, RUG, UvA, RU
 ## 
@@ -522,9 +543,9 @@ number="4">
 all egos</h1>
 <pre class="r"><code>for(ego in 1:nrow(zeromatrix)) {
   for(alter in 1:ncol(zeromatrix)){
-    egouni &lt;- df_ego$Universiteit1.22[ego] #select university for ego, let op .1, opgeschoonde variabele
+    egouni &lt;- df_ego$Universiteit1.22[ego] #select university for ego, let op .1 =opgeschoonde variabele
     alteruni &lt;- df_ego$Universiteit1.22[alter] #select university for alter
-    if (egouni != &quot;&quot; &amp; alteruni != &quot;&quot;){ #egouni nie leeg is EN als alteruni nie leeg is doe dan het volgende 
+    if (egouni != &quot;&quot; &amp; alteruni != &quot;&quot;){ #egouni niet leeg is EN als alteruni niet leeg is doe dan het volgende 
                                         #!= betekent NOT, == betekent IS, | betekent OR, &amp; betekent AND
                                         #voornamelijk logica, HEEL goed nadenken over betekenis en einddoel
       travel &lt;- traveltime_matrix[egouni,alteruni] #selecting traveltime between ego and alter universities
@@ -542,7 +563,7 @@ matrix</h1>
 <pre class="r"><code>#fsave(travelt_matrix, file = &quot;travelt_matrix&quot;, location = &quot;data/processed/&quot;)
 
 #for loading in:
-#travelt_matrix &lt;- fload(&quot;data/processed/travelt_matrix20241009&quot;)</code></pre>
+#travelt_matrix &lt;- fload(&quot;data/processed/travelt_matrix_20241009.rda&quot;)</code></pre>
 </div>
 <div id="notes" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Notes</h1>
@@ -551,7 +572,7 @@ top right values. Would be neater to mirror the matrix (because you need
 to travel to and from). OR add up, OR leave it like it is right now.</p>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgNiBsZWN0dXJlIg0KYXV0aG9yOiAiYnk6IEZyaWRhIHZhbiBUZWlqbGluZ2VuIg0KYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYg0KLS0tDQojIFNldCB1cA0KYGBge3J9DQpybShsaXN0ID0gbHMoKSkNCg0KIy0tLS0gTG9hZGluZyBwYWNrYWdlcyAtLS0tDQpmcGFja2FnZS5jaGVjayA8LSBmdW5jdGlvbihwYWNrYWdlcykgew0KICAgIGxhcHBseShwYWNrYWdlcywgRlVOID0gZnVuY3Rpb24oeCkgew0KICAgICAgICBpZiAoIXJlcXVpcmUoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKSkgew0KICAgICAgICAgICAgaW5zdGFsbC5wYWNrYWdlcyh4LCBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICAgICAgICAgICAgbGlicmFyeSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQogICAgICAgIH0NCiAgICB9KQ0KfQ0KDQojLS0tLSBEYXRhIHNhdmluZyAtLS0tDQpmc2F2ZSA8LSBmdW5jdGlvbih4LCBmaWxlID0gTlVMTCwgbG9jYXRpb24gPSAiLi9kYXRhL3Byb2Nlc3NlZC8iKSB7DQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhIiksIGRpci5jcmVhdGUoImRhdGEiKSwgRkFMU0UpDQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhL3Byb2Nlc3NlZCIpLCBkaXIuY3JlYXRlKCJkYXRhL3Byb2Nlc3NlZCIpLCBGQUxTRSkNCiAgICBpZiAoaXMubnVsbChmaWxlKSkNCiAgICAgICAgZmlsZSA9IGRlcGFyc2Uoc3Vic3RpdHV0ZSh4KSkNCiAgICBkYXRlbmFtZSA8LSBzdWJzdHIoZ3N1YigiWzotXSIsICIiLCBTeXMudGltZSgpKSwgMSwgOCkNCiAgICB0b3RhbG5hbWUgPC0gcGFzdGUobG9jYXRpb24sIGZpbGUsICJfIiwgZGF0ZW5hbWUsICIucmRhIiwgc2VwID0gIiIpDQogICAgc2F2ZSh4LCBmaWxlID0gdG90YWxuYW1lKSAgI25lZWQgdG8gZml4IGlmIGZpbGUgaXMgcmVsb2FkZWQgYXMgaW5wdXQgbmFtZSwgbm90IGFzIHguIA0KfQ0KDQojLS0tLSBMb2FkaW5nIGluIGRhdGEgLS0tLQ0KZmxvYWQgPC0gZnVuY3Rpb24oZmlsZW5hbWUpIHsNCiAgICBsb2FkKGZpbGVuYW1lKQ0KICAgIGdldChscygpW2xzKCkgIT0gImZpbGVuYW1lIl0pDQp9DQoNCiMtLS0tIE91dHB1dCAtLS0tDQpmc2hvd2RmIDwtIGZ1bmN0aW9uKHgsIC4uLikgew0KICAgIGtuaXRyOjprYWJsZSh4LCBkaWdpdHMgPSAyLCAiaHRtbCIsIC4uLikgJT4lDQogICAgICAgIGthYmxlRXh0cmE6OmthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSBjKCJzdHJpcGVkIiwgImhvdmVyIikpICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjpzY3JvbGxfYm94KHdpZHRoID0gIjEwMCUiLCBoZWlnaHQgPSAiMzAwcHgiKQ0KfQ0KDQpgYGANCg0KIyBMaWJyYXJpZXMNCmBgYHtyfQ0KcGFja2FnZXMgPC0gYygidGlkeXZlcnNlIikNCmZwYWNrYWdlLmNoZWNrKHBhY2thZ2VzKQ0KYGBgDQoNCg0KIyBEYXRhDQpgYGB7cn0NCnRyYXZlbHRpbWV0YmwgPC0gcmVhZF9jc3YyKCJ0cmF2ZWx0aW1lX292LmNzdiIpDQoNCiNkZl9lZ28NCmRmX2VnbyA8LSBmbG9hZCgiLi9kYXRhL3Byb2Nlc3NlZC9kZl9lZ29fMjAyNDEwMDkucmRhIikNCg0KI2RmX3dvcmtzDQpkZl93b3JrcyA8LSBmbG9hZCgiZGF0YS9wcm9jZXNzZWQvZGZfd29ya3NfMjAyNDEwMDkucmRhIikNCg0KI2RmX2FsbHVuaXMNCnVuaWRhdGEgPC0gZmxvYWQoImRhdGEvcHJvY2Vzc2VkL3VuaWRhdGFfMjAyNDEwMDkucmRhIikNCmBgYA0KDQpgYGB7cn0NCmNsYXNzKHRyYXZlbHRpbWV0YmwpDQoNCiNjb252ZXJ0IHRvIG1hdHJpeA0KdHJhdmVsdGltZV9tYXRyaXggPC0gYXMubWF0cml4KHRyYXZlbHRpbWV0YmwpDQogY29sbmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQogcm93bmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQogIyBjb3B5aW5nIHRoZSBjb2xuYW1lcyB0byB0aGUgcm93bmFtZXMsIHNhbWUgb3JkZXINCiByb3duYW1lcyh0cmF2ZWx0aW1lX21hdHJpeCkgPC0gY29sbmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQpgYGANCg0KYGBge3J9DQp6ZXJvbWF0cml4IDwtIG1hdHJpeChOQSwgbnJvdyA9IDIzNCwgbmNvbCA9IDIzNCkNCmBgYA0KDQojIExvb3AgdHJhdmVsIHRpbWVzIGZvciBhbGwgZWdvcw0KYGBge3J9DQpmb3IoZWdvIGluIDE6bnJvdyh6ZXJvbWF0cml4KSkgew0KICBmb3IoYWx0ZXIgaW4gMTpuY29sKHplcm9tYXRyaXgpKXsNCiAgICBlZ291bmkgPC0gZGZfZWdvJFVuaXZlcnNpdGVpdDEuMjJbZWdvXSAjc2VsZWN0IHVuaXZlcnNpdHkgZm9yIGVnbywgbGV0IG9wIC4xLCBvcGdlc2Nob29uZGUgdmFyaWFiZWxlDQogICAgYWx0ZXJ1bmkgPC0gZGZfZWdvJFVuaXZlcnNpdGVpdDEuMjJbYWx0ZXJdICNzZWxlY3QgdW5pdmVyc2l0eSBmb3IgYWx0ZXINCiAgICBpZiAoZWdvdW5pICE9ICIiICYgYWx0ZXJ1bmkgIT0gIiIpeyAjZWdvdW5pIG5pZSBsZWVnIGlzIEVOIGFscyBhbHRlcnVuaSBuaWUgbGVlZyBpcyBkb2UgZGFuIGhldCB2b2xnZW5kZSANCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIT0gYmV0ZWtlbnQgTk9ULCA9PSBiZXRla2VudCBJUywgfCBiZXRla2VudCBPUiwgJiBiZXRla2VudCBBTkQNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjdm9vcm5hbWVsaWprIGxvZ2ljYSwgSEVFTCBnb2VkIG5hZGVua2VuIG92ZXIgYmV0ZWtlbmlzIGVuIGVpbmRkb2VsDQogICAgICB0cmF2ZWwgPC0gdHJhdmVsdGltZV9tYXRyaXhbZWdvdW5pLGFsdGVydW5pXSAjc2VsZWN0aW5nIHRyYXZlbHRpbWUgYmV0d2VlbiBlZ28gYW5kIGFsdGVyIHVuaXZlcnNpdGllcw0KICAgICAgemVyb21hdHJpeFtlZ28sYWx0ZXJdIDwtIHRyYXZlbCANCiAgICB9DQogIH0NCn0NCg0KIHRyYXZlbHRfbWF0cml4PC0gemVyb21hdHJpeA0KIA0KYGBgDQoNCiMgU2F2aW5nIHRoZSB0cmF2ZWwgdGltZSBtYXRyaXgNCmBgYHtyfQ0KI2ZzYXZlKHRyYXZlbHRfbWF0cml4LCBmaWxlID0gInRyYXZlbHRfbWF0cml4IiwgbG9jYXRpb24gPSAiZGF0YS9wcm9jZXNzZWQvIikNCg0KI2ZvciBsb2FkaW5nIGluOg0KI3RyYXZlbHRfbWF0cml4IDwtIGZsb2FkKCJkYXRhL3Byb2Nlc3NlZC90cmF2ZWx0X21hdHJpeDIwMjQxMDA5IikNCmBgYA0KDQojIE5vdGVzDQp0cmF2ZWx0aW1lX21hdHJpeCBpcyBub3QgKHlldCkgbWlycm9yZWQuIFIgQXV0b21hdGljYWxseSB0YWtlcyB0aGUgdG9wIHJpZ2h0IHZhbHVlcy4gV291bGQgYmUgbmVhdGVyIHRvIG1pcnJvciB0aGUgbWF0cml4IChiZWNhdXNlIHlvdSBuZWVkIHRvIHRyYXZlbCB0byBhbmQgZnJvbSkuIE9SIGFkZCB1cCwgT1IgbGVhdmUgaXQgbGlrZSBpdCBpcyByaWdodCBub3cuDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlRyYXZlbCB0aW1lcyBiZXR3ZWVuIHVuaXZlcnNpdGllcyINCmF1dGhvcjogImJ5OiBGcmlkYSB2YW4gVGVpamxpbmdlbiINCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWINCi0tLQ0KDQojIFNldCB1cA0KYGBge3J9DQpybShsaXN0ID0gbHMoKSkNCg0KIy0tLS0gTG9hZGluZyBwYWNrYWdlcyAtLS0tDQpmcGFja2FnZS5jaGVjayA8LSBmdW5jdGlvbihwYWNrYWdlcykgew0KICAgIGxhcHBseShwYWNrYWdlcywgRlVOID0gZnVuY3Rpb24oeCkgew0KICAgICAgICBpZiAoIXJlcXVpcmUoeCwgY2hhcmFjdGVyLm9ubHkgPSBUUlVFKSkgew0KICAgICAgICAgICAgaW5zdGFsbC5wYWNrYWdlcyh4LCBkZXBlbmRlbmNpZXMgPSBUUlVFKQ0KICAgICAgICAgICAgbGlicmFyeSh4LCBjaGFyYWN0ZXIub25seSA9IFRSVUUpDQogICAgICAgIH0NCiAgICB9KQ0KfQ0KDQojLS0tLSBEYXRhIHNhdmluZyAtLS0tDQpmc2F2ZSA8LSBmdW5jdGlvbih4LCBmaWxlID0gTlVMTCwgbG9jYXRpb24gPSAiLi9kYXRhL3Byb2Nlc3NlZC8iKSB7DQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhIiksIGRpci5jcmVhdGUoImRhdGEiKSwgRkFMU0UpDQogICAgaWZlbHNlKCFkaXIuZXhpc3RzKCJkYXRhL3Byb2Nlc3NlZCIpLCBkaXIuY3JlYXRlKCJkYXRhL3Byb2Nlc3NlZCIpLCBGQUxTRSkNCiAgICBpZiAoaXMubnVsbChmaWxlKSkNCiAgICAgICAgZmlsZSA9IGRlcGFyc2Uoc3Vic3RpdHV0ZSh4KSkNCiAgICBkYXRlbmFtZSA8LSBzdWJzdHIoZ3N1YigiWzotXSIsICIiLCBTeXMudGltZSgpKSwgMSwgOCkNCiAgICB0b3RhbG5hbWUgPC0gcGFzdGUobG9jYXRpb24sIGZpbGUsICJfIiwgZGF0ZW5hbWUsICIucmRhIiwgc2VwID0gIiIpDQogICAgc2F2ZSh4LCBmaWxlID0gdG90YWxuYW1lKSAgI25lZWQgdG8gZml4IGlmIGZpbGUgaXMgcmVsb2FkZWQgYXMgaW5wdXQgbmFtZSwgbm90IGFzIHguIA0KfQ0KDQojLS0tLSBMb2FkaW5nIGluIGRhdGEgLS0tLQ0KZmxvYWQgPC0gZnVuY3Rpb24oZmlsZW5hbWUpIHsNCiAgICBsb2FkKGZpbGVuYW1lKQ0KICAgIGdldChscygpW2xzKCkgIT0gImZpbGVuYW1lIl0pDQp9DQoNCiMtLS0tIE91dHB1dCAtLS0tDQpmc2hvd2RmIDwtIGZ1bmN0aW9uKHgsIC4uLikgew0KICAgIGtuaXRyOjprYWJsZSh4LCBkaWdpdHMgPSAyLCAiaHRtbCIsIC4uLikgJT4lDQogICAgICAgIGthYmxlRXh0cmE6OmthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSBjKCJzdHJpcGVkIiwgImhvdmVyIikpICU+JQ0KICAgICAgICBrYWJsZUV4dHJhOjpzY3JvbGxfYm94KHdpZHRoID0gIjEwMCUiLCBoZWlnaHQgPSAiMzAwcHgiKQ0KfQ0KDQpgYGANCg0KIyBMaWJyYXJpZXMNCmBgYHtyfQ0KcGFja2FnZXMgPC0gYygidGlkeXZlcnNlIikNCmZwYWNrYWdlLmNoZWNrKHBhY2thZ2VzKQ0KYGBgDQoNCg0KIyBEYXRhDQpgYGB7cn0NCnRyYXZlbHRpbWV0YmwgPC0gcmVhZF9jc3YyKCJ0cmF2ZWx0aW1lX292LmNzdiIpDQoNCiNkZl9lZ28NCmRmX2VnbyA8LSBmbG9hZCgiLi9kYXRhL3Byb2Nlc3NlZC9kZl9lZ29fMjAyNDEwMDkucmRhIikNCg0KI2RmX3dvcmtzDQpkZl93b3JrcyA8LSBmbG9hZCgiZGF0YS9wcm9jZXNzZWQvZGZfd29ya3NfMjAyNDEwMDkucmRhIikNCg0KI2RmX2FsbHVuaXMNCnVuaWRhdGEgPC0gZmxvYWQoImRhdGEvcHJvY2Vzc2VkL3VuaWRhdGFfMjAyNDEwMDkucmRhIikNCmBgYA0KDQpgYGB7cn0NCmNsYXNzKHRyYXZlbHRpbWV0YmwpDQoNCiNjb252ZXJ0IHRvIG1hdHJpeA0KdHJhdmVsdGltZV9tYXRyaXggPC0gYXMubWF0cml4KHRyYXZlbHRpbWV0YmwpDQogY29sbmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQogcm93bmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQogIyBjb3B5aW5nIHRoZSBjb2xuYW1lcyB0byB0aGUgcm93bmFtZXMsIHNhbWUgb3JkZXINCiByb3duYW1lcyh0cmF2ZWx0aW1lX21hdHJpeCkgPC0gY29sbmFtZXModHJhdmVsdGltZV9tYXRyaXgpDQpgYGANCg0KYGBge3J9DQp6ZXJvbWF0cml4IDwtIG1hdHJpeChOQSwgbnJvdyA9IDIzNCwgbmNvbCA9IDIzNCkNCmBgYA0KDQojIExvb3AgdHJhdmVsIHRpbWVzIGZvciBhbGwgZWdvcw0KYGBge3J9DQpmb3IoZWdvIGluIDE6bnJvdyh6ZXJvbWF0cml4KSkgew0KICBmb3IoYWx0ZXIgaW4gMTpuY29sKHplcm9tYXRyaXgpKXsNCiAgICBlZ291bmkgPC0gZGZfZWdvJFVuaXZlcnNpdGVpdDEuMjJbZWdvXSAjc2VsZWN0IHVuaXZlcnNpdHkgZm9yIGVnbywgbGV0IG9wIC4xID1vcGdlc2Nob29uZGUgdmFyaWFiZWxlDQogICAgYWx0ZXJ1bmkgPC0gZGZfZWdvJFVuaXZlcnNpdGVpdDEuMjJbYWx0ZXJdICNzZWxlY3QgdW5pdmVyc2l0eSBmb3IgYWx0ZXINCiAgICBpZiAoZWdvdW5pICE9ICIiICYgYWx0ZXJ1bmkgIT0gIiIpeyAjZWdvdW5pIG5pZXQgbGVlZyBpcyBFTiBhbHMgYWx0ZXJ1bmkgbmlldCBsZWVnIGlzIGRvZSBkYW4gaGV0IHZvbGdlbmRlIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMhPSBiZXRla2VudCBOT1QsID09IGJldGVrZW50IElTLCB8IGJldGVrZW50IE9SLCAmIGJldGVrZW50IEFORA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICN2b29ybmFtZWxpamsgbG9naWNhLCBIRUVMIGdvZWQgbmFkZW5rZW4gb3ZlciBiZXRla2VuaXMgZW4gZWluZGRvZWwNCiAgICAgIHRyYXZlbCA8LSB0cmF2ZWx0aW1lX21hdHJpeFtlZ291bmksYWx0ZXJ1bmldICNzZWxlY3RpbmcgdHJhdmVsdGltZSBiZXR3ZWVuIGVnbyBhbmQgYWx0ZXIgdW5pdmVyc2l0aWVzDQogICAgICB6ZXJvbWF0cml4W2VnbyxhbHRlcl0gPC0gdHJhdmVsIA0KICAgIH0NCiAgfQ0KfQ0KDQogdHJhdmVsdF9tYXRyaXg8LSB6ZXJvbWF0cml4DQogDQpgYGANCg0KIyBTYXZpbmcgdGhlIHRyYXZlbCB0aW1lIG1hdHJpeA0KYGBge3J9DQojZnNhdmUodHJhdmVsdF9tYXRyaXgsIGZpbGUgPSAidHJhdmVsdF9tYXRyaXgiLCBsb2NhdGlvbiA9ICJkYXRhL3Byb2Nlc3NlZC8iKQ0KDQojZm9yIGxvYWRpbmcgaW46DQojdHJhdmVsdF9tYXRyaXggPC0gZmxvYWQoImRhdGEvcHJvY2Vzc2VkL3RyYXZlbHRfbWF0cml4XzIwMjQxMDA5LnJkYSIpDQpgYGANCg0KIyBOb3Rlcw0KdHJhdmVsdGltZV9tYXRyaXggaXMgbm90ICh5ZXQpIG1pcnJvcmVkLiBSIEF1dG9tYXRpY2FsbHkgdGFrZXMgdGhlIHRvcCByaWdodCB2YWx1ZXMuIFdvdWxkIGJlIG5lYXRlciB0byBtaXJyb3IgdGhlIG1hdHJpeCAoYmVjYXVzZSB5b3UgbmVlZCB0byB0cmF2ZWwgdG8gYW5kIGZyb20pLiBPUiBhZGQgdXAsIE9SIGxlYXZlIGl0IGxpa2UgaXQgaXMgcmlnaHQgbm93Lg0KDQo=</div>
 
 
 </div>
@@ -589,7 +610,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("w6traveltimes.Rmd");
+  window.initializeSourceEmbed("travel_times.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

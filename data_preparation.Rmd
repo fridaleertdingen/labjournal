@@ -220,7 +220,9 @@ df_works <- do.call(rbind.data.frame, unidata$data$works)
 
 # Data preparation
 
-Adding and manipulating variables \## First names for Gender Scraper
+Adding and manipulating variables
+
+## First names for Gender Scraper
 
 ```{r}
 x <- data.frame(Naam = df_ego$Naam)

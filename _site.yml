@@ -12,26 +12,28 @@ navbar:
       href: index.html
     - text: "My journal"
       menu:
-      - text: "Page 1 - Week 1"
-        href: tutorial.html
-      - text: "Page 2 - Week 2"
-        href: w2.html
-      - text: "Page 3 - Week 3"
-        href: w3webscraping.html
-      - text: "Page 4 - Week 4"
-        href: w4.html
-      - text: "Page 5 - Week 5"
-        menu:
-        - text: "Week 5 - trying data selection"
-          href: w5dataselect.html
-        - text: "Week 5 - trying leaflet"
-          href: tryleaflet.html
-        - text: "Week 5 - RSiena lecture pt 1"
-          href: w5Rsiena.html
-        - text: "Week 5 - RSiena lecture pt 2"
-          href: w5RsienaLEC.html
-        - text: "Week 5 - Rsiena own data"
+        - text: "Page 1 - Week 1"
+          href: tutorial.html
+        - text: "Page 2 - Week 2"
+          href: w2.html
+        - text: "Page 3 - Week 3"
+          href: w3webscraping.html
+        - text: "Page 4 - Week 4"
+          href: w4.html
+        - text: "Page 5 - Week 5"
+          menu:
+            - text: "Week 5 - trying data selection"
+              href: w5dataselect.html
+            - text: "Week 5 - trying leaflet"
+              href: tryleaflet.html
+            - text: "Week 5 - RSiena lecture pt 1"
+              href: w5Rsiena.html
+            - text: "Week 5 - RSiena lecture pt 2"
+              href: w5RsienaLEC.html
+        - text: "Week 6 - Rsiena own data"
           href: w5and6RSienaTRY.html
+        - text: "Week 7 - GOF"
+          href: w7.html
     - text: "My final assignment"
       menu:
         - text: "Introduction"
@@ -39,16 +41,16 @@ navbar:
         - text: "Theory"
           href: FJtheory.html
         - text: "Data, Preparation and Methods"
-          menu: 
-            - text: "Data"
-            - href: FJdatamethods.html
-            - text: "Data preparation - code"
-            - href: data_preparation.html
-            - text: "Matching and looping travel times - code"
-            - href: travel_times.html
-        - text: "RSiena model analyses" 
           menu:
-            - text: "RSiena models"  
+            - text: "Data"
+              href: FJdatamethods.html
+            - text: "Data preparation - code"
+              href: data_preparation.html
+            - text: "Matching and looping travel times - code"
+              href: travel_times.html
+        - text: "RSiena model analyses"
+          menu:
+            - text: "RSiena models"
               href: FJanalysis.html
             - text: "Interaction of gender"
               href: FJinteraction.html
@@ -56,6 +58,15 @@ navbar:
               href: FJgof.html
         - text: "Conclusion"
           href: FJconclusion.html
+
+
+
+
+
+
+
+
+
 
 
 
