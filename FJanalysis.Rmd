@@ -1,0 +1,453 @@
+---
+title: "RSiena model analyses"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+
+```{=html}
+<style>
+body {
+text-align: justify}
+</style>
+```
+```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
+
+library(knitr)
+library(formatR)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
+## ***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
+## Functions
+```{r}
+#---- Loading packages ----
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+#---- Data saving ----
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, file, "_", datename, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+#---- Loading in data ----
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+#---- Output ----
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+```
+
+## Libraries
+
+```{r, warning=FALSE, message=FALSE, results='hide'}
+packages <- c("RSiena", "tidyverse", "stringdist", "stringi")
+fpackage.check(packages)
+```
+
+## Load in data
+
+```{r}
+#df_ego
+df_ego <- fload("./data/processed/df_ego_20241009.rda")
+
+#df_works
+df_works <- fload("data/processed/df_works_20241009.rda")
+
+#df_allunis
+unidata <- fload("data/processed/unidata_20241009.rda")
+
+travelt_matrix <- fload("data/processed/travelt_matrix_20241009.rda")
+```
+
+------------------------------------------------------------------------
+
+# Rsiena model estimations
+
+## Model 0: no additives
+
+### Dependent variable
+
+```{r}
+wave1 <- unidata$nets[1,,]
+wave2 <- unidata$nets[2,,]
+
+# let us put the diagonal to zero
+diag(wave1) <- 0
+diag(wave2) <- 0
+
+# we want a binary tie (not a weighted tie)
+wave1[wave1 > 1] <- 1
+wave2[wave2 > 1] <- 1
+
+# put the nets in an array
+net_soc_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+
+# dependent
+net <- sienaDependent(net_soc_array)
+```
+
+### Combine variables and create effects structre
+
+```{r}
+mydata <- sienaDataCreate(net)
+
+myeff <- getEffects(mydata)
+
+#effectsDocumentation(myeff)
+```
+
+### Initial description
+
+```{r}
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/m0_init")
+m0_initdescr <- readLines("./results/m0_init.txt")
+cat(m0_initdescr, sep = "\n")
+
+
+```
+
+### Estimate Model 0
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m0_init")
+```
+
+```{r, eval=FALSE}
+ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+#ansM0
+
+#convergence ratio should be below .25
+
+#fsave(ansM0, file = "ansModel0")
+
+```
+
+```{r, echo=FALSE}
+ansModel0 <- fload("data/processed/ansModel0_20241106.rda")
+ansModel0
+```
+
+### Interpretation Model 0
+
+In social network analysis, the Jaccard-index measures the similarity between two networks by comparing connections between actors in different time periods, providing information on how much a network has changed over time. The initial description of the networks shows a Jaccard-index of 0.17, suggesting a considerable change in the structure of the network. According to Ripley and colleagues (2011), values lower than 0.20 indicate that there might be difficulties in the estimation of parameter values as it suggests that the two waves we want to compare are not as comparable due to the extent of their dissimilarity. This needs to be kept in mind when drawing conclusions based on the data.
+
+Model 0 was the baseline model and thus included no additional effects besides density and reciprocity. We first look at the overall maximum convergence ratio. This ratio is based on deviations between the observed and simulated statistics compared to their standard errors. A maximum convergence ratio below 0.25 indicates that these deviations are within an acceptable range (Ripley et al., 2011), suggesting that the simulation represents the observed data adequately. The overall maximum convergence ratio of Model 0 is 0.02, which is thereby sufficient.
+
+Both the density and reciprocity in the network are significant (=(estimate/standard error) \>2) for Model 0. The network density of (b=-3.15; se=0.08) suggest that actors in the network are reluctant to create or maintain ties. The higher negative estimate means that there will likely be few connections. This is expected, as there are many solitary nodes due to the many PHD students in the network. The network reciprocity parameter (b=2.87; se=0.22) is also quite high and significant, meaning that there is a strong tendency towards reciprocal ties in the network.
+
+------------------------------------------------------------------------
+
+## Model 1: added network effects
+
+### Update Rsiena data object
+
+```{r}
+#Independent variable: travel time
+traveltime <- coDyadCovar(travelt_matrix)
+
+
+#From same uni
+uni_f <- as.numeric(as.factor(df_ego$Universiteit1.24))
+uni <- coCovar(uni_f)
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "m1_init")
+
+mydata <- sienaDataCreate(net, traveltime, uni)
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+
+```
+
+### Run Model 1
+
+```{r, eval=FALSE}
+ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+#ansM1
+
+
+#fsave(ansM1, file = "ansModel1")
+```
+
+```{r, echo=FALSE}
+ansModel1 <- fload("data/processed/ansModel1_20241101.rda")
+ansModel1
+```
+
+### Interpretation Model 1
+
+Model 1 build on the baseline model by adding a dyadic covariate effect of university affiliation to examine how similarity in which university the actor is employed affects tie formation. This model also includes the covariate effect of geographical distance to examine the influence of geographical distance on tie formation in the network. The overall convergence ratio of Model 1 remains sufficient at 0.12.
+
+The network density parameter (b=-4.04; se=0.16) increases slightly, but the found effect of reluctance in tie formation remains. The reciprocity parameter (b=2.41, se=0.22) remains mostly the same. The parameter for university affiliation (b=0.20; se=0.15) would suggest that scholars from the same university have a tendency to collaborate with each other, however, this effect was not found to be significant. The parameter for geographical distance (b=-0.02, se= 0.00) show a small but significant effect: scholars appear to prefer collaboration with scholars that are in closer proximity. These findings are in accordance with Hypothesis 1.
+
+------------------------------------------------------------------------
+
+## Model 2: added ego characteristics: gender
+
+### Update Rsiena data object
+
+```{r}
+#Gender
+gender <- coCovar(df_ego$perc_female)
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "m2_init")
+
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender")
+
+```
+
+### Run Model 2
+
+```{r, eval=FALSE}
+ansM2 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+#ansM2
+
+#fsave(ansM2, file = "ansModel2")
+```
+
+```{r, echo=FALSE}
+ansModel2 <- fload("data/processed/ansModel2_20241101.rda")
+ansModel2
+```
+
+### Interpretation Model 2
+
+Model 2 adds to the previous model by introducing various effects of gender: actor-level covariate effects (egoX and alterX) and dyadic covariate effects (sameX). The overall convergence ratio of Model 2 is still sufficient at 0.16.
+
+The parameters and significance of the previously included effects remain similar. The newly included effect of gender examines the differences in behaviour within the network between men and women. The gender variable was constructed as a scale, with 0 being a full association with a male first name and 1 being fully associated with a female first name. The parameter of egoX (b=0.70; se=0.19) indicates that women show a greater tendency to form ties than men in the network. SameX (b=0.27; se=0.12) suggests that the scholars in the network prefer ties to other scholars with the same gender. And altX (b=-0.29; se=0.13) demonstrates that female scholars generally receive less ties than male scholars. All these effects were found to be significant.
+
+------------------------------------------------------------------------
+
+## Model 3:
+
+### Update Rsiena data object
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m3_init")
+
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender") 
+myeff <- includeEffects(myeff, isolateNet, inPop, outAct, transTrip) #all structural effects
+
+```
+
+### Run Model 3
+
+```{r, eval=FALSE}
+ansM3 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+#ansM3
+
+# fsave(ansM3, file = "ansModel3")
+
+```
+
+```{r, echo=FALSE}
+ansModel3 <- fload("data/processed/ansModel3_20241101.rda")
+ansModel3
+```
+
+### Interpretation Model 3
+
+In Model 3, isolateNet, inPop, outAct and transTrip are added as structural effects to the model in order to gain a better understanding of the internal structure of the network in addition to the ego-characteristics that were defined in the previous models. Across the models, the overall maximum convergence ratio has show a small but steady increase and is now at 0.22, which is still a sufficient ratio.
+
+The parameter for isolates in the network (isolateNet) (b=4.07; se= 0.81) shows that scholars prefer to be isolates, meaning that many scholars tend to publish individually. The parameter for indegree popularity (inPop) (b=0.20; se=0.05) suggests that scholars with many indegrees are more likely to receive additional ties, thereby reinforcing their popularity. This means that here is a tendency within the network for scholars who already have many incoming ties to receive even more ties. OutAct relates to the tendency of scholars with many outdegrees to continue forming more outgoing ties. The negative parameter (b=-0.18; se=0.09) indicates that scholars with many outdegrees are less likely to form additional outgoing ties. In other words, as scholars become more active in forming ties, the tendency to keep adding ties decreases. The final structural effect transitive triplets relates to the networks’ tendency to close transitive triads, which is expected to be a likely network pattern due to the high degree of clustering that was found earlier. It was found to have a positive parameter (b=0.80; se= 0.18). This means that when two scholars both have a tie to a third scholar, they are likely to form a connection with each other. All structural effects were found to be significant. The sameX effect and altX effect of gender are no longer significant in Model 3. This is not necessarily unusual, as the structural effects can explain a large part of the gender effects.
+
+------------------------------------------------------------------------
+
+## Model 4: add sharedPop
+
+This model was created after the unsatisfactory Goodness of Fit results of Model 3. In an attempt to improve the model, structural effect of shared popularity (sharedPop) was included. This resulted in a model with a convergence ratio of just below 0.25.
+
+### Update Rsiena data object
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m4_init")
+
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender") 
+myeff <- includeEffects(myeff, isolateNet, inPop, outAct, transTrip)
+myeff <- includeEffects(myeff, sharedPop) #new additions after not so great model3 fit
+
+#also tried: transTies, but this conflicts with transTrip
+```
+
+### Run Model 4
+
+```{r, eval=FALSE}
+ansM4 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+#ansM4
+
+#fsave(ansM4, file = "ansModel4")
+
+```
+
+```{r, echo=FALSE}
+ansModel4 <- fload("data/processed/ansModel4_20241106.rda")
+ansModel4
+```
+
+## Model 5: add outActSqrt
+
+Another model was created after the unsatisfactory Goodness of Fit results of Model 4. In an attempt to improve the model, the squared effect of outdegree activity was included (outActSqrt) in order to estimate a linear relationship for this effect. The raw effect of outdegree activity was excluded. The overall convergence ratio was sufficient at 0.16.
+
+### Update Rsiena data object
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m5_init")
+
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender") 
+myeff <- includeEffects(myeff, isolateNet, inPop, transTrip) #took outAct out of this line
+myeff <- includeEffects(myeff, sharedPop) #new additions after not so great model3 fit
+myeff <- includeEffects(myeff, outActSqrt)
+
+
+```
+
+### Run Model 5
+
+```{r, eval=FALSE}
+ansM5 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  
+ansM5 <- siena07(myAlgorithm, data = mydata, effects = myeff, prevAns = ansM5, returnDeps=TRUE)
+
+ansM5
+
+#fsave(ansM5, file = "ansModel5")
+
+```
+
+```{r, echo=FALSE}
+ansModel5 <- fload("data/processed/ansModel5_20241107.rda")
+ansModel5
+```
+
+# Model 6:
+
+After the Goodness of Fit results of I decided to run one more model without outActsqrt, but instead a squared root version of indegree popularity (inPopsqrt). The raw version of this effect was excluded, the raw outdegree activity effect was included again. The overall convergence ratio of this final model was still smaller than 0.25.
+
+### Update Rsiena data object
+
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m6_init")
+
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+
+```
+
+### Update myeff
+
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender") 
+myeff <- includeEffects(myeff, isolateNet, outAct, transTrip) #took inPop out of this line
+myeff <- includeEffects(myeff, sharedPop) 
+myeff <- includeEffects(myeff, inPopsqrt) # removed outactsqrt, include outact again.
+
+
+```
+
+### Run Model 6
+
+```{r, eval=FALSE}
+ansM6 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  
+#ansM6 <- siena07(myAlgorithm, data = mydata, effects = myeff, prevAns = ansM5, returnDeps=TRUE)
+
+#ansM6
+
+#fsave(ansM6, file = "ansModel6")
+
+```
+```{r, echo=FALSE}
+ansModel6 <- fload("data/processed/ansModel6_20241107.rda")
+ansModel6
+```
+

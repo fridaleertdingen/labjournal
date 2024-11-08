@@ -32,32 +32,31 @@ navbar:
           href: w5RsienaLEC.html
         - text: "Week 5 - Rsiena own data"
           href: w5and6RSienaTRY.html
-    - text: "Final journal"
+    - text: "My final assignment"
       menu:
         - text: "Introduction"
           href: FJintro.html
         - text: "Theory"
           href: FJtheory.html
-        - text: "Data preparation and methods"
+        - text: "Data, Preparation and Methods"
           menu: 
-#            - text: "Methods"
-#            - href: {{tekstbestand met beschrijving, kaartje etc}}
-            - text: "Data preparation"
+            - text: "Data"
+            - href: FJdatamethods.html
+            - text: "Data preparation - code"
             - href: data_preparation.html
-            - text: Matching and looping travel times
-            - href: w6traveltimes.html
-          
-        
-#      menu:
- #     - text: "mogelijk meer info"
- #       href: tutorial.html
-  #    - text: "nog meer info"
-   #     href: lab1.html
+            - text: "Matching and looping travel times - code"
+            - href: travel_times.html
+        - text: "RSiena model analyses" 
+          menu:
+            - text: "RSiena models"  
+              href: FJanalysis.html
+            - text: "Interaction of gender"
+              href: FJinteraction.html
+            - text: "Goodness of Fit"
+              href: FJgof.html
+        - text: "Conclusion"
+          href: FJconclusion.html
 
-
-
-        
-        # here, other .Rmds can be added
 
 
   right:

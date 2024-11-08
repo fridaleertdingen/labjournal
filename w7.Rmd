@@ -1,5 +1,5 @@
 ---
-title: "Week 7 lecture"
+title: "Week 7 lecture - trying to estimate my model"
 author: "by: Frida van Teijlingen"
 bibliography: references.bib
 ---
@@ -45,21 +45,352 @@ fshowdf <- function(x, ...) {
 
 # Libraries
 ```{r}
-#packages <- c("")
-#fpackage.check(packages)
+packages <- c("RSiena", "tidyverse", "stringdist", "stringi")
+fpackage.check(packages)
 ```
 
-#Data
+# Data
 ```{r}
 #df_ego
-#df_ego <- fload("./data/processed/df_ego_20241009.rda")
+df_ego <- fload("./data/processed/df_ego_20241009.rda")
 
 #df_works
-#df_works <- fload("data/processed/df_works_20241009.rda")
+df_works <- fload("data/processed/df_works_20241009.rda")
 
 #df_allunis
-#unidata <- fload("data/processed/unidata_20241007.rda")
+unidata <- fload("data/processed/unidata_20241009.rda")
 
-#travelt_matrix <- fload("data/processed/travelt_matrix20241009")
+travelt_matrix <- fload("data/processed/travelt_matrix_20241009.rda")
 ```
+
+
+# Rsiena model estimation
+Stepwise:  
+step 1: define the data  
+step 2: create the effects structure  
+step 3: get initial description, look at this file, report something on it (mydata, myeff objects) - object options, control variables: isolateNet, inPop, outAct  
+step 4: specify the model (back and forth between 2 & 4)  
+step 5: estimate the model, chapter 12 for effects  
+
+-> first 0 model, then step by step addition of inhoudelijke effects (model 1 and 2), daarna step by step structure effects (model 3 and ..)
+we ignore structure effects in model 0/1/2 to solely see the inhoudelijke effects. ignoring the structure of the network. Next step: include structure effects
+
+## Model 0: no additives
+### Dependent variable
+```{r}
+wave1 <- unidata$nets[1,,]
+wave2 <- unidata$nets[2,,]
+
+# let us put the diagonal to zero
+diag(wave1) <- 0
+diag(wave2) <- 0
+
+# we want a binary tie (not a weighted tie)
+wave1[wave1 > 1] <- 1
+wave2[wave2 > 1] <- 1
+
+# put the nets in an array
+net_soc_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+
+# dependent
+net <- sienaDependent(net_soc_array)
+```
+
+### Define independent and additional variables
+```{r}
+#Independent variable: travel time
+traveltime <- coDyadCovar(travelt_matrix)
+
+#Control variable: from same uni
+uni_f <- as.numeric(as.factor(df_ego$Universiteit1.24))
+
+uni <- coCovar(uni_f)
+
+#Gender
+gender <- coCovar(df_ego$perc_female)
+```
+
+
+
+
+### Combine variables and create effects structre
+```{r}
+mydata <- sienaDataCreate(net, traveltime)
+
+myeff <- getEffects(mydata)
+
+#effectsDocumentation(myeff)
+```
+
+### Initial description
+```{r}
+ifelse(!dir.exists("results"), dir.create("results"), FALSE)
+print01Report(mydata, modelname = "./results/m0_init")
+```
+### Estimate Model 0
+```{r}
+myAlgorithm <- sienaAlgorithmCreate(projname = "m0_init")
+```
+
+
+```{r}
+ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+ansM0
+
+#convergence ratio should be below .25
+
+
+#interpretation: the overall maximum convergence ratio is sufficient. Both density and reciprocity in the network is significant (significant: estimate/standard error >2)
+#can ignore covergence t-ratio
+```
+
+----
+
+
+
+
+
+## Model 1: added network effects
+### Update Rsiena data object
+```{r}
+mydata <- sienaDataCreate(net, traveltime, uni)
+```
+
+### Update myeff
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+
+```
+### Run Model 1
+```{r}
+ansM1 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+ansM1
+
+
+
+
+#---- INTERPRETATION: (remove once written)-----
+# eval outdegree: quite high negative (and significant) estimate, meaning that people in the network are reluctant to create or maintain ties. Higher negative estimate means that there will likely be few connections. Not that strange, lot of solitaire nodes.
+
+# eval reciprocity: pretty high and significant, meaning that there is a strong tendency/preference for reciprocal ties
+
+# eval travel time: negative significant, travel time is still a small but negative effect
+
+#eval same uni: people from the same uni tend to be more likely to form or maintain network ties compared to those from different unis. --> not significant
+```
+
+
+## Model 2: added ego characteristics: gender
+### Update Rsiena data object
+```{r}
+mydata <- sienaDataCreate(net, traveltime, gender, uni)
+```
+
+### Update myeff
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, egoX, interaction1 = "gender")
+```
+
+### Run Model 2
+```{r}
+ansM2 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+ansM2
+
+
+#---- INTERPRETATION: (remove once written)-----
+# eval outdegree: 
+
+# eval reciprocity: 
+
+# eval travel time: 
+
+# eval same uni: not sig
+
+# eval gender ego: not sig
+
+```
+
+
+
+## Model 3:
+isolates : wrs heel hoog want veel isolates, niet sig is prima - is dat isolateNet?
+chap 7.13: isolateNet, inPop, outAct
+structural embeddedness?
+
+### Update Rsiena data object
+```{r}
+mydata <- sienaDataCreate(net, traveltime, uni, ### )
+#frida: create var in code at top
+```
+
+### Update myeff
+```{r}
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, ###, ###)
+
+```
+
+### Run Model 3
+```{r}
+ansM3 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+ansM3
+
+
+#---- INTERPRETATION: (remove once written)-----
+# eval outdegree: 
+
+# eval reciprocity: 
+
+# eval travel time: 
+
+# eval same uni: 
+
+# eval gender ego: 
+
+
+
+# eval 
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### GOF
+```{r}
+#per model or only final model? I think just for the final model --> in een gevulder model, vanaf daar GOF opvragen en kijken of er meer aan het model toegevoegd moet worden
+#binnen 1 standard deviation betekent significant
+
+#In journal: for the GOF, i tweaked ... and ... , resulting 
+
+
+
+
+
+
+```
+
+
+# Notes
+fshowdf to show tables in a nicer format in journal
+
+aan niels vragen hoe het werkte met de resultaten van ANS opslaan als object, echo=false, om te zorgen dat de resultaten en wat je beschrijft hetzelfde blijft na het knitten/runnen in labjournal site
+
+
+# Extra
+to try, no need to include in final paper: interaction effect of previous collaboration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+jochem klad
+
+```{r}
+# put the nets in an array
+net_soc_array <- array(data = c(wave1[1:10, 1:10], wave2[1:10, 1:10]), dim = c(10,10, 2))
+
+# dependent
+net <- sienaDependent(net_soc_array)
+```
+
+### Independent variable
+```{r}
+#traveltime as independent variable
+
+traveltime <- coDyadCovar(matrix(rnorm(100), 10, 10))
+
+```
+### Combine variables and create effects structre
+```{r}
+mydata <- sienaDataCreate(net, traveltime)
+
+myeff <- getEffects(mydata)
+
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+
+
+#effectsDocumentation(myeff)
+```
+
+
+
+
+
+
+
+
+
+
 

@@ -1,8 +1,9 @@
 ---
-title: "Week 6 lecture"
+title: "Travel times between universities"
 author: "by: Frida van Teijlingen"
 bibliography: references.bib
 ---
+
 # Set up
 ```{r}
 rm(list = ls())
@@ -83,9 +84,9 @@ zeromatrix <- matrix(NA, nrow = 234, ncol = 234)
 ```{r}
 for(ego in 1:nrow(zeromatrix)) {
   for(alter in 1:ncol(zeromatrix)){
-    egouni <- df_ego$Universiteit1.22[ego] #select university for ego, let op .1, opgeschoonde variabele
+    egouni <- df_ego$Universiteit1.22[ego] #select university for ego, let op .1 =opgeschoonde variabele
     alteruni <- df_ego$Universiteit1.22[alter] #select university for alter
-    if (egouni != "" & alteruni != ""){ #egouni nie leeg is EN als alteruni nie leeg is doe dan het volgende 
+    if (egouni != "" & alteruni != ""){ #egouni niet leeg is EN als alteruni niet leeg is doe dan het volgende 
                                         #!= betekent NOT, == betekent IS, | betekent OR, & betekent AND
                                         #voornamelijk logica, HEEL goed nadenken over betekenis en einddoel
       travel <- traveltime_matrix[egouni,alteruni] #selecting traveltime between ego and alter universities
@@ -103,7 +104,7 @@ for(ego in 1:nrow(zeromatrix)) {
 #fsave(travelt_matrix, file = "travelt_matrix", location = "data/processed/")
 
 #for loading in:
-#travelt_matrix <- fload("data/processed/travelt_matrix20241009")
+#travelt_matrix <- fload("data/processed/travelt_matrix_20241009.rda")
 ```
 
 # Notes

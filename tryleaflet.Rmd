@@ -8,7 +8,7 @@ library(leaflet)
 
 ```{r}
 leaflet() %>%
-  addProviderTiles(provider = "OpenStreetMap") %>%
+  addProviderTiles(provider = "Stadia") %>%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.2)
 
 ```

@@ -3,28 +3,50 @@ title: "Theory"
 author: "by: Frida van Teijlingen"
 bibliography: references.bib
 ---
+```{=html}
+<style>
+body {
+text-align: justify}
+</style>
+```
+```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
 
-#Theory
-Scientific collaboration can be more or less likely under various circumstances. For example, a few obvious ones being having an overlap in area of research interest, both parties having the time and funds, and both parties being interested in collaboration.  Geographical proximity is seen as a particularly important indicator of scientific collaboration, as it increases the likelihood of scholars coming into face-to-face contact with one another (Rua-Gomez et al., 2023). A smaller geographic distance increases the chances of participating in all kinds of formal and semi-formal activities that can harbour learning and knowledge sharing among scientists (Biancani et al., 2014; Hoegl et al., 2004; Ter Wal, 2014).
-...
+library(knitr)
+library(formatR)
 
--> Hypothesis 1: Universities that are geographically closer to each other will have a denser collaboration network than those that are geographically more far apart.
----
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+-------------------------------------
+
+# Theory
+
+Scientific collaboration can be more or less probable under various circumstances. For example, scholars might be more likely to collaborate on a project when they have overlapping research interests and experience, all involved parties having the time and funds, and all parties being interested and willing to collaborate. Another particularly important indicator for scientific collaboration is geographical proximity. Co-presence is generally seen as a requirement for the formation and maintenance of (social) relationships, as this can offer a deeper level of interaction than phone calls and email can (Jain & Lyons, 2008). For scholars, geographical increases the possibility of co-presence and thus the likelihood of coming into face-to-face contact with other scholars. (Rua-Gomez et al., 2023). The mechanism behind the effect of geographical proximity can be explained as twofold. First, the effect of geographical proximity can result in more frequent in-person interactions, as a smaller geographic distance increases the chances of participation in all kinds of formal and semi-formal activities that can harbour learning and knowledge sharing among scientists (Biancani et al., 2014; Hoegl et al., 2004; Ter Wal, 2014). At these formal and semi-formal events, scholars usually network and socialize, inciting the possibility of future collaboration based on shared interests and objectives. Thus, in this paper I theorize that smaller geographical distance increases the likelihood of in-person interaction, which in turn can foster future collaboration more easily compared to greater geographical distance. Second, geographical proximity is related to fewer travel constraints. While relatively close, greater travel times between Dutch universities can hinder in-person meeting opportunities of scholars. Individuals are likely to take travel time into consideration when making the decision whether or not the time and effort taken to reach the destination is worthwhile, in this case the possibility for in-person meeting opportunities (Jain & Lyons, 2008). This mechanism can be linked to cost-benefit analyses that individuals make in everyday life: the cost (traveltime) needs to be less or equal to the benefits (in-person meeting opportunities to foster collaboration) in order to be worth the effort (Vessey, 1994). For scholars with greater geographical distance between them, the travel costs and constraints might more often outweigh the benefits, thus decreasing the likelihood of collaboration. For scholars with a smaller geographical distance between them, the travel costs and constraints might be of less importance, thus increasing the likelihood of face-to-face interaction, which can lead to future collaboration. These related mechanisms result in the following hypothesis: *Universities that are geographically closer to each other will have a denser collaboration network than those that are geographically more far apart* [Hypothesis 1].
+
+Major innovations in communication methods have likely lowered the barrier of geographical distance in academic collaboration. Developments such as the introduction of the internet and the advancement of online technologies such as video-conferencing, content sharing, and application integration have made collaboration at a distance much more accessible and manageable (Longe & Magnolo, 2009; Byrnes et al., 2021). Together with this development, scholars, like many others, have become increasingly digitally literate, making the application of these advanced communication methods easier. With these progressing communication methods, collaboration through these online channels have also become more commonplace than before. Recent events have accelerated the development and standardization of more accessible and convenient online communication methods for scholars, such as the worldwide Covid-19 pandemic (Osler & Zahavi, 2022). Through this circumstance, the obstacle for collaboration because of geographical distance was lowered even further. This reasoning leads to the second hypothesis: *The influence of geographical distance on between university collaboration of Dutch Sociology departments has increased over time* [Hypothesis 2].
+
+Besides an interest in co-authorship, there are some other factors to consider before one can make the decision to pursue collaboration, such as the commute time that is added to the regular workday. For some, this additional commitment might not be as convenient as for others. For example, a long workday with an additionally lengthy commute time can compete with a work-life balance and the responsibilities at home. While gender roles no longer convey a clear division between home care responsibilities and career responsibilities, various studies show that work-family conflict is generally a greater issue for women in comparison to men (Pace & Sciotto, 2021; Samtleben & Müller, 2022). So, as women will likely experience a higher demand from the responsibilities at home compared to men, I expect women to decide to stay away from geographically distanced collaboration more often than men. This leads to the third hypothesis: *Female scholars are less likely to collaborate with scholars at universities with greater geographical distance between them then male scholars* [Hypothesis 3].
 
 
-Trend in increasing use of online communication methods. Scholars got tech savvier, find it easier to communicate, and thus collaborate, online than before. Covid normalized the use of online communication methods even further, thereby decreasing the obstacle that geographical distance made
-...
 
--> Hypothesis 2: Between university collaboration of Dutch Sociology departments has increased over time (between 2015 and 2024). 
----
-
-
-Longer travel time collaborations means more long days, commute time increases. Due to higher demand of work-life balance for women: more expected at home than men, so longer workdays less convenient, therefore less likely to engage in geographically distanced collaboration.
-...
-
--> Hypothesis 3: Female scholars are less likely to collaborate with scholars at universities distanced further away, 
----
-
-
-
--> Hypothesis 4: Collaboration in the first wave will decrease the negative impact of distance on collaboration in the second wave             ?
+## Theory - References
+Biancani, S., McFarland, D. A., & Dahlander, L. (2014). The semiformal organization. Organization Science, 25(5), 1306-1324.
+Byrnes, K. G., Kiely, P. A., Dunne, C. P., McDermott, K. W., & Coffey, J. C. (2021). Communication, collaboration and contagion:“Virtualisation” of anatomy during COVID‐19. Clinical anatomy, 34(1), 82-89. https://doi.org/10.1002/ca.23649
+Hoegl, M., Weinkauf, K., & Gemuenden, H. G. (2004). Interteam coordination, project commitment, and teamwork in multiteam R&D projects: A longitudinal study. Organization science, 15(1), 38-55.
+Jain, J., & Lyons, G. (2008). The gift of travel time. Journal of transport geography, 16(2), 81-89. https://doi.org/10.1016/j.jtrangeo.2007.05.001 
+Longo, M., & Magnolo, S. (2009). The author and authorship in the internet society: new perspectives for scientific communication. Current Sociology, 57(6), 829-850. https://doi.org/10.1177/0011392109342221
+Osler, L., & Zahavi, D. (2023). Sociality and embodiment: Online communication during and after Covid-19. Foundations of Science, 28(4), 1125-1142. https://doi.org/10.1007/s10699-022-09861-1 
+Pace, F., & Sciotto, G. (2021). Gender differences in the relationship between work–life balance, career opportunities and general health perception. Sustainability, 14(1), 357. https://doi.org/10.3390/su14010357
+Rua-Gomez, C., Carnabuci, G., & Goossen, M. C. (2023). Reaching for the stars: How gender influences the formation of high-status collaboration ties. Academy of Management Journal, 66(5), 1501-1528. https://doi.org/10.5465/amj.2021.0218
+Samtleben, C., & Müller, K.-U. (2022). Care and careers: Gender (in)equality in unpaid care, housework and employment. Research in Social Stratification and Mobility, 77. https://doi.org/10.1016/j.rssm.2021.100659 
+Vessey, I. (1994). The effect of information presentation on decision making: A cost-benefit analysis. Information & management, 27(2), 103-119. https://doi.org/10.1016/0378-7206(94)90010-8
+Ter Wal, A. L. (2014). The dynamics of the inventor network in German biotechnology: geographic proximity versus triadic closure. Journal of Economic Geography, 14(3), 589-620. doi.org/10.1093/jeg/lbs063 

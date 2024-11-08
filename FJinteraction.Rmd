@@ -1,0 +1,246 @@
+---
+title: "Interaction of gender"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+
+```{=html}
+<style>
+body {
+text-align: justify}
+</style>
+```
+```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
+
+library(knitr)
+library(formatR)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+------------------------------
+
+
+# Set up
+```{r}
+rm(list = ls())
+```
+## Functions
+```{r}
+#---- Loading packages ----
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+#---- Data saving ----
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, file, "_", datename, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+#---- Loading in data ----
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+#---- Output ----
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+```
+
+## Libraries
+
+```{r, warning=FALSE, message=FALSE, results='hide'}
+packages <- c("RSiena", "tidyverse", "stringdist", "stringi") 
+fpackage.check(packages)
+```
+## Load data
+```{r}
+df_ego <- fload("./data/processed/df_ego_20241009.rda")
+df_works <- fload("data/processed/df_works_20241009.rda")
+unidata <- fload("data/processed/unidata_20241009.rda")
+travelt_matrix <- fload("data/processed/travelt_matrix_20241009.rda")
+
+```
+
+----------------------------------
+# Interaction model preparation
+## Dependent variable
+```{r}
+wave1 <- unidata$nets[1,,]
+wave2 <- unidata$nets[2,,]
+
+# let us put the diagonal to zero
+diag(wave1) <- 0
+diag(wave2) <- 0
+
+# we want a binary tie (not a weighted tie)
+wave1[wave1 > 1] <- 1
+wave2[wave2 > 1] <- 1
+
+# put the nets in an array
+net_soc_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+
+# dependent
+net <- sienaDependent(net_soc_array)
+```
+
+## Independent variable: travel time
+```{r}
+traveltime <- coDyadCovar(travelt_matrix)
+
+
+#From same uni
+uni_f <- as.numeric(as.factor(df_ego$Universiteit1.24))
+uni <- coCovar(uni_f)
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "m7_init")
+
+```
+## Gender
+```{r}
+#Gender
+gender <- coCovar(df_ego$perc_female)
+
+myAlgorithm <- sienaAlgorithmCreate(projname = "m2_init")
+
+```
+
+
+
+## Interaction variable
+```{r}
+#Dichotimize gender
+female <- ifelse(df_ego$perc_female > 0.5, 1, 0)
+
+#gender x traveltime matrix
+femtt <- female * traveltime
+```
+
+
+# Model 7 
+## Simple model 7
+Lastly, in order to test hypothesis 3, an interaction effect of gender on the main relationship between travel time and network behaviour needed to be analysed. First, the scaled gender variable was dichotomized based on a 0.5 cut off point (e.g. a score of '0.51' was given a new score of '1'). In this new variable, an actor ascribe '0' meant that this actor was likely male, '1' meant the actor was likely female. 
+
+This was tested on a simple model with just network effects, including the interaction of gender (Model 7). The overall convergence ratio of this model was 0.04, thus sufficient. The interaction of gender was found to have a positive, just non-significant, and extremely small parameter (b=0.00; se= 0.00). Thus, this result is not able to conclude an interaction effect of gender. Hypothesis 3 is thereby rejected.
+
+
+```{r}
+mydata <- sienaDataCreate(net, traveltime, uni, femtt)
+
+myeff <- getEffects(mydata)
+myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+myeff <- includeEffects(myeff, X, interaction1 = "femtt")
+
+
+```
+# Simple interaction model 7
+```{r, eval=FALSE}
+ansM7 <- siena07(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# prevAns = ansM0, returnDeps=TRUE)
+ansM7
+
+fsave(ansM7, file = "ansModel7")
+```
+
+```{r, echo=FALSE}
+ansModel7 <- fload("data/processed/ansModel7_20241107.rda")
+ansModel7
+```
+
+
+
+
+# Model 8
+## Complex Model 8
+This result does not rule out that the interaction effect could not be significant in a more complex model that includes structural effects, as a more complex model would include factors that now possibly confound the effect, as well as providing a more representative testing ground for a possible interaction effect. Therefore, I attempted to test the interaction in a more complex model, namely by adding it to Model 6 (Model 8). However, I ran into several issues while testing and thus I am not able to generate any useful results for this test. Future testing in different, yet complex, models could continue the search for an interaction effect of gender.
+
+```{r}
+# mydata <- sienaDataCreate(net, traveltime, gender, uni, femtt)
+# 
+# myeff <- getEffects(mydata)
+# myeff <- includeEffects(myeff, X, interaction1 = "traveltime")
+# myeff <- includeEffects(myeff, sameX, interaction1 = "uni")
+# myeff <- includeEffects(myeff, X, interaction1 = "femtt")
+# myeff <- includeEffects(myeff, sameX, egoX, altX, interaction1 = "gender") 
+# myeff <- includeEffects(myeff, isolateNet, outAct, transTrip)
+# myeff <- includeEffects(myeff, sharedPop) 
+# myeff <- includeEffects(myeff, inPopsqrt)
+```
+
+## Complex interaction Model 8
+```{r, eval=FALSE}
+# ansM8 <- siena08(myAlgorithm, data = mydata, effects = myeff, returnDeps = TRUE)
+# # if necessary estimate again!  ansM0 <- siena07(myAlgorithm, data = mydata, effects = myeff,
+# # prevAns = ansM0, returnDeps=TRUE)
+# ansM8
+# 
+# #fsave(ansM8, file = "ansModel8")
+```
+# Trial and error: another attempt
+
+```{r}
+# #load data
+# #df_ego <- fload("./data/processed/df_ego_20241009.rda")
+# #df_works <- fload("data/processed/df_works_20241009.rda")
+# #unidata <- fload("data/processed/unidata_20241009.rda")
+# #travelt_matrix <- fload("data/processed/travelt_matrix_20241009.rda")
+# 
+# 
+# # Interaction of gender
+# ## Dependent variable: network (Y)
+# wave1 <- unidata$nets[1,,]
+# wave2 <- unidata$nets[2,,]
+# 
+# # put the diagonal to zero
+# diag(wave1) <- 0
+# diag(wave2) <- 0
+# 
+# #binary tie (not a weighted tie)
+# wave1[wave1 > 1] <- 1
+# wave2[wave2 > 1] <- 1
+# 
+# #nets in array
+# net_soc_array <- array(data = c(wave1, wave2), dim = c(dim(wave1), 2))
+# 
+# #dependent
+# net <- sienaDependent(net_soc_array)
+# 
+# 
+# ## Independent variable: traveltime/geo distance (X)
+# 
+# traveltime <- coDyadCovar(travelt_matrix)
+# 
+# ## Interaction variable: gender (M)
+# gender <- coCovar(df_ego$perc_female) #higher score means more likely female
+# 
+# ## Model for interaction of gender
+# h3data <- rbind(wave1, wave2)
+# h3model <- lm(net ~ traveltime * gender*h3data, data = unidata)
+```
+

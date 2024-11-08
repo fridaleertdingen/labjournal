@@ -1,0 +1,345 @@
+---
+title: "Goodness of Fit"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+
+```{=html}
+<style>
+body {
+text-align: justify}
+</style>
+```
+```{r warning=FALSE, globalsettings, echo=FALSE, results='hide'}
+
+library(knitr)
+library(formatR)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+------------------------------------
+
+# Set up
+```{r}
+rm(list = ls())
+```
+
+## Functions
+```{r}
+#---- Loading packages ----
+fpackage.check <- function(packages) {
+    lapply(packages, FUN = function(x) {
+        if (!require(x, character.only = TRUE)) {
+            install.packages(x, dependencies = TRUE)
+            library(x, character.only = TRUE)
+        }
+    })
+}
+
+#---- Data saving ----
+fsave <- function(x, file = NULL, location = "./data/processed/") {
+    ifelse(!dir.exists("data"), dir.create("data"), FALSE)
+    ifelse(!dir.exists("data/processed"), dir.create("data/processed"), FALSE)
+    if (is.null(file))
+        file = deparse(substitute(x))
+    datename <- substr(gsub("[:-]", "", Sys.time()), 1, 8)
+    totalname <- paste(location, file, "_", datename, ".rda", sep = "")
+    save(x, file = totalname)  #need to fix if file is reloaded as input name, not as x. 
+}
+
+#---- Loading in data ----
+fload <- function(filename) {
+    load(filename)
+    get(ls()[ls() != "filename"])
+}
+
+#---- Output ----
+fshowdf <- function(x, ...) {
+    knitr::kable(x, digits = 2, "html", ...) %>%
+        kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+        kableExtra::scroll_box(width = "100%", height = "300px")
+}
+
+
+#---- Moran's I ----
+fMoran.I <- function(x, weight, scaled = FALSE, na.rm = FALSE, alternative = "two.sided", rowstandardize = TRUE) {
+    if (rowstandardize) {
+        if (dim(weight)[1] != dim(weight)[2])
+            stop("'weight' must be a square matrix")
+        n <- length(x)
+        if (dim(weight)[1] != n)
+            stop("'weight' must have as many rows as observations in 'x'")
+        ei <- -1/(n - 1)
+        nas <- is.na(x)
+        if (any(nas)) {
+            if (na.rm) {
+                x <- x[!nas]
+                n <- length(x)
+                weight <- weight[!nas, !nas]
+            } else {
+                warning("'x' has missing values: maybe you wanted to set na.rm = TRUE?")
+                return(list(observed = NA, expected = ei, sd = NA, p.value = NA))
+            }
+        }
+        ROWSUM <- rowSums(weight)
+        ROWSUM[ROWSUM == 0] <- 1
+        weight <- weight/ROWSUM
+        s <- sum(weight)
+        m <- mean(x)
+        y <- x - m
+        cv <- sum(weight * y %o% y)
+        v <- sum(y^2)
+        obs <- (n/s) * (cv/v)
+        if (scaled) {
+            i.max <- (n/s) * (sd(rowSums(weight) * y)/sqrt(v/(n - 1)))
+            obs <- obs/i.max
+        }
+        S1 <- 0.5 * sum((weight + t(weight))^2)
+        S2 <- sum((apply(weight, 1, sum) + apply(weight, 2, sum))^2)
+        s.sq <- s^2
+        k <- (sum(y^4)/n)/(v/n)^2
+        sdi <- sqrt((n * ((n^2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq) - k * (n * (n - 1) * S1 - 2 * n *
+            S2 + 6 * s.sq))/((n - 1) * (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
+        alternative <- match.arg(alternative, c("two.sided", "less", "greater"))
+        pv <- pnorm(obs, mean = ei, sd = sdi)
+        if (alternative == "two.sided")
+            pv <- if (obs <= ei)
+                2 * pv else 2 * (1 - pv)
+        if (alternative == "greater")
+            pv <- 1 - pv
+        list(observed = obs, expected = ei, sd = sdi, p.value = pv)
+    } else {
+        if (dim(weight)[1] != dim(weight)[2])
+            stop("'weight' must be a square matrix")
+        n <- length(x)
+        if (dim(weight)[1] != n)
+            stop("'weight' must have as many rows as observations in 'x'")
+        ei <- -1/(n - 1)
+        nas <- is.na(x)
+        if (any(nas)) {
+            if (na.rm) {
+                x <- x[!nas]
+                n <- length(x)
+                weight <- weight[!nas, !nas]
+            } else {
+                warning("'x' has missing values: maybe you wanted to set na.rm = TRUE?")
+                return(list(observed = NA, expected = ei, sd = NA, p.value = NA))
+            }
+        }
+        # ROWSUM <- rowSums(weight) ROWSUM[ROWSUM == 0] <- 1 weight <- weight/ROWSUM
+        s <- sum(weight)
+        m <- mean(x)
+        y <- x - m
+        cv <- sum(weight * y %o% y)
+        v <- sum(y^2)
+        obs <- (n/s) * (cv/v)
+        if (scaled) {
+            i.max <- (n/s) * (sd(rowSums(weight) * y)/sqrt(v/(n - 1)))
+            obs <- obs/i.max
+        }
+        S1 <- 0.5 * sum((weight + t(weight))^2)
+        S2 <- sum((apply(weight, 1, sum) + apply(weight, 2, sum))^2)
+        s.sq <- s^2
+        k <- (sum(y^4)/n)/(v/n)^2
+        sdi <- sqrt((n * ((n^2 - 3 * n + 3) * S1 - n * S2 + 3 * s.sq) - k * (n * (n - 1) * S1 - 2 * n *
+            S2 + 6 * s.sq))/((n - 1) * (n - 2) * (n - 3) * s.sq) - 1/((n - 1)^2))
+        alternative <- match.arg(alternative, c("two.sided", "less", "greater"))
+        pv <- pnorm(obs, mean = ei, sd = sdi)
+        if (alternative == "two.sided")
+            pv <- if (obs <= ei)
+                2 * pv else 2 * (1 - pv)
+        if (alternative == "greater")
+            pv <- 1 - pv
+        list(observed = obs, expected = ei, sd = sdi, p.value = pv)
+    }
+
+
+}
+
+
+
+#---- Rsiena GOF auciliary function ----
+#?'sienaGOF-auxiliary'
+GeodesicDistribution <- function(i, data, sims, period, groupName, varName, levls = c(1:5, Inf), cumulative = TRUE,
+    ...) {
+    x <- networkExtraction(i, data, sims, period, groupName, varName)
+    require(sna)
+    a <- sna::geodist(symmetrize(x))$gdist
+    if (cumulative) {
+        gdi <- sapply(levls, function(i) {
+            sum(a <= i)
+        })
+    } else {
+        gdi <- sapply(levls, function(i) {
+            sum(a == i)
+        })
+    }
+    names(gdi) <- as.character(levls)
+    gdi
+}
+
+# The following function is taken from the help page for sienaTest
+
+testall <- function(ans) {
+    for (i in which(ans$test)) {
+        sct <- score.Test(ans, i)
+        cat(ans$requestedEffects$effectName[i], "\n")
+        print(sct)
+    }
+    invisible(score.Test(ans))
+}
+
+```
+
+
+## Libraries
+
+```{r, warning=FALSE, message=FALSE, results='hide'}
+packages <- c("RSiena", "tidyverse", "stringdist", "stringi", "igraph", "sna", "statnet.common")
+fpackage.check(packages)
+```
+
+
+## Load in data
+```{r}
+ansModel0 <- fload("data/processed/ansModel0_20241101.rda")
+ansModel1 <- fload("data/processed/ansModel1_20241101.rda")
+ansModel2 <- fload("data/processed/ansModel2_20241101.rda")
+ansModel3 <- fload("data/processed/ansModel3_20241101.rda")
+```
+
+---------------------------------------
+
+# Goodness of Fit
+In order to evaluate whether the estimated model accurately represents the network data, the Goodness of Fit is tested. To make this assessment, the observed network features are compared to the expected values in the estimated distribution of the networks, based on a large set of simulations. An inadequate fit means that the estimates are not reliable and that the model needs to undergo some changes to provide a somewhat accurate representation of the network. 
+
+Model 3 consisted of both ego-related effects and structural effects, making it the most complete model thus far and therefore the most meaningful model to run a Goodness of Fit assessment on. For this model, the indegree distribution and outdegree distribution are evaluated to test different aspects of the network structure, as I believed these to be the most relevant for the research questions of this study. The indegree distribution measures whether the model accurately reflects the range and frequency of incoming ties observed in the data. The outdegree distribution measures whether the model accurately reflects the range and frequency of outgoing ties observed in the data.
+In a Goodness of Fit evaluation, a p-value of <0.05 indicates a poor fit and large p-values indicate good fit. The fit measures of Model 3 suggest that there is room for improvement; indegree distribution (p=0.01) and outdegree distribution (p=0.07) and are extremely low and I consider these a poor fit. In an attempt to improve the model, shared popularity was added to Model 4, which relates to the tendency of actors in a network to form ties with others who already share a tie with popular actors. The addition of this effect barely affected the significance of indegree distribution (p=0.01) and lowered the outdegree distribution ( p=0.05). Thus, it was decided to try again with another alteration: Model 5 included the square rooted version outdegree activity as a replacement for the raw outdegree activity effect. This change resulted in a decrease in the indegree distribution (p=0.00) and an increase in the outdegree distribution (p=0.07).
+
+In a last attempt to make the model fit the data a bit better, it was decided to undo the alterations done for Model 5 and instead include the square rooted version of indegree popularity in new Model 6. The raw effect of indegree popularity was excluded in this model. This final attempt resulted in more noticeable changes in the Goodness of Fit of the model: the results still show an insufficient indegree distribution (p=0.00), but an acceptable outdegree distribution (p=0.32). 
+
+Looking at these final Goodness of Fit distribution plots, we can see that the red line (the values in the outcome network) is quite similar to the outcome of the simulated networks. While the true network and simulations appear quite similar in both plots, only the outdegree distribution was significant enough to meaningfully interpret. In the outdegree distribution plot, it can be observed that there are 108 scholars without any outdegrees, 147 scholars with one outdegree, and so on. The red line above the zero outdegree estimate indicates some underestimation in the simulated networks for the scholars with zero outdegrees, the red line under the one outdegree estimate indicates an overestimation of this group of scholars in the simulated networks. The rest of the estimates appear rather similar. In the indegree distribution plot, scholars with zero and one indegree appear underestimated in the simulated networks. However, since this fit of this model is insufficient, it is best to refrain from any conclusions based on this plot.
+
+As I was out of ideas on what alterations I could implement to improve the model fit, I decided to leave the model alone for now. I realize that this would not be sufficient for a regular social networks paper, but this is what I was able to do for now.
+
+
+
+
+# GOF - Model 3
+
+## Applying sienaGOF based on various auxiliary statistics
+
+```{r}
+#testing GOF model 0
+#gofo0 <- sienaGOF(ansModel0, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
+#    varName = "net")
+#gofi0 <- sienaGOF(ansModel0, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "net")
+#gof0.gd <- sienaGOF(ansModel0, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
+
+#plot(gofi0, main = "")
+#plot(gofo0, main = "")
+#plot(gof0.gd, main = "")
+```
+
+## Applying sienaGOF based on various auxiliary statistics
+
+```{r}
+gofo3 <- sienaGOF(ansModel3, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
+    varName = "net")
+gofi3 <- sienaGOF(ansModel3, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "net")
+#gof3.gd <- sienaGOF(ansModel3, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
+```
+
+```{r}
+plot(gofo3, main = "")
+```
+```{r}
+plot(gofi3, main = "")
+```
+
+
+# GOF - Model 4
+```{r}
+ansModel4 <- fload("data/processed/ansModel4_20241103.rda")
+```
+
+
+```{r}
+gofo4 <- sienaGOF(ansModel4, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
+    varName = "net")
+gofi4 <- sienaGOF(ansModel4, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "net")
+#gof4.gd <- sienaGOF(ansModel4, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
+```
+
+
+
+## Outdegree distribution
+```{r}
+plot(gofo4, main = "")
+```
+## Indegree distribution
+```{r}
+plot(gofi4, main = "")
+```
+
+
+# GOF - Model 5
+```{r}
+ansModel5 <- fload("data/processed/ansModel5_20241107.rda")
+```
+
+
+```{r}
+gofo5 <- sienaGOF(ansModel5, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
+    varName = "net")
+gofi5 <- sienaGOF(ansModel5, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "net")
+#gof5.gd <- sienaGOF(ansModel5, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
+```
+
+## Indegree distribution
+```{r}
+plot(gofi5, main = "")
+```
+
+
+## Outdegree distribution
+```{r}
+plot(gofo5, main = "")
+```
+
+
+# GOF - Model 6
+```{r}
+ansModel6 <- fload("data/processed/ansModel6_20241107.rda")
+```
+
+
+```{r}
+gofo6 <- sienaGOF(ansModel6, OutdegreeDistribution, verbose = FALSE, join = TRUE, levls = c(0:10, 15, 20),
+    varName = "net")
+gofi6 <- sienaGOF(ansModel6, IndegreeDistribution, verbose = FALSE, join = TRUE, varName = "net")
+#gof6.gd <- sienaGOF(ansModel6, GeodesicDistribution, cumulative = FALSE, verbose = FALSE, join = TRUE, varName = "net")
+```
+
+
+
+## Outdegree distribution
+```{r}
+plot(gofo6, main = "")
+```
+
+## Indegree distribution
+```{r}
+plot(gofi6, main = "")
+```
+

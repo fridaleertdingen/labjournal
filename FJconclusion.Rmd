@@ -1,0 +1,41 @@
+---
+title: "Conclusion"
+author: "by: Frida van Teijlingen"
+bibliography: references.bib
+---
+```{=html}
+<style>
+body {
+text-align: justify}
+</style>
+```
+```{r, globalsettings, echo=FALSE, warning=FALSE, results='hide'}
+
+library(knitr)
+library(formatR)
+
+knitr::opts_chunk$set(echo = TRUE)
+opts_chunk$set(tidy.opts=list(width.cutoff=100),tidy=TRUE, warning = FALSE, message = FALSE,comment = "#>", cache=TRUE, class.source=c("test"), class.output=c("test2"))
+options(width = 100)
+rgl::setupKnitr()
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
+***‘Out of sight, out of mind: a social network approach to geographical distance and co-authorship collaboration at four Sociology departments in the Netherlands’***
+-------------------------------------
+
+# Conclusion
+
+This study considered the continuing globalization with its subsequent growing interconnectedness and shrinking psychic distance between scientists to gain understanding of the relationship between geographical distance and the collaboration networks of social scientists at Dutch universities. Utilizing a social network approach, the collaboration network of scholars at Sociology departments at four Dutch universities was studied to uncover the true structure of this network and behaviour of actors within.
+
+Based on existing literature and theory, one would expect that with greater geographical distance between one scholar and another, the travel costs and constraints might often impose a barrier for scholars, thus decreasing the likelihood of collaboration between scholars of distanced universities. With smaller geographical distance between one scholar to another, the travel costs and constraints might be of less importance, thus increasing the likelihood of face-to-face interaction, which results in more collaboration [Hypothesis 1].  Additionally, this mechanism has likely increased over time due to the introduction and dexterity of modern communication methods, as this normalized collaboration through online channels. Thus, it was expected that the collaboration between scholars of different Dutch Sociology departments has increased over time [Hypothesis 2].  Moreover, due to different attitudes and experiences regarding work-life balance, this study expected that female scholars were less likely to collaborate with scholars at universities with greater geographical distance between them then male scholars [Hypothesis 3].
+
+This study used co-authorship as an indicator for collaboration between scholars and travel time by public transport as a proxy for geographical distance. The results of this study show support for the first hypothesis, as scholars show a tendency to form denser collaborative ties to scholars at universities that are spatially closer compared to scholars at universities that are spatially further away. As a comparison of the two waves showed that the network has become more clustered and similar over time, thus providing evidence for the second hypothesis. The interaction effect of gender was not found in the simple network model, therefore there is no concluding evidence of the existence of an interacting mechanism of gender, thus rejecting the third hypothesis. 
+
+Like many other studies, this study was not flawless and can be refined in multiple ways. First, as discussed earlier, the low Jaccard-index suggested that there would be difficulties in the accuracy of parameter estimation. As a result, the found (and not found) effects needed to be cautiously interpreted. Additional research would need to be done in order to confirm the found results in a more fitting context. Future research would need to confirm the found results in more similar networks in order to make more justified claims. The poor Goodness of Fit indicates that there is indeed room for model improvement. A future addition of external control variables might improve the model fit and overall accuracy of the analysis. Second, a multiplex network analysis approach could also provide opportunities to gain a better understanding of the research topic at hand, as this approach would allow for a multi-layered network analysis. With this approach, collaboration behaviour in relation to geographical distance at the actor, network, and university level could be studied, which would be relevant due to the various layers of collaboration opportunities in this network (e.g. previous collaborations, partnership between universities, etc.). Third, future studies could also expand on the current study and literature by focusing on the cost-benefit trade-off that is central to the relationship between geographical distance and collaboration opportunities of scholars. This approach would potentially also benefit from taking the role of varying academic status into account: Are actors willing to travel further to collaborate with scholars with higher academic status compared to scholars with lower academic status? 
+
+In conclusion, this study confirmed existing theory regarding the role of geographical distance in collaboration networks. However, it also showed that there is much more to detangle before we can reach a full understanding of this relationship and to what extent the effect reaches. Future research will further the search for answers and understanding.
