@@ -240,7 +240,7 @@ map_tt <- data.frame(
 
 
 ```{r}
-#Stadia map does not work anymore
+#Stadia map does not work
 map <- leaflet() %>%
   addProviderTiles(provider = "CartoDB.Voyager") %>%
   setView(lng = 5.2913, lat = 52.1326, zoom = 7.4) %>%
